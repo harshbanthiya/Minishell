@@ -44,9 +44,39 @@ void    init_shell()
     {
         shell_pgid = getpgrp();
         while(tcgetpgrp(shell_terminal) != shell_pgid)
-            kill()
+            kill(- shell_pgid, SIGTTIN); /* signals allow for manipulating processes, mostly terminating them. SIGTTIN - stop process 
+                                            background read attempted from control terminal */
+        
+        /* Ignore interactive and job-control signals */
+        signal (SIGINT, SIG_IGN);
+        signal (SIGQUIT, SIG_IGN);
+        signal (SIGTSTP, SIG_IGN);
+        signal (SIGTTIN, SIG_IGN);
+        signal (SIGTTOU, SIG_IGN);
+        signal (SIGCHLD, SIG_IGN);
 
+        /* Put ourselves in our own process group */
+        shell_pgid = getpid();
+        if (setpgid(shell_pgid, shell_pgid) < 0)  /* setpgid(pid_t pid, pid_t pgid) sets process pid's group to pgid returns zero on success */
+        {
+            perror("Couldn't put the shell in its own process group\n");
+            exit(1);
+        }
+
+        /* Grab control of the terminal */
+        tcsetpgrp(shell_terminal, shell_pgid); 
+        /* tcsetpgrp(fd, pgid) if the process has a controlling terminal, this function sets the forground process group ID 
+        associated with the terminal device to pgid, The terminal device associated with fd, must be controlling terminal of the
+        calling process and the controlling terminal must be currently associated with the session of the calling process. The value of pgid
+        must be the same as the process group ID of a process in the same session as the calling process */
+
+        /* Save default terminal_attributes for shell */
+        tcgetattr(shell_terminal, &shell_tmodes);
+        /* tcgetattr(fd, termios_p) for getting the termios structure; 
+         The tcgetattr() function copies the parameters associated with the terminal referenced by fildes in 
+         the termios structure referenced by termios_p.
+         This function is allowed from a background process; 
+         however, the terminal attributes may be subsequently changed by a foreground process.*/
     }
-
 }
 
