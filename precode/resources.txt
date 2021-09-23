@@ -1,0 +1,14 @@
+https://github.com/iciamyplant/Minishell
+https://brennan.io/2015/01/16/write-a-shell-in-c/
+https://pubs.opengroup.org/onlinepubs/009695399/utilities/xcu_chap02.html
+https://www.cs.purdue.edu/homes/grr/SystemsProgrammingBook/Book/Chapter5-WritingYourOwnShell.pdf
+https://adrienblanc.com/projects/42/minishell
+https://github.com/maxime-42/minishell
+https://medium.com/swlh/tutorial-to-code-a-simple-shell-in-c-9405b2d3533e
+https://medium.com/@romalms10/this-is-the-story-of-a-shell-73686729a650
+https://www.geeksforgeeks.org/making-linux-shell-c/
+https://www.cs.cornell.edu/courses/cs414/2004su/homework/shell/shell.html
+
+Seb's Doc 
+
+https://docs.google.com/document/d/1gASupJ89u5JobOBMr28Hn4UyDjj8StyYyiQZDh33Az0/edit#heading=h.82f718gghriq
