@@ -34,3 +34,21 @@ This is called a foreground job on that controlling terminal. Other process grou
 access to the terminal are called background jobs.
 
 
+CONTROLLING TERMINAL OF A PROCESS 
+____________________________
+
+One of the attributes of a process is its controlling terminal. Child Processes created with fork() inherit the controlling terminal from
+their parents. In this way, all the processes in a session inherit the controlling terminal from the session leader. A session leader that 
+has control of a terminal is called the controlling process of that terminal.
+
+____________________________
+
+ACCESS to the controlling Terminal 
+
+As we know the foreground processes have unrestricted access to that terminal; background processes do not. Whenever the background process
+tried to read from the terminal, the process group is usually sent a SIGTTIN signal. This causes all the processes in that group to stop.
+Same goes for SIGTTOU signal which is used to write to terminal. 
+
+
+
+
