@@ -20,4 +20,17 @@ A session is a larger group of processes. Normally all processes that stem from 
 Every process belongs to a process group,
     When a process is created, it becomes the member of the same process group and session as its parent process.
     We can put it in another process group using setpgid function, provided the process belongs to the same session
-    
+    The only way to put a process in a different session is to make it the initial process of a new session, using setsid function 
+
+Important 
+
+A shell that supports job control must arrange to control which job can use the terminal at the time. 
+    Otherwise there might be multiple jobs trying to read from the terminal at once, and the confusion about which process should receive
+    the input. To prevent the confusion, the shell must cooperate the terminal driver using the protocol described below 
+
+
+The shell can give unlimited access to the controlling terminal to only one process group at a time. 
+This is called a foreground job on that controlling terminal. Other process groups managed by the shell that are executing without the 
+access to the terminal are called background jobs.
+
+
