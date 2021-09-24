@@ -32,7 +32,7 @@ typedef struct  job
     process             *first_process; /* list of processes in this job */
     pid_t               p_grp_id;      /* process group id */
     char                notified;      /* true if user told about stopped job */
-    struct terminos     tmodes;        /* saved terminal modes */
+    struct terminos     *tmodes;        /* saved terminal modes */
     int                 stdin;         /* standard I/O channels */
     int                 stdout;        /* standard I/O channels */
     int                 stderr;        /* standard I/O channels */
