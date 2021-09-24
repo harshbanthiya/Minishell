@@ -50,5 +50,22 @@ tried to read from the terminal, the process group is usually sent a SIGTTIN sig
 Same goes for SIGTTOU signal which is used to write to terminal. 
 
 
+SUMMARY
+____________________________
 
+void init_shell (void)
+Initialize the shell’s internal state. See shell_init.c
 
+void launch_job (job *j, int foreground)
+Launch the job j as either a foreground or background job. See launching_jobs.c
+
+void do_job_notification (void)
+Check for and report any jobs that have terminated or stopped. 
+Can be called synchronously or within a handler for SIGCHLD signals. See stopped_terminated_jobs.c
+
+void continue_job (job *j, int foreground)
+Continue the job j. See Continuing stopped_terminated_jobs.c
+
+Of course, a real shell would also want to provide other functions for managing jobs. 
+For example, it would be useful to have commands to list all active jobs or 
+to send a signal (such as SIGKILL) to a job.

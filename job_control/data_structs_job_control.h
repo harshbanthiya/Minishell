@@ -47,4 +47,3 @@ int     job_is_stopped(job *j);
 int     job_is_completed(job *j);
 
 #endif
-
