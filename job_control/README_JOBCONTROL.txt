@@ -69,3 +69,10 @@ Continue the job j. See Continuing stopped_terminated_jobs.c
 Of course, a real shell would also want to provide other functions for managing jobs. 
 For example, it would be useful to have commands to list all active jobs or 
 to send a signal (such as SIGKILL) to a job.
+
+
+Questions 
+
+: What is interactive shell ?
+: What are all the asynchronous and synchronous aspects of terminal?
+: Built IN
