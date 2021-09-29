@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/11 18:47:32 by sfournie          #+#    #+#             */
-/*   Updated: 2021/09/28 19:39:35 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/09/28 20:23:03 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,16 @@ void	ft_add_front(t_tok *tok, t_tok *new)
 	}
 }
 
-void	ft_add_back(t_tok *tok, t_tok *new)
+void	ft_add_back(t_tok **tok, t_tok *new)
 {
-	if (tok == NULL)
-		tok = new;
+	if (*tok == NULL)
+		*tok = new;
 	else if (new != NULL)
 	{
-		if (tok->next != NULL)
-			ft_add_back(tok->next, new);
+		if ((*tok)->next != NULL)
+			ft_add_back(&(*tok)->next, new);
 		else
-			tok->next = new;
+			(*tok)->next = new;
 	}
 }
 
@@ -72,7 +72,7 @@ void	ft_print_tokens(t_tok *tok)
 	{	
 		if (temp->value != NULL)
 		{
-			printf("%s\n", tok->value);
+			printf("%s\n", temp->value);
 		}
 		temp = temp->next;
 	}
