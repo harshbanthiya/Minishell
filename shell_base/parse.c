@@ -25,11 +25,7 @@ void    init_info(parse_info *p)
     p->background = FALSE;
     p->inpipefile = NULL;
     p->outpipefile = NULL;
-    while (i < MAX_PIPE_NUM)
-    {
-        p->tokens[i] = NULL;
-        i++;
-    }
+    p->tokens = malloc(p->numArgs * sizeof(char *));
 }
 
 parse_info  *parse(char *cmdline)
