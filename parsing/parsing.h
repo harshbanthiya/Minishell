@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 15:07:35 by sfournie          #+#    #+#             */
-/*   Updated: 2021/09/28 20:17:21 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/09/29 18:07:50 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <stdlib.h>
+# include <string.h>
+# define	ENV_VAR 
 
 typedef struct	s_tok
 {
