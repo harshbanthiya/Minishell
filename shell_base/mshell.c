@@ -90,6 +90,7 @@ int main(int argc, char **argv)
     orig_prompt = strdup(prompt);
     init_info(info);
     is_builtin = 0;
+    rl_bind_key('\t', rl_complete);
     while(1)
     {
         make_prompt(prompt, orig_prompt);
