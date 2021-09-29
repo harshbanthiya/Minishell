@@ -23,7 +23,7 @@
 typedef struct      parse_info
 {
     bool            background;
-    char            *tokens[MAX_PIPE_NUM];
+    char            **tokens;
     int             numArgs;
     char            *inpipefile; /* File to be piped from */
     char            *outpipefile; /* File to be piped to */
