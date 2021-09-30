@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 18:45:14 by sfournie          #+#    #+#             */
-/*   Updated: 2021/09/29 18:12:29 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/09/30 15:19:52 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,28 +20,30 @@ int		is_delimiter(char c)
 }
 
 // Takes the str address following the $ and return the environment variable value (or NULL)
-char	*get_env_var(char *start)
+t_var	*get_env_var(char *start)
 {
-	char	*value;
-	char	*name;
+	
+	t_var	*var;
 	int		i;
 	int 	count;
 
 	count = 0;
 	if (start == NULL || !*start)
 		return (NULL);
+	var = (t_var *)malloc(sizeof(t_var));
+	if (var == NULL)
+		return (NULL);
 	while (!is_delimiter(start[count]))
 		count++;
-	name = (char *)malloc(sizeof(char) * (count + 1));
-	if (name == NULL)
-		return (NULL);
+	var->name = (char *)malloc(sizeof(char) * (count + 1));
+	if (var->name == NULL)
+		return (var);
 	i = -1;
 	while (++i < count)
-		name[i] = start[i];
-	name[i] = '\0';
-	value = getenv(name);
-	free(name);
-	return (value); 
+		var->name[i] = start[i];
+	var->name[i] = '\0';
+	var->value = getenv(var->name);
+	return (var); 
 }
 
 // return 0 if not enclosed
@@ -106,7 +108,7 @@ int	get_tok_end(char *str, char delim, int i)
 char	*expand_tok(char *tok)
 {
 	char	*exp_tok;
-	char	*env_var;
+	t_var	*env_var;
 	int		i;
 	int		j;
 	int		var_flag;
@@ -119,25 +121,31 @@ char	*expand_tok(char *tok)
 	while (tok[i])
 	{
 		j = i;
-		while(tok[j] || (tok[j] == '$' && var_flag && !is_delimiter(tok[j + 1])))
+		while(tok[j] && !(tok[j] == '$' && var_flag))
 		{
-			if (tok[j] == '\'' && is_enclosed(tok[j + 1], '\''))
+			if (tok[j] == '\'' && is_enclosed(&tok[j + 1], '\''))
 				var_flag = 0;
 			else if (tok[j] == '\'' && !var_flag)
 				var_flag = 1;
+			j++;
 		}
-		// str_append(exp_tok, &tok[i], j - i);
+		exp_tok = ft_str_append(exp_tok, &tok[i], j - i);
 		if (tok[j] == '$')
 		{
-			env_var = get_env_var(&tok[i + 1]);
-			// if (env_var != NULL)
-			// 	strjoin(exp_tok, env_var);
+			env_var = get_env_var(&tok[j + 1]);
+			if (env_var != NULL)
+			{
+			 	exp_tok = ft_str_fuse(exp_tok, env_var->value);
+				 j += ft_str_len(env_var->name);
+			}
 		}
-		i++;
+		i = j + 1;
 	}
+	exp_tok = ft_str_clean(exp_tok, "\'");
+	exp_tok = ft_str_clean(exp_tok, "\"");
 
 	
-	return (tok);
+	return (exp_tok);
 }
 
 char	*tokenize(char *str, char delim, int *i)
@@ -181,6 +189,7 @@ t_tok *parse_input(char *str, char delim)
 			tok = tokenize(str, delim, &i);
 			if (tok == NULL)
 				return (ft_free_tokens(tokens));
+			tok = expand_tok(tok);
 			ft_add_back(&tokens, ft_new_tok(tok));
 		}
 		else
