@@ -25,8 +25,8 @@ typedef struct      parse_info
     bool            background;
     char            **tokens;
     int             numArgs;
-    char            *inpipefile; /* File to be piped from */
-    char            *outpipefile; /* File to be piped to */
+    char            *inpipefile;        /* File to be piped from */
+    char            *outpipefile;       /* File to be piped to */
 }parse_info;
 
 /* the function prototypes */

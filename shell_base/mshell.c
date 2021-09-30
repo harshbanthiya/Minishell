@@ -36,23 +36,23 @@ void make_prompt(char *prompt_buff, char *origPrompt)
     strcat(prompt_buff, ": ");
     free(cwd);
 }
-
+/*
 char   *read_cl(char *command_line_buffer)
 {
-    /* If the buffer has already  been allocated, return Memory to the pool */
+    /* If the buffer has already  been allocated, return Memory to the pool 
     if (command_line_buffer)
     {
         free(command_line_buffer);
         command_line_buffer = (char *) NULL;
     }
-    /* Get the line */
-    command_line_buffer = readline("$ ");
-    /* If the line has text save it to history */
+    /* Get the line 
+    command_line_buffer = readline();
+    /* If the line has text save it to history 
     if (command_line_buffer && *command_line_buffer)
         add_history(command_line_buffer);
     return (command_line_buffer);
 }
-
+*/
 int     executeCommand(parse_info *cmd)
 {
     char        **cmd_args;
@@ -86,16 +86,16 @@ int main(int argc, char **argv)
     
     prompt = malloc(sizeof(char) * 10);
     info = malloc(sizeof(parse_info));
+    prompt = NULL;
     strcpy(prompt, "msh: ");
     orig_prompt = strdup(prompt);
     init_info(info);
     is_builtin = 0;
-    rl_bind_key('\t', rl_complete);
+    //rl_bind_key('\t', rl_complete);
     while(1)
     {
         make_prompt(prompt, orig_prompt);
-        cmdline = NULL;
-        read_cl(cmdline);
+        cmdline = readline((char *) prompt);
         if (strcmp(cmdline, "") == 0)     /* Skip empty lines */
             continue ;
         info = parse(cmdline);

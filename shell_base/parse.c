@@ -1,7 +1,7 @@
 #include "parse.h"
 
 /* Syntax to parse: myshell command1 [< infile] [| command]* [> outfile] [&] */
-#define   TOKEN_DELIMITER_STR " \t\r\n\a"
+#define   TOKEN_DELIMITER_STR " \t\r\n\a$"
 
 int             is_it_in_charset(char c, char *charset)
 {
@@ -20,12 +20,14 @@ int             is_it_in_charset(char c, char *charset)
 void    init_info(parse_info *p)
 {   
     int         i;
-    printf("init_info: initializing parse_info\n");
+    //printf("init_info: initializing parse_info\n");
+    write(1, "init", 4);
+    write(1, "\n", 1);
     i = 0;
     p->background = FALSE;
     p->inpipefile = NULL;
     p->outpipefile = NULL;
-    p->tokens = malloc(p->numArgs * sizeof(char *));
+    p->tokens = malloc(sizeof(char *) * 2);
 }
 
 parse_info  *parse(char *cmdline)
@@ -49,6 +51,7 @@ parse_info  *parse(char *cmdline)
     }
     result->numArgs = spaces;
     init_info(result);
+    result->tokens = malloc(sizeof(char *) * result->numArgs);
     strcpy(cmd_dup, cmdline);
     token = strtok(cmd_dup, TOKEN_DELIMITER_STR);
     i = 0;
