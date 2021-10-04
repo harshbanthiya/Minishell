@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 18:43:33 by sfournie          #+#    #+#             */
-/*   Updated: 2021/10/01 22:10:57 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/10/04 09:48:31 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,14 +81,18 @@ int		ft_echo(char *str, int fd);	// Return amount written.
 int		ft_cd(char *path);			// Change working directory (variable and chdir())
 void	ft_env(int fd);				// Print a list of all shell variables
 int		ft_export(char *str, t_list **lst);		// Parse and add/modify specified variable.
-int		ft_unset(char *name, t_list *lst);	// Parse and remove specified variable, if it exists
+int		ft_unset(char *name, t_list **lst);	// Parse and remove specified variable, if it exists
 void	ft_pwd(void);				// Print current working directory
 void	ft_exit(void);
 //	End builtin commands
 
-//	Utilities
+//	"Get" functions
+t_shell	*ft_get_shell(void);
 char	*ft_get_path(char *name);	// Search for and return full path of specified "name"
-t_list	*ft_get_env(void);			// Return the environment list
+t_list	**ft_get_env(void);			// Return the environment list
+//	End "Get"
+
+//	Utilities
 t_var	*ft_new_var(char *name, char *value);
 //	End utilities
 
@@ -103,14 +107,15 @@ void	ft_clear_list(t_list *lst, void (del)(void *));
 //	Memory 
 //	They are prototyped to work with void*, but we don't have to work this way.
 void	*ft_free_tokens(void *tok);
-void	*ft_free_var(void *var);
+void	*ft_free_var(void *ptr);
 void	*ft_free_core(void *core);
 void	*ft_free(void *ptr);	// Generic free that will free() and return NULL
-void	*ft_free_split(char **);	// Generic split free that will free() and return NULL
+void	*ft_free_split(char **s);	// Generic split free that will free() and return NULL
 // End memory
 
 int		ft_strlen(char *s);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	**ft_split(char const *s, char c);
+void	ft_putstr_fd(char *s, int fd);
 
 # endif
