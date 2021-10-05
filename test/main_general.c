@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 20:51:21 by sfournie          #+#    #+#             */
-/*   Updated: 2021/10/04 09:50:14 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/10/05 16:18:08 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	ft_strlen(char *s)
 	return (count);
 }
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+int	ft_strncmp(char *s1, char *s2, size_t n)
 {
 	if (n <= 0)
 		return (0);
@@ -60,7 +60,7 @@ void	*ft_free_split(char **s)
 	return (NULL);
 }
 
-static size_t	ft_countwords(char const *s, char delimiter)
+static size_t	ft_countwords(char *s, char delimiter)
 {
 	size_t	count;
 	size_t	i;
@@ -77,7 +77,7 @@ static size_t	ft_countwords(char const *s, char delimiter)
 	return (count);
 }
 
-static size_t	ft_countchar(char const *s, size_t pos, char delimiter)
+static size_t	ft_countchar(char *s, size_t pos, char delimiter)
 {
 	size_t	count;
 
@@ -90,7 +90,7 @@ static size_t	ft_countchar(char const *s, size_t pos, char delimiter)
 	return (count);
 }
 
-static	char	*ft_moveword(char const *s, size_t *pos, char delimiter)
+static	char	*ft_moveword(char *s, size_t *pos, char delimiter)
 {
 	char	*str;
 	size_t	size;
@@ -110,7 +110,7 @@ static	char	*ft_moveword(char const *s, size_t *pos, char delimiter)
 	return (str);
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_split(char *s, char c)
 {
 	char	**split;
 	size_t	index;
@@ -153,12 +153,11 @@ static int	handle_input(char *str, int fd)
 	return (1);
 }
 
-int	main(void)
+int	main(int argn, char **argv, char **envp)
 {
 	char	*user_in;
-	t_list	**env;
 
-	ft_init_shell();
+	ft_init_shell(envp);
 	user_in = readline("prompt : ");
 	while (user_in != NULL && *user_in)
 	{

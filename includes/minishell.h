@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 18:43:33 by sfournie          #+#    #+#             */
-/*   Updated: 2021/10/04 09:48:31 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/10/05 16:17:29 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ typedef struct s_shell
 {
     t_list	*env;		// Chained list for environment/shell variables
 	struct termios	*def_term;	// Default terminal (to be restored at the end!)
-	struct termios	*saved_t;	// Used to save a terminal state to be restored later
-	struct termios	*active_t;	// Current terminal (might not be needed)
+	struct termios	*saved_term;	// Used to save a terminal state to be restored later
+	struct termios	*active_term;	// Current terminal (might not be needed)
 	int		stdin;
 	int		stdout;
 	int		stderr;
@@ -52,12 +52,12 @@ typedef struct s_shell
 struct s_shell	g_shell;
 
 //	Initialization
-void	ft_init_shell();		// Master init function. Makes all the init calls needed.
+void	ft_init_shell(char **envp);		// Master init function. Makes all the init calls needed.
 void	ft_init_term();
-void	ft_init_env();
+t_list	*ft_init_env(char **envp);
 //	End initialization
 
-//	Reading
+//	Reading env
 char	*ft_get_prompt(void);	// Return a formated prompt
 char	*ft_readline(void);		// Call readline() and w/e we want
 void	*ft_history(char *line);	// Handle the history. Receive an input line. 
@@ -101,21 +101,22 @@ t_list	*ft_new_node(void *content);
 void	ft_add_front(t_list **lst, t_list *node);
 void	ft_add_back(t_list **lst, t_list *node);
 void	ft_remove_node(t_list *node, void *(del)(void *));
-void	ft_clear_list(t_list *lst, void (del)(void *));
+void	ft_clear_list(t_list *lst, void *(del)(void *));
 //	End list
 
 //	Memory 
 //	They are prototyped to work with void*, but we don't have to work this way.
-void	*ft_free_tokens(void *tok);
+void	*ft_free_tokens(void *ptr);
 void	*ft_free_var(void *ptr);
-void	*ft_free_core(void *core);
+void	*ft_free_env(void *ptr);
+void	*ft_free_shell(void *ptr);
 void	*ft_free(void *ptr);	// Generic free that will free() and return NULL
 void	*ft_free_split(char **s);	// Generic split free that will free() and return NULL
 // End memory
 
 int		ft_strlen(char *s);
-int		ft_strncmp(const char *s1, const char *s2, size_t n);
-char	**ft_split(char const *s, char c);
+int		ft_strncmp(char *s1, char *s2, size_t n);
+char	**ft_split(char *s, char c);
 void	ft_putstr_fd(char *s, int fd);
 
 # endif

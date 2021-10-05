@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 20:23:16 by sfournie          #+#    #+#             */
-/*   Updated: 2021/10/04 09:54:43 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/10/05 16:26:44 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	ft_remove_node(t_list *node, void *(del)(void *))
 	ft_free(node);
 }
 
-void	ft_clear_list(t_list *lst, void (del)(void *))
+void	ft_clear_list(t_list *lst, void *(del)(void *))
 {
 	if (lst == NULL)
 		return ;
