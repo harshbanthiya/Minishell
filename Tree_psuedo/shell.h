@@ -103,5 +103,3 @@ typedef struct list
 }list;
 
 #endif
-
-cat  file
