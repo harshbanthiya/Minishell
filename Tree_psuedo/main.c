@@ -62,6 +62,8 @@ int main(int argc, char **argv, char **env)
             parse_token_to_tree(token_list, final_tree);
         return final_tree 
     
+    
+    ------ Scanning ---------
     2. int  make_token_list(t_list **token_list, char *cmd_line)
         
         int len , index, len = strlen(cmd_line) 
@@ -91,8 +93,9 @@ int main(int argc, char **argv, char **env)
 
         while (cmd_line[index2])
         {
-            look_for_quotes(line, index2, &quotes); ( A function to look for single and double quotes and populates the quotes struct we can match it later using odd even)
-            look_for_end_of_string(cmd_line[index2], quotes) (A function that looks for end of string token which isnt a special character)
+            look_for_quotes(line, index2, &quotes); (A function to check whether there are single or double quotes in the said token);
+            if look_for_end_of_string(cmd_line[index2], quotes) (A function that looks for end of string token which isnt a special character)
+                break;
             index2++;
         }
         pre_token_string = strndup(cmd_line[index], index2 - index);
@@ -108,7 +111,11 @@ int main(int argc, char **argv, char **env)
         token->data = strndup(line[start], end - start);
         token->type = type
         return (to_ret)
+    ----- scanning finish ------------------
 
+    parsing prototypes 
+
+    
 
 
 */

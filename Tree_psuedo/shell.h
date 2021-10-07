@@ -58,6 +58,14 @@ typedef enum token_type
 }token_type;
 
 
+
+struct command
+{
+    simple_cmd *cmd;
+    redirection *rd;
+    
+}
+
 typedef struct  scan_quote
 {
     int     s_quote;
@@ -95,3 +103,5 @@ typedef struct list
 }list;
 
 #endif
+
+cat  file
