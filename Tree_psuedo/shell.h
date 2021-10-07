@@ -57,15 +57,6 @@ typedef enum token_type
  TOKEN_NULL = -1,
 }token_type;
 
-
-
-struct command
-{
-    simple_cmd *cmd;
-    redirection *rd;
-    
-}
-
 typedef struct  scan_quote
 {
     int     s_quote;
