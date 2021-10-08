@@ -6,13 +6,13 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 19:27:51 by sfournie          #+#    #+#             */
-/*   Updated: 2021/10/04 09:55:00 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/10/07 17:16:31 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"minishell.h"
 
-int	ft_unset(char *name, t_list **lst)
+int	unset(char *name, t_list **lst)
 {
 	t_list	*temp;
 	t_var	*var;
@@ -27,7 +27,7 @@ int	ft_unset(char *name, t_list **lst)
 		{
 			if (temp->prev == NULL)
 				*lst = temp->next;
-			ft_remove_node(temp, ft_free_var);
+			remove_node(temp, free_var);
 			return (1);
 		}
 		temp = temp->next;

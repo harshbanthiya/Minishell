@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
+/*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/10 11:15:55 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/05/15 14:30:04 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/10/08 12:28:16 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void 	ft_bzero(void *str, size_t len)
+void	ft_bzero(void *str, size_t len)
 {
 	while (len--)
 		*(char *)str++ = 0;

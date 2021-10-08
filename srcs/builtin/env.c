@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 19:27:41 by sfournie          #+#    #+#             */
-/*   Updated: 2021/10/04 09:56:46 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/10/07 18:57:31 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,17 @@ void	ft_env(int fd)
 	t_list	*env;
 	t_var	*var;
 
-	env = *ft_get_env();
+	env = *get_env();
 	while (env != NULL)
 	{
 		var = (t_var *)env->content;
 		if (var->name != NULL)
 		{
-			printf("%s", var->name);
-			printf("%s", "=");
+			ft_putstr_fd(var->name, fd);
+			ft_putchar_fd('=', fd);
 			if (var->value != NULL)
-				printf("%s", var->value);
-			printf("%s", "\n");
+				ft_putstr_fd(var->value, fd);
+			ft_putchar_fd('\n', fd);
 		}
 		env = env->next;
 	}

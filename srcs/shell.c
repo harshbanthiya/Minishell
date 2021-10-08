@@ -6,36 +6,36 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 08:25:43 by sfournie          #+#    #+#             */
-/*   Updated: 2021/10/05 16:27:42 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/10/08 12:31:47 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"minishell.h"
 
-t_shell	*ft_get_shell(void)
+t_shell	*get_shell(void)
 {
 	return (&g_shell);
 }
 
-void	ft_init_shell(char **envp)
+void	init_shell(char **envp)
 {
 	t_shell	sh;
 	
-	sh.env = ft_init_env(envp); // check for NULL?
+	if (envp != NULL)
+		sh.env = init_env(envp);
 	sh.active_term = NULL;
 	tcgetattr(1, sh.def_term);
 	tcgetattr(1, sh.saved_term);
 	g_shell = sh;
 }
 
-void	*ft_free_shell(void *ptr)
-{	
+void	free_shell(void)
+{
 	t_shell	*sh;
 
-	sh = (t_shell *)ptr;
+	sh = get_shell();
 	if (sh != NULL)
 	{
-		sh->env = ft_free_env(sh->env);
+		sh->env = free_env(sh->env);
 	}
-	return (NULL);
 }
