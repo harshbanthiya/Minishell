@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 20:14:21 by sfournie          #+#    #+#             */
-/*   Updated: 2021/10/08 12:29:52 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/10/08 14:44:14 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,16 +40,20 @@ t_list	**get_env(void)
 	return (&g_shell.env);
 }
 
-t_var	*new_var(char *name, char *value)
+t_var	*new_var(char *key, char *value)
 {
 	t_var	*var;
 
 	var = (t_var *)malloc(sizeof(t_var));
 	if (var == NULL)
 		return (NULL);
-	var->name = name;
+	var->key = key;
 	var->value = value;
 	return (var);
+}
+
+t_var	*get_var(char *key)
+{
 }
 
 void	*free_var(void *ptr)
@@ -59,8 +63,8 @@ void	*free_var(void *ptr)
 	var = (t_var *)ptr;
 	if (var != NULL)
 	{
-		if (var->name != NULL)
-			ft_free(var->name);
+		if (var->key != NULL)
+			ft_free(var->key);
 		if (var->value != NULL)
 			ft_free(var->value);
 		ft_free(ptr);

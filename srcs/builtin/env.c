@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 19:27:41 by sfournie          #+#    #+#             */
-/*   Updated: 2021/10/07 18:57:31 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/10/08 14:44:39 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ void	ft_env(int fd)
 	while (env != NULL)
 	{
 		var = (t_var *)env->content;
-		if (var->name != NULL)
+		if (var->key != NULL)
 		{
-			ft_putstr_fd(var->name, fd);
+			ft_putstr_fd(var->key, fd);
 			ft_putchar_fd('=', fd);
 			if (var->value != NULL)
 				ft_putstr_fd(var->value, fd);

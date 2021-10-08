@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 18:43:33 by sfournie          #+#    #+#             */
-/*   Updated: 2021/10/08 13:34:05 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/10/08 14:43:50 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 /* Contain the name and value of custom variables (shell, environment, etc.). */
 typedef struct s_var
 {
-	char	*name;
+	char	*key;
 	char	*value;
 }				t_var;
 
@@ -67,7 +67,7 @@ void	*ft_history(char *line);	/* Handle the history. Receive an input line.  */
 
 /* Parsing */
 t_list	*tokenize(char *str, char delim);	/* Return a chained list of tokens based on parsing rules */
-char	*expand_var(char *name);	/* Return the value of "name" if present in the variables list */
+char	*expand_var(char *key);	/* Return the value of "name" if present in the variables list */
 char	*clean_tok(char *tok);	/* "clean" the token received (remove or change characters) */
 /* End parsing */
 
@@ -109,7 +109,7 @@ char	*get_path(char *name);	/* Search for and return full path of specified "nam
 /* End "Get" */
 
 /* Utilities */
-t_var	*new_var(char *name, char *value);
+t_var	*new_var(char *key, char *value);
 /* End utilities */
 
 /* List */
