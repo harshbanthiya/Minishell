@@ -6,13 +6,13 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 20:23:16 by sfournie          #+#    #+#             */
-/*   Updated: 2021/10/07 18:38:47 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/10/08 17:55:21 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"minishell.h"
 
-t_list	*new_node(void *content)
+t_list	*lst_new_node(void *content)
 {
 	t_list	*node;
 
@@ -25,10 +25,8 @@ t_list	*new_node(void *content)
 	return (node);
 }
 
-void	add_front(t_list **lst, t_list *node)
+void	lst_add_front(t_list **lst, t_list *node)
 {
-	t_list	*temp;
-
 	if (*lst == NULL)
 		*lst = node;
 	else
@@ -38,7 +36,7 @@ void	add_front(t_list **lst, t_list *node)
 	}
 }
 
-void	add_back(t_list **lst, t_list *node)
+void	lst_add_back(t_list **lst, t_list *node)
 {
 	t_list	*temp;
 
@@ -54,7 +52,7 @@ void	add_back(t_list **lst, t_list *node)
 	}
 }
 
-void	remove_node(t_list *node, void *(del)(void *))
+void	lst_remove_node(t_list *node, void *(del)(void *))
 {
 	if (node == NULL)
 		return ;
@@ -67,11 +65,11 @@ void	remove_node(t_list *node, void *(del)(void *))
 	ft_free(node);
 }
 
-void	clear_list(t_list *lst, void *(del)(void *))
+void	lst_clear(t_list *lst, void *(del)(void *))
 {
 	if (lst == NULL)
 		return ;
-	clear_list(lst->next, del);
+	lst_clear(lst->next, del);
 	if (del != NULL)
 		del(lst->content);
 	ft_free(lst);

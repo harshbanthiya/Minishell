@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 20:51:21 by sfournie          #+#    #+#             */
-/*   Updated: 2021/10/08 12:27:11 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/10/08 16:08:08 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	main(void)
 	while (user_in != NULL && *user_in)
 	{
 		env = get_env();
-		export(user_in, env);
+		ft_export(user_in, env);
 		ft_env(1);
 		user_in = readline("export NAME=value : ");
 	}
@@ -30,7 +30,7 @@ int	main(void)
 	while (user_in != NULL && *user_in)
 	{
 		env = get_env();
-		unset(user_in, env);
+		ft_unset(user_in, env);
 		ft_env(1);
 		user_in = readline("unset NAME : ");
 		

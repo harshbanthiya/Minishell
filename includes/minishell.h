@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 18:43:33 by sfournie          #+#    #+#             */
-/*   Updated: 2021/10/08 14:43:50 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/10/08 19:27:59 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef struct s_list
 	struct s_list	*prev;
 }				t_list;
 
-typedef struct termios t_term;
+typedef struct termios	t_term;
 
 /* Contain every pertinent informations worth being accessible globally */
 typedef struct s_shell
@@ -46,6 +46,7 @@ typedef struct s_shell
 	t_term	*def_term;	/* Default terminal (to be restored at the end!) */
 	t_term	*saved_term;	/* Used to save a terminal state to be restored later */
 	t_term	*active_term;	/* Current terminal (might not be needed) */
+	char	**builtins;	/* Contains the names of all our builtins */
 	int		fd[3];			/* 0 = input, 1 = output, 2 = error */
 }				t_shell;
 
@@ -76,8 +77,10 @@ char	*clean_tok(char *tok);	/* "clean" the token received (remove or change char
 /* End execution */
 
 /* Environment	*/
-t_list	*init_env(char **envp);
+t_list	*init_env(char **envp);		/* Fill the environment list with (envp) */
 t_list	**get_env(void);			/* Return the environment list */
+t_var	*get_var(char *key, t_list *list);
+t_var	*new_var(char *key, char *value);
 /* End environment */
 
 
@@ -92,36 +95,37 @@ t_term	*get_active_term(void);
 /* End terminal */
 
 /* Builtin commands */
-int		is_builtin(char *name);	/* Return 1 if "name" is a builtin command */
-int		echo(char *str, int fd);	/* Return amount written. */
-int		cd(char *path);			/* Change working directory (variable and chdir()) */
+char	**init_builtins();		/* Return a double array of all builtins' names */
+int		is_builtin(char *name);		/* Return 1 if "name" is a builtin command */
+int		run_builtin(char *name);	/* Return our exit code if any or pertinent */
+char	**get_builtins();	/* Return the global array of our builtin fcts */
+int		ft_echo(char *str, int fd);	/* Return amount written. */
+int		ft_cd(char *path);			/* Change working directory (variable and chdir()) */
 void	ft_env(int fd);				/* Print a list of all shell variables */
-int		export(char *str, t_list **lst);		/* Parse and add/modify specified variable. */
-int		unset(char *name, t_list **lst);	/* Parse and remove specified variable, if it exists */
-void	pwd(void);				/* Print current working directory */
-void	ft_exit(void);
+int		ft_export(char *str, t_list **lst);		/* Parse and add/modify specified variable. */
+int		ft_unset(char *key, t_list **lst);	/* Parse and remove specified variable, if it exists */
+int		ft_pwd(void);				/* Print current working directory */
+int		ft_exit(void);
 /* End builtin commands */
 
-/* "Get" functions */
-
+/* Files/Directories */
 char	*get_path(char *name);	/* Search for and return full path of specified "name" */
-
-/* End "Get" */
+/* End Files/Directories */
 
 /* Utilities */
-t_var	*new_var(char *key, char *value);
+
 /* End utilities */
 
 /* List */
-t_list	*new_node(void *content);
-void	add_front(t_list **lst, t_list *node);
-void	add_back(t_list **lst, t_list *node);
-void	remove_node(t_list *node, void *(del)(void *));
-void	clear_list(t_list *lst, void *(del)(void *));
+t_list	*lst_new_node(void *content);
+void	lst_add_front(t_list **lst, t_list *node);
+void	lst_add_back(t_list **lst, t_list *node);
+void	lst_remove_node(t_list *node, void *(del)(void *));
+void	lst_clear(t_list *lst, void *(del)(void *));
 /* End list */
 
 /* Memory */
-/* They are prototyped to work with void*, but we don't have to work this way. */
+/* They are prototyped to work with void *, but we don't have to work this way. */
 void	*free_tokens(void *ptr);
 void	*free_var(void *ptr);
 void	*free_env(void *ptr);

@@ -1,18 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   variable.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/01 19:27:41 by sfournie          #+#    #+#             */
-/*   Updated: 2021/10/08 14:57:34 by sfournie         ###   ########.fr       */
+/*   Created: 2021/10/08 16:01:18 by sfournie          #+#    #+#             */
+/*   Updated: 2021/10/08 16:01:28 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"minishell.h"
 
-void	ft_env(int fd)
+t_var	*new_var(char *key, char *value)
+{
+	t_var	*var;
+
+	var = (t_var *)malloc(sizeof(t_var));
+	if (var == NULL)
+		return (NULL);
+	var->key = key;
+	var->value = value;
+	return (var);
+}
+
+t_var	*get_var(char *key, t_list *list)
 {
 	t_list	*env;
 	t_var	*var;
@@ -21,15 +33,27 @@ void	ft_env(int fd)
 	while (env != NULL)
 	{
 		var = (t_var *)env->content;
-		if (var->key != NULL)
+		if (var != NULL && var->key != NULL && !ft_strncmp(key, var->key, ft_strlen(key)))
 		{
-			ft_putstr_fd(var->key, fd);
-			ft_putchar_fd('=', fd);
-			if (var->value != NULL)
-				ft_putstr_fd(var->value, fd);
-			ft_putchar_fd('\n', fd);
+			return (var);
 		}
 		env = env->next;
 	}
-	return ;
+	return (NULL);
+}
+
+void	*free_var(void *ptr)
+{
+	t_var	*var;
+
+	var = (t_var *)ptr;
+	if (var != NULL)
+	{
+		if (var->key != NULL)
+			ft_free(var->key);
+		if (var->value != NULL)
+			ft_free(var->value);
+		ft_free(ptr);
+	}
+	return (NULL);
 }

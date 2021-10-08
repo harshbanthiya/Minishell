@@ -1,35 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/01 19:27:41 by sfournie          #+#    #+#             */
-/*   Updated: 2021/10/08 14:57:34 by sfournie         ###   ########.fr       */
+/*   Created: 2021/05/11 09:25:26 by hbanthiy          #+#    #+#             */
+/*   Updated: 2021/10/08 16:28:31 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"minishell.h"
+#include "libft.h"
 
-void	ft_env(int fd)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-	t_list	*env;
-	t_var	*var;
-
-	env = *get_env();
-	while (env != NULL)
+	if (!s1 || !s2)
+		return (-1);
+	while (*s1 && *s2)
 	{
-		var = (t_var *)env->content;
-		if (var->key != NULL)
-		{
-			ft_putstr_fd(var->key, fd);
-			ft_putchar_fd('=', fd);
-			if (var->value != NULL)
-				ft_putstr_fd(var->value, fd);
-			ft_putchar_fd('\n', fd);
-		}
-		env = env->next;
+		if (*s1 != *s2)
+			return (*(unsigned char *)s1 - *(unsigned char *)s2);
+		s1++;
+		s2++;
+		if (!*s1 && !*s2)
+			return (0);
 	}
-	return ;
+	return (*(unsigned char *)s1 - *(unsigned char *)s2);
 }
