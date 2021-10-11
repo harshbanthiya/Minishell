@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 18:43:33 by sfournie          #+#    #+#             */
-/*   Updated: 2021/10/08 19:27:59 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/10/11 17:50:53 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,11 @@ char	*clean_tok(char *tok);	/* "clean" the token received (remove or change char
 /* Environment	*/
 t_list	*init_env(char **envp);		/* Fill the environment list with (envp) */
 t_list	**get_env(void);			/* Return the environment list */
+void	ft_env_sorted(int fd);
 t_var	*get_var(char *key, t_list *list);
 t_var	*new_var(char *key, char *value);
+void	print_var(int fd, t_var *var);
+void	print_var_extra(int fd, t_var *var);	/* for export with no options */
 /* End environment */
 
 
@@ -99,10 +102,10 @@ char	**init_builtins();		/* Return a double array of all builtins' names */
 int		is_builtin(char *name);		/* Return 1 if "name" is a builtin command */
 int		run_builtin(char *name);	/* Return our exit code if any or pertinent */
 char	**get_builtins();	/* Return the global array of our builtin fcts */
-int		ft_echo(char *str, int fd);	/* Return amount written. */
+int		ft_echo(int fd, char *str);	/* Return amount written. */
 int		ft_cd(char *path);			/* Change working directory (variable and chdir()) */
 void	ft_env(int fd);				/* Print a list of all shell variables */
-int		ft_export(char *str, t_list **lst);		/* Parse and add/modify specified variable. */
+void	ft_export(char *str, t_list **lst);		/* Parse and add/modify specified variable. */
 int		ft_unset(char *key, t_list **lst);	/* Parse and remove specified variable, if it exists */
 int		ft_pwd(void);				/* Print current working directory */
 int		ft_exit(void);
@@ -121,7 +124,9 @@ t_list	*lst_new_node(void *content);
 void	lst_add_front(t_list **lst, t_list *node);
 void	lst_add_back(t_list **lst, t_list *node);
 void	lst_remove_node(t_list *node, void *(del)(void *));
-void	lst_clear(t_list *lst, void *(del)(void *));
+t_list	*lst_unlink_node(t_list **lst, t_list *node);	/* Unlink a node from a list and return it */
+void	*lst_clear(t_list *lst, void *(del)(void *));
+t_list	*env_lst_dup(t_list *lst, void *(del)(void *));
 /* End list */
 
 /* Memory */

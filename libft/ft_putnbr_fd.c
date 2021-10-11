@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
+/*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/15 13:38:24 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/05/15 14:48:35 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/10/11 17:57:11 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	ft_putnbr_fd_sub(int fd, int n)
 	write (fd, &c, 1);
 }
 
-void 	ft_putnbr_fd(int n, int fd)
+void	ft_putnbr_fd(int n, int fd)
 {
 	if (n == -2147483648)
 		write(fd, "-2147483648", 11);

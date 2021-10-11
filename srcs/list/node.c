@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   list.c                                             :+:      :+:    :+:   */
+/*   node.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 20:23:16 by sfournie          #+#    #+#             */
-/*   Updated: 2021/10/08 17:55:21 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/10/11 17:47:33 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,33 +25,6 @@ t_list	*lst_new_node(void *content)
 	return (node);
 }
 
-void	lst_add_front(t_list **lst, t_list *node)
-{
-	if (*lst == NULL)
-		*lst = node;
-	else
-	{
-		(*lst)->prev = node;
-		*lst = node;
-	}
-}
-
-void	lst_add_back(t_list **lst, t_list *node)
-{
-	t_list	*temp;
-
-	if (*lst == NULL)
-		*lst = node;
-	else
-	{
-		temp = *lst;
-		while (temp->next != NULL)
-			temp = temp->next;
-		temp->next = node;
-		node->prev = temp;
-	}
-}
-
 void	lst_remove_node(t_list *node, void *(del)(void *))
 {
 	if (node == NULL)
@@ -65,12 +38,17 @@ void	lst_remove_node(t_list *node, void *(del)(void *))
 	ft_free(node);
 }
 
-void	lst_clear(t_list *lst, void *(del)(void *))
+t_list	*lst_unlink_node(t_list **lst, t_list *node)
 {
-	if (lst == NULL)
-		return ;
-	lst_clear(lst->next, del);
-	if (del != NULL)
-		del(lst->content);
-	ft_free(lst);
+	if (lst != NULL && *lst == node)
+		*lst = (*lst)->next;
+	if (node == NULL)
+		return (node);
+	if (node->prev != NULL)
+		node->prev->next = node->next;
+	if (node->next != NULL)
+		node->next->prev = node->prev;
+	node->prev = NULL;
+	node->next = NULL;
+	return (node);
 }

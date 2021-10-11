@@ -6,7 +6,7 @@
 #    By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/09 15:31:26 by sfournie          #+#    #+#              #
-#    Updated: 2021/10/08 16:54:38 by sfournie         ###   ########.fr        #
+#    Updated: 2021/10/11 16:28:48 by sfournie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ DIR_OBJS	= objs
 DIR_INCS	= includes
 DIR_MAINS	= test
 DIR_BUILT	= $(DIR_SRCS)/builtin
+DIR_LST		= $(DIR_SRCS)/list
 #
 
 # Mains
@@ -42,7 +43,6 @@ MAIN_ENV	= $(DIR_MAINS)/main_env.c
 
 # General files
 _SRC_GEN	= environment.c variable.c\
-			list.c \
 			memory.c \
 			shell.c \
 			terminal.c get_terminal.c set_terminal.c
@@ -67,9 +67,20 @@ $(DIR_OBJS)/%.o :	$(DIR_BUILT)/%.c
 		@ $(C_OBJ)
 #
 
+# General files
+_SRC_LST	= list.c node.c
+SRC_LST		= $(patsubst %,$(DIR_LST)/%,$(_SRC_LST))
+
+_OBJ_LST	= $(_SRC_LST:.c=.o)
+OBJ_LST		= $(patsubst %,$(DIR_OBJS)/%,$(_OBJ_LST))
+
+$(DIR_OBJS)/%.o :  $(DIR_LST)/%.c
+		@ $(C_OBJ)
+#
+
 # All files
-SRCS		= $(SRC_GEN) $(SRC_BUILT)
-OBJS		= $(OBJ_BUILT) $(OBJ_GEN) 
+SRCS		= $(SRC_GEN) $(SRC_BUILT) $(SRC_LST)
+OBJS		= $(OBJ_GEN) $(OBJ_BUILT) $(OBJ_LST)
 #
 
 all		: $(NAME)
@@ -96,7 +107,7 @@ re		: fclean all
 
 bonus	: $(DIR_I) $(LFT) $(SRC) $(DIR_O) $(OBJ) $(MAIN_B)
 		@ $(CC) $(CFLAGS) -I$(DIR_I)/ -I$(LFT_D)/ $(LFT) $(MAIN_B) $(OBJ) -o $(NAME)
-		# $(shell echo "Compiling pipex with bonus done!")
+		# $(shell echo "Compiling minishell with bonus done!")
 		# $(shell echo "Executable is : $(NAME)")
 
 .PHONY	: all re clean fclean bonus
