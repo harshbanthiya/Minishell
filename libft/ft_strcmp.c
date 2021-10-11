@@ -1,38 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/15 13:38:24 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/10/11 17:57:11 by sfournie         ###   ########.fr       */
+/*   Created: 2021/05/11 09:25:26 by hbanthiy          #+#    #+#             */
+/*   Updated: 2021/10/11 18:00:02 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void	ft_putnbr_fd_sub(int fd, int n)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-	char	c;
-
-	if (n / 10)
-		ft_putnbr_fd_sub(fd, n / 10);
-	c = '0' + n % 10;
-	write (fd, &c, 1);
-}
-
-void	ft_putnbr_fd(int n, int fd)
-{
-	if (n == -2147483648)
-		write(fd, "-2147483648", 11);
-	else
+	if (!s1 || !s2)
+		return (-1);
+	while (*s1 && *s2)
 	{
-		if (n < 0)
-		{
-			write(fd, "-", 1);
-			n = -n;
-		}
-		ft_putnbr_fd_sub(fd, n);
+		if (*s1 != *s2)
+			return (*(unsigned char *)s1 - *(unsigned char *)s2);
+		s1++;
+		s2++;
+		if (!*s1 && !*s2)
+			return (0);
 	}
+	return (*(unsigned char *)s1 - *(unsigned char *)s2);
 }

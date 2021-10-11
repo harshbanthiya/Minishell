@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strsplit.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/10/11 18:05:37 by hbanthiy          #+#    #+#             */
+/*   Updated: 2021/10/11 18:08:23 by sfournie         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdlib.h>
 
-static int		words(char const *str, char c)
+static int	words(char const *str, char c)
 {
-	int i;
-	int words;
+	int	i;
+	int	words;
 
 	words = 0;
 	i = 0;
@@ -19,14 +31,14 @@ static int		words(char const *str, char c)
 	return (words);
 }
 
-static char		**memory_giver(char const *str, char c)
+static char	**memory_giver(char const *str, char c)
 {
 	char	**res;
 	int		letters;
 	int		i;
 	int		j;
 
-	if ((res = (char **)malloc(sizeof(char*) * (words(str, c) + 1))) == NULL)
+	if ((res = (char **)malloc(sizeof(char *) * (words(str, c) + 1))) == NULL)
 		return (NULL);
 	i = 0;
 	j = 0;
@@ -48,7 +60,7 @@ static char		**memory_giver(char const *str, char c)
 	return (res);
 }
 
-char			**ft_strsplit(char const *str, char c)
+char	**ft_strsplit(char const *str, char c)
 {
 	char	**res;
 	int		i;

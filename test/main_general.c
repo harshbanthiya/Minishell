@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 20:51:21 by sfournie          #+#    #+#             */
-/*   Updated: 2021/10/07 18:50:11 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/10/11 17:14:12 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,26 @@
 
 static int	handle_input(char *str, int fd)
 {
-	if (!str)
+	/* to simulate having a token as cmd name */
+	char **split;
+
+	split = ft_split(str, ' ');
+	if (split == NULL)
 		return (0);
-	if (!ft_strncmp(str, "export", 6))
-		export(str + 7, get_env());
-	else if (!ft_strncmp(str, "unset", 5))
-		unset(str + 6, get_env());
-	else if (!ft_strncmp(str, "echo", 4))
-		echo(str + 5, 1);
-	else if (!ft_strncmp(str, "env", 3))
-		ft_env(1);
-	return (1);
+	/* end simulate */
+	if (is_builtin(split[0]))
+		run_builtin(str);
+	free_split(split);
+	return (0);
 }
 
 int	main(int argn, char **argv, char **envp)
 {
 	char	*user_in;
 
-	// envp[0] = NULL;
+	// envp[0] = NULL
+	argn = 0;
+	argv = NULL;
 	init_shell(envp);
 	user_in = readline("prompt : ");
 	while (user_in != NULL && *user_in)

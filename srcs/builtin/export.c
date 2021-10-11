@@ -6,37 +6,32 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 19:27:47 by sfournie          #+#    #+#             */
-/*   Updated: 2021/10/08 14:33:09 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/10/11 16:19:48 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"minishell.h"
 
-int	export(char *str, t_list **lst)
+void	ft_export(char *str, t_list **lst)
 {	
-	t_list	*temp;
 	t_var	*var;
 	char	**split;
 
+	if (str == NULL || !*str)
+		return (ft_env_sorted(1));
 	if (!ft_strchr(str, '='))
-		return (0);
+		return ;
 	split = ft_split(str, '=');
 	if (split == NULL)
-		return (0);
-	temp = *lst;
-	while (temp != NULL)
+		return ;
+	var = get_var(split[0], *lst);
+	if (var != NULL)
 	{
-		var = (t_var *)temp->content;
-		if (!ft_strncmp(split[0], var->name, ft_strlen(split[0])))
-		{
-			var->value = ft_strdup(split[1]);
-			free_split(split);
-			return (1);
-		}
-		temp = temp->next;
+		var->value = ft_strdup(split[1]);
+		free_split(split);
+		return ;
 	}
 	var = new_var(split[0], split[1]);
-	add_back(lst, new_node(var));
+	lst_add_back(lst, lst_new_node(var));
 	ft_free(split);
-	return (1);
 }

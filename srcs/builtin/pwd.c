@@ -6,7 +6,13 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 19:27:49 by sfournie          #+#    #+#             */
-/*   Updated: 2021/10/01 19:27:50 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/10/11 18:12:05 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include	"minishell.h"
+
+int	ft_pwd()
+{
+	return (0);
+}
