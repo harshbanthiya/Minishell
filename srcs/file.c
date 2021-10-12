@@ -1,35 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pwd.c                                              :+:      :+:    :+:   */
+/*   file.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/01 19:27:49 by sfournie          #+#    #+#             */
-/*   Updated: 2021/10/11 22:05:09 by sfournie         ###   ########.fr       */
+/*   Created: 2021/10/11 21:43:04 by sfournie          #+#    #+#             */
+/*   Updated: 2021/10/11 21:43:24 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"minishell.h"
 
-void	set_pwd(char *pwd)
+char	*join_path_file(char *path, char *file)
 {
-	if (g_shell.pwd != NULL)
-		free(g_shell.pwd);
-	g_shell.pwd = pwd;
-}
+	int		i;
+	size_t	size;
+	char	*str;
 
-char	*get_pwd()
-{
-	return (g_shell.pwd);
-}
-
-int	ft_pwd(int fd)
-{
-	char	*pwd;
-
-	pwd = get_pwd();
-	if (pwd != NULL)
-		ft_putendl_fd(pwd, fd);
-	return (0);
+	if (path == NULL || file == NULL)
+		return (NULL);
+	i = 0;
+	size = ft_strlen(path) + ft_strlen(file) + 2;
+	str = (char *)malloc(sizeof(char) * size);
+	if (str == NULL)
+		return (NULL);
+	while (*path)
+		str[i++] = *(path++);
+	str[i++] = '/';
+	while (*file)
+		str[i++] = *(file++);
+	str[i] = '\0';
+	return (str);
 }

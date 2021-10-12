@@ -10,5 +10,10 @@ Pipes
 	- It seems that bash "locks" it's environment variable when a piped command line is being processed.
 		- Example : (unset HEY | env) will not unset HEY and env will still show its value.
 		- On zsh, only the last command can have lasting effect.
-			- So, (unset HEY | env) will do nothing, but if unset is the last command, it will work.
-	- Even ( cd example/dir | pwd ) will not change directory, and it also won't change the directory printed by (pwd)
+			- So, (unset HEY | env) will do nothing, but if unset is the last command, it will 	work.
+	- Even ( cd example/dir | pwd ) will not change directory, and it also won't change the 	directory printed by (pwd)
+
+cd / pwd
+	- cd uses chdir(), which already handle "." and "..".
+	- Problem is, we need to update our own pwd, which means (I think) we need to
+	parse the final path by expanding the "." and "..". 

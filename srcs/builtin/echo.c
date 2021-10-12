@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 19:27:42 by sfournie          #+#    #+#             */
-/*   Updated: 2021/10/11 17:13:48 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/10/11 21:21:26 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	is_nl(char *opt)
 	return (0);
 }
 
-int	ft_echo(int fd, char *str)
+int	ft_echo(char *str, int fd)
 {
 	char	**split;
 	int		nl;

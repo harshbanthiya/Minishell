@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 18:43:33 by sfournie          #+#    #+#             */
-/*   Updated: 2021/10/11 17:50:53 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/10/11 21:57:00 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct s_shell
 	t_term	*saved_term;	/* Used to save a terminal state to be restored later */
 	t_term	*active_term;	/* Current terminal (might not be needed) */
 	char	**builtins;	/* Contains the names of all our builtins */
+	char	*pwd;
 	int		fd[3];			/* 0 = input, 1 = output, 2 = error */
 }				t_shell;
 
@@ -56,6 +57,7 @@ struct s_shell	g_shell;
 /* Shell */
 void	init_shell(char **envp);		/* Master init function. Makes all the init calls needed. */
 t_shell	*get_shell(void);
+void	init_fd(int *fd);	/* set input, output and error fd */
 /* End shell */
 
 /* End initialization */
@@ -84,6 +86,8 @@ t_var	*get_var(char *key, t_list *list);
 t_var	*new_var(char *key, char *value);
 void	print_var(int fd, t_var *var);
 void	print_var_extra(int fd, t_var *var);	/* for export with no options */
+char	*get_pwd();
+void	set_pwd(char *pwd);
 /* End environment */
 
 
@@ -102,16 +106,17 @@ char	**init_builtins();		/* Return a double array of all builtins' names */
 int		is_builtin(char *name);		/* Return 1 if "name" is a builtin command */
 int		run_builtin(char *name);	/* Return our exit code if any or pertinent */
 char	**get_builtins();	/* Return the global array of our builtin fcts */
-int		ft_echo(int fd, char *str);	/* Return amount written. */
+int		ft_echo(char *str, int fd);	/* Return amount written. */
 int		ft_cd(char *path);			/* Change working directory (variable and chdir()) */
 void	ft_env(int fd);				/* Print a list of all shell variables */
 void	ft_export(char *str, t_list **lst);		/* Parse and add/modify specified variable. */
 int		ft_unset(char *key, t_list **lst);	/* Parse and remove specified variable, if it exists */
-int		ft_pwd(void);				/* Print current working directory */
-int		ft_exit(void);
+int		ft_pwd(int fd);	/* Print current working directory */
+int		ft_exit(void);	/* free everything and reset terminal to default */
 /* End builtin commands */
 
 /* Files/Directories */
+char	*join_path_file(char *path, char *file);
 char	*get_path(char *name);	/* Search for and return full path of specified "name" */
 /* End Files/Directories */
 

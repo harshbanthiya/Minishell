@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 16:01:18 by sfournie          #+#    #+#             */
-/*   Updated: 2021/10/11 17:52:03 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/10/11 21:38:31 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,18 +53,16 @@ void	print_var_extra(int fd, t_var *var)
 
 t_var	*get_var(char *key, t_list *list)
 {
-	t_list	*env;
 	t_var	*var;
 
-	env = *get_env();
-	while (env != NULL)
+	while (list != NULL)
 	{
-		var = (t_var *)env->content;
+		var = (t_var *)list->content;
 		if (var != NULL && var->key != NULL && !ft_strncmp(key, var->key, ft_strlen(key)))
 		{
 			return (var);
 		}
-		env = env->next;
+		list = list->next;
 	}
 	return (NULL);
 }

@@ -6,7 +6,7 @@
 #    By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/09 15:31:26 by sfournie          #+#    #+#              #
-#    Updated: 2021/10/11 16:28:48 by sfournie         ###   ########.fr        #
+#    Updated: 2021/10/11 21:56:23 by sfournie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@
 CC		= gcc
 CFLAGS	= -Wall -Wextra -g
 C_OBJ	= $(CC) $(CFLAGS)  -I$(DIR_INCS)/ -I$(LFT_D)/ -c $< -o $@
-C_MAIN	= $(CC) $(CFLAGS) -lreadline -I$(DIR_INCS)/ -I$(LFT_D)/ $(LFT) $(MAIN) $(OBJS) -o $(NAME)
+C_MAIN	= $(CC) $(CFLAGS) -lreadline -I$(DIR_INCS)/ -I$(LFT_D)/ \
+		$(LFT) $(MAIN) $(OBJS) -o $(NAME)
 #
 
 # Program
@@ -45,7 +46,8 @@ MAIN_ENV	= $(DIR_MAINS)/main_env.c
 _SRC_GEN	= environment.c variable.c\
 			memory.c \
 			shell.c \
-			terminal.c get_terminal.c set_terminal.c
+			terminal.c get_terminal.c set_terminal.c \
+			file.c
 SRC_GEN		= $(patsubst %,$(DIR_SRCS)/%,$(_SRC_GEN))
 
 _OBJ_GEN	= $(_SRC_GEN:.c=.o)
@@ -67,7 +69,7 @@ $(DIR_OBJS)/%.o :	$(DIR_BUILT)/%.c
 		@ $(C_OBJ)
 #
 
-# General files
+# List files
 _SRC_LST	= list.c node.c
 SRC_LST		= $(patsubst %,$(DIR_LST)/%,$(_SRC_LST))
 
