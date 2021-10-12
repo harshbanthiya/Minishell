@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 18:43:33 by sfournie          #+#    #+#             */
-/*   Updated: 2021/10/12 16:59:27 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/10/12 17:13:13 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ t_term	*get_active_term(void);
 /* Builtin commands */
 char	**init_builtins();		/* Return a double array of all builtins' names */
 int		is_builtin(char *name);		/* Return 1 if "name" is a builtin command */
-int		run_builtin(char *name);	/* Return our exit code if any or pertinent */
+int		run_builtin(char *name);	/* Return our exit code if any */
 char	**get_builtins();	/* Return the global array of our builtin fcts */
 int		ft_echo(char *str, int fd);	/* Return amount written. */
 int		ft_cd(char *path);			/* Change working directory (variable and chdir()) */
@@ -118,7 +118,8 @@ int		ft_exit(void);	/* free everything and reset terminal to default */
 /* Files/Directories */
 char	*join_path_file(char *path, char *file);
 char	*get_path(char *name);	/* Search for and return full path of specified "name" */
-int		get_fd(int std);	/* type : 0 is stdin, 1 is stdout, 2 is stderr */
+int		get_fd(int std);	/* std : 0 is stdin, 1 is stdout, 2 is stderr */
+void	set_fd(int std, int fd);	/* std : 0 is stdin, 1 is stdout, 2 is stderr */
 /* End Files/Directories */
 
 /* Utilities */
