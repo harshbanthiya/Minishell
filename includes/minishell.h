@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 18:43:33 by sfournie          #+#    #+#             */
-/*   Updated: 2021/10/11 21:57:00 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/10/12 16:59:27 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,7 @@ int		ft_exit(void);	/* free everything and reset terminal to default */
 /* Files/Directories */
 char	*join_path_file(char *path, char *file);
 char	*get_path(char *name);	/* Search for and return full path of specified "name" */
+int		get_fd(int std);	/* type : 0 is stdin, 1 is stdout, 2 is stderr */
 /* End Files/Directories */
 
 /* Utilities */

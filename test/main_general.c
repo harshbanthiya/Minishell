@@ -6,13 +6,13 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 20:51:21 by sfournie          #+#    #+#             */
-/*   Updated: 2021/10/11 17:14:12 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/10/12 17:05:39 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"minishell.h"
 
-static int	handle_input(char *str, int fd)
+static int	handle_input(char *str)
 {
 	/* to simulate having a token as cmd name */
 	char **split;
@@ -39,7 +39,7 @@ int	main(int argn, char **argv, char **envp)
 	while (user_in != NULL && *user_in)
 	{
 		add_history(user_in);
-		handle_input(user_in, 1);
+		handle_input(user_in);
 		ft_free(user_in);
 		user_in = readline("prompt : ");
 	}

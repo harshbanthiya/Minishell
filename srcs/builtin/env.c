@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 19:27:41 by sfournie          #+#    #+#             */
-/*   Updated: 2021/10/11 17:55:15 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/10/12 15:21:41 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	ft_env_sorted(int fd)
 		sorted = sort_env(env);
 		if (sorted != NULL)
 		{
-			print_env(fd, sorted, 1);
+			print_env(fd, sorted, 0);
 			sorted = lst_clear(sorted, free_var);
 		}		
 	}

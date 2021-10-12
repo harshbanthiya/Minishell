@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 20:51:21 by sfournie          #+#    #+#             */
-/*   Updated: 2021/10/08 16:08:08 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/10/12 17:05:54 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ int	main(void)
 		ft_unset(user_in, env);
 		ft_env(1);
 		user_in = readline("unset NAME : ");
-		
 	}
 	
 }

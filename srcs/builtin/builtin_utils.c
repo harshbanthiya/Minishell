@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 16:15:44 by sfournie          #+#    #+#             */
-/*   Updated: 2021/10/11 21:33:15 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/10/12 17:02:40 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int		run_builtin(char *name) // need to be redone
 	else if (!ft_strncmp(name, "unset", 5))
 		ft_unset(name + 6, get_env());
 	else if (!ft_strncmp(name, "echo", 4))
-		ft_echo(name + 5, 1);
+		ft_echo(name + 5, get_fd(1));
 	else if (!ft_strncmp(name, "env", 3))
 		ft_env(1);
 	else if (!ft_strncmp(name, "exit", 4))
@@ -47,7 +47,7 @@ int		run_builtin(char *name) // need to be redone
 	else if (!ft_strncmp(name, "cd", 2))
 		ft_cd(name + 3);
 	else if (!ft_strncmp(name, "pwd", 3))
-		ft_pwd(g_shell.fd[1]);
+		ft_pwd(get_fd(1));
 	return (1);	
 }
 
