@@ -16,4 +16,4 @@ Pipes
 cd / pwd
 	- cd uses chdir(), which already handle "." and "..".
 	- Problem is, we need to update our own pwd, which means (I think) we need to
-	parse the final path by expanding the "." and "..". 
+	parse the final path by expanding the "." and "..".
