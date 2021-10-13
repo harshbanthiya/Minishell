@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 19:27:49 by sfournie          #+#    #+#             */
-/*   Updated: 2021/10/11 22:05:09 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/10/13 15:00:20 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	set_pwd(char *pwd)
 	g_shell.pwd = pwd;
 }
 
-char	*get_pwd()
+char	*get_pwd(void)
 {
 	return (g_shell.pwd);
 }

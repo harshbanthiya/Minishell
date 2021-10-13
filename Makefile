@@ -6,7 +6,7 @@
 #    By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/09 15:31:26 by sfournie          #+#    #+#              #
-#    Updated: 2021/10/11 21:56:23 by sfournie         ###   ########.fr        #
+#    Updated: 2021/10/13 14:45:13 by sfournie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,8 @@ _SRC_GEN	= environment.c variable.c\
 			memory.c \
 			shell.c \
 			terminal.c get_terminal.c set_terminal.c \
-			file.c
+			file.c \
+			merge_split.c
 SRC_GEN		= $(patsubst %,$(DIR_SRCS)/%,$(_SRC_GEN))
 
 _OBJ_GEN	= $(_SRC_GEN:.c=.o)

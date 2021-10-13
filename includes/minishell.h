@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 18:43:33 by sfournie          #+#    #+#             */
-/*   Updated: 2021/10/12 17:13:13 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/10/13 14:49:28 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,6 @@ t_shell	*get_shell(void);
 void	init_fd(int *fd);	/* set input, output and error fd */
 /* End shell */
 
-/* End initialization */
-
 /* Reading */
 char	*get_prompt(void);	/* Return a formated prompt */
 char	*ft_readline(void);		/* Call readline() and w/e we want */
@@ -89,7 +87,6 @@ void	print_var_extra(int fd, t_var *var);	/* for export with no options */
 char	*get_pwd();
 void	set_pwd(char *pwd);
 /* End environment */
-
 
 /* Terminal */
 void	init_terms(t_shell *sh, int term_fd);
@@ -123,7 +120,8 @@ void	set_fd(int std, int fd);	/* std : 0 is stdin, 1 is stdout, 2 is stderr */
 /* End Files/Directories */
 
 /* Utilities */
-
+/*		return a string with the content of each split[n] separated by (delim) */
+char	*merge_split(char **split, char *delim);
 /* End utilities */
 
 /* List */
@@ -137,7 +135,7 @@ t_list	*env_lst_dup(t_list *lst, void *(del)(void *));
 /* End list */
 
 /* Memory */
-/* They are prototyped to work with void *, but we don't have to work this way. */
+/* They are prototyped to return a void *, but we don't have to work this way. */
 void	*free_tokens(void *ptr);
 void	*free_var(void *ptr);
 void	*free_env(void *ptr);

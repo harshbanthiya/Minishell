@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 08:25:43 by sfournie          #+#    #+#             */
-/*   Updated: 2021/10/11 21:36:27 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/10/13 14:26:15 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	init_shell(char **envp)
 	tcgetattr(1, sh.def_term);
 	tcgetattr(1, sh.saved_term);
 	pwd = get_var("PWD", sh.env);
-	// printf("%s", pwd->value);
 	if (pwd != NULL)
 		sh.pwd = ft_strdup(pwd->value);
 	g_shell = sh;
