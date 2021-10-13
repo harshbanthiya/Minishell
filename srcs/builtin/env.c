@@ -6,13 +6,13 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 19:27:41 by sfournie          #+#    #+#             */
-/*   Updated: 2021/10/12 15:21:41 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/10/13 15:00:09 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"minishell.h"
 
- /* Duplicate the env list, sort the new list and send it back */
+/* Duplicate the env list, sort the new list and send it back */
 static t_list	*sort_env(t_list *env)
 {
 	t_list	*sorted;

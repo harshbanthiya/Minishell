@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 16:15:44 by sfournie          #+#    #+#             */
-/*   Updated: 2021/10/12 17:02:40 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/10/13 14:59:00 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	is_builtin(char *name)
 	return (0);
 }
 
-int		run_builtin(char *name) // need to be redone
+int	run_builtin(char *name) // need to be redone
 {
 	char	**builtins;
 
@@ -48,10 +48,10 @@ int		run_builtin(char *name) // need to be redone
 		ft_cd(name + 3);
 	else if (!ft_strncmp(name, "pwd", 3))
 		ft_pwd(get_fd(1));
-	return (1);	
+	return (1);
 }
 
-char	**get_builtins()
+char	**get_builtins(void)
 {
 	t_shell	*sh;
 
@@ -63,7 +63,7 @@ char	**get_builtins()
 	return (NULL);
 }
 
-char	**init_builtins()
+char	**init_builtins(void)
 {
 	char	**builtins;
 

@@ -6,13 +6,13 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 19:27:36 by sfournie          #+#    #+#             */
-/*   Updated: 2021/10/08 16:55:54 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/10/13 15:00:15 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"minishell.h"
 
-int	ft_exit()
+int	ft_exit(void)
 {
 	return (0);
 }
