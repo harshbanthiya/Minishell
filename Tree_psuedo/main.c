@@ -1,5 +1,29 @@
 #include "shell.h"
 
+void    parse(list  *token_list, tree_node **node)
+{
+    global_current_token_node = token_list;
+    *node = cmd_line();
+    if (global_current_token_node != NULL)
+        printf("syntax error near unexpected token: \'%s\'\n", ((token *)global_current_token_node->content)->data);
+}
+
+tree_node   *get_tree(char *line)
+{
+    list            *token_list;
+    tree_node       *output;
+
+    token_list = NULL;
+    if (make_token_list(&token_list, line) < 0)
+    {
+        ft_err("Error: wrong token\n", 1);
+        return (NULL);
+    }
+    else 
+        parse(token_list, &output);
+    return (output);
+}
+
 int main(int argc, char **argv, char **env)
 {
     char        *cmd_line;
@@ -17,105 +41,10 @@ int main(int argc, char **argv, char **env)
         cmd_line = readline((char *) prompt);
         root_node = get_tree(cmd_line); /* Function that makes the cmd_line tree */
         if (root_node)
-            execute_tree(root_node, env_list); /* Once the tree is made execute it using env list */
+            execute_tree(root_node, &env_list); /* Once the tree is made execute it using env list */
         free(cmd_line);
     }
     free(cmd_line);
     ft_lstclear(&env_list,free);
     return (0);
 }
-
-/* Prototypes required */
-/*
-    MAKE ENV LIST FIRST: 
-    ------------------------
-
-    1. list *make_env_list(char **env)
-        
-        env_kv_pair     *start;
-        t_list          *final_env_list;
-
-        Malloc for each env_kv_node;
-        Split the env using a function; 
-        Add the splited item to final_env_list; (split_env_line(char **final_env_list, char *env[index])) 
-        return (final_env_list)
-
-    2. void  split_env_line(char **final_list, char *env_line)
-
-    (*final_list)->key = substring(env_line, 0, strchr(first equal sign))
-    (*final_list)->value = substring((strchr(first equal sign), 1, strlen(strchr (newline))))
-
-    ------------------------------------------------------------
-
-    MAKE TREE :  
-    -----------------------------
-
-    1.  tree_node  *get_tree(char *cmd_line)
-
-        t_list      *token_list;
-        tree_node   *final_tree;
-
-        make_token_list(token_list, cmd_line);  // Helper function to check if correct tokens are entered and populates the token_list;
-        if (make_list == NULL)
-            error(bad token entered)
-        else 
-            parse_token_to_tree(token_list, final_tree);
-        return final_tree 
-    
-    
-    ------ Scanning ---------
-    2. int  make_token_list(t_list **token_list, char *cmd_line)
-        
-        int len , index, len = strlen(cmd_line) 
-        while(index < len)
-            if (strchr("<>|;", cmd_line[index]))
-                make_special_token(token_list, cmd_line, index);
-            if (cmd_line[index] == whitespace)
-                index++
-            else 
-                make_string_token(token_list, cmd_line, index);
-            
-    3. int  make_special_token(t_list **token_list, char *cmd_line, int index)
-
-        token   *token;
-        int     type;
-
-        type = cmd_line[index];
-        token = create_token(cmd_line, index, length, type);  ( A function that can populate the token linked list)
-        lst_add(token_list, lst_new(token));
-
-    4. int  make_string_token(t_list **token_list, char *cmd_line, int index)
-    
-        token       *token;
-        scan_quote  *quotes;
-        char        *pre_token_string;
-        int         index2;
-
-        while (cmd_line[index2])
-        {
-            look_for_quotes(line, index2, &quotes); (A function to check whether there are single or double quotes in the said token);
-            if look_for_end_of_string(cmd_line[index2], quotes) (A function that looks for end of string token which isnt a special character)
-                break;
-            index2++;
-        }
-        pre_token_string = strndup(cmd_line[index], index2 - index);
-        token = create_token(pre_token_string, 0, strlen(pre_token_string), string); (same function as above);
-        lst_add(token_list, lst_new(token));
-        free(whatever is not in use)
-    
-    5. token * create_token(char *line, int start, int end, int type)
-
-        token *to_ret;
-
-        malloc(token)
-        token->data = strndup(line[start], end - start);
-        token->type = type
-        return (to_ret)
-    ----- scanning finish ------------------
-
-    parsing prototypes 
-
-    
-
-
-*/

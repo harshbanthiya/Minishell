@@ -13,6 +13,10 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 #include <stdbool.h>
+#include <fcntl.h>
+
+list    *global_current_token_node;
+#define STRING 2
 
 typedef struct tree_node
 {
@@ -29,7 +33,9 @@ typedef enum type
   NODE_REDIRECT_OUT = 8,
   NODE_CMDPATH = 10,
   NODE_ARGUMENT = 12,
-  NODE_DATA = 14,
+  NODE_REDIRECT_DOUBLEOUT = 14,
+  NODE_DATA = 16,
+  NODE_SEQ = 18,
 } node_type;
 
 typedef struct token
