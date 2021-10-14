@@ -203,7 +203,7 @@ int     term_redir(char **arg, int *node_type)
     if (global_current_token_node == NULL)
         return (false);
     current = (token *)(global_current_token_node->content);
-    if (current->type == '>' || current->type == '<' || current->type == ">>")
+    if (current->type == '>' || current->type == '<' || current->type == ">>") /* Make changes here */
     {
         *node_type = current->type;
         if (global_current_token_node->next == NULL)

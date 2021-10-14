@@ -15,7 +15,14 @@
 #include <stdbool.h>
 #include <fcntl.h>
 
+
+/* Globals and constants made for ease of testing remove later */
 list    *global_current_token_node;
+int     *global_pipe_pid;
+int     global_pipe_index;
+int     global_pipe_test;
+int     global_exit_code;
+
 #define STRING 2
 
 typedef struct tree_node
@@ -81,14 +88,14 @@ typedef struct  pipe
     bool    stdout_pipe;
     int     read_pipe;
     int     write_pipe;
-}pipe;
+}ppipe;
 
 typedef struct  cmd
 {
     int         argc;
     int         has_path;
     char        **argv;
-    pipe        *pipe;
+    ppipe        *pipe;
     tree_node   *redir;
 }cmd;
 
