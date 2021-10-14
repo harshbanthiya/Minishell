@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 19:27:43 by sfournie          #+#    #+#             */
-/*   Updated: 2021/10/14 14:13:29 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/10/14 15:41:28 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	ft_cd(char *path)
 	char	*full_path;
 	char	*new_path;
 
-	if (c (path) == 0)
+	if (chdir(path) == 0)
 	{
 		if (path[0] == '/')
 			full_path = ft_strdup(path);
