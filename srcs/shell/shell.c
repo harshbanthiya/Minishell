@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 08:25:43 by sfournie          #+#    #+#             */
-/*   Updated: 2021/10/13 14:26:15 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/10/18 17:04:14 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@ void	init_shell(char **envp)
 		sh.env = init_env(envp);
 	sh.builtins = init_builtins();
 	init_fd(sh.fd);
-	tcgetattr(1, sh.active_term);
-	tcgetattr(1, sh.def_term);
-	tcgetattr(1, sh.saved_term);
+	init_terms(&sh, 1);
+	init_signals();
 	pwd = get_var("PWD", sh.env);
 	if (pwd != NULL)
 		sh.pwd = ft_strdup(pwd->value);
+	sh.sh_mode = 1;
 	g_shell = sh;
 }
 
@@ -44,6 +44,7 @@ void	free_shell(void)
 		sh->env = free_env(sh->env);
 	if (sh->builtins != NULL)
 		sh->builtins = free_split(sh->builtins);
+	term_restore_default(get_fd(1));
 }
 
 void	init_fd(int *fd)

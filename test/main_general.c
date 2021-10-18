@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 20:51:21 by sfournie          #+#    #+#             */
-/*   Updated: 2021/10/13 17:32:26 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/10/18 17:05:19 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,9 @@ int	main(int argn, char **argv, char **envp)
 	argn = 0;
 	argv = NULL;
 	init_shell(envp);
+	signal(SIGQUIT, sig_quit);
+	signal(EOF, sig_eof);
+	signal(SIGINT, sig_intr);
 	user_in = readline("prompt : ");
 	while (user_in != NULL && *user_in)
 	{
@@ -44,5 +47,5 @@ int	main(int argn, char **argv, char **envp)
 		user_in = readline("prompt : ");
 	}
 	ft_free(user_in);
-	// free_shell(get_shell());
+	free_shell();
 }

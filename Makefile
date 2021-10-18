@@ -6,7 +6,7 @@
 #    By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/09 15:31:26 by sfournie          #+#    #+#              #
-#    Updated: 2021/10/14 17:15:47 by sfournie         ###   ########.fr        #
+#    Updated: 2021/10/18 15:05:56 by sfournie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,17 +38,18 @@ DIR_BUILT	= $(DIR_SRCS)/builtin
 DIR_LST		= $(DIR_SRCS)/list
 DIR_ENV		= $(DIR_SRCS)/environment
 DIR_UTIL	= $(DIR_SRCS)/utils
+DIR_SH		= $(DIR_SRCS)/shell
+DIR_TERM	= $(DIR_SRCS)/terminal
 #
 
 # Mains
 MAIN		= $(DIR_MAINS)/main_general.c
-MAIN_ENV	= $(DIR_MAINS)/main_env.c
 
 # General files
-SRC	= environment.c variable.c\
+SRC		= environment.c variable.c\
 		memory.c \
-		shell.c \
-		terminal.c get_terminal.c set_terminal.c \
+		shell.c modes.c \
+		terminal.c signal.c \
 		file.c \
 		merge_split.c \
 		list.c node.c \
@@ -70,6 +71,8 @@ vpath %.c $(DIR_BUILT)
 vpath %.c $(DIR_LST)
 vpath %.c $(DIR_ENV)
 vpath %.c $(DIR_UTIL)
+vpath %.c $(DIR_SH)
+vpath %.c $(DIR_TERM)
 
 # All files
 SRCS		= $(SRC)
