@@ -66,3 +66,14 @@ int     command_init(tree_node *simple_cmd, cmd *command, ppipe *pipe, list **en
     command->pipe = pipe;
     return (0);
 }
+
+void    command_destroy(cmd *command)
+{   
+    int     i;
+
+    i = 0;
+    while (i++ < command->argc)
+        free(command->argv[i]);
+    free(command->argv);
+    command->argc = 0;
+}
