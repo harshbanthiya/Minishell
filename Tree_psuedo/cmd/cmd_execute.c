@@ -91,13 +91,13 @@ void    command_execute(cmd *command, list ** env_list)
         }
         else 
         {
-            if (execve(command->argv[0], command->argv, env_list_to_envp(*env_list)) == -1);
+            if (execve(command->argv[0], command->argv, env_list_to_envp(*env_list)) == -1)
             {
                 dup2(stdout_fd, STDOUT_FILENO);
                 printf("commnand not found: \'%s'\n", command->argv[0]);
                 exit(1); /* Use proper exit code */
             }
-            else 
+            else
                 close(stdout_fd);
         }
     }
