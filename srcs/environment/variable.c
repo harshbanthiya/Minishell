@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 16:01:18 by sfournie          #+#    #+#             */
-/*   Updated: 2021/10/11 21:38:31 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/10/19 17:27:08 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,22 @@ t_var	*get_var(char *key, t_list *list)
 	while (list != NULL)
 	{
 		var = (t_var *)list->content;
-		if (var != NULL && var->key != NULL && !ft_strncmp(key, var->key, ft_strlen(key)))
+		if (var != NULL && var->key != NULL && !ft_strcmp(key, var->key))
 		{
 			return (var);
 		}
 		list = list->next;
 	}
+	return (NULL);
+}
+
+char	*get_var_value(char *key, t_list *list)
+{
+	t_var	*var;
+
+	var = get_var(key, list);
+	if (var != NULL)
+		return (var->value);
 	return (NULL);
 }
 
