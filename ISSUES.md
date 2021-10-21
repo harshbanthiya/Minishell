@@ -1,8 +1,3 @@
-Export
-	- ZSH : export is supposed to print env in ascending order (a - z)
-	- BASH : export print in ascending order, but it also adds double quotes to the variable values and "declare -x " as prefix
-		- declare -x HOME="/Users/sfournie"
-
 Unset
 	- a splitn(char *str, int n) would help to split string where we only want to split n times (useful for export)
 
@@ -15,5 +10,10 @@ Pipes
 
 cd / pwd
 	- cd uses chdir(), which already handle "." and "..".
-	- Problem is, we need to update our own pwd, which means (I think) we need to
-	parse the final path by expanding the "." and "..".
+	- use getcwd() rather than parse
+
+Terminal
+	- find out how to get the ctrl-D
+
+Parsing
+	- Clean up, work better with memory

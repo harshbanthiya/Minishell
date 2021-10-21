@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 18:43:33 by sfournie          #+#    #+#             */
-/*   Updated: 2021/10/14 14:13:05 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/10/19 18:07:56 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,15 @@ void	*ft_history(char *line);	/* Handle the history. Receive an input line.  */
 t_list	*tokenize(char *str, char delim);	/* Return a chained list of tokens based on parsing rules */
 char	*expand_var(char *key);	/* Return the value of "name" if present in the variables list */
 char	*clean_tok(char *tok);	/* "clean" the token received (remove or change characters) */
+char	*parse_cmdline(char *line);
+int		parse_is_delimiter(char c);
+int		parse_is_special(char *str, int i);
+int		parse_is_enclosed(char *str, int i, char c);
+int		parse_next_delim(char *str);
+int		parse_is_var(char *line, int i);
+int		parse_next_var(char *line, int i);
+char	*parse_expand_line(char *line);
+char	*parse_cmdline(char *line);
 /* End parsing */
 
 /* Execution */
@@ -81,6 +90,7 @@ t_list	*init_env(char **envp);		/* Fill the environment list with (envp) */
 t_list	**get_env(void);			/* Return the environment list */
 void	ft_env_sorted(int fd);
 t_var	*get_var(char *key, t_list *list);
+char	*get_var_value(char *key, t_list *list);
 t_var	*new_var(char *key, char *value);
 void	print_var(int fd, t_var *var);
 void	print_var_extra(int fd, t_var *var);	/* for export with no options */
