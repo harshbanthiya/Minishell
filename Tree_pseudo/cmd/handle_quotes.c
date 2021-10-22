@@ -78,7 +78,7 @@ char    **strip_quotes(char **token_data)
     scan_quote      *flags;
     int             index;
     int             buff[BUFFER_SIZE];
-
+ 
     init_flag(&flags);
     ft_bzero(buff, BUFFER_SIZE);
     index = 0;

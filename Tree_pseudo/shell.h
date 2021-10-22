@@ -23,7 +23,18 @@ int     global_pipe_index;
 int     global_pipe_test;
 int     global_exit_code;
 
-#define STRING 2
+#define STRING 1
+#define EXIT_FAIL 1
+#define EXIT_SUCCESS 0
+#define SPACE 32
+#define SEMICOLON 58
+#define LESS 60
+#define PIPE 124
+#define SQUOTE 39
+#define DQUOTE 34
+#define BACKSLASH 92 
+#define BUFF_SIZE 4096
+
 
 typedef struct tree_node
 {
@@ -35,14 +46,15 @@ typedef struct tree_node
 
 typedef enum type
 {
-  NODE_PIPE = 0,
-  NODE_REDIRECT_IN = 6,
-  NODE_REDIRECT_OUT = 8,
-  NODE_CMDPATH = 10,
-  NODE_ARGUMENT = 12,
-  NODE_REDIRECT_DOUBLEOUT = 14,
-  NODE_DATA = 16,
-  NODE_SEQ = 18,
+  NODE_PIPE = 100,
+  NODE_REDIRECT_IN,
+  NODE_REDIRECT_OUT,
+  NODE_CMDPATH,
+  NODE_ARGUMENT,
+  NODE_REDIRECT_DOUBLEOUT,
+  NODE_REDIRECT_DOUBLEIN,
+  NODE_DATA,
+  NODE_SEQ,
 } node_type;
 
 typedef struct token
@@ -51,24 +63,6 @@ typedef struct token
   char      *data;
   token     *next;
 } token;
-
-typedef enum token_type
-{
- CHAR_GENERAL = -1,
- CHAR_PIPE  = '|',
- CHAR_AND   = '&',
- CHAR_QUOTE = '\'',
- CHAR_DQUOTE = '\"',
- CHAR_WHITESPC = ' ',
- CHAR_SEMICOLON = ';',
- CHAR_TAB = '\t',
- CHAR_ESCAPE = '\\',
- CHAR_NEWLINE = '\n',
- CHAR_GREATER = '>',
- CHAR_LESS   = '<',
- CHARL_NULL = 0,
- TOKEN_NULL = -1,
-}token_type;
 
 typedef struct  scan_quote
 {
