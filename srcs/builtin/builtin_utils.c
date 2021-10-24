@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 16:15:44 by sfournie          #+#    #+#             */
-/*   Updated: 2021/10/13 14:59:00 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/10/24 15:53:38 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,26 +27,26 @@ int	is_builtin(char *name)
 	return (0);
 }
 
-int	run_builtin(char *name) // need to be redone
+int	run_builtin(char *cmd, char **args)
 {
 	char	**builtins;
 
-	// if (!name || !is_builtin(name))
-	// 	return (0);
+	if (!cmd || !is_builtin(cmd))
+		return (0);
 	builtins = get_builtins();
-	if (!ft_strncmp(name, "export", 6))
-		ft_export(name + 7, get_env());
-	else if (!ft_strncmp(name, "unset", 5))
-		ft_unset(name + 6, get_env());
-	else if (!ft_strncmp(name, "echo", 4))
-		ft_echo(name + 5, get_fd(1));
-	else if (!ft_strncmp(name, "env", 3))
+	if (!ft_strncmp(cmd, "export", 6))
+		ft_export(args, get_env());
+	else if (!ft_strncmp(cmd, "unset", 5))
+		ft_unset(args, get_env());
+	else if (!ft_strncmp(cmd, "echo", 4))
+		ft_echo(args, get_fd(1));
+	else if (!ft_strncmp(cmd, "env", 3))
 		ft_env(1);
-	else if (!ft_strncmp(name, "exit", 4))
+	else if (!ft_strncmp(cmd, "exit", 4))
 		ft_exit();
-	else if (!ft_strncmp(name, "cd", 2))
-		ft_cd(name + 3);
-	else if (!ft_strncmp(name, "pwd", 3))
+	else if (!ft_strncmp(cmd, "cd", 2))
+		ft_cd(args);
+	else if (!ft_strncmp(cmd, "pwd", 3))
 		ft_pwd(get_fd(1));
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 19:27:41 by sfournie          #+#    #+#             */
-/*   Updated: 2021/10/13 15:00:09 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/10/24 15:15:13 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static t_list	*sort_env(t_list *env)
 	t_var	*var;
 
 	sorted = NULL;
-	env = env_lst_dup(env, free_var);
+	env = lst_dup(env, dup_var, free_var);
 	while (env != NULL)
 	{
 		parser = env;
@@ -56,7 +56,7 @@ static void	print_env(int fd, t_list *env, int mode)
 }
 
 /* same as env, but will sort it. Used with export. */
-void	ft_env_sorted(int fd)
+void	ft_env_export(int fd)
 {
 	t_list	*env;
 	t_list	*sorted;
@@ -67,7 +67,7 @@ void	ft_env_sorted(int fd)
 		sorted = sort_env(env);
 		if (sorted != NULL)
 		{
-			print_env(fd, sorted, 0);
+			print_env(fd, sorted, 1);
 			sorted = lst_clear(sorted, free_var);
 		}		
 	}

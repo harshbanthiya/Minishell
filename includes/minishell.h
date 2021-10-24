@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 18:43:33 by sfournie          #+#    #+#             */
-/*   Updated: 2021/10/19 18:07:56 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/10/24 15:15:03 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ char	*clean_tok(char *tok);	/* "clean" the token received (remove or change char
 char	*parse_cmdline(char *line);
 int		parse_is_delimiter(char c);
 int		parse_is_special(char *str, int i);
+int		parse_is_quotes(char *line, int i);
 int		parse_is_enclosed(char *str, int i, char c);
 int		parse_next_delim(char *str);
 int		parse_is_var(char *line, int i);
@@ -88,10 +89,11 @@ char	*parse_cmdline(char *line);
 /* Environment	*/
 t_list	*init_env(char **envp);		/* Fill the environment list with (envp) */
 t_list	**get_env(void);			/* Return the environment list */
-void	ft_env_sorted(int fd);
+void	ft_env_export(int fd);
 t_var	*get_var(char *key, t_list *list);
 char	*get_var_value(char *key, t_list *list);
 t_var	*new_var(char *key, char *value);
+void	*dup_var(void *ptr);
 void	print_var(int fd, t_var *var);
 void	print_var_extra(int fd, t_var *var);	/* for export with no options */
 char	*get_pwd();
@@ -111,13 +113,15 @@ t_term	*get_active_term(void);
 /* Builtin commands */
 char	**init_builtins();		/* Return a double array of all builtins' names */
 int		is_builtin(char *name);		/* Return 1 if "name" is a builtin command */
-int		run_builtin(char *name);	/* Return our exit code if any */
+int		run_builtin(char *cmd, char **args);	/* Return our exit code if any */
 char	**get_builtins();	/* Return the global array of our builtin fcts */
-int		ft_echo(char *str, int fd);	/* Return amount written. */
-int		ft_cd(char *path);			/* Change working directory (variable and chdir()) */
+int		ft_echo(char **tokens, int fd);	/* Return amount written. */
+int		ft_cd(char **args);			/* Change working directory (variable and chdir()) */
 void	ft_env(int fd);				/* Print a list of all shell variables */
-void	ft_export(char *str, t_list **lst);		/* Parse and add/modify specified variable. */
-int		ft_unset(char *key, t_list **lst);	/* Parse and remove specified variable, if it exists */
+void	ft_export(char **tokens, t_list **lst);		/* Parse and add/modify specified variable. */
+void	ft_export_var(char *key, char *value, t_list **lst);
+int		ft_unset(char **tokens, t_list **lst);	/* Parse and remove specified variable, if it exists */
+int		ft_unset_var(char *key, t_list **lst);
 int		ft_pwd(int fd);	/* Print current working directory */
 int		ft_exit(void);	/* free everything and reset terminal to default */
 /* End builtin commands */
@@ -132,6 +136,7 @@ void	set_fd(int std, int fd);	/* std : 0 is stdin, 1 is stdout, 2 is stderr */
 /* Utilities */
 /*		return a string with the content of each split[n] separated by (delim) */
 char	*merge_split(char **split, char *delim);
+char	**splitn(char const *s, char c, int n);
 /* End utilities */
 
 /* List */
@@ -141,7 +146,7 @@ void	lst_add_back(t_list **lst, t_list *node);
 void	lst_remove_node(t_list *node, void *(del)(void *));
 t_list	*lst_unlink_node(t_list **lst, t_list *node);	/* Unlink a node from a list and return it */
 void	*lst_clear(t_list *lst, void *(del)(void *));
-t_list	*env_lst_dup(t_list *lst, void *(del)(void *));
+t_list	*lst_dup(t_list *lst, void *(iter)(void *), void *(del)(void *));
 /* End list */
 
 /* Memory */

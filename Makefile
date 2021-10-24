@@ -6,7 +6,7 @@
 #    By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/09 15:31:26 by sfournie          #+#    #+#              #
-#    Updated: 2021/10/19 16:11:06 by sfournie         ###   ########.fr        #
+#    Updated: 2021/10/24 14:56:44 by sfournie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,12 +47,12 @@ MAIN_ENV	= $(DIR_MAINS)/main_env.c
 MAIN_PARSE	=$(DIR_MAINS)/main_parse.c
 
 # General files
-SRC	= environment.c variable.c\
+SRC	= 	environment.c variable.c variable_print.c\
 		memory.c \
 		shell.c \
 		terminal.c get_terminal.c set_terminal.c \
 		file.c \
-		merge_split.c \
+		merge_split.c splitn.c\
 		list.c node.c \
 		cd.c echo.c env.c exit.c export.c pwd.c unset.c \
 		expand.c parse.c \

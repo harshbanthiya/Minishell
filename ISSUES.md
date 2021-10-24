@@ -17,3 +17,6 @@ Terminal
 
 Parsing
 	- Clean up, work better with memory
+
+Export
+	- Do error messages
