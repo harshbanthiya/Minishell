@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 21:43:04 by sfournie          #+#    #+#             */
-/*   Updated: 2021/10/20 17:48:26 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/10/24 18:02:07 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	get_fd(int std)
 /* 0 for stdin, 1 for stdout, 2 for stderr. return -1 on error */
 void	set_fd(int std, int fd)
 {
-	t_shell *sh;
+	t_shell	*sh;
 
 	sh = get_shell();
 	if (sh != NULL)

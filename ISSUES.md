@@ -15,8 +15,5 @@ cd / pwd
 Terminal
 	- find out how to get the ctrl-D
 
-Parsing
-	- Clean up, work better with memory
-
 Export
 	- Do error messages

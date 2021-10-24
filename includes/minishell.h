@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 18:43:33 by sfournie          #+#    #+#             */
-/*   Updated: 2021/10/24 15:15:03 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/10/24 17:29:30 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,12 +72,13 @@ char	*expand_var(char *key);	/* Return the value of "name" if present in the var
 char	*clean_tok(char *tok);	/* "clean" the token received (remove or change characters) */
 char	*parse_cmdline(char *line);
 int		parse_is_delimiter(char c);
-int		parse_is_special(char *str, int i);
+int		parse_is_escaped(char *str, int i);
 int		parse_is_quotes(char *line, int i);
 int		parse_is_enclosed(char *str, int i, char c);
 int		parse_next_delim(char *str);
 int		parse_is_var(char *line, int i);
 int		parse_next_var(char *line, int i);
+char	*parse_cleanup(char *line);
 char	*parse_expand_line(char *line);
 char	*parse_cmdline(char *line);
 /* End parsing */
@@ -137,6 +138,7 @@ void	set_fd(int std, int fd);	/* std : 0 is stdin, 1 is stdout, 2 is stderr */
 /*		return a string with the content of each split[n] separated by (delim) */
 char	*merge_split(char **split, char *delim);
 char	**splitn(char const *s, char c, int n);
+char	*ft_strfuse(char *str1, char *str2);
 /* End utilities */
 
 /* List */

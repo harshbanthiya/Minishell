@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 19:27:51 by sfournie          #+#    #+#             */
-/*   Updated: 2021/10/24 15:53:52 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/10/24 17:29:30 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 // 		}
 // 		else
 // 			return (0);
-// 		if (key[i] == '\\' && parse_is_special(key, i))
+// 		if (key[i] == '\\' && parse_is_escaped(key, i))
 // 			return (0);
 // 	}
 // }

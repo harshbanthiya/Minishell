@@ -1,38 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_terminal.c                                     :+:      :+:    :+:   */
+/*   ft_string.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/08 12:43:20 by sfournie          #+#    #+#             */
-/*   Updated: 2021/10/24 18:03:43 by sfournie         ###   ########.fr       */
+/*   Created: 2021/10/24 16:36:03 by sfournie          #+#    #+#             */
+/*   Updated: 2021/10/24 16:36:22 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"minishell.h"
 
-t_term	*get_saved_term(void)
+/* free both strings and create a new one */
+char	*ft_strfuse(char *str1, char *str2)
 {
-	t_shell	*sh;
+	char	*fused;
 
-	sh = get_shell();
-	return (sh->saved_term);
-}
-
-t_term	*get_def_term(void)
-{
-	t_shell	*sh;
-
-	sh = get_shell();
-	return (sh->def_term);
-}
-
-t_term	*get_active_term(void)
-
-{
-	t_shell	*sh;
-
-	sh = get_shell();
-	return (sh->active_term);
+	if (str1 == NULL)
+		return (str2);
+	if (str2 == NULL)
+		return (str1);
+	fused = ft_strjoin(str1, str2);
+	ft_free(str1);
+	ft_free(str2);
+	return (fused);
 }
