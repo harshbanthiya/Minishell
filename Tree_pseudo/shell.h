@@ -35,7 +35,6 @@ int     global_exit_code;
 #define BACKSLASH 92 
 #define BUFF_SIZE 4096
 
-
 typedef struct tree_node
 {
   int           type;
@@ -92,6 +91,7 @@ typedef struct  cmd
     ppipe        *pipe;
     tree_node   *redir;
 }cmd;
+
 
 /* T list from libft for env linked list and other temp linked lists, point the void pointer to env (kv pair)*/
 typedef struct list

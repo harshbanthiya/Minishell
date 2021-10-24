@@ -35,6 +35,7 @@ int main(int argc, char **argv, char **env)
     if(!argc || !(*argv[0]))
         return (-1);
     env_list = make_env_list(env);   /* Psuedo name to populate the env list from env */
+    global_exit_code = 0;
     while (1)
     {
         make_prompt(prompt, orig_prompt);
