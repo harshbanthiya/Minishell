@@ -6,7 +6,7 @@
 #    By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/09 15:31:26 by sfournie          #+#    #+#              #
-#    Updated: 2021/10/24 18:41:10 by sfournie         ###   ########.fr        #
+#    Updated: 2021/10/24 18:47:48 by sfournie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,8 +44,10 @@ DIR_PARSE	= $(DIR_SRCS)/parsing
 #
 
 # Mains
+MAIN		= $(DIR_MAINS)/main_general.c
 MAIN_ENV	= $(DIR_MAINS)/main_env.c
-MAIN_PARSE	=$(DIR_MAINS)/main_parse.c
+MAIN_PARSE	= $(DIR_MAINS)/main_parse.c
+MAIN_TERM	= $(DIR_MAINS)/main_term.c
 
 # General files
 SRC	= 	environment.c variable.c variable_print.c\
@@ -92,7 +94,12 @@ $(NAME)	: $(DIR_INCS) $(LFT) $(SRCS) $(MAIN) $(DIR_OBJS) $(OBJS)
 
 parse	: $(DIR_INCS) $(LFT) $(SRCS) $(MAIN) $(DIR_OBJS) $(OBJS)
 		@ $(C_MAIN) $(MAIN_PARSE) $(OBJS) -o $(NAME)
-		# $(shell echo "Compiling minishell for parsing test done!")
+		# $(shell echo "Compiling minishell for parsing tests done!")
+		# $(shell echo "Executable is : $(NAME)")
+
+term	: $(DIR_INCS) $(LFT) $(SRCS) $(MAIN) $(DIR_OBJS) $(OBJS)
+		@ $(C_MAIN) $(MAIN_TERM) $(OBJS) -o $(NAME)
+		# $(shell echo "Compiling minishell for parsing tests done!")
 		# $(shell echo "Executable is : $(NAME)")
 
 $(LFT)	:
@@ -115,4 +122,4 @@ bonus	: $(DIR_I) $(LFT) $(SRC) $(DIR_O) $(OBJ) $(MAIN_B)
 		# $(shell echo "Compiling minishell with bonus done!")
 		# $(shell echo "Executable is : $(NAME)")
 
-.PHONY	: all re clean fclean bonus parse
+.PHONY	: all re clean fclean bonus parse term

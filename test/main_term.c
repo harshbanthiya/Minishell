@@ -6,19 +6,11 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 20:51:21 by sfournie          #+#    #+#             */
-/*   Updated: 2021/10/18 13:23:06 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/10/24 18:52:12 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include	<unistd.h>
-# include	<stdlib.h>
-# include	<stdio.h>
-# include	<sys/types.h>
-# include	<termios.h>
-# include	<signal.h>
-# include	<readline/readline.h>
-# include	<readline/history.h>
-# include	<string.h>
+#include	"minishell.h"
 
 typedef struct termios	t_term;
 
@@ -49,41 +41,14 @@ void	term_change_mode(int term_fd, int mode)
 	tcsetattr(term_fd, TCSANOW, &term);
 }
 
-/* ctrl-c */
-/* interactive mode : print new prompt on newline */
-/* non-interactive mode : */
-void	sig_intr(int sig_num)
-{
-	printf("trying to interrupt\n");
-	// rl_on_new_line();
-	// rl_replace_line("interrupted prompt :", 0);
-	// rl_redisplay();
-}
-
-/* ctrl-d */
-/* interactive : exit the shell (call exit_shell()) */
-/* non-interactive : */
-void	sig_eof(int sig_num)
-{
-	printf("trying to end of file\n");
-}
-
-/* ctrl-\ */
-/* interactive mode : print new prompt on newline */
-/* non-interactive mode : */
-void	sig_quit(int sig_num)
-{
-	printf("trying to quit\n");
-}
-
 static int	handle_input(char *str)
 {
 
 	// if (!name || !is_builtin(name))
 	// 	return (0);
-	if (!strncmp(str, "0", 2))
+	if (!ft_strcmp(str, "0"))
 		term_change_mode(1, 0);
-	else if (!strncmp(str, "1", 2))
+	else if (!ft_strcmp(str, "1"))
 		term_change_mode(1, 1);
 	return (1);
 }
