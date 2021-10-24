@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 19:27:43 by sfournie          #+#    #+#             */
-/*   Updated: 2021/10/24 14:43:25 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/10/24 18:29:44 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,10 @@ int	ft_cd(char **tokens)
 	if (chdir(tokens[0]) == 0)
 	{
 		new_pwd = getcwd(NULL, 0);
-		ft_export_var("OLDPWD", old_pwd, get_env());
-		ft_export_var("PWD", new_pwd, get_env());
+		if (get_var("OLDPWD", *get_env()))
+			ft_export_var("OLDPWD", old_pwd, get_env());
+		if (get_var("PWD", *get_env()))
+			ft_export_var("PWD", new_pwd, get_env());
 		set_pwd(new_pwd);
 		exit_code = 1;
 	}
