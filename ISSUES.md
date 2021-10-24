@@ -1,8 +1,3 @@
-Export
-	- ZSH : export is supposed to print env in ascending order (a - z)
-	- BASH : export print in ascending order, but it also adds double quotes to the variable values and "declare -x " as prefix
-		- declare -x HOME="/Users/sfournie"
-
 Unset
 	- a splitn(char *str, int n) would help to split string where we only want to split n times (useful for export)
 
@@ -19,3 +14,7 @@ cd / pwd
 
 Terminal
 	- find how to get the ctrl-D
+	- find out how to get the ctrl-D
+
+Export
+	- Do error messages

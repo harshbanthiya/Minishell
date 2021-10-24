@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 20:14:21 by sfournie          #+#    #+#             */
-/*   Updated: 2021/10/11 21:21:56 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/10/24 16:00:14 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_list	*init_env(char **envp)
 	env = NULL;
 	while (envp && *envp)
 	{
-		split = ft_split(*envp, '='); //create a splitn to only split on first '='
+		split = splitn(*envp, '=', 2);
 		if (split == NULL)
 		{
 			free_split(split);

@@ -6,32 +6,63 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 19:27:47 by sfournie          #+#    #+#             */
-/*   Updated: 2021/10/11 16:19:48 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/10/24 15:49:50 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"minishell.h"
 
-void	ft_export(char *str, t_list **lst)
+static int	is_valid_export(char *token)
+{
+	if (token == NULL || token[0] == '=')
+		return (0);
+	else
+		return (1);
+}
+
+void	ft_export_var(char *key, char *value, t_list **lst)
 {	
 	t_var	*var;
-	char	**split;
 
-	if (str == NULL || !*str)
-		return (ft_env_sorted(1));
-	if (!ft_strchr(str, '='))
-		return ;
-	split = ft_split(str, '=');
-	if (split == NULL)
-		return ;
-	var = get_var(split[0], *lst);
+	var = get_var(key, *lst);
 	if (var != NULL)
 	{
-		var->value = ft_strdup(split[1]);
-		free_split(split);
+		if (value != NULL)
+		{
+			ft_free(var->value);
+			var->value = ft_strdup(value);
+		}
 		return ;
 	}
-	var = new_var(split[0], split[1]);
+	if (value == NULL)
+		var = new_var(ft_strdup(key), NULL);
+	else
+		var = new_var(ft_strdup(key), ft_strdup(value));
 	lst_add_back(lst, lst_new_node(var));
-	ft_free(split);
+}
+
+void	ft_export(char **tokens, t_list **lst)
+{	
+	char	**split;
+	int		i;
+
+	if (tokens == NULL || *tokens == NULL || !**tokens)
+		return (ft_env_export(1));
+	i = 0;
+	while (tokens[i] != NULL)
+	{
+		if (is_valid_export(tokens[i]))
+		{
+			split = splitn(tokens[i], '=', 2);
+			if (split != NULL)
+			{
+				if (split[1] == NULL && ft_strchr(tokens[i], '='))
+					ft_export_var(split[0], "", lst);
+				else
+					ft_export_var(split[0], split[1], lst);
+				free_split(split);
+			}
+		}
+		i++;
+	}
 }

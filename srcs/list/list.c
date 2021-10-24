@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 20:23:16 by sfournie          #+#    #+#             */
-/*   Updated: 2021/10/11 17:38:12 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/10/24 14:53:34 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,23 +50,21 @@ void	*lst_clear(t_list *lst, void *(del)(void *))
 	return (NULL);
 }
 
-t_list	*env_lst_dup(t_list *lst, void *(del)(void *))
+t_list	*lst_dup(t_list *lst, void *(iter)(void *), void *(del)(void *))
 {
 	t_list	*new_lst;
 	t_list	*new_node;
-	t_var	*var;
-	t_var	*new_v;
+	void	*content;
 
 	new_lst = NULL;
 	if (lst == NULL)
 		return (NULL);
 	while (lst != NULL && lst->content != NULL)
 	{
-		var = (t_var *)lst->content;
-		new_v = new_var(ft_strdup(var->key), ft_strdup(var->value));
-		if (new_v == NULL)
+		content = iter(lst->content);
+		if (content == NULL)
 			return (lst_clear(new_lst, del));
-		new_node = lst_new_node(new_v);
+		new_node = lst_new_node(content);
 		lst_add_back(&new_lst, new_node);
 		lst = lst->next;
 	}

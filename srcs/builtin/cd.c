@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 19:27:43 by sfournie          #+#    #+#             */
-/*   Updated: 2021/10/14 15:41:28 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/10/24 18:29:44 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,23 +53,28 @@ char	*parse_directory(char *path)
 	return (new_path);
 }
 
-int	ft_cd(char *path)
+int	ft_cd(char **tokens)
 {
-	char	*full_path;
-	char	*new_path;
+	char	*old_pwd;
+	char	*new_pwd;
+	int		exit_code;
 
-	if (chdir(path) == 0)
+	old_pwd = getcwd(NULL, 0);
+	if (chdir(tokens[0]) == 0)
 	{
-		if (path[0] == '/')
-			full_path = ft_strdup(path);
-		else
-			full_path = join_path_file(get_pwd(), path);
-		new_path = parse_directory(full_path);
-		set_pwd(new_path);
-		ft_free(full_path);
-		return (1);
+		new_pwd = getcwd(NULL, 0);
+		if (get_var("OLDPWD", *get_env()))
+			ft_export_var("OLDPWD", old_pwd, get_env());
+		if (get_var("PWD", *get_env()))
+			ft_export_var("PWD", new_pwd, get_env());
+		set_pwd(new_pwd);
+		exit_code = 1;
 	}
 	else
-		perror("error in ft_cd");
-	return (0);
+	{
+		perror("cd: ");
+		exit_code = 0;
+	}
+	ft_free(old_pwd);
+	return (exit_code);
 }

@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 16:01:18 by sfournie          #+#    #+#             */
-/*   Updated: 2021/10/11 21:38:31 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/10/24 15:50:32 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,31 +24,19 @@ t_var	*new_var(char *key, char *value)
 	return (var);
 }
 
-void	print_var(int fd, t_var *var)
+void	*dup_var(void *ptr)
 {
-	if (var->key != NULL)
-	{
-		ft_putstr_fd(var->key, fd);
-		ft_putchar_fd('=', fd);
-		if (var->value != NULL)
-			ft_putstr_fd(var->value, fd);
-		ft_putchar_fd('\n', fd);
-	}
-}
+	t_var	*var;
 
-void	print_var_extra(int fd, t_var *var)
-{
-	if (var->key != NULL)
+	var = (t_var *)ptr;
+	if (var != NULL)
 	{
-		ft_putstr_fd("declare -x ", fd);
-		ft_putstr_fd(var->key, fd);
-		ft_putchar_fd('=', fd);
-		ft_putchar_fd('\"', fd);
-		if (var->value != NULL)
-			ft_putstr_fd(var->value, fd);
-		ft_putchar_fd('\"', fd);
-		ft_putchar_fd('\n', fd);
+		if (var->value == NULL)
+			return (new_var(ft_strdup(var->key), NULL));
+		else
+			return (new_var(ft_strdup(var->key), ft_strdup(var->value)));
 	}
+	return (NULL);
 }
 
 t_var	*get_var(char *key, t_list *list)
@@ -58,12 +46,22 @@ t_var	*get_var(char *key, t_list *list)
 	while (list != NULL)
 	{
 		var = (t_var *)list->content;
-		if (var != NULL && var->key != NULL && !ft_strncmp(key, var->key, ft_strlen(key)))
+		if (var != NULL && var->key != NULL && !ft_strcmp(key, var->key))
 		{
 			return (var);
 		}
 		list = list->next;
 	}
+	return (NULL);
+}
+
+char	*get_var_value(char *key, t_list *list)
+{
+	t_var	*var;
+
+	var = get_var(key, list);
+	if (var != NULL)
+		return (var->value);
 	return (NULL);
 }
 

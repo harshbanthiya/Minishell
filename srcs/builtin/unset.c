@@ -6,13 +6,39 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 19:27:51 by sfournie          #+#    #+#             */
-/*   Updated: 2021/10/08 19:15:27 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/10/24 17:29:30 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"minishell.h"
 
-int	ft_unset(char *key, t_list **lst)
+// // Sebas, t'es rendu ici
+// static int	var_key_is_valid(char *key)
+// {
+// 	char	quote;
+// 	int		i;
+
+// 	if (key == NULL)
+// 		return (0);
+// 	i = 0;
+// 	quote = '\0';
+// 	while (key[i])
+// 	{
+// 		if (parse_is_quotes(key, i) && (quote == '\0' || quote == key[i]))
+// 		{
+// 			if (quote == key[i])
+// 				quote = '\0';
+// 			else
+// 				quote = key[i];
+// 		}
+// 		else
+// 			return (0);
+// 		if (key[i] == '\\' && parse_is_escaped(key, i))
+// 			return (0);
+// 	}
+// }
+
+int	ft_unset_var(char *key, t_list **lst)
 {
 	t_var	*var;
 	t_list	*temp;
@@ -33,4 +59,18 @@ int	ft_unset(char *key, t_list **lst)
 		temp = temp->next;
 	}
 	return (0);
+}
+
+int	ft_unset(char **tokens, t_list **lst)
+{
+	int		i;
+
+	if (tokens == NULL)
+		return (0);
+	i = 0;
+	while (tokens[i])
+	{
+		ft_unset_var(tokens[i++], lst);
+	}
+	return (1);
 }
