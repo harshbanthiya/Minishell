@@ -38,7 +38,7 @@ int     ft_echo(t_cmd  *command)
     while (index < command->argc)
     {
         ft_putstr_fd(command->argv[index], 1);
-        if ((index + 1) < command->argv)
+        if ((index + 1) < command->argc)
             ft_putstr_fd(" ", 1);
         index++;
     }

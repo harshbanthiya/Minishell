@@ -20,10 +20,15 @@ int     generate_special_token(t_list **token_list, char *line, int start_index)
 
     index = start_index;
     type = line[start_index];
-    if (line[start_index] == '>' && line[start_index + 1] == line[start_index])
+    if (line[start_index] == GREAT && line[start_index + 1] == line[start_index])
     {
         index++;
-        type = ">>"; /* NOT single char make a flag later instead */
+        type = GREATGREAT;
+    }
+    if (line[start_index] == LESS && line[start_index + 1] == line[start_index])
+    {
+        index++;
+        type = LESSLESS;
     }
     tk = create_token(line, start_index, index + 1, type);
     ft_lstadd_back(token_list, ft_lstnew(tk));
@@ -67,15 +72,15 @@ int     make_token_list(t_list **token_list, char *line)
     {
         if (ft_strchr("<>|;", line[index]))
             index = generate_special_token(token_list, line, index);
-        else if (line[index] == " ")
+        else if (line[index] == SPACE)
         {
             index++;
             continue ;
         }
         else 
             index = generate_string_token(token_list, line, index);
-        if (index < 0)
+        if (index < 0) /* Over flow */
             return (-1);
-        index++;   
+        index++;
     }
 }

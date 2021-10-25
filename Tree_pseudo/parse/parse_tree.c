@@ -9,7 +9,7 @@ t_node   *cmd_line1(void)
     job_node = job();
     if (job_node == NULL)
         return (NULL);
-    if (!term(59, NULL)) /* Semi colon is ascii 59 replace with enum or global */
+    if (!term(SEMICOLON, NULL))
     {
         node_delete(job_node);
         return (NULL);
@@ -36,7 +36,7 @@ t_node   *cmd_line2(void)
     job_node = job();
     if (job_node == NULL)
         return (NULL);
-    if (!term(59, NULL)) /* Semi colon is ascii 59 replace with enum or global */
+    if (!term(SEMICOLON, NULL))
     {
         node_delete(job_node);
         return (NULL);
@@ -77,12 +77,12 @@ t_node   *job_1(void)
 
     if ((command_node = command()) == NULL)
         return (NULL);
-    if (!term(124, NULL)) /* 124 is the ascii for Pipe change later */
+    if (!term(PIPE, NULL)) /* 124 is the ascii for Pipe change later */
     {
         node_delete(command_node);
         return (NULL);
     }
-    if ((job_node == job()) == NULL)
+    if ((job_node = job()) == NULL)
     {
         node_delete(command_node);
         return (NULL);
@@ -107,7 +107,7 @@ t_node   *job(void)
     t_list   *save;
 
     save = global_current_token_node;
-    if ((global_current_token_node = save, node = job1()) != NULL)
+    if ((global_current_token_node = save, node = job_1()) != NULL)
         return (node);
     if ((global_current_token_node = save, node = job_2()) != NULL)
         return (node);
@@ -124,9 +124,9 @@ t_node   *command(void)
     simplecmd_node = NULL;
     while (global_current_token_node)
     {
-        if (((t_token *)global_current_token_node->content)->type == '|')
+        if (((t_token *)global_current_token_node->content)->type == PIPE)
             break ;
-        if (((t_token *)global_current_token_node->content)->type == ';')
+        if (((t_token *)global_current_token_node->content)->type == SEMICOLON)
             break ;
         if ((temp = redir_list()) != NULL)
         {
@@ -156,10 +156,12 @@ t_node   *redir_list(void)
     if (term_redir(&pathname, &node_type) == false)
         return (NULL);
     result = malloc(sizeof(t_node));
-    if (node_type == 62) /* ascii for > is 62 */
+    if (node_type == GREAT) /* ascii for > is 62 */
         node_type = NODE_REDIRECT_OUT;
-    if (node_type == 60) /* ascii for < is 60 */
+    else if (node_type == LESS) /* ascii for < is 60 */
         node_type = NODE_REDIRECT_IN;
+    else if (node_type == LESSLESS)
+        node_type = NODE_REDIRECT_DOUBLEIN;
     else 
         node_type = NODE_REDIRECT_DOUBLEOUT;
     node_set_type(result, node_type);
@@ -203,7 +205,7 @@ int     term_redir(char **arg, int *node_type)
     if (global_current_token_node == NULL)
         return (false);
     current = (t_token *)(global_current_token_node->content);
-    if (current->type == '>' || current->type == '<' || current->type == ">>") /* Make changes here */
+    if (current->type == GREAT || current->type == LESS || current->type == GREATGREAT)
     {
         *node_type = current->type;
         if (global_current_token_node->next == NULL)

@@ -16,13 +16,13 @@ all:				$(NAME)
 $(NAME):			$(LIB)
 					$(CC) $(CFLAGS) $(INCS) $(SRCS) $(LIBS) -o $(NAME)
 $(LIB):
-					$(MAKE) bonus -C ./libs/libft/
+					$(MAKE) -C libft/
 clean:
-					$(MAKE) -C ./libs/libft clean
+					$(MAKE) -C libft clean
 					$(RM) $(OBJS)
 
 fclean:				clean
-					$(RM) ./libs/libft/$(LIB)
+					$(RM) libft/$(LIB)
 					$(RM) $(NAME)
 re:					fclean all
 

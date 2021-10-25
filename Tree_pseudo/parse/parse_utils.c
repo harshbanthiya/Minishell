@@ -45,6 +45,11 @@ void    node_set_data(t_node *node, char *token)
         node->data = token;
 }
 
-
-
-
+void	node_delete(t_node *node)
+{
+	if (!node)
+		return ;
+	node_delete(node->left_child);
+	node_delete(node->right_child);
+	free(node);
+}

@@ -35,6 +35,7 @@ int     global_exit_code;
 # define SEMICOLON		59
 # define GREAT			62
 # define GREATGREAT		2
+# define LESSLESS   3
 # define LESS			60
 # define PIPE			124
 # define S_QUOTE		39
@@ -135,9 +136,10 @@ void    node_set_data(t_node *node, char *token);
 void    node_set_type(t_node *node, int type);
 void    node_append_right(t_node **root, t_node *right);
 void    node_attach_branch(t_node *root, t_node *left, t_node *right);
+void	  node_delete(t_node *node);
 
 /* Interpret */
-void    execute_tree(t_node  *head, t_list *env_list);
+void    execute_tree(t_node  *head, t_list **env_list);
 void    execute_job(t_node *job, t_list **env_list);
 void    execute_pipeline(t_node *pipe_node, t_list **env_list);
 void    execute_command(t_node *command, t_pipe *pipe, t_list **env_list);
@@ -156,6 +158,7 @@ int     ft_pwd(t_cmd *command);
 /* Env */
 t_list    *make_env_list(char **envp);
 void      update_kv_pair(t_env **env, char *envp);
+void		print_env_list(t_list *env_head);
 
 /* Cmd */
 void    command_destroy(t_cmd *command);

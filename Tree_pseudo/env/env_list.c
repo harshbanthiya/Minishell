@@ -25,3 +25,17 @@ t_list    *make_env_list(char **envp)
     }
     return (result);
 }
+void		print_env_list(t_list *env_head)
+{
+	t_list	*temp;
+
+	temp = env_head;
+	while (temp)
+	{
+		ft_putstr_fd(((t_env *)(temp->content))->key, 1);
+		ft_putstr_fd("=", 1);
+		ft_putstr_fd(((t_env *)(temp->content))->val, 1);
+		ft_putstr_fd("\n", 1);
+		temp = temp->next;
+	}
+}

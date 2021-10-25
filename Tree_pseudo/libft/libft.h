@@ -4,7 +4,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdbool.h>
-# define BUFF_SIZE 10
+# define BUFFER_SIZE 10
 typedef struct	s_arr
 {
 	int				fd;

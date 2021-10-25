@@ -53,7 +53,7 @@ void    execute_pipeline(t_node *pipe_node, t_list **env_list)
 
 void    execute_job(t_node *job, t_list **env_list)
 {
-    t_node   *command;
+    t_pipe   *command;
 
     if (job == NULL)
         return;
@@ -69,7 +69,7 @@ void    execute_job(t_node *job, t_list **env_list)
 /* Excuse me .... while you are reading this, also consider the below thing, ok bie. */
 /* Write a function set_exit_code(status, retcode); read up on WIFEXITED, WEXITSTATUS, WTERMSIG */
 
-void    execute_tree(t_node  *head, t_list *env_list)
+void    execute_tree(t_node  *head, t_list **env_list)
 {
     int         status;
     int         i;
@@ -103,7 +103,7 @@ void    execute_tree(t_node  *head, t_list *env_list)
         {
             waitpid(*(global_pipe_pid + i), &status, 0);
             printf("status: %d\n", status);
-            set_exit_code(status, -1);
+            //set_exit_code(status, -1); /* Make this function soon */
             i++;
         }
         free(global_pipe_pid);
