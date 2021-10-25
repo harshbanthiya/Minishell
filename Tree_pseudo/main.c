@@ -16,7 +16,7 @@ t_node   *get_tree(char *line)
     token_list = NULL;
     if (make_token_list(&token_list, line) < 0)
     {
-        ft_err("Error: wrong token\n", 1);
+        printf("Error: wrong token\n");
         return (NULL);
     }
     else 
@@ -70,28 +70,33 @@ char *put_prompt(void)
 
 int main(int argc, char **argv, char **envp)
 {
-    char        *cmd_line;
+    //char        *cmd_line;
     t_list      *env_list;
-    t_node      *root_node;
+    //t_node      *root_node;
 
 
     if(!argc || !(*argv[0]))
         return (-1);
     env_list = make_env_list(envp);   /* Psuedo name to populate the env list from env */
-    //print_env_list(env_list);
-    global_exit_code = 0;
+    print_env_list(env_list);
+    //signal stuff 
+    //global_exit_code = 0;
+    //cmd_line = readline(put_prompt());
+    //root_node = get_tree(cmd_line);
+   // print_tree(root_node);
+    /*
     while (1)
     {
         cmd_line = readline(put_prompt());
-        root_node = get_tree(cmd_line); /* Function that makes the cmd_line tree */
-        print_tree(root_node); // testing
-        /*
+        root_node = get_tree(cmd_line); // Function that makes the cmd_line tree
+        //print_tree(root_node); // testing
         if (root_node)
-            execute_tree(root_node, &env_list); /* Once the tree is made execute it using env list 
-        */
+            execute_tree(root_node, &env_list); //Once the tree is made execute it using env list 
+        
         free(cmd_line);
     }
-    free(cmd_line);
+    */
+    //free(cmd_line);
     ft_lstclear(&env_list,free);
     return (0);
 }
