@@ -1,8 +1,8 @@
 #include "../shell.h"
 
-void    init_flag(scan_quote **flag)
+void    init_flag(t_scan_quotes **flag)
 {
-    (*flag) = (scan_quote *)malloc(sizeof(scan_quote));
+    (*flag) = (t_scan_quotes *)malloc(sizeof(t_scan_quotes));
     if(!(*flag))
         return ;
     (*flag)->s_quote = 0;
@@ -10,7 +10,7 @@ void    init_flag(scan_quote **flag)
 }
 
 /* It checks for single or double quotes that do not exist in pairs, and updates the struct flag when is finds non paired quotes */
-void    make_quote_status(char *line, int index, scan_quote **flag)
+void    make_quote_status(char *line, int index, t_scan_quotes **flag)
 {
     if (line[index] == 34)  /* D quote use the enum later, it is breaking for now, 34 is the acii for double quote */
     {
@@ -26,7 +26,7 @@ void    make_quote_status(char *line, int index, scan_quote **flag)
         (*flag)->s_quote = !(*flag)->s_quote;
 }
 
-int     is_end_str(char chr, scan_quote *flag)
+int     is_end_str(char chr, t_scan_quotes *flag)
 {
     if (flag->s_quote != true && flag->d_quote != true && ft_strchr(" |;<>", chr) != NULL)
         return (true);

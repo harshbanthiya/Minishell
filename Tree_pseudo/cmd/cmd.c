@@ -1,6 +1,6 @@
 #include "../shell.h"
 
-void    command_count_argc(cmd *command, tree_node *arg_node)
+void    command_count_argc(t_cmd *command, t_node *arg_node)
 {
     int     output;
 
@@ -13,7 +13,7 @@ void    command_count_argc(cmd *command, tree_node *arg_node)
     command->argc = output;
 }
 
-void    command_store_argv(cmd *command, tree_node *arg_node, list *env_list)
+void    command_store_argv(t_cmd *command, t_node *arg_node, t_list *env_list)
 {
     int     i;
 
@@ -40,9 +40,9 @@ void    command_store_argv(cmd *command, tree_node *arg_node, list *env_list)
     command->argv[i] = NULL;
 }
 
-int     command_init(tree_node *simple_cmd, cmd *command, ppipe *pipe, list **env_list)
+int     command_init(t_node *simple_cmd, t_cmd *command, t_pipe *pipe, t_list **env_list)
 {
-    tree_node   *arg_node;
+    t_node   *arg_node;
 
     if (simple_cmd == NULL)
     {
@@ -67,7 +67,7 @@ int     command_init(tree_node *simple_cmd, cmd *command, ppipe *pipe, list **en
     return (0);
 }
 
-void    command_destroy(cmd *command)
+void    command_destroy(t_cmd *command)
 {   
     int     i;
 

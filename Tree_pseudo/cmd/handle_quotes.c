@@ -17,7 +17,7 @@ int	calc_buff_len(int *buff)
 	return (len);
 }
 
-char	*create_result_str(int *buff, char *token_data, scan_quote *flag)
+char	*create_result_str(int *buff, char *token_data, t_scan_quotes *flag)
 {
 	int		idx;
 	int		cnt;
@@ -46,7 +46,7 @@ char	*create_result_str(int *buff, char *token_data, scan_quote *flag)
 	return (result);
 }
 
-int     strip_quotes_other(char *token_data, int **buff, int index, scan_quote **flags)
+int     strip_quotes_other(char *token_data, int **buff, int index, t_scan_quotes **flags)
 {
     if (token_data[index] == 39)
         (*flags)->s_quote = false;
@@ -57,7 +57,7 @@ int     strip_quotes_other(char *token_data, int **buff, int index, scan_quote *
     return (index + 1);
 }
 
-int     strip_quotes_single(char *token_data, int **buff, int index, scan_quote **flags)
+int     strip_quotes_single(char *token_data, int **buff, int index, t_scan_quotes **flags)
 {
     if ((*flags)->d_quote == true)
         (*buff)[index] = 1;
@@ -75,7 +75,7 @@ int     strip_quotes_single(char *token_data, int **buff, int index, scan_quote 
 char    **strip_quotes(char **token_data)
 {
     char            *result;
-    scan_quote      *flags;
+    t_scan_quotes   *flags;
     int             index;
     int             buff[BUFFER_SIZE];
  
@@ -89,8 +89,7 @@ char    **strip_quotes(char **token_data)
         else 
             index = strip_quotes_other(*token_data, &buff, index, flags);
     }
-    result = create_str_result(buff, *token_data, flags); /* Make this function */
-    free((*token_data));
+    result = create_result_str(buff, *token_data, flags); 
     free(flags);
     return (result);
 }

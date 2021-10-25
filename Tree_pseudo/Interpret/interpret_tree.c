@@ -1,25 +1,25 @@
 #include "../shell.h"
 
-void    execute_simplecmd(tree_node *simple_cmd, ppipe *pipe, list **env_list)
+void    execute_simplecmd(t_node *simple_cmd, t_pipe *pipe, t_list **env_list)
 {
-    cmd     command;
+    t_cmd     command;
 
     command_init(simple_cmd, &command, pipe, env_list); /* probable prototypes for the CRUD operations for the cmd struct */
     command_execute(&command, env_list);
     command_destroy(&command);
 }
 
-void    execute_command(tree_node *command, ppipe *pipe, list **env_list)
+void    execute_command(t_node *command, t_pipe *pipe, t_list **env_list)
 {
     if (!command)
         return ;
     execute_simplecmd(command, pipe, env_list);
 }
 
-void    execute_pipeline(tree_node *pipe_node, list **env_list)
+void    execute_pipeline(t_node *pipe_node, t_list **env_list)
 {
-    ppipe           *temp_pipe;
-    tree_node       *job_node;
+    t_pipe           *temp_pipe;
+    t_node          *job_node;
     int             fd[2];
     int             write_pipe;
     int             read_pipe;
@@ -51,9 +51,9 @@ void    execute_pipeline(tree_node *pipe_node, list **env_list)
     /* Maybe I need to free temp pipe? I will worry about that later */
 }
 
-void    execute_job(tree_node *job, list **env_list)
+void    execute_job(t_node *job, t_list **env_list)
 {
-    tree_node   *command;
+    t_node   *command;
 
     if (job == NULL)
         return;
@@ -69,11 +69,11 @@ void    execute_job(tree_node *job, list **env_list)
 /* Excuse me .... while you are reading this, also consider the below thing, ok bie. */
 /* Write a function set_exit_code(status, retcode); read up on WIFEXITED, WEXITSTATUS, WTERMSIG */
 
-void    execute_tree(tree_node  *head, list *env_list)
+void    execute_tree(t_node  *head, t_list *env_list)
 {
     int         status;
     int         i;
-    tree_node   *pipe_counter;
+    t_node   *pipe_counter;
 
     if (head == NULL)
         return ;
@@ -108,5 +108,4 @@ void    execute_tree(tree_node  *head, list *env_list)
         }
         free(global_pipe_pid);
     }
-
 }

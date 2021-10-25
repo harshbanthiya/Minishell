@@ -1,17 +1,17 @@
 #include "shell.h"
 
-void    parse(list  *token_list, tree_node **node)
+void    parse(t_list  *token_list, t_node **node)
 {
     global_current_token_node = token_list;
     *node = cmd_line();
     if (global_current_token_node != NULL)
-        printf("syntax error near unexpected token: \'%s\'\n", ((token *)global_current_token_node->content)->data);
+        printf("syntax error near unexpected token: \'%s\'\n", ((t_token *)global_current_token_node->content)->data);
 }
 
-tree_node   *get_tree(char *line)
+t_node   *get_tree(char *line)
 {
-    list            *token_list;
-    tree_node       *output;
+    t_list       *token_list;
+    t_node       *output;
 
     token_list = NULL;
     if (make_token_list(&token_list, line) < 0)
@@ -35,7 +35,7 @@ void print_tabs(int tabs)
     }
 }
 
-void print_tree_r(tree_node *root, int level)
+void print_tree_r(t_node *root, int level)
 {
     if (root == NULL)
     {
@@ -55,7 +55,7 @@ void print_tree_r(tree_node *root, int level)
     
 }
 
-void print_tree(tree_node *node)
+void print_tree(t_node *node)
 {
     print_tree_r(node, 0);
 }
@@ -63,8 +63,8 @@ void print_tree(tree_node *node)
 int main(int argc, char **argv, char **envp)
 {
     char        *cmd_line;
-    list        *env_list;
-    tree_node   *root_node;
+    t_list      *env_list;
+    t_node      *root_node;
     char        *prompt;
     char        *orig_prompt;
 
@@ -78,8 +78,10 @@ int main(int argc, char **argv, char **envp)
         cmd_line = readline((char *) prompt);
         root_node = get_tree(cmd_line); /* Function that makes the cmd_line tree */
         print_tree(root_node); // testing
+        /*
         if (root_node)
-            execute_tree(root_node, &env_list); /* Once the tree is made execute it using env list */
+            execute_tree(root_node, &env_list); /* Once the tree is made execute it using env list 
+        */
         free(cmd_line);
     }
     free(cmd_line);

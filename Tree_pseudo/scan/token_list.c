@@ -1,10 +1,10 @@
 #include "../shell.h"
 
-token   *create_token(char *line, int start, int end, int type)
+t_token   *create_token(char *line, int start, int end, int type)
 {
-    token   *tok;
+    t_token   *tok;
 
-    tok = (token *)malloc(sizeof(token));
+    tok = (t_token *)malloc(sizeof(t_token));
     if (!tok)
         return (0);
     tok->data = ft_strndup(&line[start], (end - start)); /* remember to write an str-N-dup function */
@@ -12,11 +12,11 @@ token   *create_token(char *line, int start, int end, int type)
     return (tok);
 }
 
-int     generate_special_token(list **token_list, char *line, int start_index)
+int     generate_special_token(t_list **token_list, char *line, int start_index)
 {
     int     index;
     int     type;
-    token   *tk;
+    t_token   *tk;
 
     index = start_index;
     type = line[start_index];
@@ -30,12 +30,12 @@ int     generate_special_token(list **token_list, char *line, int start_index)
     return (index);
 }
 
-int     generate_string_token(list  **token_list, char *line, int start_index)
+int     generate_string_token(t_list  **token_list, char *line, int start_index)
 {
-    int         index;
-    token       *tok;
-    scan_quote  *flag;
-    char        *token_data;
+    int             index;
+    t_token         *tok;
+    t_scan_quotes   *flag;
+    char            *token_data;
 
     init_flag(&flag);
     index = start_index;
@@ -56,7 +56,7 @@ int     generate_string_token(list  **token_list, char *line, int start_index)
     return (index);
 }    
 
-int     make_token_list(list **token_list, char *line)
+int     make_token_list(t_list **token_list, char *line)
 {
     int     index;
     int     line_len;

@@ -1,6 +1,6 @@
 #include "../shell.h"
 
-int     ft_pwd(cmd *command)
+int     ft_pwd(t_cmd *command)
 {
     char    working_dir[1024];
 

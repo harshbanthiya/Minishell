@@ -61,4 +61,10 @@ char	            *ft_strsub(char const *s, unsigned int start, size_t len);
 char	            *ft_strcat(char *restrict str1, const char *restrict str2);
 char				**ft_strsplit(char const *str, char c);
 int					get_next_line(const int fd, char **line);
+void				ft_lstadd_back(t_list **lst, t_list *new);
+void				ft_lstadd_front(t_list **lst, t_list *new);
+t_list				*ft_lstnew(void *content);
+int					ft_lstsize(t_list *lst);
+void				ft_lstclear(t_list **lst, void (*del)(void *));
+char				*ft_strndup(char *s1, size_t len);
 #endif

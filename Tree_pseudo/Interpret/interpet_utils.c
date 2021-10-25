@@ -1,10 +1,10 @@
 #include "../shell.h"
 
-ppipe       *pipe_first(int read_pipe, int write_pipe)
+t_pipe       *pipe_first(int read_pipe, int write_pipe)
 {
-    ppipe   *output;
+    t_pipe   *output;
 
-    output = (ppipe *)malloc(sizeof(ppipe));
+    output = (t_pipe *)malloc(sizeof(t_pipe));
     if (!output)
         return (0);
     output->stdin_pipe = false;
@@ -14,11 +14,11 @@ ppipe       *pipe_first(int read_pipe, int write_pipe)
     return (output);
 }
 
-ppipe       *pipe_mid(int read_pipe, int write_pipe)
+t_pipe       *pipe_mid(int read_pipe, int write_pipe)
 {
-    ppipe   *output;
+    t_pipe   *output;
 
-    output = (ppipe *)malloc(sizeof(ppipe));
+    output = (t_pipe *)malloc(sizeof(t_pipe));
     if (!output)
         return (0);
     output->stdin_pipe = true;
@@ -28,11 +28,11 @@ ppipe       *pipe_mid(int read_pipe, int write_pipe)
     return (output);
 }
 
-ppipe       *pipe_last(int read_pipe, int   write_pipe)
+t_pipe       *pipe_last(int read_pipe, int   write_pipe)
 {
-    ppipe       *output;
+    t_pipe       *output;
 
-    output = (ppipe *)malloc(sizeof(ppipe));
+    output = (t_pipe *)malloc(sizeof(t_pipe));
     if (!output)
         return (0);
     output->stdin_pipe = true;
@@ -42,11 +42,11 @@ ppipe       *pipe_last(int read_pipe, int   write_pipe)
     return (output);
 }
 
-ppipe       *pipe_for_command(void)
+t_pipe       *pipe_for_command(void)
 {
-    ppipe   *output;
+    t_pipe   *output;
 
-    output = (ppipe *)malloc(sizeof(ppipe));
+    output = (t_pipe *)malloc(sizeof(t_pipe));
     if (!output)
         return (0);
     output->stdin_pipe = false;
@@ -56,7 +56,7 @@ ppipe       *pipe_for_command(void)
     return (output);
 }
 
-void    node_count_pipe_node(tree_node *search)
+void    node_count_pipe_node(t_node *search)
 {
     if (search)
     {

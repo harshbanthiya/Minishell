@@ -1,7 +1,7 @@
 #include "../shell.h"
 
 
-void    command_external_redir(cmd *command)
+void    command_external_redir(t_cmd *command)
 {
     int     fd;
 
@@ -46,7 +46,7 @@ void    command_external_redir(cmd *command)
 // && When there is more than one export argument
 // It should be executed in the parent process, not in the child process.
 
-void    command_execute(cmd *command, list ** env_list)
+void    command_execute(t_cmd *command, t_list ** env_list)
 {
     int     pid;
     int     stdout_fd;

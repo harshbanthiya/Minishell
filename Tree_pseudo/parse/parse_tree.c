@@ -1,10 +1,10 @@
 #include "../shell.h"
 
-tree_node   *cmd_line1(void)
+t_node   *cmd_line1(void)
 {
-    tree_node   *job_node;
-    tree_node   *cmdline_node;
-    tree_node   *result;
+    t_node   *job_node;
+    t_node   *cmdline_node;
+    t_node   *result;
 
     job_node = job();
     if (job_node == NULL)
@@ -28,10 +28,10 @@ tree_node   *cmd_line1(void)
     return (result);
 }
 
-tree_node   *cmd_line2(void)
+t_node   *cmd_line2(void)
 {
-    tree_node   *job_node;
-    tree_node   *result;
+    t_node   *job_node;
+    t_node   *result;
 
     job_node = job();
     if (job_node == NULL)
@@ -49,15 +49,15 @@ tree_node   *cmd_line2(void)
     node_attach_branch(result, job_node, NULL);
     return (result);
 }
-tree_node	*cmd_line3(void)
+t_node	*cmd_line3(void)
 {
 	return (job());
 }
 
-tree_node   *cmd_line(void)
+t_node   *cmd_line(void)
 {
-    tree_node   *node;
-    list        *save;
+    t_node   *node;
+    t_list        *save;
 
     save = global_current_token_node;
     if ((global_current_token_node = save, node = cmd_line1()) != NULL)
@@ -69,11 +69,11 @@ tree_node   *cmd_line(void)
     return (NULL);
 }
 
-tree_node   *job_1(void)
+t_node   *job_1(void)
 {
-    tree_node   *command_node;
-    tree_node   *job_node;
-    tree_node   *result;
+    t_node   *command_node;
+    t_node   *job_node;
+    t_node   *result;
 
     if ((command_node = command()) == NULL)
         return (NULL);
@@ -96,15 +96,15 @@ tree_node   *job_1(void)
     return (result);
 }
 
-tree_node   *job_2(void)
+t_node   *job_2(void)
 {
     return (command());
 }
 
-tree_node   *job(void)
+t_node   *job(void)
 {
-    tree_node   *node;
-    list        *save;
+    t_node   *node;
+    t_list   *save;
 
     save = global_current_token_node;
     if ((global_current_token_node = save, node = job1()) != NULL)
@@ -114,19 +114,19 @@ tree_node   *job(void)
     return (NULL);
 }
 
-tree_node   *command(void)
+t_node   *command(void)
 {
-    tree_node   *redir_node;
-    tree_node   *simplecmd_node;
-    tree_node   *temp;
+    t_node   *redir_node;
+    t_node   *simplecmd_node;
+    t_node   *temp;
 
     redir_node = NULL;
     simplecmd_node = NULL;
     while (global_current_token_node)
     {
-        if (((token *)global_current_token_node->content)->type == '|')
+        if (((t_token *)global_current_token_node->content)->type == '|')
             break ;
-        if (((token *)global_current_token_node->content)->type == ';')
+        if (((t_token *)global_current_token_node->content)->type == ';')
             break ;
         if ((temp = redir_list()) != NULL)
         {
@@ -147,15 +147,15 @@ tree_node   *command(void)
         return (simplecmd_node);
 }
 
-tree_node   *redir_list(void)
+t_node   *redir_list(void)
 {
-    tree_node   *result;
+    t_node   *result;
     char        *pathname;
     int         node_type;
 
     if (term_redir(&pathname, &node_type) == false)
         return (NULL);
-    result = malloc(sizeof(tree_node));
+    result = malloc(sizeof(t_node));
     if (node_type == 62) /* ascii for > is 62 */
         node_type = NODE_REDIRECT_OUT;
     if (node_type == 60) /* ascii for < is 60 */
@@ -168,9 +168,9 @@ tree_node   *redir_list(void)
     return (result);
 }
 
-tree_node *simplecmd(void)
+t_node *simplecmd(void)
 {
-    tree_node   *result;
+    t_node   *result;
     char        *pathname;
 
     if(term(STRING, &pathname) == false)
@@ -186,10 +186,10 @@ int     term(int token_type, char **arg)
 {
     if (global_current_token_node == NULL)
         return (false);
-    if (((token *)(global_current_token_node)->content)->type == token_type)
+    if (((t_token *)(global_current_token_node)->content)->type == token_type)
     {
         if (arg != NULL)
-            *arg = ft_strdup(((token *)global_current_token_node->content)->data);
+            *arg = ft_strdup(((t_token *)global_current_token_node->content)->data);
         global_current_token_node = global_current_token_node->next;
         return (true);
     }
@@ -198,22 +198,22 @@ int     term(int token_type, char **arg)
 
 int     term_redir(char **arg, int *node_type)
 {
-    token   *current;
+    t_token   *current;
 
     if (global_current_token_node == NULL)
         return (false);
-    current = (token *)(global_current_token_node->content);
+    current = (t_token *)(global_current_token_node->content);
     if (current->type == '>' || current->type == '<' || current->type == ">>") /* Make changes here */
     {
         *node_type = current->type;
         if (global_current_token_node->next == NULL)
             return (false);
         global_current_token_node = global_current_token_node->next;
-        current = (token *)(global_current_token_node->content);
+        current = (t_token *)(global_current_token_node->content);
         if (current->type == STRING)
         {
             if (arg != NULL)
-                *arg = ft_strdup(((token *)global_current_token_node->content)->data);
+                *arg = ft_strdup(((t_token *)global_current_token_node->content)->data);
             global_current_token_node = global_current_token_node->next;
             return (true);
         }

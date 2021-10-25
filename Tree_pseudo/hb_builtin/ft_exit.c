@@ -1,6 +1,6 @@
 #include "../shell.h"
 
-int     ft_exit(cmd *command)
+int     ft_exit(t_cmd *command)
 {
     int     exit_status;
 

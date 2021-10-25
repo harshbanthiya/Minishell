@@ -12,7 +12,7 @@ int     exec_echo_only_n(void)
     return (1);
 }
 
-int     ft_echo(cmd  *command)
+int     ft_echo(t_cmd  *command)
 {
     int     index;
     int     n_tag;
