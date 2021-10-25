@@ -6,7 +6,11 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 08:25:43 by sfournie          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2021/10/24 18:03:21 by sfournie         ###   ########.fr       */
+=======
+/*   Updated: 2021/10/25 14:46:01 by hbanthiy         ###   ########.fr       */
+>>>>>>> c9cced1... if any changes
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +45,7 @@ void	free_shell(void)
 
 	sh = get_shell();
 	if (sh != NULL)
+<<<<<<< HEAD
 		sh->env = free_env(sh->env);
 	if (sh->builtins != NULL)
 		sh->builtins = free_split(sh->builtins);
@@ -51,4 +56,10 @@ void	init_fd(int *fd)
 	fd[0] = 0;
 	fd[1] = 1;
 	fd[2] = 2;
+=======
+	{
+		sh->env = ft_free_env(sh->env);
+	}
+	return (NULL);
+>>>>>>> c9cced1... if any changes
 }
