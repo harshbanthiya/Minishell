@@ -62,7 +62,8 @@ void print_tree(t_node *node)
 /* Needs some working super basic */
 char *put_prompt(void)
 {
-    char    cwd[99];
+    char    *cwd;
+    cwd = (char *)malloc(sizeof(char) * 99);
     getcwd(cwd, 99);
     return (cwd);
 }
