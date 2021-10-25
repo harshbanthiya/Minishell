@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
+/*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/11 07:52:18 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/05/15 15:10:45 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/10/11 17:57:41 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char 	*ft_strrchr(const char *s, int c)
+char	*ft_strrchr(const char *s, int c)
 {
 	char	*ptr;
 

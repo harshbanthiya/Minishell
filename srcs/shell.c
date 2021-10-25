@@ -6,36 +6,67 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 08:25:43 by sfournie          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2021/10/25 14:46:01 by hbanthiy         ###   ########.fr       */
+=======
+<<<<<<< HEAD
+/*   Updated: 2021/10/24 18:03:21 by sfournie         ###   ########.fr       */
+=======
+/*   Updated: 2021/10/25 14:46:01 by hbanthiy         ###   ########.fr       */
+>>>>>>> c9cced1... if any changes
+>>>>>>> f0e5f21397a7e9c794c1ffe91ea2faf4a23e19ef
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"minishell.h"
 
-t_shell	*ft_get_shell(void)
+t_shell	*get_shell(void)
 {
 	return (&g_shell);
 }
 
-void	ft_init_shell(char **envp)
+void	init_shell(char **envp)
 {
 	t_shell	sh;
-	
-	sh.env = ft_init_env(envp); // check for NULL?
-	sh.active_term = NULL;
+	t_var	*pwd;
+
+	if (envp != NULL)
+		sh.env = init_env(envp);
+	sh.builtins = init_builtins();
+	init_fd(sh.fd);
+	tcgetattr(1, sh.active_term);
 	tcgetattr(1, sh.def_term);
 	tcgetattr(1, sh.saved_term);
+	pwd = get_var("PWD", sh.env);
+	if (pwd != NULL)
+		sh.pwd = ft_strdup(pwd->value);
 	g_shell = sh;
 }
 
-void	*ft_free_shell(void *ptr)
-{	
+void	free_shell(void)
+{
 	t_shell	*sh;
 
-	sh = (t_shell *)ptr;
+	sh = get_shell();
 	if (sh != NULL)
+<<<<<<< HEAD
+		sh->env = free_env(sh->env);
+	if (sh->builtins != NULL)
+		sh->builtins = free_split(sh->builtins);
+}
+
+void	init_fd(int *fd)
+{
+	fd[0] = 0;
+	fd[1] = 1;
+	fd[2] = 2;
+=======
 	{
 		sh->env = ft_free_env(sh->env);
 	}
 	return (NULL);
+<<<<<<< HEAD
+=======
+>>>>>>> c9cced1... if any changes
+>>>>>>> f0e5f21397a7e9c794c1ffe91ea2faf4a23e19ef
 }

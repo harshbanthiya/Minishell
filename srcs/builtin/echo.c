@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 19:27:42 by sfournie          #+#    #+#             */
-/*   Updated: 2021/10/04 09:56:29 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/10/24 17:21:33 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,33 +14,31 @@
 
 static int	is_nl(char *opt)
 {
-	if (opt && opt[0] == '-' && opt[1] == '\n')
+	if (opt && opt[0] == '-' && opt[1] == 'n')
 		return (1);
 	return (0);
 }
 
-int	ft_echo(char *str, int fd)
+int	ft_echo(char **tokens, int fd)
 {
-	char	**split;
 	int		nl;
 	int		i;
 	int		j;
 
-	split = ft_split(str, ' ');
-	if (split == NULL)
+	if (tokens == NULL)
 		return (0);
 	nl = 1;
 	i = 0;
-	while (is_nl(split[i]))
+	while (is_nl(tokens[i]))
 	{
 		nl = 0;
 		i++;
 	}
-	while (split[i])
+	while (tokens[i])
 	{
 		j = 0;
-		ft_putstr_fd(split[i++], fd);
-		if (split[i])
+		ft_putstr_fd(tokens[i++], fd);
+		if (tokens[i])
 			ft_putstr_fd(" ", fd);
 	}
 	if (nl)
