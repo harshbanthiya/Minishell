@@ -1,38 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_terminal.c                                     :+:      :+:    :+:   */
+/*   modes.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/08 12:43:20 by sfournie          #+#    #+#             */
-/*   Updated: 2021/10/24 18:03:43 by sfournie         ###   ########.fr       */
+/*   Created: 2021/10/08 12:32:05 by sfournie          #+#    #+#             */
+/*   Updated: 2021/10/24 18:42:23 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"minishell.h"
 
-t_term	*get_saved_term(void)
+/* mode 0 : non-interactive, mode 1 : interactive */
+void	sh_change_mode(int mode)
 {
 	t_shell	*sh;
 
 	sh = get_shell();
-	return (sh->saved_term);
+	if (sh == NULL)
+		return ;
+	if (mode == 1)
+		sh->sh_mode = 1;
+	else if (mode == 0)
+		sh->sh_mode = 0;	
 }
 
-t_term	*get_def_term(void)
+int	get_sh_mode(void)
 {
-	t_shell	*sh;
-
-	sh = get_shell();
-	return (sh->def_term);
-}
-
-t_term	*get_active_term(void)
-
-{
-	t_shell	*sh;
-
-	sh = get_shell();
-	return (sh->active_term);
+	return (g_shell.sh_mode);
 }

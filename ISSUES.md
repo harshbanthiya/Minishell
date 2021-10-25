@@ -13,6 +13,7 @@ cd / pwd
 	- use getcwd() rather than parse
 
 Terminal
+	- find how to get the ctrl-D
 	- find out how to get the ctrl-D
 
 Export

@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 18:43:33 by sfournie          #+#    #+#             */
-/*   Updated: 2021/10/24 17:29:30 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/10/24 18:39:59 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_var
 }				t_var;
 
 /* Node for generic chained list */
+
 typedef struct s_list
 {
 	void			*content;
@@ -43,9 +44,9 @@ typedef struct termios	t_term;
 typedef struct s_shell
 {
     t_list	*env;		/* Chained list for environment/shell variables */
-	t_term	*def_term;	/* Default terminal (to be restored at the end!) */
-	t_term	*saved_term;	/* Used to save a terminal state to be restored later */
-	t_term	*active_term;	/* Current terminal (might not be needed) */
+	t_term	def_term;	/* Default terminal (to be restored at the end!) */
+	t_term	saved_term;	/* Used to save a terminal state to be restored later */
+	int		sh_mode;	/* mode 1 : interactive, mode 0 : non-interactive */
 	char	**builtins;	/* Contains the names of all our builtins */
 	char	*pwd;
 	int		fd[3];			/* 0 = input, 1 = output, 2 = error */
@@ -55,9 +56,11 @@ typedef struct s_shell
 struct s_shell	g_shell;
 
 /* Shell */
-void	init_shell(char **envp);		/* Master init function. Makes all the init calls needed. */
+void	init_shell(char **envp);	/* Master init function. Makes all the init calls needed. */
 t_shell	*get_shell(void);
 void	init_fd(int *fd);	/* set input, output and error fd */
+void	sh_change_mode(int mode);
+int		get_sh_mode(void);
 /* End shell */
 
 /* Reading */
@@ -103,13 +106,18 @@ void	set_pwd(char *pwd);
 
 /* Terminal */
 void	init_terms(t_shell *sh, int term_fd);
-void	set_saved_term(t_term *term);
-void	set_def_term(t_term *term);
-void	set_active_term(t_term *term);
-t_term	*get_saved_term(void);
-t_term	*get_def_term(void);
-t_term	*get_active_term(void);
+void	term_save_state(int	term_fd);
+void	term_restore_default();
+void	term_restore_saved();
+int		get_active_fd(void);
 /* End terminal */
+
+/* Signals */
+void	init_signals(void);
+void	sig_intr(int sig_num);
+void	sig_eof(int sig_num);
+void	sig_quit(int sig_num);
+/* End signal */
 
 /* Builtin commands */
 char	**init_builtins();		/* Return a double array of all builtins' names */
