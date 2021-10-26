@@ -1,5 +1,5 @@
 #include "../shell.h"
-#define BUFFER_SIZE 4096
+
 
 int	calc_buff_len(int *buff)
 {
