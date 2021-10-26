@@ -70,9 +70,9 @@ char *put_prompt(void)
 
 int main(int argc, char **argv, char **envp)
 {
-    //char        *cmd_line;
+    char        *cmd_line;
     t_list      *env_list;
-    //t_node      *root_node;
+    t_node      *root_node;
 
 
     if(!argc || !(*argv[0]))
@@ -80,11 +80,10 @@ int main(int argc, char **argv, char **envp)
     env_list = make_env_list(envp);   /* Psuedo name to populate the env list from env */
     print_env_list(env_list);
     //signal stuff 
-    //global_exit_code = 0;
-    //cmd_line = readline(put_prompt());
-    //root_node = get_tree(cmd_line);
-   // print_tree(root_node);
-    /*
+    global_exit_code = 0;
+    cmd_line = readline(put_prompt());
+    root_node = get_tree(cmd_line);
+    print_tree(root_node);
     while (1)
     {
         cmd_line = readline(put_prompt());
@@ -95,8 +94,7 @@ int main(int argc, char **argv, char **envp)
         
         free(cmd_line);
     }
-    */
-    //free(cmd_line);
+    free(cmd_line);
     ft_lstclear(&env_list,free);
     return (0);
 }

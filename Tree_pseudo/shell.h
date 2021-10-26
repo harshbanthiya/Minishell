@@ -154,11 +154,16 @@ t_pipe  *pipe_first(int read_pipe, int write_pipe);
 int     ft_echo(t_cmd  *command);
 int     ft_exit(t_cmd *command);
 int     ft_pwd(t_cmd *command);
+int			execute_internal_in_child(t_cmd *cmd, t_list **env_list);
+int			execute_internal_in_parent(t_cmd *cmd, t_list **env_list);
 
 /* Env */
 t_list    *make_env_list(char **envp);
 void      update_kv_pair(t_env **env, char *envp);
 void		print_env_list(t_list *env_head);
+char		**env_list_to_envp(t_list *env_head);
+void		set_env_one(t_list **list, t_env *env);
+void		unset_env_one(t_list **env_head, char *key);
 
 /* Cmd */
 void    command_destroy(t_cmd *command);
@@ -168,6 +173,12 @@ void    command_count_argc(t_cmd *command, t_node *arg_node);
 void    command_execute(t_cmd *command, t_list ** env_list);
 void    command_external_redir(t_cmd *command);
 char    **strip_quotes(char **token_data);
+void    exec_with_path(t_cmd *cmd, char **path_arr, t_list *env_list);
+void    free_tmp_env(char **env);
+void    free_path_arr(char **path_arr);
+char    **create_path_arr(t_list *env_path);
+char		*replace_home_path(char *str, t_list *env_list);
+char		*get_env_val(char *key, t_list *env_list);
 
 
 #endif
