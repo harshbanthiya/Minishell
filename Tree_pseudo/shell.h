@@ -154,8 +154,8 @@ t_pipe  *pipe_first(int read_pipe, int write_pipe);
 int     ft_echo(t_cmd  *command);
 int     ft_exit(t_cmd *command);
 int     ft_pwd(t_cmd *command);
-int			execute_internal_in_child(t_cmd *cmd, t_list **env_list);
-int			execute_internal_in_parent(t_cmd *cmd, t_list **env_list);
+int			execute_builtin_in_child(t_cmd *cmd, t_list **env_list);
+int			execute_builtin_in_parent(t_cmd *cmd, t_list **env_list);
 
 /* Env */
 t_list    *make_env_list(char **envp);
@@ -172,7 +172,7 @@ void    command_store_argv(t_cmd *command, t_node *arg_node, t_list *env_list);
 void    command_count_argc(t_cmd *command, t_node *arg_node);
 void    command_execute(t_cmd *command, t_list ** env_list);
 void    command_external_redir(t_cmd *command);
-char    **strip_quotes(char **token_data);
+char    *strip_quotes(char **token_data);
 void    exec_with_path(t_cmd *cmd, char **path_arr, t_list *env_list);
 void    free_tmp_env(char **env);
 void    free_path_arr(char **path_arr);

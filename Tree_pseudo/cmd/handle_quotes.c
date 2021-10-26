@@ -72,7 +72,7 @@ int     strip_quotes_single(char *token_data, int **buff, int index, t_scan_quot
     return (index);
 }
 
-char    **strip_quotes(char **token_data)
+char    *strip_quotes(char **token_data)
 {
     char            *result;
     t_scan_quotes   *flags;
@@ -85,9 +85,9 @@ char    **strip_quotes(char **token_data)
     while ((*token_data)[index] != '\0')
     {
         if ((*token_data)[index] ==  39 && flags->s_quote == false)  /* 39 is ascii for single quote */
-            index = strip_quotes_single(*token_data, &buff, index, flags);
+            index = strip_quotes_single(*token_data, &buff, index, &flags);
         else 
-            index = strip_quotes_other(*token_data, &buff, index, flags);
+            index = strip_quotes_other(*token_data, &buff, index, &flags);
     }
     result = create_result_str(buff, *token_data, flags); 
     free(flags);

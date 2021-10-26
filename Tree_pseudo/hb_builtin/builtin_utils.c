@@ -1,7 +1,7 @@
 #include "../shell.h"
 /* Need to link with seb working builtins */
 
-int			execute_internal_in_child(t_cmd *cmd, t_list **env_list)
+int			execute_builtin_in_child(t_cmd *cmd, t_list **env_list)
 {
 	int	ret;
 
@@ -21,7 +21,7 @@ int			execute_internal_in_child(t_cmd *cmd, t_list **env_list)
 	return (ret);
 }
 
-int			execute_internal_in_parent(t_cmd *cmd, t_list **env_list)
+int			execute_builtin_in_parent(t_cmd *cmd, t_list **env_list)
 {
 	int	ret;
 
