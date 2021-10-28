@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 20:51:21 by sfournie          #+#    #+#             */
-/*   Updated: 2021/10/24 18:47:52 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/10/28 17:35:30 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,7 @@ int	main(int argn, char **argv, char **envp)
 	argn = 0;
 	argv = NULL;
 	init_shell(envp);
-	signal(SIGQUIT, sig_quit);
-	signal(EOF, sig_eof);
-	signal(SIGINT, sig_intr);
+	init_signals();
 	user_in = readline("prompt : ");
 	while (user_in != NULL && *user_in)
 	{

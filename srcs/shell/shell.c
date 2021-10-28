@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 10:02:42 by sfournie          #+#    #+#             */
-/*   Updated: 2021/10/28 12:39:39 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/10/28 17:47:04 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	init_shell(char **envp)
 		sh.env = init_env(envp);
 	sh.builtins = init_builtins();
 	init_fd(sh.fd);
-	init_terms(&sh, 1);
+	init_terms(&sh, term_get_active_fd());
 	init_signals();
 	pwd = get_var("PWD", sh.env);
 	if (pwd != NULL)
@@ -37,12 +37,7 @@ void	init_shell(char **envp)
 
 void	exit_shell(void)
 {
-
-	term_restore_default(0);
-	// g_shell.def_term.c_cc[VEOF] = 4; //to be removed
-	// g_shell.def_term.c_cc[VINTR] = 3;
-	// g_shell.def_term.c_cc[VQUIT] = 28;
-	// tcsetattr(0, TCSANOW, &g_shell.def_term);
+	term_restore_default(term_get_active_fd());
 	free_shell();
 }
 
@@ -56,12 +51,10 @@ void	free_shell(void)
 		sh->env = free_env(sh->env);
 	if (sh->builtins != NULL)
 		sh->builtins = free_split(sh->builtins);
-	
 }
 
 void	init_fd(int *fd)
 {
-
 	fd[0] = 0;
 	fd[1] = 1;
 	fd[2] = 2;

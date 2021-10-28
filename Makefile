@@ -6,7 +6,7 @@
 #    By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/09 15:31:26 by sfournie          #+#    #+#              #
-#    Updated: 2021/10/28 15:23:05 by sfournie         ###   ########.fr        #
+#    Updated: 2021/10/28 17:33:32 by sfournie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -93,21 +93,22 @@ all		: $(NAME)
 
 $(NAME)	: $(DIR_INCS) $(LFT) $(SRCS) $(MAIN) $(DIR_OBJS) $(OBJS)
 		@ $(C_MAIN) $(MAIN) $(OBJS) -o $(NAME)
+		@ stty -echoctl
 		# $(shell echo "Compiling minishell done!")
 		# $(shell echo "Executable is : $(NAME)")
 
 $(DIR_OBJS)	: 
 		@ mkdir objs
 
-parse	: _parse $(NAME)
+parse	: $(MAIN_PARSE) _parse $(NAME)
 _parse	: 
 		$(eval MAIN=$(MAIN_PARSE))
 		
-term	: _term $(NAME)
+term	: $(MAIN_TERM) _term $(NAME)
 _term	:
 		$(eval MAIN=$(MAIN_TERM))
 
-signal	: _sig $(NAME)
+signal	: $(MAIN_SIG) _sig $(NAME)
 _sig	: 
 		$(eval MAIN=$(MAIN_SIG))
 
