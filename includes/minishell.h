@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 18:43:33 by sfournie          #+#    #+#             */
-/*   Updated: 2021/10/24 18:39:59 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/10/28 17:33:06 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,11 @@
 # include	<readline/readline.h>
 # include	<readline/history.h>
 # include	<libft.h>
+
+# define	SIG_AMNT 31
+
+typedef struct sigaction	t_sigact;
+typedef struct termios		t_term;
 
 /* Contain the name and value of custom variables (shell, environment, etc.). */
 typedef struct s_var
@@ -38,18 +43,16 @@ typedef struct s_list
 	struct s_list	*prev;
 }				t_list;
 
-typedef struct termios	t_term;
-
 /* Contain every pertinent informations worth being accessible globally */
 typedef struct s_shell
 {
-    t_list	*env;		/* Chained list for environment/shell variables */
-	t_term	def_term;	/* Default terminal (to be restored at the end!) */
-	t_term	saved_term;	/* Used to save a terminal state to be restored later */
-	int		sh_mode;	/* mode 1 : interactive, mode 0 : non-interactive */
-	char	**builtins;	/* Contains the names of all our builtins */
-	char	*pwd;
-	int		fd[3];			/* 0 = input, 1 = output, 2 = error */
+    t_list		*env;		/* Chained list for environment/shell variables */
+	t_term		def_term;	/* Default terminal (to be restored at the end!) */
+	t_term		saved_term;	/* Used to save a terminal state to be restored later */
+	int			sh_mode;	/* mode 1 : interactive, mode 0 : non-interactive */
+	char		**builtins;	/* Contains the names of all our builtins */
+	char		*pwd;
+	int			fd[3];			/* 0 = input, 1 = output, 2 = error */
 }				t_shell;
 
 /* Global shell structure declaration */
@@ -61,6 +64,7 @@ t_shell	*get_shell(void);
 void	init_fd(int *fd);	/* set input, output and error fd */
 void	sh_change_mode(int mode);
 int		get_sh_mode(void);
+void	exit_shell(void);
 /* End shell */
 
 /* Reading */
@@ -107,16 +111,18 @@ void	set_pwd(char *pwd);
 /* Terminal */
 void	init_terms(t_shell *sh, int term_fd);
 void	term_save_state(int	term_fd);
-void	term_restore_default();
-void	term_restore_saved();
+void	term_restore_default(int term_fd);
+void	term_restore_saved(int term_fd);
 int		get_active_fd(void);
+int		term_get_active_fd(void);
+void	term_set_inter(t_term *term);
+void	term_set_non_inter(t_term *term);
 /* End terminal */
 
 /* Signals */
 void	init_signals(void);
-void	sig_intr(int sig_num);
-void	sig_eof(int sig_num);
-void	sig_quit(int sig_num);
+void	sigintr_handler(int sig_num);
+void	sigquit_handler(int sig_num);
 /* End signal */
 
 /* Builtin commands */

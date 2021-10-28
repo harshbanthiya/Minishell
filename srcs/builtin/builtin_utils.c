@@ -6,11 +6,28 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 16:15:44 by sfournie          #+#    #+#             */
-/*   Updated: 2021/10/24 15:53:38 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/10/28 10:27:57 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"minishell.h"
+
+char	**init_builtins(void)
+{
+	char	**builtins;
+
+	builtins = (char **)ft_calloc(8, sizeof(char *));
+	if (builtins == NULL)
+		return (NULL);
+	builtins[0] = ft_strdup("cd");
+	builtins[1] = ft_strdup("echo");
+	builtins[2] = ft_strdup("exit");
+	builtins[3] = ft_strdup("env");
+	builtins[4] = ft_strdup("export");
+	builtins[5] = ft_strdup("pwd");
+	builtins[6] = ft_strdup("unset");
+	return (builtins);
+}
 
 int	is_builtin(char *name)
 {
@@ -61,19 +78,4 @@ char	**get_builtins(void)
 		return (sh->builtins);
 	}
 	return (NULL);
-}
-
-char	**init_builtins(void)
-{
-	char	**builtins;
-
-	builtins = (char **)ft_calloc(8, sizeof(char *));
-	builtins[0] = ft_strdup("cd");
-	builtins[1] = ft_strdup("echo");
-	builtins[2] = ft_strdup("exit");
-	builtins[3] = ft_strdup("env");
-	builtins[4] = ft_strdup("export");
-	builtins[5] = ft_strdup("pwd");
-	builtins[6] = ft_strdup("unset");
-	return (builtins);
 }
