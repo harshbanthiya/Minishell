@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 10:02:42 by sfournie          #+#    #+#             */
-/*   Updated: 2021/10/26 10:03:14 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/10/28 12:39:39 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,28 @@ void	init_shell(char **envp)
 	g_shell = sh;
 }
 
+void	exit_shell(void)
+{
+
+	term_restore_default(0);
+	// g_shell.def_term.c_cc[VEOF] = 4; //to be removed
+	// g_shell.def_term.c_cc[VINTR] = 3;
+	// g_shell.def_term.c_cc[VQUIT] = 28;
+	// tcsetattr(0, TCSANOW, &g_shell.def_term);
+	free_shell();
+}
+
 void	free_shell(void)
 {
 	t_shell	*sh;
 
 	sh = get_shell();
+	term_restore_default(term_get_active_fd());
 	if (sh != NULL)
 		sh->env = free_env(sh->env);
 	if (sh->builtins != NULL)
 		sh->builtins = free_split(sh->builtins);
-	term_restore_default(get_fd(1));
+	
 }
 
 void	init_fd(int *fd)
