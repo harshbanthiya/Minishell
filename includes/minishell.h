@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 18:43:33 by sfournie          #+#    #+#             */
-/*   Updated: 2021/10/28 17:33:06 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/10/29 18:24:23 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ typedef struct s_shell
 	int			sh_mode;	/* mode 1 : interactive, mode 0 : non-interactive */
 	char		**builtins;	/* Contains the names of all our builtins */
 	char		*pwd;
-	int			fd[3];			/* 0 = input, 1 = output, 2 = error */
 }				t_shell;
 
 /* Global shell structure declaration */
@@ -61,7 +60,6 @@ struct s_shell	g_shell;
 /* Shell */
 void	init_shell(char **envp);	/* Master init function. Makes all the init calls needed. */
 t_shell	*get_shell(void);
-void	init_fd(int *fd);	/* set input, output and error fd */
 void	sh_change_mode(int mode);
 int		get_sh_mode(void);
 void	exit_shell(void);
@@ -74,9 +72,6 @@ void	*ft_history(char *line);	/* Handle the history. Receive an input line.  */
 /* End reading */
 
 /* Parsing */
-t_list	*tokenize(char *str, char delim);	/* Return a chained list of tokens based on parsing rules */
-char	*expand_var(char *key);	/* Return the value of "name" if present in the variables list */
-char	*clean_tok(char *tok);	/* "clean" the token received (remove or change characters) */
 char	*parse_cmdline(char *line);
 int		parse_is_delimiter(char c);
 int		parse_is_escaped(char *str, int i);
@@ -113,7 +108,6 @@ void	init_terms(t_shell *sh, int term_fd);
 void	term_save_state(int	term_fd);
 void	term_restore_default(int term_fd);
 void	term_restore_saved(int term_fd);
-int		get_active_fd(void);
 int		term_get_active_fd(void);
 void	term_set_inter(t_term *term);
 void	term_set_non_inter(t_term *term);
@@ -144,8 +138,6 @@ int		ft_exit(void);	/* free everything and reset terminal to default */
 /* Files/Directories */
 char	*join_path_file(char *path, char *file);
 char	*get_path(char *name);	/* Search for and return full path of specified "name" */
-int		get_fd(int std);	/* std : 0 is stdin, 1 is stdout, 2 is stderr */
-void	set_fd(int std, int fd);	/* std : 0 is stdin, 1 is stdout, 2 is stderr */
 /* End Files/Directories */
 
 /* Utilities */

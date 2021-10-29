@@ -6,7 +6,7 @@
 #    By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/09 15:31:26 by sfournie          #+#    #+#              #
-#    Updated: 2021/10/28 17:33:32 by sfournie         ###   ########.fr        #
+#    Updated: 2021/10/29 18:25:37 by sfournie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,7 +58,7 @@ SRC	= 	environment.c variable.c variable_print.c\
 		terminal.c modes.c \
 		sig_general.c \
 		file.c \
-		merge_split.c splitn.c ft_string.c\
+		merge_split.c splitn.c ft_strfuse.c\
 		list.c node.c \
 		cd.c echo.c env.c exit.c export.c pwd.c unset.c \
 		expand.c parse.c c_types.c cleanup.c\
