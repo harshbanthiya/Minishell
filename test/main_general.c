@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 20:51:21 by sfournie          #+#    #+#             */
-/*   Updated: 2021/10/28 17:35:30 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/01 14:14:11 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	main(int argn, char **argv, char **envp)
 	init_shell(envp);
 	init_signals();
 	user_in = readline("prompt : ");
-	while (user_in != NULL && *user_in)
+	while (user_in != NULL)
 	{
 		add_history(user_in);
 		handle_input(user_in);

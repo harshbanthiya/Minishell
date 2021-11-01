@@ -6,27 +6,19 @@
 #    By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/09 15:31:26 by sfournie          #+#    #+#              #
-#    Updated: 2021/10/29 18:25:37 by sfournie         ###   ########.fr        #
+#    Updated: 2021/11/01 14:12:43 by sfournie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Compilation
 CC		= gcc
 CFLAGS	= -Wall -Wextra -g
-C_OBJ	= $(CC) $(CFLAGS)  -I$(DIR_INCS)/ -I$(LFT_D)/ -c $< -o $@
-C_MAIN	= $(CC) $(CFLAGS) -lreadline -I$(DIR_INCS)/ -I$(LFT_D)/ \
-		$(LFT)
+C_OBJS	= $(CC) $(CFLAGS) $(INCS_FLAGS) -c $< -o $@
+C_MAIN	= $(CC) $(CFLAGS) $(INCS_FLAGS) -lcurses $(LIB_ALL)
 #
 
 # Program
 NAME	= minishell
-#
-
-# Libft
-_LFT	= libft.a
-LFT_D	= libft
-LFT		= $(LFT_D)/$(_LFT)
-LFT_M	= cd $(LFT_D) && make
 #
 
 # Directories
@@ -42,6 +34,22 @@ DIR_SH		= $(DIR_SRCS)/shell
 DIR_TERM	= $(DIR_SRCS)/terminal
 DIR_SIG		= $(DIR_SRCS)/signal
 DIR_PARSE	= $(DIR_SRCS)/parsing
+DIR_LFT		= libft
+DIR_RDLN	= $(DIR_INCS)/readline
+#
+
+# Libraries and Includes
+LIB_LFT		= $(DIR_LFT)/libft.a
+LIB_RDLN	= $(DIR_RDLN)/libreadline.a
+LIB_HIST	= $(DIR_RDLN)/libhistory.a
+
+LIB_ALL		= $(LIB_LFT) $(LIB_RDLN) $(LIB_HIST)
+INCS_ALL	= $(DIR_LFT) $(DIR_RDLN) $(DIR_INCS)
+INCS_FLAGS	= $(patsubst %,-I%,$(INCS_ALL))
+#
+
+# Makefiles
+MK_LFT		= make -C $(DIR_LFT)
 #
 
 # Mains
@@ -51,7 +59,7 @@ MAIN_PARSE	= $(DIR_MAINS)/main_parse.c
 MAIN_TERM	= $(DIR_MAINS)/main_term.c
 MAIN_SIG	= $(DIR_MAINS)/main_signal.c
 
-# General files
+# Sources and Objects
 SRC	= 	environment.c variable.c variable_print.c\
 		memory.c \
 		shell.c \
@@ -66,10 +74,9 @@ SRC	= 	environment.c variable.c variable_print.c\
 
 _OBJ	= $(SRC:.c=.o)
 OBJ		= $(patsubst %,$(DIR_OBJS)/%,$(_OBJ))
-#
 
 $(DIR_OBJS)/%.o :  %.c
-		@ $(C_OBJ)
+		@ $(C_OBJS)
 
 vpath %.c $(DIR_SRCS)
 vpath %.c $(DIR_OBJS)
@@ -84,14 +91,13 @@ vpath %.c $(DIR_TERM)
 vpath %.c $(DIR_PARSE)
 vpath %.c $(DIR_SIG)
 
-# All files
 SRCS		= $(SRC)
 OBJS		= $(OBJ)
 #
 
 all		: $(NAME)
 
-$(NAME)	: $(DIR_INCS) $(LFT) $(SRCS) $(MAIN) $(DIR_OBJS) $(OBJS)
+$(NAME)	: $(DIR_INCS) $(LIB_LFT) $(SRCS) $(MAIN) $(DIR_OBJS) $(OBJS)
 		@ $(C_MAIN) $(MAIN) $(OBJS) -o $(NAME)
 		@ stty -echoctl
 		# $(shell echo "Compiling minishell done!")
@@ -113,16 +119,16 @@ _sig	:
 		$(eval MAIN=$(MAIN_SIG))
 
 
-$(LFT)	:
-		@ $(LFT_M) all
+$(LIB_LFT)	:
+		$(MK_LFT) all
 
 clean	: 
 		@ rm -rf $(DIR_OBJS)
-		@ $(LFT_M) clean
+		@ $(MK_LFT) clean
 		# $(shell echo "minishell cleaned!")
 
 fclean	: clean
-		@ $(LFT_M) fclean
+		@ $(MK_LFT) fclean
 		@ rm -rf $(NAME)
 		
 

@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 12:06:14 by sfournie          #+#    #+#             */
-/*   Updated: 2021/10/28 17:48:39 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/01 14:21:53 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,15 @@ void	sigintr_handler(int signum)
 
 	sh = get_shell();
 	if (sh->sh_mode == 1)
-	{
-		printf("trying to print a new prompt\n");
+	{	
+		ft_putchar_fd('\n', 1);
+		rl_replace_line("", 1);
 		rl_on_new_line();
+		rl_redisplay();
 	}
 	else if (sh->sh_mode == 0)
 	{
 		printf("trying to interrupt\n");
-		rl_on_new_line();
 	}
 }
 
