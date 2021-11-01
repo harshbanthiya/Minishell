@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 16:15:44 by sfournie          #+#    #+#             */
-/*   Updated: 2021/10/29 18:26:46 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/01 14:28:50 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,19 +51,19 @@ int	run_builtin(char *cmd, char **args)
 	if (!cmd || !is_builtin(cmd))
 		return (0);
 	builtins = get_builtins();
-	if (!ft_strncmp(cmd, "export", 6))
+	if (!ft_strcmp(cmd, "export"))
 		ft_export(args, get_env());
-	else if (!ft_strncmp(cmd, "unset", 5))
+	else if (!ft_strcmp(cmd, "unset"))
 		ft_unset(args, get_env());
-	else if (!ft_strncmp(cmd, "echo", 4))
+	else if (!ft_strcmp(cmd, "echo"))
 		ft_echo(args, 1);
-	else if (!ft_strncmp(cmd, "env", 3))
+	else if (!ft_strcmp(cmd, "env"))
 		ft_env(1);
-	else if (!ft_strncmp(cmd, "exit", 4))
+	else if (!ft_strcmp(cmd, "exit"))
 		ft_exit();
-	else if (!ft_strncmp(cmd, "cd", 2))
+	else if (!ft_strcmp(cmd, "cd"))
 		ft_cd(args);
-	else if (!ft_strncmp(cmd, "pwd", 3))
+	else if (!ft_strcmp(cmd, "pwd"))
 		ft_pwd(1);
 	return (1);
 }
