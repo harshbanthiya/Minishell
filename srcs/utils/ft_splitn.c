@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   splitn.c                                           :+:      :+:    :+:   */
+/*   ft_splitn.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -79,7 +79,7 @@ static char	*assign_word(char *s, char c)
 	return (result);
 }
 
-char	**splitn(char const *s, char c, int n)
+char	**ft_splitn(char const *s, char c, int n)
 {
 	size_t		w_count;
 	size_t		i;

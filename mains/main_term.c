@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 20:51:21 by sfournie          #+#    #+#             */
-/*   Updated: 2021/10/24 18:52:12 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/01 14:50:39 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 typedef struct termios	t_term;
 
-void	term_set_inter(t_term *term)
+void	set_mode_inter(t_term *term)
 {
 	term->c_cc[VEOF] = 4;
 	term->c_cc[VINTR] = 3;
 	term->c_cc[VQUIT] = 0;
 }
 
-void	term_set_non_inter(t_term *term)
+void	set_mode_non_inter(t_term *term)
 {
 	term->c_cc[VEOF] = 3;
 	term->c_cc[VINTR] = 4;
@@ -35,9 +35,9 @@ void	term_change_mode(int term_fd, int mode)
 
 	tcgetattr(term_fd, &term);
 	if (mode == 0)
-		term_set_non_inter(&term);
+		set_mode_non_inter(&term);
 	else if (mode == 1)
-		term_set_inter(&term);
+		set_mode_inter(&term);
 	tcsetattr(term_fd, TCSANOW, &term);
 }
 

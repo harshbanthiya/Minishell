@@ -1,5 +1,5 @@
 Unset
-	- a splitn(char *str, int n) would help to split string where we only want to split n times (useful for export)
+	- a ft_splitn(char *str, int n) would help to split string where we only want to split n times (useful for export)
 
 Pipes
 	- It seems that bash "locks" it's environment variable when a piped command line is being processed.

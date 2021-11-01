@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 19:27:47 by sfournie          #+#    #+#             */
-/*   Updated: 2021/10/24 15:49:50 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/01 14:59:58 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int	is_valid_export(char *token)
 		return (1);
 }
 
-void	ft_export_var(char *key, char *value, t_list **lst)
+void	ft_export_var(char *key, char *value, t_dlist **lst)
 {	
 	t_var	*var;
 
@@ -41,7 +41,7 @@ void	ft_export_var(char *key, char *value, t_list **lst)
 	lst_add_back(lst, lst_new_node(var));
 }
 
-void	ft_export(char **tokens, t_list **lst)
+void	ft_export(char **tokens, t_dlist **lst)
 {	
 	char	**split;
 	int		i;
@@ -53,7 +53,7 @@ void	ft_export(char **tokens, t_list **lst)
 	{
 		if (is_valid_export(tokens[i]))
 		{
-			split = splitn(tokens[i], '=', 2);
+			split = ft_splitn(tokens[i], '=', 2);
 			if (split != NULL)
 			{
 				if (split[1] == NULL && ft_strchr(tokens[i], '='))

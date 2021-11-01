@@ -6,18 +6,18 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 19:27:41 by sfournie          #+#    #+#             */
-/*   Updated: 2021/10/24 15:15:13 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/01 14:59:55 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"minishell.h"
 
 /* Duplicate the env list, sort the new list and send it back */
-static t_list	*sort_env(t_list *env)
+static t_dlist	*sort_env(t_dlist *env)
 {
-	t_list	*sorted;
-	t_list	*parser;
-	t_list	*save;
+	t_dlist	*sorted;
+	t_dlist	*parser;
+	t_dlist	*save;
 	t_var	*var;
 
 	sorted = NULL;
@@ -40,7 +40,7 @@ static t_list	*sort_env(t_list *env)
 }
 
 /* 0 is for env, 1 is for export */
-static void	print_env(int fd, t_list *env, int mode)
+static void	print_env(int fd, t_dlist *env, int mode)
 {
 	t_var	*var;
 
@@ -58,8 +58,8 @@ static void	print_env(int fd, t_list *env, int mode)
 /* same as env, but will sort it. Used with export. */
 void	ft_env_export(int fd)
 {
-	t_list	*env;
-	t_list	*sorted;
+	t_dlist	*env;
+	t_dlist	*sorted;
 
 	env = *get_env();
 	if (env != NULL)
@@ -77,7 +77,7 @@ void	ft_env_export(int fd)
 /* Print the env list */
 void	ft_env(int fd)
 {
-	t_list	*env;
+	t_dlist	*env;
 
 	env = *get_env();
 	if (env != NULL)

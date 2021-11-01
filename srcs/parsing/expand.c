@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 16:11:40 by sfournie          #+#    #+#             */
-/*   Updated: 2021/10/24 17:26:12 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/01 15:17:02 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static char	*ex_get_key(char *str, int i)
 	return (ft_substr(&str[i], 1, size));
 }
 
-/* fill the *ex_line until the next var (unquoted $) *
+/* fill the *ex_line until the next $var (unquoted $) *
 *  also move the i index */
 static void	ex_append_until_var(char **ex_line, char *line, int *i)
 {
@@ -36,7 +36,7 @@ static void	ex_append_until_var(char **ex_line, char *line, int *i)
 	}
 }
 
-/* fill the *ex_line with the var value *
+/* fill the *ex_line with the found $var value *
 *  also move the i index */
 static void	ex_append_var(char **ex_line, char *line, int *i)
 {

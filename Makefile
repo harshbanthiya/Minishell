@@ -6,7 +6,7 @@
 #    By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/09 15:31:26 by sfournie          #+#    #+#              #
-#    Updated: 2021/11/01 14:26:25 by sfournie         ###   ########.fr        #
+#    Updated: 2021/11/01 15:59:26 by sfournie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,6 +59,13 @@ MAIN_PARSE	= $(DIR_MAINS)/main_parse.c
 MAIN_TERM	= $(DIR_MAINS)/main_term.c
 MAIN_SIG	= $(DIR_MAINS)/main_signal.c
 
+# Headers
+_HEADERS	=	builtin.h dlist.h environment.h \
+				minishell.h parsing.h shell.h \
+				signal.h utility.h
+HEADERS		= $(patsubst %,ms_%,$(_HEADERS))
+#
+
 # Sources and Objects
 SRC	= 	environment.c variable.c variable_print.c\
 		memory.c \
@@ -66,7 +73,7 @@ SRC	= 	environment.c variable.c variable_print.c\
 		terminal.c modes.c \
 		sig_general.c \
 		file.c \
-		merge_split.c splitn.c ft_strfuse.c\
+		ft_merge_split.c ft_splitn.c ft_strfuse.c\
 		list.c node.c \
 		cd.c echo.c env.c exit.c export.c pwd.c unset.c \
 		expand.c parse.c c_types.c cleanup.c\

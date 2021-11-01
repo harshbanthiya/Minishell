@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 19:27:51 by sfournie          #+#    #+#             */
-/*   Updated: 2021/10/24 17:29:30 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/01 14:59:59 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@
 // 	}
 // }
 
-int	ft_unset_var(char *key, t_list **lst)
+int	ft_unset_var(char *key, t_dlist **lst)
 {
 	t_var	*var;
-	t_list	*temp;
+	t_dlist	*temp;
 
 	if (key == NULL || lst == NULL)
 		return (0);
@@ -61,7 +61,7 @@ int	ft_unset_var(char *key, t_list **lst)
 	return (0);
 }
 
-int	ft_unset(char **tokens, t_list **lst)
+int	ft_unset(char **tokens, t_dlist **lst)
 {
 	int		i;
 

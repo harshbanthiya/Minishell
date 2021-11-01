@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   merge_split.c                                      :+:      :+:    :+:   */
+/*   ft_merge_split.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include	"minishell.h"
 
-char	*merge_split(char **split, char *delim)
+char	*ft_merge_split(char **split, char *delim)
 {
 	char	*merged;
 	char	*temp;

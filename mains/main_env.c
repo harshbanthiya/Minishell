@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 20:51:21 by sfournie          #+#    #+#             */
-/*   Updated: 2021/10/12 17:05:54 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/01 14:59:54 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	main(void)
 {
 	char	*user_in;
-	t_list	**env;
+	t_dlist	**env;
 
 	init_shell(NULL);
 	user_in = readline("export NAME=value : ");

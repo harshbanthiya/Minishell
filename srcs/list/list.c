@@ -6,13 +6,13 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 20:23:16 by sfournie          #+#    #+#             */
-/*   Updated: 2021/10/24 14:53:34 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/01 15:00:05 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"minishell.h"
 
-void	lst_add_front(t_list **lst, t_list *node)
+void	lst_add_front(t_dlist **lst, t_dlist *node)
 {
 	if (*lst == NULL)
 		*lst = node;
@@ -23,9 +23,9 @@ void	lst_add_front(t_list **lst, t_list *node)
 	}
 }
 
-void	lst_add_back(t_list **lst, t_list *node)
+void	lst_add_back(t_dlist **lst, t_dlist *node)
 {
-	t_list	*temp;
+	t_dlist	*temp;
 
 	if (*lst == NULL)
 		*lst = node;
@@ -39,7 +39,7 @@ void	lst_add_back(t_list **lst, t_list *node)
 	}
 }
 
-void	*lst_clear(t_list *lst, void *(del)(void *))
+void	*lst_clear(t_dlist *lst, void *(del)(void *))
 {
 	if (lst == NULL)
 		return (NULL);
@@ -50,10 +50,10 @@ void	*lst_clear(t_list *lst, void *(del)(void *))
 	return (NULL);
 }
 
-t_list	*lst_dup(t_list *lst, void *(iter)(void *), void *(del)(void *))
+t_dlist	*lst_dup(t_dlist *lst, void *(iter)(void *), void *(del)(void *))
 {
-	t_list	*new_lst;
-	t_list	*new_node;
+	t_dlist	*new_lst;
+	t_dlist	*new_node;
 	void	*content;
 
 	new_lst = NULL;
