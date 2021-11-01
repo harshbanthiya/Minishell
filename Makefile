@@ -6,7 +6,7 @@
 #    By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/09 15:31:26 by sfournie          #+#    #+#              #
-#    Updated: 2021/11/01 14:12:43 by sfournie         ###   ########.fr        #
+#    Updated: 2021/11/01 14:26:25 by sfournie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ NAME	= minishell
 DIR_SRCS	= srcs
 DIR_OBJS	= objs
 DIR_INCS	= includes
-DIR_MAINS	= test
+DIR_MAINS	= mains
 DIR_BUILT	= $(DIR_SRCS)/builtin
 DIR_LST		= $(DIR_SRCS)/list
 DIR_ENV		= $(DIR_SRCS)/environment
@@ -120,7 +120,7 @@ _sig	:
 
 
 $(LIB_LFT)	:
-		$(MK_LFT) all
+		@ $(MK_LFT) all
 
 clean	: 
 		@ rm -rf $(DIR_OBJS)

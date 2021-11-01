@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 12:06:14 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/01 14:21:53 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/01 14:23:45 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,6 @@ void	sigquit_handler(int signum)
 	exit(1);
 }
 
-/* ctrl-\ in non-inter, ctrl-D in inter */
-/* interactive mode : print new prompt on newline */
-/* non-interactive mode : */
 void	sigchld_handler(int signum)
 {
 }
