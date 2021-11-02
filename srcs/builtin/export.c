@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 19:27:47 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/01 14:59:58 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/02 16:58:42 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,22 +41,22 @@ void	ft_export_var(char *key, char *value, t_dlist **lst)
 	lst_add_back(lst, lst_new_node(var));
 }
 
-void	ft_export(char **tokens, t_dlist **lst)
+int	ft_export(t_cmd *cmd, t_dlist **lst)
 {	
 	char	**split;
 	int		i;
 
-	if (tokens == NULL || *tokens == NULL || !**tokens)
+	if (cmd->argv[1] == NULL)
 		return (ft_env_export(1));
-	i = 0;
-	while (tokens[i] != NULL)
+	i = 1;
+	while (cmd->argv[i] != NULL)
 	{
-		if (is_valid_export(tokens[i]))
+		if (is_valid_export(cmd->argv[i]))
 		{
-			split = ft_splitn(tokens[i], '=', 2);
+			split = ft_splitn(cmd->argv[i], '=', 2);
 			if (split != NULL)
 			{
-				if (split[1] == NULL && ft_strchr(tokens[i], '='))
+				if (split[1] == NULL && ft_strchr(cmd->argv[i], '='))
 					ft_export_var(split[0], "", lst);
 				else
 					ft_export_var(split[0], split[1], lst);
@@ -65,4 +65,5 @@ void	ft_export(char **tokens, t_dlist **lst)
 		}
 		i++;
 	}
+	return (0);
 }

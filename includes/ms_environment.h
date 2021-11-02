@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 18:43:33 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/01 15:45:41 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/02 16:58:56 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef struct s_var
 t_dlist	*init_env(char **envp);	
 
 t_dlist	**get_env(void);
-void	ft_env_export(int fd);
+int		ft_env_export(int fd);
 t_var	*get_var(char *key, t_dlist *list);
 char	*get_var_value(char *key, t_dlist *list);
 t_var	*new_var(char *key, char *value);

@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 19:27:51 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/01 14:59:59 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/02 17:01:47 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,16 +61,16 @@ int	ft_unset_var(char *key, t_dlist **lst)
 	return (0);
 }
 
-int	ft_unset(char **tokens, t_dlist **lst)
+int	ft_unset(t_cmd *cmd, t_dlist **lst)
 {
 	int		i;
 
-	if (tokens == NULL)
-		return (0);
-	i = 0;
-	while (tokens[i])
+	if (cmd->argv[1] == NULL)
+		return (-1);
+	i = 1;
+	while (cmd->argv[i])
 	{
-		ft_unset_var(tokens[i++], lst);
+		ft_unset_var(cmd->argv[i++], lst);
 	}
 	return (1);
 }

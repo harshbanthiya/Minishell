@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 20:51:21 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/02 16:26:06 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/02 17:16:19 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 
 static int	handle_input(char *str)
 {
-	char **split;
+	t_cmd	cmd;
 
 	str = parse_cmdline(str);
-	split = ft_split(str, ' ');
-	if (split != NULL)
+	cmd.argv = ft_split(str, ' ');
+	if (cmd.argv != NULL)
 	{
-		if (is_builtin(split[0]))
-			run_builtin(split[0], &split[1]);
+		if (is_builtin(cmd.argv[0]))
+			run_builtin(&cmd, get_env(), 0);
 	}
 	ft_free(str);
-	free_split(split);
+	free_split(cmd.argv);
 	return (0);
 }
 

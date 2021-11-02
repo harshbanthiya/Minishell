@@ -6,7 +6,7 @@
 #    By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/09 15:31:26 by sfournie          #+#    #+#              #
-#    Updated: 2021/11/02 13:17:05 by sfournie         ###   ########.fr        #
+#    Updated: 2021/11/02 17:25:51 by sfournie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ DIR_OBJS	= objs
 DIR_INCS	= includes
 DIR_MAINS	= mains
 DIR_BUILT	= $(DIR_SRCS)/builtin
-DIR_LST		= $(DIR_SRCS)/list
+DIR_LST		= $(DIR_SRCS)/dlist
 DIR_ENV		= $(DIR_SRCS)/environment
 DIR_UTIL	= $(DIR_SRCS)/utils
 DIR_SH		= $(DIR_SRCS)/shell
@@ -78,7 +78,7 @@ SRC	= 	environment.c variable.c variable_print.c\
 		sig_general.c \
 		file.c \
 		ft_merge_split.c ft_splitn.c ft_strfuse.c\
-		list.c node.c \
+		dlist.c node.c \
 		cd.c echo.c env.c exit.c export.c pwd.c unset.c \
 		expand.c parse.c c_types.c cleanup.c\
 		builtin_utils.c \
