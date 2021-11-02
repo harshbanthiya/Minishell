@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 18:43:33 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/02 14:02:56 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/02 16:27:03 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,16 @@ void	set_mode_non_inter(t_term *term);
 void	exit_shell(void);
 void	free_shell(void);
 
+char    *ft_readline(void);
+/* Prompt needs to be freed */
+char    *get_prompt(void);
+void	print_welcome(void);
+
 /* Terminal */
 void	init_terms(t_shell *sh, int term_fd);
 void	term_save_state(int term_fd);
 void	term_restore_default(int term_fd);
 int		term_get_active_fd(void);
-void	get_prompt(char *prmt);	
 /* End terminal */
 
 #endif

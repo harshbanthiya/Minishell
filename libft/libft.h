@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 18:04:51 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/02 13:26:04 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/02 15:35:09 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdbool.h>
-# define BUFF_SIZE 10
+# define GNL_BUFF_SIZE 10
 
 typedef struct s_arr
 {

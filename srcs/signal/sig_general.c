@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 12:06:14 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/01 14:23:45 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/02 16:18:05 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,10 @@ void	sigintr_handler(int signum)
 /* non-interactive mode : */
 void	sigquit_handler(int signum)
 {
-	printf("Exiting minishell\n");
+	rl_replace_line("", 1);
+	rl_on_new_line();
+	rl_redisplay();
+	ft_putstr_fd("Exiting minishell\n", 1);
 	exit_shell();
 	exit(1);
 }

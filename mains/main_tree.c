@@ -59,42 +59,30 @@ void print_tree(t_node *node)
 {
     print_tree_r(node, 0);
 }
-/* Needs some working super basic */
-char *put_prompt(void)
-{
-    char    *cwd;
-    cwd = (char *)malloc(sizeof(char) * 99);
-    getcwd(cwd, 99);
-    return (cwd);
-}
 
 int main(int argc, char **argv, char **envp)
 {
-    char        *cmd_line;
-    t_dlist      *env_list;
+    char        *user_in;
     t_node      *root_node;
-    char        prompt[100];
 
 
     if(!argc || !(*argv[0]))
         return (-1);
     init_shell(envp);
     init_signals();
+    print_welcome();
     global_exit_code = 0;
-    get_prompt(prompt);
-    cmd_line = readline(prompt);
-    
-    while (cmd_line && *cmd_line)
+    user_in = ft_readline();
+    while (user_in && *user_in)
     {
-        root_node = get_tree(cmd_line);
+        root_node = get_tree(user_in);
         //print_tree(root_node); // testing
         if (root_node)
-            execute_tree(root_node, get_env()); //Once the tree is made execute it using env list
-        free(cmd_line);
-        get_prompt(prompt);
-        cmd_line = readline(put_prompt());
+            execute_tree(root_node, get_env());
+        free(user_in);
+        user_in = ft_readline();
     }
-    free(cmd_line);
+    free(user_in);
     free_shell();
     return (0);
 }

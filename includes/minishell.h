@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 18:43:33 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/02 13:57:27 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/02 15:36:20 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int     global_exit_code;
 # define NO_EXCODE		-1
 # define NO_STATUS		-1
 
-# define SPACE			32
+//# define SPACE			32
 # define SEMICOLON		59
 # define GREAT			62
 # define GREATGREAT		2
