@@ -6,7 +6,7 @@
 #    By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/09 15:31:26 by sfournie          #+#    #+#              #
-#    Updated: 2021/11/01 15:59:26 by sfournie         ###   ########.fr        #
+#    Updated: 2021/11/02 13:17:05 by sfournie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,9 @@ DIR_SH		= $(DIR_SRCS)/shell
 DIR_TERM	= $(DIR_SRCS)/terminal
 DIR_SIG		= $(DIR_SRCS)/signal
 DIR_PARSE	= $(DIR_SRCS)/parsing
+DIR_SCAN	= $(DIR_SRCS)/scan
+DIR_INTER	= $(DIR_SRCS)/interpret
+DIR_CMD		= $(DIR_SRCS)/cmd
 DIR_LFT		= libft
 DIR_RDLN	= $(DIR_INCS)/readline
 #
@@ -58,6 +61,7 @@ MAIN_ENV	= $(DIR_MAINS)/main_env.c
 MAIN_PARSE	= $(DIR_MAINS)/main_parse.c
 MAIN_TERM	= $(DIR_MAINS)/main_term.c
 MAIN_SIG	= $(DIR_MAINS)/main_signal.c
+MAIN_TREE	= $(DIR_MAINS)/main_tree.c
 
 # Headers
 _HEADERS	=	builtin.h dlist.h environment.h \
@@ -77,7 +81,10 @@ SRC	= 	environment.c variable.c variable_print.c\
 		list.c node.c \
 		cd.c echo.c env.c exit.c export.c pwd.c unset.c \
 		expand.c parse.c c_types.c cleanup.c\
-		builtin_utils.c
+		builtin_utils.c \
+		interpret_utils.c interpret_tree.c \
+		parse_tree.c parse_utils.c scan_utils.c token_list.c \
+		cmd_execute.c cmd.c handle_quotes.c cmd_utils.c
 
 _OBJ	= $(SRC:.c=.o)
 OBJ		= $(patsubst %,$(DIR_OBJS)/%,$(_OBJ))
@@ -97,11 +104,13 @@ vpath %.c $(DIR_SH)
 vpath %.c $(DIR_TERM)
 vpath %.c $(DIR_PARSE)
 vpath %.c $(DIR_SIG)
+vpath %.c $(DIR_INTER)
+vpath %.c $(DIR_SCAN)
+vpath %.c $(DIR_CMD)
 
 SRCS		= $(SRC)
 OBJS		= $(OBJ)
 #
-
 all		: $(NAME)
 
 $(NAME)	: $(DIR_INCS) $(LIB_LFT) $(SRCS) $(MAIN) $(DIR_OBJS) $(OBJS)
@@ -125,6 +134,10 @@ signal	: $(MAIN_SIG) _sig $(NAME)
 _sig	: 
 		$(eval MAIN=$(MAIN_SIG))
 
+tree	: $(MAIN_TREE) _tree $(NAME)
+_tree	: 
+		$(eval MAIN=$(MAIN_TREE))
+
 
 $(LIB_LFT)	:
 		@ $(MK_LFT) all
@@ -146,4 +159,4 @@ bonus	: $(DIR_I) $(LFT) $(SRC) $(DIR_O) $(OBJ) $(MAIN_B)
 		# $(shell echo "Compiling minishell with bonus done!")
 		# $(shell echo "Executable is : $(NAME)")
 
-.PHONY	: all re clean fclean bonus parse term
+.PHONY	: all re clean fclean bonus parse term tree signal

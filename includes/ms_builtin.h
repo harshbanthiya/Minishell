@@ -6,13 +6,15 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 18:43:33 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/01 15:45:33 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/02 13:20:25 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MS_BUILTIN_H	
 # define MS_BUILTIN_H
 # include "minishell.h"
+
+typedef struct  s_cmd	t_cmd;
 
 /* Return a double array of all builtins' names */
 char	**init_builtins(void);
@@ -42,6 +44,6 @@ int		ft_unset_var(char *key, t_dlist **lst);
 /* Print current working directory */
 int		ft_pwd(int fd);	
 
-int		ft_exit(void);
+int		ft_exit(t_cmd *command);
 
 #endif
