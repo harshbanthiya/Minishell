@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 18:43:33 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/01 15:58:32 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/02 14:02:56 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	init_terms(t_shell *sh, int term_fd);
 void	term_save_state(int term_fd);
 void	term_restore_default(int term_fd);
 int		term_get_active_fd(void);
+void	get_prompt(char *prmt);	
 /* End terminal */
 
 #endif

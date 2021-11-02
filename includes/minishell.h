@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 18:43:33 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/02 13:19:30 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/02 13:57:27 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,6 @@ typedef struct  s_cmd
 struct s_shell	g_shell;
 
 /* Return a formated prompt */
-char	*get_prompt(void);	
 char	*ft_readline(void);
 void	*ft_history(char *line);
 

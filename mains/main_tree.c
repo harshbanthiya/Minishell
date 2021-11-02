@@ -73,6 +73,7 @@ int main(int argc, char **argv, char **envp)
     char        *cmd_line;
     t_dlist      *env_list;
     t_node      *root_node;
+    char        prompt[100];
 
 
     if(!argc || !(*argv[0]))
@@ -80,18 +81,18 @@ int main(int argc, char **argv, char **envp)
     init_shell(envp);
     init_signals();
     global_exit_code = 0;
-    cmd_line = readline(put_prompt());
+    get_prompt(prompt);
+    cmd_line = readline(prompt);
     
-    while (cmd_line)
+    while (cmd_line && *cmd_line)
     {
         root_node = get_tree(cmd_line);
         //print_tree(root_node); // testing
         if (root_node)
             execute_tree(root_node, get_env()); //Once the tree is made execute it using env list
         free(cmd_line);
+        get_prompt(prompt);
         cmd_line = readline(put_prompt());
-        
-        
     }
     free(cmd_line);
     free_shell();
