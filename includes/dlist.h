@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 18:43:33 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/01 15:33:32 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/02 13:30:21 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,7 @@ t_dlist	*lst_unlink_node(t_dlist **lst, t_dlist *node);
 t_dlist	*lst_dup(t_dlist *lst, void *(iter)(void *), void *(del)(void *));
 
 void	*lst_clear(t_dlist *lst, void *(del)(void *));
+
+int	lst_size(t_dlist *lst);
 
 #endif
