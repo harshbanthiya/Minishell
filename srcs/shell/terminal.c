@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 12:32:05 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/02 16:28:15 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/02 16:36:35 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,22 +57,23 @@ void print_welcome(void)
 
 char    *get_prompt(void)
 {
+    t_shell *sh;
     char    *prompt;
 
-    prompt = ft_calloc(100, sizeof(char));
+    sh = get_shell();
+    if (!sh)
+        return (NULL);
+    prompt = sh->prompt;
+    ft_bzero(prompt, 100);
     ft_strlcat(prompt, get_pwd(), 96);
     ft_strlcat(prompt, " > ", 100);
-    ft_putstr_fd("\033[0m", 1);
     return (prompt);
 }
 
 char    *ft_readline(void)
 {
     char    *user_in;
-    char    *prompt;
     
-    prompt = get_prompt();
-    user_in = readline(prompt);
-    ft_free(prompt);
+    user_in = readline(get_prompt());
     return (user_in);
 }

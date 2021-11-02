@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 18:43:33 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/02 16:27:03 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/02 16:32:42 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct s_shell
 	int		sh_mode;
 	char	**builtins;
 	char	*pwd;
+	char	prompt[100];
 }				t_shell;
 
 /* Master init function. Makes all the init calls needed. */
