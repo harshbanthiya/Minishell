@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 19:27:42 by sfournie          #+#    #+#             */
-/*   Updated: 2021/10/24 17:21:33 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/02 16:54:53 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,29 +19,30 @@ static int	is_nl(char *opt)
 	return (0);
 }
 
-int	ft_echo(char **tokens, int fd)
+int	ft_echo(t_cmd *cmd, t_dlist **lst)
 {
+	char	**args;
 	int		nl;
 	int		i;
 	int		j;
 
-	if (tokens == NULL)
-		return (0);
+	lst = NULL;
+	args = &cmd->argv[1];
 	nl = 1;
 	i = 0;
-	while (is_nl(tokens[i]))
+	while (is_nl(args[i]))
 	{
 		nl = 0;
 		i++;
 	}
-	while (tokens[i])
+	while (args[i])
 	{
 		j = 0;
-		ft_putstr_fd(tokens[i++], fd);
-		if (tokens[i])
-			ft_putstr_fd(" ", fd);
+		ft_putstr_fd(args[i++], 1);
+		if (args[i])
+			ft_putstr_fd(" ", 1);
 	}
 	if (nl)
-		ft_putstr_fd("\n", fd);
-	return (1);
+		ft_putstr_fd("\n", 1);
+	return (0);
 }

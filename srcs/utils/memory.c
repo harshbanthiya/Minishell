@@ -1,33 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   memory.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/01 19:27:36 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/02 17:19:37 by sfournie         ###   ########.fr       */
+/*   Created: 2021/10/01 20:14:21 by sfournie          #+#    #+#             */
+/*   Updated: 2021/10/08 12:30:17 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"minishell.h"
 
-int	ft_exit(t_cmd *cmd, t_dlist **lst)
+void	*ft_free(void *ptr)
 {
-	int	exit_status;
+	if (ptr != NULL)
+		free(ptr);
+	return (NULL);
+}
 
-	lst = NULL;
-	exit_status = -1; /* -1 for failure, remember to define MACROS or have a struct to have consistent values */
-	printf("Command Count: %d\n", cmd->argc);
-	if (cmd->argc == 2)
+void	*free_split(char **ptr)
+{
+	int	i;
+
+	if (ptr != NULL)
 	{
-		exit_status = ft_atoi(cmd->argv[1]);
-		exit(exit_status);
+		i = 0;
+		while (ptr[i])
+			ft_free(ptr[i++]);
+		ft_free(ptr);
 	}
-	else
-	{
-		ft_putstr_fd("exit: too many args\n", 1);
-		exit_status = 1;
-	}
-	return (exit_status);
+	return (NULL);
 }

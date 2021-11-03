@@ -1,33 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   main_env.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/01 19:27:36 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/02 17:19:37 by sfournie         ###   ########.fr       */
+/*   Created: 2021/10/01 20:51:21 by sfournie          #+#    #+#             */
+/*   Updated: 2021/11/02 13:35:45 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"minishell.h"
 
-int	ft_exit(t_cmd *cmd, t_dlist **lst)
+int	main(void)
 {
-	int	exit_status;
+	char	*user_in;
+	t_dlist	**env;
 
-	lst = NULL;
-	exit_status = -1; /* -1 for failure, remember to define MACROS or have a struct to have consistent values */
-	printf("Command Count: %d\n", cmd->argc);
-	if (cmd->argc == 2)
+	init_shell(NULL);
+	user_in = readline("export NAME=val : ");
+	while (user_in != NULL && *user_in)
 	{
-		exit_status = ft_atoi(cmd->argv[1]);
-		exit(exit_status);
+		env = get_env();
+		ft_export(user_in, env);
+		ft_env(1);
+		user_in = readline("export NAME=val : ");
 	}
-	else
+	user_in = readline("unset NAME : ");
+	while (user_in != NULL && *user_in)
 	{
-		ft_putstr_fd("exit: too many args\n", 1);
-		exit_status = 1;
+		env = get_env();
+		ft_unset(user_in, env);
+		ft_env(1);
+		user_in = readline("unset NAME : ");
 	}
-	return (exit_status);
+	
 }

@@ -1,33 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   ft_strfuse.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/01 19:27:36 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/02 17:19:37 by sfournie         ###   ########.fr       */
+/*   Created: 2021/10/24 16:36:03 by sfournie          #+#    #+#             */
+/*   Updated: 2021/10/29 18:25:29 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"minishell.h"
 
-int	ft_exit(t_cmd *cmd, t_dlist **lst)
+/* free both strings and create a new one */
+char	*ft_strfuse(char *str1, char *str2)
 {
-	int	exit_status;
+	char	*fused;
 
-	lst = NULL;
-	exit_status = -1; /* -1 for failure, remember to define MACROS or have a struct to have consistent values */
-	printf("Command Count: %d\n", cmd->argc);
-	if (cmd->argc == 2)
-	{
-		exit_status = ft_atoi(cmd->argv[1]);
-		exit(exit_status);
-	}
-	else
-	{
-		ft_putstr_fd("exit: too many args\n", 1);
-		exit_status = 1;
-	}
-	return (exit_status);
+	if (str1 == NULL)
+		return (str2);
+	if (str2 == NULL)
+		return (str1);
+	fused = ft_strjoin(str1, str2);
+	ft_free(str1);
+	ft_free(str2);
+	return (fused);
 }

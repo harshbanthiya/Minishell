@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 16:01:18 by sfournie          #+#    #+#             */
-/*   Updated: 2021/10/24 15:50:32 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/01 15:00:02 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	*dup_var(void *ptr)
 	return (NULL);
 }
 
-t_var	*get_var(char *key, t_list *list)
+t_var	*get_var(char *key, t_dlist *list)
 {
 	t_var	*var;
 
@@ -55,7 +55,7 @@ t_var	*get_var(char *key, t_list *list)
 	return (NULL);
 }
 
-char	*get_var_value(char *key, t_list *list)
+char	*get_var_value(char *key, t_dlist *list)
 {
 	t_var	*var;
 

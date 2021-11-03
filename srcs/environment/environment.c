@@ -6,15 +6,15 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 20:14:21 by sfournie          #+#    #+#             */
-/*   Updated: 2021/10/24 16:00:14 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/02 13:29:31 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"minishell.h"
 
-t_list	*init_env(char **envp)
+t_dlist	*init_env(char **envp)
 {
-	t_list	*env;
+	t_dlist	*env;
 	char	**split;
 
 	if (envp == NULL)
@@ -22,7 +22,7 @@ t_list	*init_env(char **envp)
 	env = NULL;
 	while (envp && *envp)
 	{
-		split = splitn(*envp, '=', 2);
+		split = ft_splitn(*envp, '=', 2);
 		if (split == NULL)
 		{
 			free_split(split);
@@ -35,16 +35,16 @@ t_list	*init_env(char **envp)
 	return (env);
 }
 
-t_list	**get_env(void)
+t_dlist	**get_env(void)
 {
 	return (&g_shell.env);
 }
 
 void	*free_env(void *ptr)
 {
-	t_list	*env;
+	t_dlist	*env;
 
-	env = (t_list *)ptr;
+	env = (t_dlist *)ptr;
 	if (env != NULL)
 	{
 		lst_clear(env, free_var);
@@ -52,4 +52,27 @@ void	*free_env(void *ptr)
 	else
 		free(ptr);
 	return (NULL);
+}
+
+char		**env_list_to_envp(t_dlist *env_head)
+{
+	t_dlist	*temp;
+	int		i;
+	char	**output;
+
+	temp = env_head;
+	i = lst_size(temp);
+	temp = env_head;
+	if (!(output = malloc(sizeof(char *) * (i + 1))))
+		return (NULL);
+	i = 0;
+	while (temp)
+	{
+		output[i] = ft_strjoin(((t_env *)(temp->content))->key, "=");
+		output[i] = ft_strjoin(output[i], ((t_env *)(temp->content))->val);
+		temp = temp->next;
+		i++;
+	}
+	output[i] = NULL;
+	return (output);
 }
