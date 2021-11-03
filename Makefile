@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
@@ -162,4 +160,3 @@ bonus	: $(DIR_I) $(LFT) $(SRC) $(DIR_O) $(OBJ) $(MAIN_B)
 		# $(shell echo "Executable is : $(NAME)")
 
 .PHONY	: all re clean fclean bonus parse term tree signal
->>>>>>> eb0739c06bf1b86305433b0b3a423bf4e661dcda

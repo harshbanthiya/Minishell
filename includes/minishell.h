@@ -24,7 +24,6 @@
 # include	<readline/history.h>
 # include	<stdbool.h>
 # include	<fcntl.h>
-
 # include	"libft.h"
 # include	"dlist.h"
 # include	"ms_builtin.h"
@@ -47,8 +46,7 @@ int     global_exit_code;
 # define EXIT_SUCCESS	0
 # define NO_EXCODE		-1
 # define NO_STATUS		-1
-
-//# define SPACE			32
+# define SPACE			32
 # define SEMICOLON		59
 # define GREAT			62
 # define GREATGREAT		2
@@ -59,7 +57,6 @@ int     global_exit_code;
 # define D_QUOTE		34
 # define STRING			1
 # define BACKSLASH		92
-
 # define BUFF_SIZE		4096
 
 typedef struct s_token
@@ -136,10 +133,6 @@ void	*ft_history(char *line);
 char	*join_path_file(char *path, char *file);
 /* Search for and return full path of specified "name" */
 char	*get_path(char *name);
-
-
-
-
 
 /* Function Calls */
 

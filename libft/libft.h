@@ -16,7 +16,6 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdbool.h>
-# define GNL_BUFF_SIZE 10
 
 typedef struct s_arr
 {
@@ -68,6 +67,5 @@ void	ft_strclr(char *s);
 char	*ft_strnew(size_t size);
 char	*ft_strsub(char const *s, unsigned int start, size_t len);
 char	*ft_strcat(char *restrict str1, const char *restrict str2);
-char	**ft_strsplit(char const *str, char c);
-int		get_next_line(const int fd, char **line);
+
 #endif

@@ -38,12 +38,10 @@ void	set_mode_inter(t_term *term);
 void	set_mode_non_inter(t_term *term);
 void	exit_shell(void);
 void	free_shell(void);
-
-char    *ft_readline(void);
+char	*ft_readline(void);
 /* Prompt needs to be freed */
-char    *get_prompt(void);
+char	*get_prompt(void);
 void	print_welcome(void);
-
 /* Terminal */
 void	init_terms(t_shell *sh, int term_fd);
 void	term_save_state(int term_fd);
