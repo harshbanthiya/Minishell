@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 18:43:33 by sfournie          #+#    #+#             */
-/*   Updated: 2021/10/24 17:29:30 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/02 15:36:20 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,147 +18,215 @@
 # include	<sys/types.h>
 # include	<termios.h>
 # include	<signal.h>
+# include	<sys/wait.h>
+# include	<errno.h>
 # include	<readline/readline.h>
 # include	<readline/history.h>
-# include	<libft.h>
+# include	<stdbool.h>
+# include	<fcntl.h>
 
-/* Contain the name and value of custom variables (shell, environment, etc.). */
-typedef struct s_var
+# include	"libft.h"
+# include	"dlist.h"
+# include	"ms_builtin.h"
+# include	"ms_environment.h"
+# include	"ms_parsing.h"
+# include	"ms_shell.h"
+# include	"ms_signal.h"
+# include	"ms_utility.h"
+
+/* Globals and constants made for ease of testing remove later */
+t_dlist  *global_current_token_node;
+int     *global_pipe_pid;
+int     global_pipe_index;
+int     global_pipe_test;
+int     global_exit_code;
+
+# define FALSE			0
+# define TRUE			1
+# define EXIT_FAILURE	1
+# define EXIT_SUCCESS	0
+# define NO_EXCODE		-1
+# define NO_STATUS		-1
+
+//# define SPACE			32
+# define SEMICOLON		59
+# define GREAT			62
+# define GREATGREAT		2
+# define LESSLESS   3
+# define LESS			60
+# define PIPE			124
+# define S_QUOTE		39
+# define D_QUOTE		34
+# define STRING			1
+# define BACKSLASH		92
+
+# define BUFF_SIZE		4096
+
+typedef struct s_token
+{
+	char	*data;
+	int		type;
+}						t_token;
+
+typedef struct			s_scan_quotes
+{
+	int		s_quote;
+	int		d_quote;
+}						t_scan_quotes;
+
+typedef struct			s_env
 {
 	char	*key;
-	char	*value;
-}				t_var;
+	char	*val;
+}						t_env;
 
-/* Node for generic chained list */
-typedef struct s_list
+typedef struct			s_rplc_env_node
 {
-	void			*content;
-	struct s_list	*next;
-	struct s_list	*prev;
-}				t_list;
+	int		idx;
+	int		end;
+	int		crr;
+}						t_rplc_env_node;
 
-typedef struct termios	t_term;
-
-/* Contain every pertinent informations worth being accessible globally */
-typedef struct s_shell
+typedef struct			s_node
 {
-    t_list	*env;		/* Chained list for environment/shell variables */
-	t_term	*def_term;	/* Default terminal (to be restored at the end!) */
-	t_term	*saved_term;	/* Used to save a terminal state to be restored later */
-	t_term	*active_term;	/* Current terminal (might not be needed) */
-	char	**builtins;	/* Contains the names of all our builtins */
-	char	*pwd;
-	int		fd[3];			/* 0 = input, 1 = output, 2 = error */
-}				t_shell;
+	int				      type;
+	char			      *data;
+	struct s_node	  *left_child;
+	struct s_node	  *right_child;
+}						t_node;
+
+typedef enum e_nodetype
+{
+  NODE_PIPE = 100,
+  NODE_REDIRECT_IN,
+  NODE_REDIRECT_OUT,
+  NODE_CMDPATH,
+  NODE_ARGUMENT,
+  NODE_REDIRECT_DOUBLEOUT,
+  NODE_REDIRECT_DOUBLEIN,
+  NODE_DATA,
+  NODE_SEQ,
+} t_node_type;
+
+typedef struct  s_pipe
+{
+    bool    stdin_pipe;
+    bool    stdout_pipe;
+    int     read_pipe;
+    int     write_pipe;
+}t_pipe;
+
+typedef struct  s_cmd
+{
+    int         argc;
+    int         has_path;
+    char        **argv;
+    t_pipe      *pipe;
+    t_node      *redir;
+}t_cmd;
 
 /* Global shell structure declaration */
 struct s_shell	g_shell;
 
-/* Shell */
-void	init_shell(char **envp);		/* Master init function. Makes all the init calls needed. */
-t_shell	*get_shell(void);
-void	init_fd(int *fd);	/* set input, output and error fd */
-/* End shell */
+/* Return a formated prompt */
+char	*ft_readline(void);
+void	*ft_history(char *line);
 
-/* Reading */
-char	*get_prompt(void);	/* Return a formated prompt */
-char	*ft_readline(void);		/* Call readline() and w/e we want */
-void	*ft_history(char *line);	/* Handle the history. Receive an input line.  */
-/* End reading */
-
-/* Parsing */
-t_list	*tokenize(char *str, char delim);	/* Return a chained list of tokens based on parsing rules */
-char	*expand_var(char *key);	/* Return the value of "name" if present in the variables list */
-char	*clean_tok(char *tok);	/* "clean" the token received (remove or change characters) */
-char	*parse_cmdline(char *line);
-int		parse_is_delimiter(char c);
-int		parse_is_escaped(char *str, int i);
-int		parse_is_quotes(char *line, int i);
-int		parse_is_enclosed(char *str, int i, char c);
-int		parse_next_delim(char *str);
-int		parse_is_var(char *line, int i);
-int		parse_next_var(char *line, int i);
-char	*parse_cleanup(char *line);
-char	*parse_expand_line(char *line);
-char	*parse_cmdline(char *line);
-/* End parsing */
-
-/* Execution */
-
-/* End execution */
-
-/* Environment	*/
-t_list	*init_env(char **envp);		/* Fill the environment list with (envp) */
-t_list	**get_env(void);			/* Return the environment list */
-void	ft_env_export(int fd);
-t_var	*get_var(char *key, t_list *list);
-char	*get_var_value(char *key, t_list *list);
-t_var	*new_var(char *key, char *value);
-void	*dup_var(void *ptr);
-void	print_var(int fd, t_var *var);
-void	print_var_extra(int fd, t_var *var);	/* for export with no options */
-char	*get_pwd();
-void	set_pwd(char *pwd);
-/* End environment */
-
-/* Terminal */
-void	init_terms(t_shell *sh, int term_fd);
-void	set_saved_term(t_term *term);
-void	set_def_term(t_term *term);
-void	set_active_term(t_term *term);
-t_term	*get_saved_term(void);
-t_term	*get_def_term(void);
-t_term	*get_active_term(void);
-/* End terminal */
-
-/* Builtin commands */
-char	**init_builtins();		/* Return a double array of all builtins' names */
-int		is_builtin(char *name);		/* Return 1 if "name" is a builtin command */
-int		run_builtin(char *cmd, char **args);	/* Return our exit code if any */
-char	**get_builtins();	/* Return the global array of our builtin fcts */
-int		ft_echo(char **tokens, int fd);	/* Return amount written. */
-int		ft_cd(char **args);			/* Change working directory (variable and chdir()) */
-void	ft_env(int fd);				/* Print a list of all shell variables */
-void	ft_export(char **tokens, t_list **lst);		/* Parse and add/modify specified variable. */
-void	ft_export_var(char *key, char *value, t_list **lst);
-int		ft_unset(char **tokens, t_list **lst);	/* Parse and remove specified variable, if it exists */
-int		ft_unset_var(char *key, t_list **lst);
-int		ft_pwd(int fd);	/* Print current working directory */
-int		ft_exit(void);	/* free everything and reset terminal to default */
-/* End builtin commands */
-
-/* Files/Directories */
+/* Append (file) to (path), with a '/' in between */
 char	*join_path_file(char *path, char *file);
-char	*get_path(char *name);	/* Search for and return full path of specified "name" */
-int		get_fd(int std);	/* std : 0 is stdin, 1 is stdout, 2 is stderr */
-void	set_fd(int std, int fd);	/* std : 0 is stdin, 1 is stdout, 2 is stderr */
-/* End Files/Directories */
+/* Search for and return full path of specified "name" */
+char	*get_path(char *name);
 
-/* Utilities */
-/*		return a string with the content of each split[n] separated by (delim) */
-char	*merge_split(char **split, char *delim);
-char	**splitn(char const *s, char c, int n);
-char	*ft_strfuse(char *str1, char *str2);
-/* End utilities */
 
-/* List */
-t_list	*lst_new_node(void *content);
-void	lst_add_front(t_list **lst, t_list *node);
-void	lst_add_back(t_list **lst, t_list *node);
-void	lst_remove_node(t_list *node, void *(del)(void *));
-t_list	*lst_unlink_node(t_list **lst, t_list *node);	/* Unlink a node from a list and return it */
-void	*lst_clear(t_list *lst, void *(del)(void *));
-t_list	*lst_dup(t_list *lst, void *(iter)(void *), void *(del)(void *));
-/* End list */
 
-/* Memory */
-/* They are prototyped to return a void *, but we don't have to work this way. */
-void	*free_tokens(void *ptr);
-void	*free_var(void *ptr);
-void	*free_env(void *ptr);
-void	free_shell(void);
-void	*ft_free(void *ptr);	/* Generic free that will free() and return NULL */
-void	*free_split(char **s);	/* Generic split free that will free() and return NULL */
-/* End memory */
 
-# endif
+
+/* Function Calls */
+
+/* Scan */
+void    make_quote_status(char *line, int index, t_scan_quotes **flag);
+int     is_end_str(char chr, t_scan_quotes *flag);
+void    init_flag(t_scan_quotes **flag);
+t_token   *create_token(char *line, int start, int end, int type);
+int     generate_special_token(t_dlist **token_list, char *line, int start_index);
+int     generate_string_token(t_dlist  **token_list, char *line, int start_index);
+int     make_token_list(t_dlist **token_list, char *line);
+
+/* Replace Env */
+char    *replace_env(char *str, t_dlist *env_list);
+char    *join_str_to_str(char *result, char *str, int start, int end);
+int     gen_str_with_env(char **result, char *str, t_env *env, t_rplc_env_node *node);
+void    free_env_flag_node(t_env *env, t_scan_quotes *flags, t_rplc_env_node *node);
+int     set_env(t_env **env, char *str, int idx, t_dlist *env_list);
+int     set_env_pos(char *str, int idx);
+void    make_env_key_value(t_env **env, char *str, int len, t_dlist *env_list);
+int     is_end_of_env_variable(char chr);
+int     is_valid_env_start(char chr1, char chr2, t_scan_quotes *flags);
+void    init_replace_env(t_rplc_env_node **node, char **result, t_env **env, t_scan_quotes **flags);
+
+/* Parse */
+int     term_redir(char **arg, int *node_type);
+int     term(int token_type, char **arg);
+t_node  *simplecmd(void);
+t_node   *redir_list(void);
+t_node   *command(void);
+t_node   *job(void);
+t_node   *job_2(void);
+t_node   *job_1(void);
+t_node   *cmd_line(void);
+t_node	*cmd_line3(void);
+t_node   *cmd_line2(void);
+t_node   *cmd_line1(void);
+void    node_set_data(t_node *node, char *token);
+void    node_set_type(t_node *node, int type);
+void    node_append_right(t_node **root, t_node *right);
+void    node_attach_branch(t_node *root, t_node *left, t_node *right);
+void	  node_delete(t_node *node);
+void	  pre_order(t_node *search);
+
+/* Interpret */
+void    execute_tree(t_node  *head, t_dlist **env_list);
+void    execute_job(t_node *job, t_dlist **env_list);
+void    execute_pipeline(t_node *pipe_node, t_dlist **env_list);
+void    execute_command(t_node *command, t_pipe *pipe, t_dlist **env_list);
+void    execute_simplecmd(t_node *simple_cmd, t_pipe *pipe, t_dlist **env_list);
+void    node_count_pipe_node(t_node *search);
+t_pipe  *pipe_for_command(void);
+t_pipe  *pipe_last(int read_pipe, int   write_pipe);
+t_pipe  *pipe_mid(int read_pipe, int write_pipe);
+t_pipe  *pipe_first(int read_pipe, int write_pipe);
+
+/* Builtin */
+int			execute_builtin_in_child(t_cmd *cmd, t_dlist **env_list);
+int			execute_builtin_in_parent(t_cmd *cmd, t_dlist **env_list);
+int			is_valid_env_key(char *env_key);
+
+/* Env */
+t_dlist    *make_env_list(char **envp);
+void      update_kv_pair(t_env **env, char *envp);
+void		print_env_list(t_dlist *env_head);
+char		**env_list_to_envp(t_dlist *env_head);
+void		set_env_one(t_dlist **list, t_env *env);
+void		unset_env_one(t_dlist **env_head, char *key);
+
+/* Cmd */
+void    command_destroy(t_cmd *command);
+int     command_init(t_node *simple_cmd, t_cmd *command, t_pipe *pipe, t_dlist **env_list);
+void    command_store_argv(t_cmd *command, t_node *arg_node, t_dlist *env_list);
+void    command_count_argc(t_cmd *command, t_node *arg_node);
+void    command_execute(t_cmd *command, t_dlist ** env_list);
+void    command_external_redir(t_cmd *command);
+char    *strip_quotes(char **token_data);
+void    exec_with_path(t_cmd *cmd, char **path_arr, t_dlist *env_list);
+void    free_tmp_env(char **env);
+void    free_path_arr(char **path_arr);
+char    **create_path_arr(t_dlist *env_path);
+char		*replace_home_path(char *str, t_dlist *env_list);
+char		*get_env_val(char *key, t_dlist *env_list);
+
+/* General Utils */
+void			ft_err(char *pathname, char *argv_1);
+void	    ctrl_d_exit(void);
+char	    *append_char(char *org, char c);
+
+#endif
