@@ -4,10 +4,10 @@ void    execute_simplecmd(t_node *simple_cmd, t_pipe *pipe, t_dlist **env_list)
 {
     t_cmd     command;
 
-    command_init(simple_cmd, &command, pipe, env_list); /* probable prototypes for the CRUD operations for the cmd struct */
-    sh_change_mode(0);
+    command_init(simple_cmd, &command, pipe, env_list);
+    //sh_change_mode(0);
     command_execute(&command, env_list);
-    sh_change_mode(1);
+    //sh_change_mode(1);
     command_destroy(&command);
 }
 
@@ -88,6 +88,7 @@ void    execute_tree(t_node  *head, t_dlist **env_list)
         node_count_pipe_node(pipe_counter);
         execute_job(head->left_child, env_list);    /* recursively calling one child as job */
         execute_tree(head->right_child, env_list);  /* recursively calling right child with the same function */
+        return ;
     }
     else 
     {
@@ -97,21 +98,23 @@ void    execute_tree(t_node  *head, t_dlist **env_list)
         pipe_counter = head;
         node_count_pipe_node(pipe_counter);
         global_pipe_pid = (int *)malloc(sizeof(int) * (global_pipe_index + 1)); 
-        if (!global_pipe_index)
+        if (!global_pipe_pid)
             return ;
+        global_pipe_pid[global_pipe_index] = '\0';
         execute_job(head, env_list);
         i = 0;
         while (i < global_pipe_index)
         {
             waitpid(*(global_pipe_pid + i), &status, 0);
-            printf("status: %d\n", status);
-            //set_exit_code(status, -1); /* Make this function soon */
+            printf("##status: %d\n", status);
+            set_exit_code(status, NO_EXCODE);
             i++;
         }
         free(global_pipe_pid);
     }
 }
-/*
+
+
 void	set_exit_code(int status, int excode)
 {
 	if (excode == -1)
@@ -124,4 +127,3 @@ void	set_exit_code(int status, int excode)
 	else
 		global_exit_code = excode;
 }
-*/

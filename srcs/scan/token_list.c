@@ -7,7 +7,7 @@ t_token   *create_token(char *line, int start, int end, int type)
     tok = (t_token *)malloc(sizeof(t_token));
     if (!tok)
         return (0);
-    tok->data = ft_strndup(&line[start], (end - start)); /* remember to write an str-N-dup function */
+    tok->data = ft_strndup(&line[start], (end - start));
     tok->type = type;
     return (tok);
 }
@@ -44,7 +44,7 @@ int     generate_string_token(t_dlist  **token_list, char *line, int start_index
 
     init_flag(&flag);
     index = start_index;
-    while (line[index])
+    while (line[index] != '\0')
     {
         make_quote_status(line, index, &flag);
         if (is_end_str(line[index], flag))
@@ -56,7 +56,7 @@ int     generate_string_token(t_dlist  **token_list, char *line, int start_index
     tok = create_token(token_data, 0, ft_strlen(token_data), STRING);
     free(token_data);
     lst_add_back(token_list, lst_new_node(tok));
-    if (line[index] != ' ')
+    if (line[index] != SPACE)
         index--;
     return (index);
 }    
@@ -83,4 +83,5 @@ int     make_token_list(t_dlist **token_list, char *line)
             return (-1);
         index++;
     }
+    return (0);
 }

@@ -54,6 +54,7 @@ void	node_delete(t_node *node)
 	free(node);
 }
 
+
 void	pre_order(t_node *search)
 {
 	if (search)

@@ -60,6 +60,18 @@ void print_tree(t_node *node)
     print_tree_r(node, 0);
 }
 
+void hook(int signo)
+{
+    if (signo == SIGINT)
+    {
+        global_exit_code = 1;
+        ft_putstr_fd("\b\b \n", 1);
+        printf("%s\n", get_prompt());
+    }
+    else if (signo == SIGTSTP || signo == SIGQUIT)
+        ft_putstr_fd("\b\b  \b\b", 1);
+}
+
 int main(int argc, char **argv, char **envp)
 {
     char        *user_in;
@@ -69,7 +81,9 @@ int main(int argc, char **argv, char **envp)
     if(!argc || !(*argv[0]))
         return (-1);
     init_shell(envp);
-    init_signals();
+    global_exit_code = 0;
+    signal(SIGQUIT, hook);
+    signal(SIGINT, hook);
     print_welcome();
     global_exit_code = 0;
     user_in = ft_readline();

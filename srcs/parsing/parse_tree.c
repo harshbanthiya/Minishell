@@ -14,7 +14,8 @@ t_node   *cmd_line1(void)
         node_delete(job_node);
         return (NULL);
     }
-    if ((cmdline_node = cmd_line()) == NULL)
+    cmdline_node = cmd_line();
+    if (cmdline_node == NULL)
     {
         node_delete(job_node);
         return (NULL);
@@ -57,14 +58,20 @@ t_node	*cmd_line3(void)
 t_node   *cmd_line(void)
 {
     t_node   *node;
-    t_dlist        *save;
+    t_dlist  *save;
 
     save = global_current_token_node;
-    if ((global_current_token_node = save, node = cmd_line1()) != NULL)
+    global_current_token_node = save;
+    node = cmd_line1();
+    if (global_current_token_node != NULL && node != NULL)
         return (node);
-    if ((global_current_token_node = save, node = cmd_line2()) != NULL)
+    global_current_token_node = save;
+    node = cmd_line2();
+    if (global_current_token_node != NULL && node != NULL)
         return (node);
-    if ((global_current_token_node = save, node = cmd_line3()) != NULL)
+    global_current_token_node = save;
+    node = cmd_line3();
+    if (global_current_token_node != NULL &&  node != NULL)
         return (node);
     return (NULL);
 }
@@ -75,14 +82,16 @@ t_node   *job_1(void)
     t_node   *job_node;
     t_node   *result;
 
-    if ((command_node = command()) == NULL)
+    command_node = command();
+    if (command_node == NULL)
         return (NULL);
-    if (!term(PIPE, NULL)) /* 124 is the ascii for Pipe change later */
+    if (!term(PIPE, NULL))
     {
         node_delete(command_node);
         return (NULL);
     }
-    if ((job_node = job()) == NULL)
+    job_node = job();
+    if (job_node == NULL)
     {
         node_delete(command_node);
         return (NULL);
@@ -107,9 +116,13 @@ t_node   *job(void)
     t_dlist   *save;
 
     save = global_current_token_node;
-    if ((global_current_token_node = save, node = job_1()) != NULL)
+    global_current_token_node = save;
+    node = job_1();
+    if (global_current_token_node != NULL && node != NULL)
         return (node);
-    if ((global_current_token_node = save, node = job_2()) != NULL)
+    global_current_token_node = save;
+    node = job_2();
+    if (global_current_token_node != NULL && node != NULL)
         return (node);
     return (NULL);
 }
@@ -128,12 +141,13 @@ t_node   *command(void)
             break ;
         if (((t_token *)global_current_token_node->content)->type == SEMICOLON)
             break ;
-        if ((temp = redir_list()) != NULL)
+        temp = redir_list();
+        if (temp != NULL)
         {
             node_append_right(&redir_node, temp);
-            printf("redirection_node: %s\n", redir_node->data);           
+            printf("redirection_node: %s\n", redir_node->data); /* comment printf later */    
         }
-        else if ((temp = simplecmd()) != NULL)
+        else if ((temp =simplecmd()) != NULL)
             node_append_right(&simplecmd_node, temp);
         else 
             return (NULL);
@@ -170,7 +184,7 @@ t_node   *redir_list(void)
     return (result);
 }
 
-t_node *simplecmd(void)
+t_node  *simplecmd(void)
 {
     t_node   *result;
     char        *pathname;

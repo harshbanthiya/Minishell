@@ -26,9 +26,8 @@ void    command_store_argv(t_cmd *command, t_node *arg_node, t_dlist *env_list)
     {
         if (i == 0 && ft_strchr(arg_node->data, '/'))
             command->has_path = 1;
-        
-        // I NEED TO MAKE THESE THREE FUNCTIONS < THE FUCKING BANE OF MY EXISTENCE, THE LAST LINK IN THE WHOLE EXECUTION IDEA 
-        arg_node->data = parse_cmdline(arg_node->data);
+        arg_node->data = replace_env(arg_node->data, env_list);
+        arg_node->data = strip_quotes(&arg_node->data);
         arg_node->data = replace_home_path(arg_node->data, env_list);
         
         // arg_node->data = replace_env(arg_node->data, env_list);

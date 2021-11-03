@@ -176,6 +176,7 @@ void    node_append_right(t_node **root, t_node *right);
 void    node_attach_branch(t_node *root, t_node *left, t_node *right);
 void	  node_delete(t_node *node);
 void	  pre_order(t_node *search);
+void	  set_exit_code(int status, int excode);
 
 /* Interpret */
 void    execute_tree(t_node  *head, t_dlist **env_list);
@@ -216,6 +217,7 @@ void    free_path_arr(char **path_arr);
 char    **create_path_arr(t_dlist *env_path);
 char		*replace_home_path(char *str, t_dlist *env_list);
 char		*get_env_val(char *key, t_dlist *env_list);
+//char    *replace_env(char *str, t_dlist *env_list);
 
 /* General Utils */
 void			ft_err(char *pathname, char *argv_1);

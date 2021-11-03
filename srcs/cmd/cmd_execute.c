@@ -18,7 +18,7 @@ void    command_external_redir(t_cmd *command)
         }
         else if (command->redir->type == NODE_REDIRECT_OUT)
         {
-            fd = open(command->redir->data, O_WRONLY | O_TRUNC | O_CREAT ); /* read up S_IRUSR S_IRGRP S_IWGRP S_IWUSRon signals and add here in open statements */
+            fd = open(command->redir->data, O_WRONLY | O_TRUNC | O_CREAT | S_IRUSR | S_IRGRP | S_IWGRP | S_IWUSR); /* read up S_IRUSR S_IRGRP S_IWGRP S_IWUSRon signals and add here in open statements */
             if (fd == -1)
             {
                 perror(command->redir->data);
@@ -28,7 +28,7 @@ void    command_external_redir(t_cmd *command)
         }
         else if (command->redir->type == NODE_REDIRECT_DOUBLEOUT)
         {
-            fd = open(command->redir->data, O_WRONLY | O_APPEND | O_CREAT);
+            fd = open(command->redir->data, O_WRONLY | O_APPEND | O_CREAT | S_IRUSR | S_IRGRP | S_IWGRP | S_IWUSR);
             if (fd == -1)
             {
                 perror(command->redir->data);
@@ -38,13 +38,13 @@ void    command_external_redir(t_cmd *command)
         }
         else if (command->redir->type == NODE_REDIRECT_DOUBLEIN)
         {
-            fd = open(TMPFILE, O_CREAT | O_TRUNC | O_RDWR, 0777);
+            fd = open(TMPFILE, O_CREAT | O_TRUNC | O_RDWR | S_IRUSR | S_IRGRP | S_IWGRP | S_IWUSR, 0777);
             if (fd == -1)
             {
                 perror(command->redir->data);
                 exit(1);
             }
-            
+            dup2(STDIN_FILENO, fd);
         }
         /* Add Heredoc logic here */
         command->redir = command->redir->right_child;
@@ -80,6 +80,8 @@ void    command_execute(t_cmd *command, t_dlist ** env_list)
         printf("pid: %d\n", pid);
     if (pid == 0)
     {
+        signal(SIGINT, SIG_DFL);
+        signal(SIGQUIT, SIG_DFL);
         command_external_redir(command);
         stdout_fd = dup(STDOUT_FILENO);
         // read stdin from pipe if present
