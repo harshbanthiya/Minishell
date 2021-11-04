@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 14:07:38 by sfournie          #+#    #+#             */
-/*   Updated: 2021/10/24 18:00:55 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/04 15:37:43 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ static void	parse_clean_it(char **parsed_line, char *line)
 		if (!quote && parse_is_quotes(line, i))
 			quote = line[i];
 		else if (line[i] == '\\' && !parse_is_escaped(line, i) && line[i + 1]
-			&& line[i + 1] != ' ')
+			&& line[i + 1] != ' ' && !quote)
 			(*parsed_line)[j++] = line[++i];
-		else if (line[i] != quote || !parse_is_quotes(line, i))
+		else if (line[i] != quote || (line[i] = quote && !parse_is_escaped(line, i)))
 			(*parsed_line)[j++] = line[i];
 		else
 			quote = '\0';
