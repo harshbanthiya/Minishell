@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 16:15:44 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/02 17:16:04 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/05 16:45:20 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,12 @@ int	is_builtin(char *name)
 
 int	run_builtin(t_cmd *cmd, t_dlist **lst, int is_pipe)
 {
-	char	**builtins;
 	int		exit_code;
 
 	is_pipe = 0;
+	exit_code = 1;
 	if (!cmd || !cmd->argv[0] || !is_builtin(cmd->argv[0]))
-		return (-1);
+		return (1);
 	if (!ft_strcmp(cmd->argv[0], "export"))
 		exit_code = ft_export(cmd, lst);
 	else if (!ft_strcmp(cmd->argv[0], "unset"))
@@ -66,7 +66,7 @@ int	run_builtin(t_cmd *cmd, t_dlist **lst, int is_pipe)
 		exit_code = ft_cd(cmd, lst);
 	else if (!ft_strcmp(cmd->argv[0], "pwd"))
 		exit_code = ft_pwd(cmd, lst);
-	return (1);
+	return (exit_code);
 }
 
 char	**get_builtins(void)
@@ -81,24 +81,26 @@ char	**get_builtins(void)
 	return (NULL);
 }
 
-int			is_valid_env_key(char *env_key)
+void	error_builtin(char *builtname, char *str, char *msg)
 {
-	int idx;
-
-	idx = 0;
-	if (*env_key == '_' || ft_isalpha(env_key[idx]))
+	ft_putstr_fd("minishell", 2);
+	if (builtname != NULL)
 	{
-		idx++;
-		while (env_key[idx] != '\0')
-		{
-			if (!ft_isalnum(env_key[idx]) && env_key[idx] != '_')
-				return (FALSE);
-			idx++;
-		}
+		ft_putstr_fd(": ", 2);
+		ft_putstr_fd(builtname, 2);
 	}
-	else
-		return (FALSE);
-	return (TRUE);
+	if (str != NULL)
+	{
+		ft_putstr_fd(": ", 2);
+		ft_putstr_fd("\'", 2);
+		ft_putstr_fd(str, 2);
+		ft_putstr_fd("\'", 2);
+	}
+	if (msg != NULL)
+	{
+		ft_putstr_fd(": ", 2);
+		ft_putendl_fd(msg, 2);
+	}
 }
 
 int            execute_builtin_in_child(t_cmd *cmd, t_dlist **env_list)

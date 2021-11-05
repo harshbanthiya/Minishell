@@ -6,7 +6,7 @@
 #    By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/09 15:31:26 by sfournie          #+#    #+#              #
-#    Updated: 2021/11/02 17:25:51 by sfournie         ###   ########.fr        #
+#    Updated: 2021/11/04 15:43:30 by sfournie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,7 +71,7 @@ HEADERS		= $(patsubst %,ms_%,$(_HEADERS))
 #
 
 # Sources and Objects
-SRC	= 	environment.c variable.c variable_print.c\
+SRC	= 	environment.c variable.c variable_print.c variable_utils.c\
 		memory.c \
 		shell.c \
 		terminal.c modes.c \
