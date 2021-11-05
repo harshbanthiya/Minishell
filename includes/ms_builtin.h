@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 18:43:33 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/02 17:08:10 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/05 16:43:53 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,8 @@ int		ft_unset_var(char *key, t_dlist **lst);
 int		ft_pwd(t_cmd *cmd, t_dlist **lst);	
 
 int		ft_exit(t_cmd *cmd, t_dlist **lst);
+
+/* Printf minishell: builtname: str: msg  in fd 2 */
+void	error_builtin(char *builtname, char *str, char *msg);
 
 #endif
