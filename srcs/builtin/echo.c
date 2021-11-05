@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 19:27:42 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/02 16:54:53 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/05 18:02:43 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,19 @@
 
 static int	is_nl(char *opt)
 {
-	if (opt && opt[0] == '-' && opt[1] == 'n')
+	int	i;
+
+	i = 0;
+	if (opt && opt[i] == '-')
+	{
+		i++;
+		while (opt[i])
+		{
+			if (opt[i++] != 'n')
+				return (0);
+		} 
 		return (1);
+	}
 	return (0);
 }
 

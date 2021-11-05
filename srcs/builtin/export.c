@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 19:27:47 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/05 15:17:38 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/05 18:40:43 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,12 @@ void	ft_export_var(char *key, char *value, t_dlist **lst)
 		if (value != NULL)
 		{
 			ft_free(var->value);
-			var->value = ft_strdup(value);
+			if (!ft_strcmp(value, "\'"))
+				var->value = ft_strdup("\\\'");
+			else if (!ft_strcmp(value, "\""))
+				var->value = ft_strdup("\\\"");
+			else
+				var->value = ft_strdup(value);
 		}
 		return ;
 	}
@@ -45,7 +50,7 @@ int	ft_single_export(char *argv, t_dlist **lst)
 {
 	char	**split;
 	int		error;
-	
+
 	error = 0;
 	split = ft_splitn(argv, '=', 2);
 	if (split != NULL)
