@@ -84,7 +84,8 @@ SRC	= 	environment.c variable.c variable_print.c variable_utils.c\
 		builtin_utils.c \
 		interpret_utils.c interpret_tree.c \
 		parse_tree.c parse_utils.c scan_utils.c token_list.c \
-		cmd_execute.c cmd.c handle_quotes.c cmd_utils.c
+		cmd_execute.c cmd.c handle_quotes.c cmd_utils.c \
+		replace_env_utils.c replace_env.c
 
 _OBJ	= $(SRC:.c=.o)
 OBJ		= $(patsubst %,$(DIR_OBJS)/%,$(_OBJ))

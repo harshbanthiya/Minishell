@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-void    init_env(t_env **env)
+void    init_envv(t_env **env)
 {
     (*env) = (t_env *)malloc(sizeof(t_env));
     if (!(*env))
@@ -18,7 +18,7 @@ void    init_replace_env(t_rplc_env_node **node, char **result, t_env **env, t_s
     (*node)->end = 0;
     (*node)->crr = 0;
     init_flag(flags);
-    init_env(env);
+    init_envv(env);
     *result = 0;
 }
 

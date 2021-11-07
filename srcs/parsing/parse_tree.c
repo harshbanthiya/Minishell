@@ -61,17 +61,11 @@ t_node   *cmd_line(void)
     t_dlist  *save;
 
     save = global_current_token_node;
-    global_current_token_node = save;
-    node = cmd_line1();
-    if (global_current_token_node != NULL && node != NULL)
+    if ((global_current_token_node = save, node = cmd_line1()) != NULL)
         return (node);
-    global_current_token_node = save;
-    node = cmd_line2();
-    if (global_current_token_node != NULL && node != NULL)
+    if ((global_current_token_node = save, node = cmd_line2()) != NULL)
         return (node);
-    global_current_token_node = save;
-    node = cmd_line3();
-    if (global_current_token_node != NULL &&  node != NULL)
+   if ((global_current_token_node = save, node = cmd_line3()) != NULL)
         return (node);
     return (NULL);
 }
@@ -116,14 +110,10 @@ t_node   *job(void)
     t_dlist   *save;
 
     save = global_current_token_node;
-    global_current_token_node = save;
-    node = job_1();
-    if (global_current_token_node != NULL && node != NULL)
-        return (node);
-    global_current_token_node = save;
-    node = job_2();
-    if (global_current_token_node != NULL && node != NULL)
-        return (node);
+   if ((global_current_token_node = save, node = job_1()) != NULL)
+        return node;
+   if ((global_current_token_node = save, node = job_2()) != NULL)
+        return node;
     return (NULL);
 }
 

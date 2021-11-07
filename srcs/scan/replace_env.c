@@ -63,6 +63,6 @@ char    *replace_env(char *str, t_dlist *env_list)
         result = ft_strndup(str, node->idx);
     else 
         result = join_str_to_str(result, str, node->crr, node->idx - (node->crr - 1) - 1);
-    free_env_flags_node(env, flags, node);
+    free_env_flag_node(env, flags, node);
     return(result);
 }
