@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 16:15:44 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/05 16:45:20 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/07 17:56:29 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,9 @@ int	run_builtin(t_cmd *cmd, t_dlist **lst, int is_pipe)
 {
 	int		exit_code;
 
-	is_pipe = 0;
 	exit_code = 1;
 	if (!cmd || !cmd->argv[0] || !is_builtin(cmd->argv[0]))
-		return (1);
+		return (0);
 	if (!ft_strcmp(cmd->argv[0], "export"))
 		exit_code = ft_export(cmd, lst);
 	else if (!ft_strcmp(cmd->argv[0], "unset"))
@@ -66,7 +65,8 @@ int	run_builtin(t_cmd *cmd, t_dlist **lst, int is_pipe)
 		exit_code = ft_cd(cmd, lst);
 	else if (!ft_strcmp(cmd->argv[0], "pwd"))
 		exit_code = ft_pwd(cmd, lst);
-	return (exit_code);
+	global_exit_code = exit_code;
+	return (1);
 }
 
 char	**get_builtins(void)

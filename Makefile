@@ -6,7 +6,7 @@
 #    By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/09 15:31:26 by sfournie          #+#    #+#              #
-#    Updated: 2021/11/04 15:43:30 by sfournie         ###   ########.fr        #
+#    Updated: 2021/11/07 16:58:31 by sfournie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,7 +56,7 @@ MK_LFT		= make -C $(DIR_LFT)
 #
 
 # Mains
-MAIN		= $(DIR_MAINS)/main_general.c
+MAIN		= $(DIR_MAINS)/minishell.c
 MAIN_ENV	= $(DIR_MAINS)/main_env.c
 MAIN_PARSE	= $(DIR_MAINS)/main_parse.c
 MAIN_TERM	= $(DIR_MAINS)/main_term.c
@@ -85,7 +85,11 @@ SRC	= 	environment.c variable.c variable_print.c variable_utils.c\
 		interpret_utils.c interpret_tree.c \
 		parse_tree.c parse_utils.c scan_utils.c token_list.c \
 		cmd_execute.c cmd.c handle_quotes.c cmd_utils.c \
+<<<<<<< HEAD
 		replace_env_utils.c replace_env.c
+=======
+		replace_env.c replace_env_utils.c
+>>>>>>> b486cd166e77d110a201a095d0b086a4b89f1891
 
 _OBJ	= $(SRC:.c=.o)
 OBJ		= $(patsubst %,$(DIR_OBJS)/%,$(_OBJ))

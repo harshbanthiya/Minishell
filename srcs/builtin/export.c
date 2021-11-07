@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 19:27:47 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/07 15:57:43 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/07 18:05:52 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,18 @@ void	strip_extra_spaces(char **token)
 	j = 0;
 	if (token == NULL || *token == NULL)
 		return ;
-	while ((*token)[i])
+	strip = ft_strdup(*token);
+	while (strip[i])
 	{
-		if (!((*token)[i] == SPACE && (*token)[i + 1] == SPACE))
+		if (!(strip[i] == SPACE && strip[i + 1] == SPACE))
 		{
-			(*token)[j++] = (*token)[i];
+			strip[j++] = strip[i];
 		}
 		i++;
 	}
-	(*token)[j] = '\0';
-	strip = ft_calloc(ft_strlen(*token), sizeof(char));
-	strip = ft_strdup(*token);
-	ft_free(*token);
+	strip[j] = '\0';
 	*token = strip;
+	free(strip);
 }
 
 void	ft_export_var(char *key, char *value, t_dlist **lst)

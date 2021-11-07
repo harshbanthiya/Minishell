@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 18:43:33 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/05 16:08:58 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/07 16:26:49 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -216,9 +216,8 @@ void    exec_with_path(t_cmd *cmd, char **path_arr, t_dlist *env_list);
 void    free_tmp_env(char **env);
 void    free_path_arr(char **path_arr);
 char    **create_path_arr(t_dlist *env_path);
-char		*replace_home_path(char *str, t_dlist *env_list);
-char		*get_env_val(char *key, t_dlist *env_list);
-//char    *replace_env(char *str, t_dlist *env_list);
+char	*replace_home_path(char *str, t_dlist *env_list);
+char	*get_env_val(char *key, t_dlist *env_list);
 
 /* General Utils */
 void			ft_err(char *pathname, char *argv_1);

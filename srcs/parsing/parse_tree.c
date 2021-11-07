@@ -61,11 +61,25 @@ t_node   *cmd_line(void)
     t_dlist  *save;
 
     save = global_current_token_node;
+<<<<<<< HEAD
     if ((global_current_token_node = save, node = cmd_line1()) != NULL)
         return (node);
     if ((global_current_token_node = save, node = cmd_line2()) != NULL)
         return (node);
    if ((global_current_token_node = save, node = cmd_line3()) != NULL)
+=======
+    global_current_token_node = save;
+    node = cmd_line1();
+    if (node != NULL)
+        return (node);
+    global_current_token_node = save;
+    node = cmd_line2();
+    if (node != NULL)
+        return (node);
+    global_current_token_node = save;
+    node = cmd_line3();
+    if (node != NULL)
+>>>>>>> b486cd166e77d110a201a095d0b086a4b89f1891
         return (node);
     return (NULL);
 }
@@ -110,10 +124,21 @@ t_node   *job(void)
     t_dlist   *save;
 
     save = global_current_token_node;
+<<<<<<< HEAD
    if ((global_current_token_node = save, node = job_1()) != NULL)
         return node;
    if ((global_current_token_node = save, node = job_2()) != NULL)
         return node;
+=======
+    global_current_token_node = save;
+    node = job_1();
+    if (node != NULL)
+        return (node);
+    global_current_token_node = save;
+    node = job_2();
+    if (node != NULL)
+        return (node);
+>>>>>>> b486cd166e77d110a201a095d0b086a4b89f1891
     return (NULL);
 }
 

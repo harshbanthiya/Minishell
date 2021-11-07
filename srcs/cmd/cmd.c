@@ -26,7 +26,8 @@ void    command_store_argv(t_cmd *command, t_node *arg_node, t_dlist *env_list)
     {
         if (i == 0 && ft_strchr(arg_node->data, '/'))
             command->has_path = 1;
-        arg_node->data = replace_env(arg_node->data, env_list);
+        // arg_node->data = replace_env(arg_node->data, env_list);
+		arg_node->data = parse_expand_line(arg_node->data);
         arg_node->data = strip_quotes(&arg_node->data);
         arg_node->data = replace_home_path(arg_node->data, env_list);
         
