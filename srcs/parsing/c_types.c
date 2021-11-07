@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 16:58:21 by sfournie          #+#    #+#             */
-/*   Updated: 2021/10/24 17:29:30 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/05 15:30:58 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,9 @@
 /* return 1 if (c) is a delimiter related to parsing */
 int	parse_is_delimiter(char c)
 {
-	if (c == '\0' || c == '\'' || c == '\"' || c == ' '
-		|| c == '$' || c == '\\')
-		return (1);
-	return (0);
+	if (ft_isalpha(c) || ft_isdigit(c) || c == '_')
+		return (0);
+	return (1);
 }
 
 int	parse_is_escaped(char *str, int i)

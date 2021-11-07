@@ -6,24 +6,42 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 19:27:47 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/02 16:58:42 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/07 15:57:43 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"minishell.h"
 
-static int	is_valid_export(char *token)
+void	strip_extra_spaces(char **token)
 {
-	if (token == NULL || token[0] == '=')
-		return (0);
-	else
-		return (1);
+	char	*strip;
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+	if (token == NULL || *token == NULL)
+		return ;
+	while ((*token)[i])
+	{
+		if (!((*token)[i] == SPACE && (*token)[i + 1] == SPACE))
+		{
+			(*token)[j++] = (*token)[i];
+		}
+		i++;
+	}
+	(*token)[j] = '\0';
+	strip = ft_calloc(ft_strlen(*token), sizeof(char));
+	strip = ft_strdup(*token);
+	ft_free(*token);
+	*token = strip;
 }
 
 void	ft_export_var(char *key, char *value, t_dlist **lst)
 {	
 	t_var	*var;
 
+	strip_extra_spaces(&value);
 	var = get_var(key, *lst);
 	if (var != NULL)
 	{
@@ -41,29 +59,46 @@ void	ft_export_var(char *key, char *value, t_dlist **lst)
 	lst_add_back(lst, lst_new_node(var));
 }
 
+int	ft_single_export(char *argv, t_dlist **lst)
+{
+	char	**split;
+	int		error;
+
+	error = 0;
+	split = ft_splitn(argv, '=', 2);
+	if (split != NULL)
+	{
+		if (var_is_valid_key(split[0]))
+		{
+			if (split[1] == NULL && ft_strchr(argv, '='))
+				ft_export_var(split[0], "", lst);
+			else
+				ft_export_var(split[0], split[1], lst);
+		}
+		else
+		{
+			error_builtin("export", split[0], "not a valid identifier");
+			error = 1;
+		}
+		free_split(split);
+	}
+	return (error);
+}
+
 int	ft_export(t_cmd *cmd, t_dlist **lst)
 {	
-	char	**split;
 	int		i;
+	int		error;
 
+	error = 0;
 	if (cmd->argv[1] == NULL)
 		return (ft_env_export(1));
 	i = 1;
 	while (cmd->argv[i] != NULL)
 	{
-		if (is_valid_export(cmd->argv[i]))
-		{
-			split = ft_splitn(cmd->argv[i], '=', 2);
-			if (split != NULL)
-			{
-				if (split[1] == NULL && ft_strchr(cmd->argv[i], '='))
-					ft_export_var(split[0], "", lst);
-				else
-					ft_export_var(split[0], split[1], lst);
-				free_split(split);
-			}
-		}
+		if (ft_single_export(cmd->argv[i], lst) != 0)
+			error = 1;
 		i++;
 	}
-	return (0);
+	return (error);
 }

@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 14:07:38 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/01 15:14:21 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/05 17:58:54 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int	parse_next_delim(char *str)
 	int	i;
 
 	i = 0;
+	if (str && ft_isdigit(*str))
+		return (1);
 	while (str && !parse_is_delimiter(str[i]))
 		i++;
 	return (i);

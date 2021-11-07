@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 18:43:33 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/02 15:36:20 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/05 16:08:58 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,7 +194,7 @@ t_pipe  *pipe_first(int read_pipe, int write_pipe);
 /* Builtin */
 int			execute_builtin_in_child(t_cmd *cmd, t_dlist **env_list);
 int			execute_builtin_in_parent(t_cmd *cmd, t_dlist **env_list);
-int			is_valid_env_key(char *env_key);
+int			var_is_valid_key(char *env_key);
 
 /* Env */
 t_dlist    *make_env_list(char **envp);
@@ -216,9 +216,14 @@ void    exec_with_path(t_cmd *cmd, char **path_arr, t_dlist *env_list);
 void    free_tmp_env(char **env);
 void    free_path_arr(char **path_arr);
 char    **create_path_arr(t_dlist *env_path);
+<<<<<<< HEAD
 char		*replace_home_path(char *str, t_dlist *env_list);
 char		*get_env_val(char *key, t_dlist *env_list);
 //char    *replace_env(char *str, t_dlist *env_list);
+=======
+char	*replace_home_path(char *str, t_dlist *env_list);
+char	*get_env_val(char *key, t_dlist *env_list);
+>>>>>>> 0480a4b7ad9c2b501a7b113835e4e99273f0f3eb
 
 /* General Utils */
 void			ft_err(char *pathname, char *argv_1);

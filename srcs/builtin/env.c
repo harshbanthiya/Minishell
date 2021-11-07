@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 19:27:41 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/02 17:17:13 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/05 15:10:50 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int	ft_env_export(int fd)
 		}		
 	}
 	else
-		return (-1);
+		return (1);
 	return (0);
 }
 
@@ -84,5 +84,5 @@ int	ft_env(t_cmd *cmd, t_dlist **lst)
 		print_env(1, *lst, 0);
 		return (0);
 	}
-	return (-1);
+	return (126);
 }

@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 10:02:42 by sfournie          #+#    #+#             */
-/*   Updated: 2021/10/29 18:24:30 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/05 16:49:43 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,19 @@ t_shell	*get_shell(void)
 void	init_shell(char **envp)
 {
 	t_shell	sh;
-	t_var	*pwd;
+	char	*pwd;
 
 	if (envp != NULL)
 		sh.env = init_env(envp);
 	sh.builtins = init_builtins();
 	init_terms(&sh, term_get_active_fd());
 	init_signals();
-	pwd = get_var("PWD", sh.env);
+	pwd = getcwd(NULL, 0);
 	if (pwd != NULL)
-		sh.pwd = ft_strdup(pwd->value);
+	{
+		sh.pwd = ft_strdup(pwd);
+		ft_free(pwd);
+	}
 	sh.sh_mode = 1;
 	g_shell = sh;
 }
