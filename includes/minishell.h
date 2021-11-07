@@ -120,6 +120,7 @@ typedef struct  s_cmd
     char        **argv;
     t_pipe      *pipe;
     t_node      *redir;
+    t_node      *heredoc;
 }t_cmd;
 
 /* Global shell structure declaration */
