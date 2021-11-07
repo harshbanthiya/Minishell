@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 10:02:42 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/05 16:49:43 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/07 16:36:28 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	init_shell(char **envp)
 	char	*pwd;
 
 	if (envp != NULL)
-		sh.env = init_env(envp);
+		sh.env = sh_init_env(envp);
 	sh.builtins = init_builtins();
 	init_terms(&sh, term_get_active_fd());
 	init_signals();

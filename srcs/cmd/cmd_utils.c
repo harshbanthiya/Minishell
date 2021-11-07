@@ -51,6 +51,7 @@ void exec_with_path(t_cmd *cmd, char **path_arr, t_dlist *env_list)
 	char	*path_cmd2;
 	char	**tmp_env;
 	int		i;
+	int	j=0;
 
 	i = 0;
 	while (path_arr[i])

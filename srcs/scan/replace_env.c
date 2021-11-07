@@ -41,28 +41,28 @@ char    *join_str_to_str(char *result, char *str, int start, int end)
     return (result);
 }
 
-char    *replace_env(char *str, t_dlist *env_list)
-{
-    char            *result;
-    t_env           *env;
-    t_scan_quotes   *flags;
-    t_rplc_env_node *node;
+// char    *replace_env(char *str, t_dlist *env_list)
+// {
+//     char            *result;
+//     t_env           *env;
+//     t_scan_quotes   *flags;
+//     t_rplc_env_node *node;
 
-    init_replace_env(&node, &result, &env, &flags);
-    while (str[node->idx] != '\0')
-    {
-        make_quote_status(str, node->idx, &flags);
-        if (is_valid_env_start(str[node->idx], str[node->idx + 1], flags))
-        {
-            node->end = set_env(&env, str, node->idx, env_list);
-            node->crr = gen_str_with_env(&result, str, env, node);
-        }
-        node->idx++;
-    }
-    if (result == 0)
-        result = ft_strndup(str, node->idx);
-    else 
-        result = join_str_to_str(result, str, node->crr, node->idx - (node->crr - 1) - 1);
-    free_env_flags_node(env, flags, node);
-    return(result);
-}
+//     init_replace_env(&node, &result, &env, &flags);
+//     while (str[node->idx] != '\0')
+//     {
+//         make_quote_status(str, node->idx, &flags);
+//         if (is_valid_env_start(str[node->idx], str[node->idx + 1], flags))
+//         {
+//             node->end = set_env(&env, str, node->idx, env_list);
+//             node->crr = gen_str_with_env(&result, str, env, node);
+//         }
+//         node->idx++;
+//     }
+//     if (result == 0)
+//         result = ft_strndup(str, node->idx);
+//     else 
+//         result = join_str_to_str(result, str, node->crr, node->idx - (node->crr - 1) - 1);
+//     free_env_flags_node(env, flags, node);
+//     return(result);
+// }

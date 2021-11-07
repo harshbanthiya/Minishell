@@ -6,13 +6,13 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 20:14:21 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/02 13:29:31 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/07 16:50:53 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"minishell.h"
 
-t_dlist	*init_env(char **envp)
+t_dlist	*sh_init_env(char **envp)
 {
 	t_dlist	*env;
 	char	**split;
@@ -68,8 +68,8 @@ char		**env_list_to_envp(t_dlist *env_head)
 	i = 0;
 	while (temp)
 	{
-		output[i] = ft_strjoin(((t_env *)(temp->content))->key, "=");
-		output[i] = ft_strjoin(output[i], ((t_env *)(temp->content))->val);
+		output[i] = ft_strjoin(((t_var *)(temp->content))->key, "=");
+		output[i] = ft_strjoin(output[i], ((t_var *)(temp->content))->value);
 		temp = temp->next;
 		i++;
 	}
