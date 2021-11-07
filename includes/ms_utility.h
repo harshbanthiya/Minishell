@@ -6,13 +6,16 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 18:43:33 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/01 15:46:36 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/07 15:32:38 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MS_UTILITY_H	
 # define MS_UTILITY_H
 # include "minishell.h"
+
+/* Remove successive spaces and remalloc a proper size token */
+void	strip_extra_spaces(char **token);
 
 /* Return a string with the content of each split[n] *
 *  separated by (delim). */
