@@ -135,7 +135,7 @@ t_node   *command(void)
         if (temp != NULL)
         {
             node_append_right(&redir_node, temp);
-            p//rintf("redirection_node: %s\n", redir_node->data); /* comment p//rintf later */    
+            //printf("redirection_node: %s\n", redir_node->data); /* comment p//rintf later */    
         }
         else if ((temp =simplecmd()) != NULL)
             node_append_right(&simplecmd_node, temp);
