@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 16:15:44 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/07 17:56:29 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/08 16:52:34 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ char	**get_builtins(void)
 	return (NULL);
 }
 
-void	error_builtin(char *builtname, char *str, char *msg)
+void	error_builtin(char *builtname, char *str, char *msg, int errcode)
 {
 	ft_putstr_fd("minishell", 2);
 	if (builtname != NULL)
@@ -101,63 +101,5 @@ void	error_builtin(char *builtname, char *str, char *msg)
 		ft_putstr_fd(": ", 2);
 		ft_putendl_fd(msg, 2);
 	}
+	errno = errcode;
 }
-
-int            execute_builtin_in_child(t_cmd *cmd, t_dlist **env_list)
-{
-    int    ret;
-
-    ret = -1;
-    if (cmd->pipe->stdin_pipe || cmd->pipe->stdout_pipe)
-        if (!ft_strncmp(cmd->argv[0], "exit", ft_strlen(cmd->argv[0] + 1)))
-            ret = ft_exit(cmd, env_list);
-    if (ft_strncmp(cmd->argv[0], "echo", ft_strlen(cmd->argv[0]) + 1) == 0)
-        ret = ft_echo(cmd, env_list);
-    else if (ft_strncmp(cmd->argv[0], "pwd", ft_strlen(cmd->argv[0]) + 1) == 0)
-        ret = ft_pwd(cmd, env_list);
-    // else if ((ft_strncmp(cmd->argv[0], "export", \
-    //         ft_strlen(cmd->argv[0]) + 1) == 0) && (cmd->argc == 1))
-    //     ft_export(cmd, env_list);
-    // else if (ft_strncmp(cmd->argv[0], "env", ft_strlen(cmd->argv[0]) + 1) == 0)
-    //     ft_env(cmd, env_list);
-    return (ret);
-}
-
-int            execute_builtin_in_parent(t_cmd *cmd, t_dlist **env_list)
-{
-    int    ret;
-
-    ret = -1;
-    if (ft_strncmp(cmd->argv[0], "cd", ft_strlen(cmd->argv[0]) + 1) == 0)
-        ret = ft_cd(cmd, env_list);
-    else if (ft_strncmp(cmd->argv[0], "exit", ft_strlen(cmd->argv[0]) + 1) == 0)
-        ret = ft_exit(cmd, env_list);
-    else if (ft_strncmp(cmd->argv[0], "unset", \
-            ft_strlen(cmd->argv[0]) + 1) == 0)
-        ret = ft_unset(cmd, env_list);
-    // else if ((ft_strncmp(cmd->argv[0], "export", \
-    //         ft_strlen(cmd->argv[0]) + 1) == 0) && (cmd->argc > 1))
-    //     	ft_export(cmd, env_list);
-    return (ret);
-}
-
-// int			execute_builtin_in_child(t_cmd *cmd, t_dlist **env_list)
-// {
-// 	int	ret;
-
-// 	ret = -1;
-// 	if (cmd->pipe->stdin_pipe || cmd->pipe->stdout_pipe)
-// 		if (!ft_strncmp(cmd->argv[0], "exit", ft_strlen(cmd->argv[0] + 1)))
-// 			ret = ft_exit(cmd);
-// 	ret = run_builtin(cmd->argv[0], &cmd->argv[1]);
-// 	return (ret);
-// }
-
-// int			execute_builtin_in_parent(t_cmd *cmd, t_dlist **env_list)
-// {
-// 	int	ret;
-
-// 	ret = -1;
-// 	ret = run_builtin(cmd->argv[0], &cmd->argv[1]);
-// 	return (ret);
-// }

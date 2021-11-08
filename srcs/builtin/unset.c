@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 19:27:51 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/05 16:39:38 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/08 15:59:57 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,16 +64,28 @@ int	ft_unset_var(char *key, t_dlist **lst)
 int	ft_unset(t_cmd *cmd, t_dlist **lst)
 {
 	int		i;
+	int		error;
 
+	error = 0;
 	if (cmd->argv[1] == NULL)
 	{
-		error_builtin("unset", NULL, "not enough arguments");
+		error_builtin("unset", NULL, "not enough arguments", 1);
 		return (1);
 	}
 	i = 1;
 	while (cmd->argv[i])
 	{
-		ft_unset_var(cmd->argv[i++], lst);
+		if (var_is_valid_key(cmd->argv[i]))
+		{
+			if (ft_unset_var(cmd->argv[i++], lst) != 0)
+				error = 1;
+		}
+		else
+		{
+			error_builtin("unset", cmd->argv[i], "not a valid identifier", 1);
+			error = 1;
+		}
+		i++;
 	}
-	return (0);
+	return (error);
 }

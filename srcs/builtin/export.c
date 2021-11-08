@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 19:27:47 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/07 20:37:14 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/08 16:47:04 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,37 @@ void	strip_extra_spaces(char **token)
 		i++;
 	}
 	strip[j] = '\0';
+	free(*token);
 	*token = strip;
-	free(strip);
+}
+
+void	export_split_var(char **key, char **value, char *argv)
+{
+	int		i;
+
+	if (argv == NULL || !*argv)
+	{
+		*key = NULL;
+		*value = NULL;
+		return ;
+	}
+	*key = ft_strdup(argv);
+	i = 0;
+	while ((*key)[i] && (*key)[i] != '=')
+		i++;
+	if ((*key)[i] == '=')
+	{
+		*value = ft_strdup(&(*key)[i + 1]);
+	}
+	else
+		*value = NULL;
+	(*key)[i] = '\0';
 }
 
 void	ft_export_var(char *key, char *value, t_dlist **lst)
 {	
 	t_var	*var;
 
-	strip_extra_spaces(&value);
 	var = get_var(key, *lst);
 	if (var != NULL)
 	{
@@ -60,26 +82,29 @@ void	ft_export_var(char *key, char *value, t_dlist **lst)
 
 int	ft_single_export(char *argv, t_dlist **lst)
 {
-	char	**split;
+	char	*key;
+	char	*value;
 	int		error;
 
 	error = 0;
-	split = ft_splitn(argv, '=', 2);
-	if (split != NULL)
+	export_split_var(&key, &value, argv);
+	strip_extra_spaces(&value);
+	if (key != NULL)
 	{
-		if (var_is_valid_key(split[0]))
+		if (var_is_valid_key(key))
 		{
-			if (split[1] == NULL && ft_strchr(argv, '='))
-				ft_export_var(split[0], "", lst);
+			if (value == NULL && ft_strchr(argv, '='))
+				ft_export_var(key, "", lst);
 			else
-				ft_export_var(split[0], split[1], lst);
+				ft_export_var(key, value, lst);
 		}
 		else
 		{
-			error_builtin("export", split[0], "not a valid identifier");
 			error = 1;
+			error_builtin("export", argv, "not a valid identifier", error);
 		}
-		free_split(split);
+		ft_free(key);
+		ft_free(value);
 	}
 	return (error);
 }
