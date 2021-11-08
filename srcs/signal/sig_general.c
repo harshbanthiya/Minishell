@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 12:06:14 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/02 16:18:05 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/07 20:30:19 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	sigintr_handler(int signum)
 	}
 	else if (sh->sh_mode == 0)
 	{
-		p//rintf("trying to interrupt\n");
+		//printf("trying to interrupt\n");
 	}
 }
 

@@ -59,8 +59,8 @@ void	pre_order(t_node *search)
 {
 	if (search)
 	{
-		p//rintf("pre_order: %s \t", (char *)search->data);
-		p//rintf("node_type: %d \n", search->type);
+		//printf("pre_order: %s \t", (char *)search->data);
+		//printf("node_type: %d \n", search->type);
 		pre_order(search->left_child);
 		pre_order(search->right_child);
 	}

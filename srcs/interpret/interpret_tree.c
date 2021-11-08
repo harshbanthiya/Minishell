@@ -106,7 +106,7 @@ void    execute_tree(t_node  *head, t_dlist **env_list)
         while (i < global_pipe_index)
         {
             waitpid(*(global_pipe_pid + i), &status, 0);
-           // p//rintf("##status: %d\n", status);
+           // //printf("##status: %d\n", status);
             set_exit_code(status, NO_EXCODE);
             i++;
         }
