@@ -77,8 +77,8 @@ void    command_execute(t_cmd *command, t_dlist ** env_list)
     pid = fork();
     if (pid != 0)
         global_pipe_pid[global_pipe_test] = pid;
-    if (pid > 0)
-        printf("pid: %d\n", pid);
+    //if (pid > 0)
+        //p//rintf("pid: %d\n", pid);
     if (pid == 0)
     {
         signal(SIGINT, SIG_DFL);
@@ -99,7 +99,7 @@ void    command_execute(t_cmd *command, t_dlist ** env_list)
             path_arr = create_path_arr(*env_list);
             exec_with_path(command, path_arr, *env_list);
             free_path_arr(path_arr);
-            printf("command not found: \'%s\'\n", command->argv[0]);
+            p//rintf("command not found: \'%s\'\n", command->argv[0]);
             exit(127); /* Use the proper exit code here */
         }
         else 
@@ -107,7 +107,7 @@ void    command_execute(t_cmd *command, t_dlist ** env_list)
             if (execve(command->argv[0], command->argv, env_list_to_envp(*env_list)) == -1)
             {
                 dup2(stdout_fd, STDOUT_FILENO);
-                printf("commnand not found: \'%s'\n", command->argv[0]);
+                p//rintf("commnand not found: \'%s'\n", command->argv[0]);
                 exit(1); /* Use proper exit code */
             }
             else

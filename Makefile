@@ -13,8 +13,8 @@
 # Compilation
 CC		= gcc
 CFLAGS	= -Wall -Wextra -g
-C_OBJS	= $(CC) $(CFLAGS) $(INCS_FLAGS) -c $< -o $@
-C_MAIN	= $(CC) $(CFLAGS) $(INCS_FLAGS) -lcurses $(LIB_ALL)
+C_OBJS	= $(CC) $(CFLAGS) $(MINISHELL_TEST_FLAGS) $(INCS_FLAGS) -c $< -o $@
+C_MAIN	= $(CC) $(CFLAGS) $(MINISHELL_TEST_FLAGS) $(INCS_FLAGS) -lcurses $(LIB_ALL)
 #
 
 # Program

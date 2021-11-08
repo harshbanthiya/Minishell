@@ -46,7 +46,7 @@ int		ft_pwd(t_cmd *cmd, t_dlist **lst);
 
 int		ft_exit(t_cmd *cmd, t_dlist **lst);
 
-/* Printf minishell: builtname: str: msg  in fd 2 */
+/* printf minishell: builtname: str: msg  in fd 2 */
 void	error_builtin(char *builtname, char *str, char *msg);
 
 #endif

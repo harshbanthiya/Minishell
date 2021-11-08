@@ -61,25 +61,11 @@ t_node   *cmd_line(void)
     t_dlist  *save;
 
     save = global_current_token_node;
-<<<<<<< HEAD
-    if ((global_current_token_node = save, node = cmd_line1()) != NULL)
+    if ((global_current_token_node =save, node = cmd_line1()) != NULL)
         return (node);
     if ((global_current_token_node = save, node = cmd_line2()) != NULL)
         return (node);
-   if ((global_current_token_node = save, node = cmd_line3()) != NULL)
-=======
-    global_current_token_node = save;
-    node = cmd_line1();
-    if (node != NULL)
-        return (node);
-    global_current_token_node = save;
-    node = cmd_line2();
-    if (node != NULL)
-        return (node);
-    global_current_token_node = save;
-    node = cmd_line3();
-    if (node != NULL)
->>>>>>> b486cd166e77d110a201a095d0b086a4b89f1891
+    if ((global_current_token_node = save, node = cmd_line3()) != NULL)
         return (node);
     return (NULL);
 }
@@ -124,21 +110,10 @@ t_node   *job(void)
     t_dlist   *save;
 
     save = global_current_token_node;
-<<<<<<< HEAD
-   if ((global_current_token_node = save, node = job_1()) != NULL)
-        return node;
-   if ((global_current_token_node = save, node = job_2()) != NULL)
-        return node;
-=======
-    global_current_token_node = save;
-    node = job_1();
-    if (node != NULL)
+    if ((global_current_token_node = save, node = job_1()) != NULL)
         return (node);
-    global_current_token_node = save;
-    node = job_2();
-    if (node != NULL)
+    if ((global_current_token_node =save, node = job_2()) != NULL)
         return (node);
->>>>>>> b486cd166e77d110a201a095d0b086a4b89f1891
     return (NULL);
 }
 
@@ -160,7 +135,7 @@ t_node   *command(void)
         if (temp != NULL)
         {
             node_append_right(&redir_node, temp);
-            printf("redirection_node: %s\n", redir_node->data); /* comment printf later */    
+            p//rintf("redirection_node: %s\n", redir_node->data); /* comment p//rintf later */    
         }
         else if ((temp =simplecmd()) != NULL)
             node_append_right(&simplecmd_node, temp);

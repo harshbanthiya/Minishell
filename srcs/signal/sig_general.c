@@ -46,7 +46,7 @@ void	sigintr_handler(int signum)
 	}
 	else if (sh->sh_mode == 0)
 	{
-		printf("trying to interrupt\n");
+		p//rintf("trying to interrupt\n");
 	}
 }
 

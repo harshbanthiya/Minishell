@@ -18,7 +18,7 @@ int	ft_exit(t_cmd *cmd, t_dlist **lst)
 
 	lst = NULL;
 	exit_status = -1; /* -1 for failure, remember to define MACROS or have a struct to have consistent values */
-	printf("Command Count: %d\n", cmd->argc);
+	p//rintf("Command Count: %d\n", cmd->argc);
 	if (cmd->argc == 2)
 	{
 		exit_status = ft_atoi(cmd->argv[1]);
