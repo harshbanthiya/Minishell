@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 20:51:21 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/09 16:46:14 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/09 16:49:30 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,8 @@ int	ft_wildcmp(char *str, char *wild, int i, int j)
 		return (1);
 	else if (wild[j] == '*')
 	{
+		if (!wild[j + 1])
+			return (1);
 		while (str[i] != '\0')
 		{
 			if (ft_wildcmp(str, wild, i++, j + 1))
