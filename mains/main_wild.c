@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 20:51:21 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/09 11:58:02 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/09 14:56:46 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,31 +15,37 @@
 
 typedef struct	dirent	t_dirent;
 
-int	ft_wildcmp(char *str1, char *str2)
+int	ft_wildcmp(char *str, char *wild)
 {
-	if (!str1 || !str2 || !*str1 || !*str2)
+	int	last_i;
+	int	last_j;
+	int	i;
+	int	j;
+	if (!str || !wild || !*str || !*wild)
 		return (0);
-	while (*str1 == *str2 || *str2 == '*')
+	last_i = ft_strlen(str) - 1;
+	last_j = ft_strlen(wild) - 1;
+	i = 0;
+	j = 0;
+	while (wild[j] && wild[j] != '*')
+		if (str[i++] != wild[j++])
+			return (0);
+	if (!wild[j] && !str[i])
+		return (1);
+	while (wild[last_j] && wild[last_j] != '*')
+		if (str[last_i--] != wild[last_j--])
+			return (0);
+	while (wild[j] == '*' && wild[j + 1] == '*')
+		j++;
+	if (j >= last_j)
+		return (1);
+	while (i < last_i)
 	{
-		if (*str1 == *str2 && !*str2)
+		if (ft_wildcmp(&str[i], &wild[j + 1]))
 			return (1);
-		else if (*str2 == '*' && *(str2 + 1) == '*')
-			str2++;
-		else if (*str1 == *(str2 + 1))
-			str2++;
-		else if (*str1 == *str2)
-		{
-			str1++;
-			str2++;
-		}
-		else if (*str2 != '*' && *str1 != *str2)
-			break;
-		else if (!*str1)
-			break;
-		else
-			str1++;
+		i++;
 	}
-	return (0);
+	return(0);
 }
 
 char	*parse_expand_wild(char *str)
@@ -54,7 +60,7 @@ char	*parse_expand_wild(char *str)
 	wildstr = NULL;
 	while (entry)
 	{
-		if (ft_wildcmp(entry->d_name, str))
+		if (entry->d_name[0] != '.' && ft_wildcmp(entry->d_name, str))
 		{
 			if (wildstr == NULL)
 				temp = ft_calloc(1, sizeof(char));
