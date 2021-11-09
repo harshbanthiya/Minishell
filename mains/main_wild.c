@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 20:51:21 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/09 16:44:09 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/09 16:46:14 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ char	*parse_expand_wild(char *str)
 	t_dirent	*entry;
 	char		*wildstr;
 	char		*temp;
-	
+
 	pwd = opendir(get_pwd());
 	entry = readdir(pwd);
 	wildstr = NULL;
