@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 20:51:21 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/02 17:16:19 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/12 14:29:23 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	handle_input(char *str)
 	if (cmd.argv != NULL)
 	{
 		if (is_builtin(cmd.argv[0]))
-			run_builtin(&cmd, get_env(), 0);
+			run_builtin(cmd.argv, get_env(), 0);
 	}
 	ft_free(str);
 	free_split(cmd.argv);

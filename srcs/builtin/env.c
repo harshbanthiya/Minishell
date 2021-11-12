@@ -6,13 +6,13 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 19:27:41 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/05 15:10:50 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/12 13:38:49 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"minishell.h"
 
-/* Duplicate the env list, sort the new list and send it back */
+/* Duplicate the env list, sort the new list and return the sorted list */
 static t_dlist	*sort_env(t_dlist *env)
 {
 	t_dlist	*sorted;
@@ -77,12 +77,20 @@ int	ft_env_export(int fd)
 }
 
 /* Print the env list */
-int	ft_env(t_cmd *cmd, t_dlist **lst)
+int	ft_env(char **argv, t_dlist **lst)
 {
-	if (lst != NULL && !cmd->argv[1])
+	int	exit_code;
+
+	exit_code = 1;
+	if (lst != NULL && !argv[0])
 	{
 		print_env(1, *lst, 0);
-		return (0);
+		exit_code = 0;
 	}
-	return (126);
+	else
+	{
+		error_builtin("env", NULL, "too many arguments");
+		exit_code = 2;
+	}
+	return (exit_code);
 }

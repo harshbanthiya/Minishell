@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 20:14:21 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/02 13:29:31 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/12 16:42:42 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	*free_env(void *ptr)
 	return (NULL);
 }
 
-char		**env_list_to_envp(t_dlist *env_head)
+char	**env_list_to_envp(t_dlist *env_head)
 {
 	t_dlist	*temp;
 	int		i;
@@ -63,7 +63,8 @@ char		**env_list_to_envp(t_dlist *env_head)
 	temp = env_head;
 	i = lst_size(temp);
 	temp = env_head;
-	if (!(output = malloc(sizeof(char *) * (i + 1))))
+	output = malloc(sizeof(char *) * (i + 1));
+	if (output == NULL)
 		return (NULL);
 	i = 0;
 	while (temp)

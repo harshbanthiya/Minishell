@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 16:15:44 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/05 16:45:20 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/12 16:41:29 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,28 +44,28 @@ int	is_builtin(char *name)
 	return (0);
 }
 
-int	run_builtin(t_cmd *cmd, t_dlist **lst, int is_pipe)
+int	run_builtin(char **argv, t_dlist **lst, int is_pipe)
 {
 	int		exit_code;
 
 	is_pipe = 0;
 	exit_code = 1;
-	if (!cmd || !cmd->argv[0] || !is_builtin(cmd->argv[0]))
+	if (!argv || !argv[0] || !is_builtin(argv[0]))
 		return (1);
-	if (!ft_strcmp(cmd->argv[0], "export"))
-		exit_code = ft_export(cmd, lst);
-	else if (!ft_strcmp(cmd->argv[0], "unset"))
-		exit_code = ft_unset(cmd, lst);
-	else if (!ft_strcmp(cmd->argv[0], "echo"))
-		exit_code = ft_echo(cmd, lst);
-	else if (!ft_strcmp(cmd->argv[0], "env"))
-		exit_code = ft_env(cmd, lst);
-	else if (!ft_strcmp(cmd->argv[0], "exit"))
-		exit_code = ft_exit(cmd, lst);
-	else if (!ft_strcmp(cmd->argv[0], "cd"))
-		exit_code = ft_cd(cmd, lst);
-	else if (!ft_strcmp(cmd->argv[0], "pwd"))
-		exit_code = ft_pwd(cmd, lst);
+	if (!ft_strcmp(argv[0], "export"))
+		exit_code = ft_export(&argv[1], lst);
+	else if (!ft_strcmp(argv[0], "unset"))
+		exit_code = ft_unset(&argv[1], lst);
+	else if (!ft_strcmp(argv[0], "echo"))
+		exit_code = ft_echo(&argv[1], lst);
+	else if (!ft_strcmp(argv[0], "env"))
+		exit_code = ft_env(&argv[1], lst);
+	else if (!ft_strcmp(argv[0], "exit"))
+		exit_code = ft_exit(&argv[1], lst);
+	else if (!ft_strcmp(argv[0], "cd"))
+		exit_code = ft_cd(&argv[1], lst);
+	else if (!ft_strcmp(argv[0], "pwd"))
+		exit_code = ft_pwd(&argv[1], lst);
 	return (exit_code);
 }
 
@@ -102,62 +102,3 @@ void	error_builtin(char *builtname, char *str, char *msg)
 		ft_putendl_fd(msg, 2);
 	}
 }
-
-int            execute_builtin_in_child(t_cmd *cmd, t_dlist **env_list)
-{
-    int    ret;
-
-    ret = -1;
-    if (cmd->pipe->stdin_pipe || cmd->pipe->stdout_pipe)
-        if (!ft_strncmp(cmd->argv[0], "exit", ft_strlen(cmd->argv[0] + 1)))
-            ret = ft_exit(cmd, env_list);
-    if (ft_strncmp(cmd->argv[0], "echo", ft_strlen(cmd->argv[0]) + 1) == 0)
-        ret = ft_echo(cmd, env_list);
-    else if (ft_strncmp(cmd->argv[0], "pwd", ft_strlen(cmd->argv[0]) + 1) == 0)
-        ret = ft_pwd(cmd, env_list);
-    // else if ((ft_strncmp(cmd->argv[0], "export", \
-    //         ft_strlen(cmd->argv[0]) + 1) == 0) && (cmd->argc == 1))
-    //     ft_export(cmd, env_list);
-    // else if (ft_strncmp(cmd->argv[0], "env", ft_strlen(cmd->argv[0]) + 1) == 0)
-    //     ft_env(cmd, env_list);
-    return (ret);
-}
-
-int            execute_builtin_in_parent(t_cmd *cmd, t_dlist **env_list)
-{
-    int    ret;
-
-    ret = -1;
-    if (ft_strncmp(cmd->argv[0], "cd", ft_strlen(cmd->argv[0]) + 1) == 0)
-        ret = ft_cd(cmd, env_list);
-    else if (ft_strncmp(cmd->argv[0], "exit", ft_strlen(cmd->argv[0]) + 1) == 0)
-        ret = ft_exit(cmd, env_list);
-    else if (ft_strncmp(cmd->argv[0], "unset", \
-            ft_strlen(cmd->argv[0]) + 1) == 0)
-        ret = ft_unset(cmd, env_list);
-    // else if ((ft_strncmp(cmd->argv[0], "export", \
-    //         ft_strlen(cmd->argv[0]) + 1) == 0) && (cmd->argc > 1))
-    //     	ft_export(cmd, env_list);
-    return (ret);
-}
-
-// int			execute_builtin_in_child(t_cmd *cmd, t_dlist **env_list)
-// {
-// 	int	ret;
-
-// 	ret = -1;
-// 	if (cmd->pipe->stdin_pipe || cmd->pipe->stdout_pipe)
-// 		if (!ft_strncmp(cmd->argv[0], "exit", ft_strlen(cmd->argv[0] + 1)))
-// 			ret = ft_exit(cmd);
-// 	ret = run_builtin(cmd->argv[0], &cmd->argv[1]);
-// 	return (ret);
-// }
-
-// int			execute_builtin_in_parent(t_cmd *cmd, t_dlist **env_list)
-// {
-// 	int	ret;
-
-// 	ret = -1;
-// 	ret = run_builtin(cmd->argv[0], &cmd->argv[1]);
-// 	return (ret);
-// }

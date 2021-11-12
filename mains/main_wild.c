@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 20:51:21 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/09 16:49:30 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/12 11:47:07 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,69 +15,7 @@
 
 typedef struct	dirent	t_dirent;
 
-// int	ft_wildcmp(char *str, char *wild)
-// {
-// 	int	last_i;
-// 	int	last_j;
-// 	int	i;
-// 	int	j;
-// 	if (!str || !wild || !*str || !*wild)
-// 		return (0);
-// 	last_i = ft_strlen(str) - 1;
-// 	last_j = ft_strlen(wild) - 1;
-// 	i = 0;
-// 	j = 0;
-// 	while (wild[j] && wild[j] != '*')
-// 		if (str[i++] != wild[j++])
-// 			return (0);
-// 	if (!wild[j] && !str[i])
-// 		return (1);
-// 	while (wild[last_j] && wild[last_j] != '*')
-// 		if (str[last_i--] != wild[last_j--])
-// 			return (0);
-// 	while (wild[j] == '*' && wild[j + 1] == '*')
-// 		j++;
-// 	if (j >= last_j)
-// 		return (1);
-// 	while (i < last_i)
-// 	{
-// 		if (ft_wildcmp(&str[i], &wild[j + 1]))
-// 			return (1);
-// 		i++;
-// 	}
-// 	return(0);
-// }
-
-// int	ft_wildcmp(char *str, char *wild)
-// {
-// 	int	last_i;
-// 	int	last_j;
-// 	if (!str || !wild || !*str || !*wild)
-// 		return (0);
-// 	last_i = ft_strlen(str) - 1;
-// 	last_j = ft_strlen(wild) - 1;
-// 	while (wild[last_j] && wild[last_j] != '*')
-// 		if (str[last_i--] != wild[last_j--])
-// 			return (0);
-// 	while (*wild && *wild != '*')
-// 		if (*(str++) != *(wild++))
-// 			return (0);
-// 	if (!*wild && !str)
-// 		return (1);
-// 	while (*wild == '*' && *(wild + 1) == '*')
-// 		wild++;
-// 	if (!*wild || !*(wild + 1))
-// 		return (1);
-// 	while (*str)
-// 	{
-// 		if (ft_wildcmp(ft_strchr(str, *(wild + 1)), wild + 1))
-// 			return (1);
-// 		str++;
-// 	}
-// 	return(0);
-// }
-
-int	ft_wildcmp(char *str, char *wild, int i, int j)
+static int	ft_wildcmp(char *str, char *wild, int i, int j)
 {
 	int	n;
 

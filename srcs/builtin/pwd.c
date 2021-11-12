@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 19:27:49 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/02 17:00:38 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/12 14:41:56 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,25 @@ char	*get_pwd(void)
 	return (g_shell.pwd);
 }
 
-int	ft_pwd(t_cmd *cmd, t_dlist **lst)
+int	ft_pwd(char **argv, t_dlist **lst)
 {
 	char	*pwd;
 
 	lst = NULL;
-	if (cmd->argv[1])
-		return (-1);
+	if (argv[0])
+	{
+		error_builtin("pwd", NULL, "too many arguments");
+		return (2);
+	}
 	pwd = get_pwd();
 	if (pwd != NULL)
+	{
 		ft_putendl_fd(pwd, 1);
+	}
+	else
+	{
+		error_builtin("pwd", NULL, "pwd not declared");
+		return (2);
+	}
 	return (0);
 }

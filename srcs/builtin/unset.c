@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 19:27:51 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/05 16:39:38 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/12 12:38:52 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,19 +61,22 @@ int	ft_unset_var(char *key, t_dlist **lst)
 	return (0);
 }
 
-int	ft_unset(t_cmd *cmd, t_dlist **lst)
+int	ft_unset(char **argv, t_dlist **lst)
 {
 	int		i;
+	int		exit_code;
 
-	if (cmd->argv[1] == NULL)
+	exit_code = 0;
+	if (argv[0] == NULL)
 	{
 		error_builtin("unset", NULL, "not enough arguments");
-		return (1);
+		exit_code = 2;
+		return (exit_code);
 	}
-	i = 1;
-	while (cmd->argv[i])
+	i = 0;
+	while (argv[i])
 	{
-		ft_unset_var(cmd->argv[i++], lst);
+		exit_code = ft_unset_var(argv[i++], lst);
 	}
-	return (0);
+	return (exit_code);
 }
