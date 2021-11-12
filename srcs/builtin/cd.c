@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 19:27:43 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/02 16:55:14 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/12 13:37:27 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,14 +53,14 @@ char	*parse_directory(char *path)
 	return (new_path);
 }
 
-int	ft_cd(t_cmd *cmd, t_dlist **lst)
+int	ft_cd(char **argv, t_dlist **lst)
 {
 	char	*old_pwd;
 	char	*new_pwd;
 	int		exit_code;
 
 	old_pwd = getcwd(NULL, 0);
-	if (chdir(cmd->argv[1]) == 0)
+	if (chdir(argv[0]) == 0)
 	{
 		new_pwd = getcwd(NULL, 0);
 		if (get_var("OLDPWD", *get_env()))
@@ -72,8 +72,8 @@ int	ft_cd(t_cmd *cmd, t_dlist **lst)
 	}
 	else
 	{
-		perror("cd: ");
-		exit_code = -1;
+		error_builtin("cd", argv[0], "no such file or directory");
+		exit_code = 1;
 	}
 	ft_free(old_pwd);
 	return (exit_code);

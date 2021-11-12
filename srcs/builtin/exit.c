@@ -6,13 +6,13 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 19:27:36 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/07 20:30:37 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/12 16:57:04 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"minishell.h"
 
-int	ft_exit(t_cmd *cmd, t_dlist **lst)
+int	ft_exit(char **argv, t_dlist **lst)
 {
 	int	exit_status;
 

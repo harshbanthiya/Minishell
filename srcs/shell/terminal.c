@@ -6,37 +6,11 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 12:32:05 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/05 16:46:33 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/12 16:47:01 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"minishell.h"
-
-void	init_terms(t_shell *sh, int term_fd)
-{
-	t_term	term;
-
-	tcgetattr(term_fd, &sh->def_term);
-	tcgetattr(term_fd, &term);
-	set_mode_inter(&term);
-	tcsetattr(term_fd, TCSANOW, &term);
-}
-
-/* should return the current terminal fd; need a tracked terminal fd */
-int	term_get_active_fd(void)
-{
-	return (1);
-}
-
-void	term_restore_default(int term_fd)
-{
-	t_shell	*sh;
-
-	sh = get_shell();
-	if (sh == NULL)
-		return ;
-	tcsetattr(term_fd, TCSANOW, &sh->def_term);
-}
 
 void	print_welcome(void)
 {
@@ -65,8 +39,9 @@ char	*get_prompt(void)
 		return (NULL);
 	prompt = sh->prompt;
 	ft_bzero(prompt, 100);
-	ft_strlcat(prompt, get_pwd(), 96);
-	ft_strlcat(prompt, " > ", 100);
+	ft_strlcat(prompt, "\033[35m", 6);
+	ft_strlcat(prompt, ft_strrchr(get_pwd(), '/'), 90);
+	ft_strlcat(prompt, " > \033[0m", 100);
 	return (prompt);
 }
 

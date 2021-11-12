@@ -6,15 +6,15 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 15:42:48 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/04 16:24:41 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/12 16:43:22 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"minishell.h"
 
-int		var_is_valid_key(char *env_key)
+int	var_is_valid_key(char *env_key)
 {
-	int idx;
+	int	idx;
 
 	idx = 0;
 	if (env_key && (*env_key == '_' || ft_isalpha(env_key[idx])))

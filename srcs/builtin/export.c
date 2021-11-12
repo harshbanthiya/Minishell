@@ -6,34 +6,36 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 19:27:47 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/08 16:47:04 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/12 16:57:46 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"minishell.h"
 
-void	strip_extra_spaces(char **token)
+char	*strip_extra_spaces(char *token)
 {
 	char	*strip;
+	char	*temp;
 	int		i;
 	int		j;
 
 	i = 0;
 	j = 0;
-	if (token == NULL || *token == NULL)
-		return ;
-	strip = ft_strdup(*token);
-	while (strip[i])
+	if (token == NULL)
+		return (NULL);
+	temp = ft_strdup(token);
+	while (temp[i])
 	{
-		if (!(strip[i] == SPACE && strip[i + 1] == SPACE))
+		if (!(temp[i] == SPACE && temp[i + 1] == SPACE))
 		{
-			strip[j++] = strip[i];
+			temp[j++] = temp[i];
 		}
 		i++;
 	}
-	strip[j] = '\0';
-	free(*token);
-	*token = strip;
+	temp[j] = '\0';
+	strip = ft_strdup(temp);
+	ft_free(temp);
+	return (strip);
 }
 
 void	export_split_var(char **key, char **value, char *argv)
@@ -62,34 +64,37 @@ void	export_split_var(char **key, char **value, char *argv)
 void	ft_export_var(char *key, char *value, t_dlist **lst)
 {	
 	t_var	*var;
+	char	*strip;
 
+	strip = strip_extra_spaces(value);
 	var = get_var(key, *lst);
 	if (var != NULL)
 	{
-		if (value != NULL)
+		if (strip != NULL)
 		{
 			ft_free(var->value);
-			var->value = ft_strdup(value);
+			var->value = ft_strdup(strip);
 		}
-		return ;
 	}
-	if (value == NULL)
-		var = new_var(ft_strdup(key), NULL);
 	else
-		var = new_var(ft_strdup(key), ft_strdup(value));
-	lst_add_back(lst, lst_new_node(var));
+	{
+		if (strip == NULL)
+			var = new_var(ft_strdup(key), NULL);
+		else
+			var = new_var(ft_strdup(key), ft_strdup(strip));
+		lst_add_back(lst, lst_new_node(var));
+	}
+	ft_free(strip);
 }
 
 int	ft_single_export(char *argv, t_dlist **lst)
 {
-	char	*key;
-	char	*value;
-	int		error;
+	char	**split;
+	int		exit_code;
 
-	error = 0;
-	export_split_var(&key, &value, argv);
-	strip_extra_spaces(&value);
-	if (key != NULL)
+	exit_code = 0;
+	split = ft_splitn(argv, '=', 2);
+	if (split != NULL)
 	{
 		if (var_is_valid_key(key))
 		{
@@ -100,29 +105,29 @@ int	ft_single_export(char *argv, t_dlist **lst)
 		}
 		else
 		{
-			error = 1;
-			error_builtin("export", argv, "not a valid identifier", error);
+			error_builtin("export", split[0], "not a valid identifier");
+			exit_code = 1;
 		}
 		ft_free(key);
 		ft_free(value);
 	}
-	return (error);
+	return (exit_code);
 }
 
-int	ft_export(t_cmd *cmd, t_dlist **lst)
+int	ft_export(char **argv, t_dlist **lst)
 {	
 	int		i;
-	int		error;
+	int		exit_code;
 
-	error = 0;
-	if (cmd->argv[1] == NULL)
+	exit_code = 0;
+	if (argv[0] == NULL)
 		return (ft_env_export(1));
-	i = 1;
-	while (cmd->argv[i] != NULL)
+	i = 0;
+	while (argv[i] != NULL)
 	{
-		if (ft_single_export(cmd->argv[i], lst) != 0)
-			error = 1;
+		if (ft_single_export(argv[i], lst) != 0)
+			exit_code = 1;
 		i++;
 	}
-	return (error);
+	return (exit_code);
 }

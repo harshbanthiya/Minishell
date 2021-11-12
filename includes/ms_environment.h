@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 18:43:33 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/07 16:36:29 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/12 16:56:10 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ t_dlist	**get_env(void);
 int		ft_env_export(int fd);
 t_var	*get_var(char *key, t_dlist *list);
 char	*get_var_value(char *key, t_dlist *list);
+void	var_set_value(char *key, char *value, t_dlist *list);
 t_var	*new_var(char *key, char *value);
 void	*dup_var(void *ptr);
 void	print_var(int fd, t_var *var);

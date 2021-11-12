@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+         #
+#    By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/09 15:31:26 by sfournie          #+#    #+#              #
-#    Updated: 2021/11/08 22:49:26 by hbanthiy         ###   ########.fr        #
+#    Updated: 2021/11/12 16:59:36 by sfournie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,6 +62,7 @@ MAIN_PARSE	= $(DIR_MAINS)/main_parse.c
 MAIN_TERM	= $(DIR_MAINS)/main_term.c
 MAIN_SIG	= $(DIR_MAINS)/main_signal.c
 MAIN_TREE	= $(DIR_MAINS)/main_tree.c
+MAIN_WILD	= $(DIR_MAINS)/main_wild.c
 
 # Headers
 _HEADERS	=	builtin.h dlist.h environment.h \
@@ -123,6 +124,10 @@ $(NAME)	: $(DIR_INCS) $(LIB_LFT) $(SRCS) $(MAIN) $(DIR_OBJS) $(OBJS)
 $(DIR_OBJS)	: 
 		@ mkdir objs
 
+wild	: $(MAIN_WILD) _wild $(NAME)
+_wild	: 
+		$(eval MAIN=$(MAIN_WILD))
+
 parse	: $(MAIN_PARSE) _parse $(NAME)
 _parse	: 
 		$(eval MAIN=$(MAIN_PARSE))
@@ -160,4 +165,4 @@ bonus	: $(DIR_I) $(LFT) $(SRC) $(DIR_O) $(OBJ) $(MAIN_B)
 		# $(shell echo "Compiling minishell with bonus done!")
 		# $(shell echo "Executable is : $(NAME)")
 
-.PHONY	: all re clean fclean bonus parse term tree signal
+.PHONY	: all re clean fclean bonus parse term tree signal wild

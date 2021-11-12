@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sig_general.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
+/*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 12:06:14 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/09 00:29:31 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/12 16:55:51 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,12 @@ void	sigintr_handler(int signum)
 /* non-interactive mode : */
 void	sigquit_handler(int signum)
 {
-	rl_replace_line("", 1);
-	rl_on_new_line();
-	rl_redisplay();
-	ft_putstr_fd("Exiting minishell\n", 1);
-	exit_shell();
-	exit(1);
+	// rl_replace_line("", 1);
+	// rl_on_new_line();
+	// rl_redisplay();
+	// ft_putstr_fd("Exiting minishell\n", 1);
+	// exit_shell();
+	// exit(1);
 }
 
 void	sigchld_handler(int signum)
