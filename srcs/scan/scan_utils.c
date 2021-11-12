@@ -29,3 +29,10 @@ int     is_end_str(char chr, t_scan_quotes *flag)
         return (true);
     return (false);
 }
+
+void	put_err_msg(char *str)
+{
+	ft_putstr_fd("Error: ", STDERR_FILENO);
+	ft_putendl_fd(str, STDERR_FILENO);
+}
+

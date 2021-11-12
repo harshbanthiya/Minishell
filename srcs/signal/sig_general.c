@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sig_general.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
+/*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 12:06:14 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/07 20:30:19 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/09 00:29:31 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	sigintr_handler(int signum)
 		rl_replace_line("", 1);
 		rl_on_new_line();
 		rl_redisplay();
+		set_status(128 + signum);
 	}
 	else if (sh->sh_mode == 0)
 	{

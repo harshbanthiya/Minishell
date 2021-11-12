@@ -1,5 +1,13 @@
 #include "minishell.h"
 
+void    parse_die(void)
+{
+    int     *nullpoint;
+
+    nullpoint = NULL;
+    nullpoint[0] = 0xD1E; //will produce error: invalid memory address
+}
+
 void    node_attach_branch(t_node *root, t_node *left, t_node *right)
 {
     if (root == NULL)
