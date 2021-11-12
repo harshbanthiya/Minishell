@@ -68,11 +68,7 @@ void    command_execute(t_cmd *command, t_dlist ** env_list)
     if (!command->pipe->stdin_pipe && !command->pipe->stdout_pipe)
     {
         // if ((global_exit_code = execute_builtin_in_parent(command, env_list)) >= 0)
-<<<<<<< HEAD
-		if ((global_exit_code = run_builtin(command, env_list, 0)) > 0)
-=======
 		if ((global_exit_code = run_builtin(command->argv, env_list, 0)) >= 0)
->>>>>>> develop
         {
             global_pipe_index = 0;
             return ;
@@ -95,13 +91,8 @@ void    command_execute(t_cmd *command, t_dlist ** env_list)
         // write stdio to pipe if present
         if (command->pipe->stdout_pipe)
             dup2(command->pipe->write_pipe, STDOUT_FILENO);
-<<<<<<< HEAD
-        internal_errno = run_builtin(command, env_list, 1);
-        if (internal_errno > 0)
-=======
         internal_errno = run_builtin(command->argv, env_list, 1);
         if (internal_errno >= 0)
->>>>>>> develop
             exit(internal_errno);
         if (!command->has_path)
         {
