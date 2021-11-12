@@ -6,15 +6,15 @@
 #    By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/09 15:31:26 by sfournie          #+#    #+#              #
-#    Updated: 2021/11/09 11:05:08 by sfournie         ###   ########.fr        #
+#    Updated: 2021/11/12 16:59:36 by sfournie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Compilation
 CC		= gcc
 CFLAGS	= -Wall -Wextra -g
-C_OBJS	= $(CC) $(CFLAGS) $(INCS_FLAGS) -c $< -o $@
-C_MAIN	= $(CC) $(CFLAGS) $(INCS_FLAGS) -lcurses $(LIB_ALL)
+C_OBJS	= $(CC) $(CFLAGS) $(MINISHELL_TEST_FLAGS) $(INCS_FLAGS) -c $< -o $@
+C_MAIN	= $(CC) $(CFLAGS) $(MINISHELL_TEST_FLAGS) $(INCS_FLAGS) -lcurses $(LIB_ALL)
 #
 
 # Program
@@ -56,7 +56,7 @@ MK_LFT		= make -C $(DIR_LFT)
 #
 
 # Mains
-MAIN		= $(DIR_MAINS)/main_general.c
+MAIN		= $(DIR_MAINS)/minishell.c
 MAIN_ENV	= $(DIR_MAINS)/main_env.c
 MAIN_PARSE	= $(DIR_MAINS)/main_parse.c
 MAIN_TERM	= $(DIR_MAINS)/main_term.c
@@ -85,7 +85,8 @@ SRC	= 	environment.c variable.c variable_print.c variable_utils.c\
 		builtin_utils.c \
 		interpret_utils.c interpret_tree.c \
 		parse_tree.c parse_utils.c scan_utils.c token_list.c \
-		cmd_execute.c cmd.c handle_quotes.c cmd_utils.c
+		cmd_execute.c cmd.c handle_quotes.c cmd_utils.c \
+		replace_env.c replace_env_utils.c cmd_status.c interactive_shell.c
 
 _OBJ	= $(SRC:.c=.o)
 OBJ		= $(patsubst %,$(DIR_OBJS)/%,$(_OBJ))

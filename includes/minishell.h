@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
+/*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 18:43:33 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/05 16:08:58 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/09 01:37:25 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@
 # include	"ms_shell.h"
 # include	"ms_signal.h"
 # include	"ms_utility.h"
+# include   "ms_tree.h"
+# include   "ms_parse.h"
 
 /* Globals and constants made for ease of testing remove later */
 t_dlist  *global_current_token_node;
@@ -46,7 +48,6 @@ int     global_exit_code;
 # define EXIT_SUCCESS	0
 # define NO_EXCODE		-1
 # define NO_STATUS		-1
-# define SPACE			32
 # define SEMICOLON		59
 # define GREAT			62
 # define GREATGREAT		2
@@ -58,13 +59,13 @@ int     global_exit_code;
 # define STRING			1
 # define BACKSLASH		92
 # define BUFF_SIZE		4096
-
+/*
 typedef struct s_token
 {
 	char	*data;
 	int		type;
 }						t_token;
-
+*/
 typedef struct			s_scan_quotes
 {
 	int		s_quote;
@@ -84,27 +85,6 @@ typedef struct			s_rplc_env_node
 	int		crr;
 }						t_rplc_env_node;
 
-typedef struct			s_node
-{
-	int				      type;
-	char			      *data;
-	struct s_node	  *left_child;
-	struct s_node	  *right_child;
-}						t_node;
-
-typedef enum e_nodetype
-{
-  NODE_PIPE = 100,
-  NODE_REDIRECT_IN,
-  NODE_REDIRECT_OUT,
-  NODE_CMDPATH,
-  NODE_ARGUMENT,
-  NODE_REDIRECT_DOUBLEOUT,
-  NODE_REDIRECT_DOUBLEIN,
-  NODE_DATA,
-  NODE_SEQ,
-} t_node_type;
-
 typedef struct  s_pipe
 {
     bool    stdin_pipe;
@@ -120,6 +100,7 @@ typedef struct  s_cmd
     char        **argv;
     t_pipe      *pipe;
     t_node      *redir;
+    t_node      *heredoc;
 }t_cmd;
 
 /* Global shell structure declaration */
@@ -144,7 +125,7 @@ t_token   *create_token(char *line, int start, int end, int type);
 int     generate_special_token(t_dlist **token_list, char *line, int start_index);
 int     generate_string_token(t_dlist  **token_list, char *line, int start_index);
 int     make_token_list(t_dlist **token_list, char *line);
-
+void	  put_err_msg(char *str);
 /* Replace Env */
 char    *replace_env(char *str, t_dlist *env_list);
 char    *join_str_to_str(char *result, char *str, int start, int end);
@@ -176,6 +157,8 @@ void    node_append_right(t_node **root, t_node *right);
 void    node_attach_branch(t_node *root, t_node *left, t_node *right);
 void	  node_delete(t_node *node);
 void	  pre_order(t_node *search);
+void	  set_exit_code(int status, int excode);
+void    parse_die(void);
 
 /* Interpret */
 void    execute_tree(t_node  *head, t_dlist **env_list);
@@ -221,5 +204,11 @@ char	*get_env_val(char *key, t_dlist *env_list);
 void			ft_err(char *pathname, char *argv_1);
 void	    ctrl_d_exit(void);
 char	    *append_char(char *org, char c);
+
+/* Command Status */
+int	        get_status(void);
+void	    set_status(int status_value);
+int	        set_status_and_ret(int status_value, int ret_value);
+void	    show_parse_err(char *input_str);
 
 #endif

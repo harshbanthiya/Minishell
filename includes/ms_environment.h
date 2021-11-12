@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 18:43:33 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/12 12:50:27 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/12 16:56:10 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ typedef struct s_var
 }				t_var;
 
 /* Fill the environment list with (envp) */
-t_dlist	*init_env(char **envp);	
+t_dlist	*sh_init_env(char **envp);	
 
 t_dlist	**get_env(void);
 int		ft_env_export(int fd);

@@ -18,7 +18,7 @@ void    command_external_redir(t_cmd *command)
         }
         else if (command->redir->type == NODE_REDIRECT_OUT)
         {
-            fd = open(command->redir->data, O_WRONLY | O_TRUNC | O_CREAT ); /* read up S_IRUSR S_IRGRP S_IWGRP S_IWUSRon signals and add here in open statements */
+            fd = open(command->redir->data, O_WRONLY | O_TRUNC | O_CREAT | S_IRUSR | S_IRGRP | S_IWGRP | S_IWUSR); /* read up S_IRUSR S_IRGRP S_IWGRP S_IWUSRon signals and add here in open statements */
             if (fd == -1)
             {
                 perror(command->redir->data);
@@ -28,7 +28,7 @@ void    command_external_redir(t_cmd *command)
         }
         else if (command->redir->type == NODE_REDIRECT_DOUBLEOUT)
         {
-            fd = open(command->redir->data, O_WRONLY | O_APPEND | O_CREAT);
+            fd = open(command->redir->data, O_WRONLY | O_APPEND | O_CREAT | S_IRUSR | S_IRGRP | S_IWGRP | S_IWUSR);
             if (fd == -1)
             {
                 perror(command->redir->data);
@@ -38,13 +38,13 @@ void    command_external_redir(t_cmd *command)
         }
         else if (command->redir->type == NODE_REDIRECT_DOUBLEIN)
         {
-            fd = open(TMPFILE, O_CREAT | O_TRUNC | O_RDWR, 0777);
+            fd = open(TMPFILE, O_CREAT | O_TRUNC | O_RDWR | S_IRUSR | S_IRGRP | S_IWGRP | S_IWUSR, 0777);
             if (fd == -1)
             {
                 perror(command->redir->data);
                 exit(1);
             }
-            
+            dup2(STDIN_FILENO, fd);
         }
         /* Add Heredoc logic here */
         command->redir = command->redir->right_child;
@@ -68,7 +68,11 @@ void    command_execute(t_cmd *command, t_dlist ** env_list)
     if (!command->pipe->stdin_pipe && !command->pipe->stdout_pipe)
     {
         // if ((global_exit_code = execute_builtin_in_parent(command, env_list)) >= 0)
+<<<<<<< HEAD
+		if ((global_exit_code = run_builtin(command, env_list, 0)) > 0)
+=======
 		if ((global_exit_code = run_builtin(command->argv, env_list, 0)) >= 0)
+>>>>>>> develop
         {
             global_pipe_index = 0;
             return ;
@@ -77,10 +81,12 @@ void    command_execute(t_cmd *command, t_dlist ** env_list)
     pid = fork();
     if (pid != 0)
         global_pipe_pid[global_pipe_test] = pid;
-    if (pid > 0)
-        printf("pid: %d\n", pid);
+    //if (pid > 0)
+        ////printf("pid: %d\n", pid);
     if (pid == 0)
     {
+        signal(SIGINT, SIG_DFL);
+        signal(SIGQUIT, SIG_DFL);
         command_external_redir(command);
         stdout_fd = dup(STDOUT_FILENO);
         // read stdin from pipe if present
@@ -89,15 +95,20 @@ void    command_execute(t_cmd *command, t_dlist ** env_list)
         // write stdio to pipe if present
         if (command->pipe->stdout_pipe)
             dup2(command->pipe->write_pipe, STDOUT_FILENO);
+<<<<<<< HEAD
+        internal_errno = run_builtin(command, env_list, 1);
+        if (internal_errno > 0)
+=======
         internal_errno = run_builtin(command->argv, env_list, 1);
         if (internal_errno >= 0)
+>>>>>>> develop
             exit(internal_errno);
         if (!command->has_path)
         {
             path_arr = create_path_arr(*env_list);
             exec_with_path(command, path_arr, *env_list);
             free_path_arr(path_arr);
-            printf("command not found: \'%s\'\n", command->argv[0]);
+            //printf("command not found: \'%s\'\n", command->argv[0]);
             exit(127); /* Use the proper exit code here */
         }
         else 
@@ -105,7 +116,7 @@ void    command_execute(t_cmd *command, t_dlist ** env_list)
             if (execve(command->argv[0], command->argv, env_list_to_envp(*env_list)) == -1)
             {
                 dup2(stdout_fd, STDOUT_FILENO);
-                printf("commnand not found: \'%s'\n", command->argv[0]);
+                //printf("commnand not found: \'%s'\n", command->argv[0]);
                 exit(1); /* Use proper exit code */
             }
             else

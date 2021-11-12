@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 10:02:42 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/12 15:48:45 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/12 16:55:48 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void	init_shell(char **envp)
 		ft_free(pwd);
 	}
 	sh.sh_mode = 1;
+	sh.status = 0;
 	g_shell = sh;
 }
 
