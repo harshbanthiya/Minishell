@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 19:27:49 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/12 14:41:56 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/14 14:04:41 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	ft_pwd(char **argv, t_dlist **lst)
 	if (argv[0])
 	{
 		error_builtin("pwd", NULL, "too many arguments");
-		return (2);
+		return (1);
 	}
 	pwd = get_pwd();
 	if (pwd != NULL)

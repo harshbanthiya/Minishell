@@ -6,11 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 19:27:51 by sfournie          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2021/11/08 15:59:57 by sfournie         ###   ########.fr       */
-=======
-/*   Updated: 2021/11/12 12:38:52 by sfournie         ###   ########.fr       */
->>>>>>> develop
+/*   Updated: 2021/11/14 14:02:30 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +70,7 @@ int	ft_unset(char **argv, t_dlist **lst)
 	if (argv[0] == NULL)
 	{
 		error_builtin("unset", NULL, "not enough arguments");
-		exit_code = 2;
+		exit_code = 1;
 		return (exit_code);
 	}
 	i = 0;

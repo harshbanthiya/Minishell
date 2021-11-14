@@ -6,11 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 16:15:44 by sfournie          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2021/11/08 16:52:34 by sfournie         ###   ########.fr       */
-=======
-/*   Updated: 2021/11/12 16:41:29 by sfournie         ###   ########.fr       */
->>>>>>> develop
+/*   Updated: 2021/11/14 14:05:33 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +80,7 @@ char	**get_builtins(void)
 	return (NULL);
 }
 
-void	error_builtin(char *builtname, char *str, char *msg, int errcode)
+void	error_builtin(char *builtname, char *str, char *msg)
 {
 	ft_putstr_fd("minishell", 2);
 	if (builtname != NULL)
@@ -104,5 +100,4 @@ void	error_builtin(char *builtname, char *str, char *msg, int errcode)
 		ft_putstr_fd(": ", 2);
 		ft_putendl_fd(msg, 2);
 	}
-	errno = errcode;
 }

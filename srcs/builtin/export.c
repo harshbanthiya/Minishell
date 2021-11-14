@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 19:27:47 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/12 16:57:46 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/14 14:02:21 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,20 +96,19 @@ int	ft_single_export(char *argv, t_dlist **lst)
 	split = ft_splitn(argv, '=', 2);
 	if (split != NULL)
 	{
-		if (var_is_valid_key(key))
+		if (var_is_valid_key(split[0]))
 		{
-			if (value == NULL && ft_strchr(argv, '='))
-				ft_export_var(key, "", lst);
+			if (split[1] == NULL && ft_strchr(argv, '='))
+				ft_export_var(split[0], "", lst);
 			else
-				ft_export_var(key, value, lst);
+				ft_export_var(split[0], split[1], lst);
 		}
 		else
 		{
 			error_builtin("export", split[0], "not a valid identifier");
 			exit_code = 1;
 		}
-		ft_free(key);
-		ft_free(value);
+		free_split(split);
 	}
 	return (exit_code);
 }

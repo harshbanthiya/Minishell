@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 10:02:42 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/12 16:55:48 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/14 14:03:37 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	init_shell(char **envp)
 	char	*pwd;
 
 	if (envp != NULL)
-		sh.env = init_env(envp);
+		sh.env = ish_nit_env(envp);
 	sh_lvl_increment(&sh);
 	sh.builtins = init_builtins();
 	init_signals();

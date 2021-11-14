@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 18:43:33 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/12 16:56:06 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/14 14:02:38 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,6 @@ int		ft_pwd(char **argv, t_dlist **lst);
 int		ft_exit(char **argv, t_dlist **lst);
 
 /* printf minishell: builtname: str: msg  in fd 2 */
-void	error_builtin(char *builtname, char *str, char *msg, int errcode);
+void	error_builtin(char *builtname, char *str, char *msg);
 
 #endif
