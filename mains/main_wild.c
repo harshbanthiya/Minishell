@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 20:51:21 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/12 11:47:07 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/14 15:00:38 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int	main(int argn, char **argv, char **envp)
 	// envp[0] = NULL;
 	argn = 0;
 	argv = NULL;
-	init_shell(envp);
+	sh_init(envp);
 	print_welcome();
 	user_in = ft_readline();
 	while (user_in != NULL && *user_in)

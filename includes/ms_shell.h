@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 18:43:33 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/14 14:03:25 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/14 15:01:06 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ typedef struct s_shell
 }				t_shell;
 
 /* Master init function. Makes all the init calls needed. */
-void	init_shell(char **envp);
+void	sh_init(char **envp);
 t_shell	*get_shell(void);
-void	sh_change_mode(int mode);
-int		get_sh_mode(void);
+void	sh_change_mode(t_shell *sh, int mode);
+int		sh_get_mode(void);
 void	exit_shell(void);
 void	free_shell(void);
 char	*ft_readline(void);

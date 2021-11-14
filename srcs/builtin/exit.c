@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 19:27:36 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/12 16:57:04 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/14 14:09:23 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,16 @@ int	ft_exit(char **argv, t_dlist **lst)
 
 	lst = NULL;
 	exit_status = -1; /* -1 for failure, remember to define MACROS or have a struct to have consistent values */
-	//printf("Command Count: %d\n", cmd->argc);
-	if (cmd->argc == 2)
-	{
-		exit_status = ft_atoi(cmd->argv[1]);
-		exit(exit_status);
-	}
-	else
-	{
-		ft_putstr_fd("exit: too many args\n", 1);
-		exit_status = 1;
-	}
+	// //printf("Command Count: %d\n", cmd->argc);
+	// if (cmd->argc == 2)
+	// {
+	// 	exit_status = ft_atoi(cmd->argv[1]);
+	// 	exit(exit_status);
+	// }
+	// else
+	// {
+	// 	ft_putstr_fd("exit: too many args\n", 1);
+	// 	exit_status = 1;
+	// }
 	return (exit_status);
 }

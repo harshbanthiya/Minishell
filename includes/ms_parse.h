@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_parse.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
+/*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 00:08:09 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/09 00:37:17 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/14 14:08:52 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ struct          s_parse_buffer;
 typedef int     t_scan_getc(struct s_parse_buffer *buff);
 typedef void    t_scan_ungetc(struct s_parse_buffer *buff);
 
+typedef struct  s_parse_ast	t_parse_ast;
+
 typedef struct  s_parse_buffer
 {
     char            buffer[PARSE_BUFF_SIZE * 100];
@@ -30,19 +32,19 @@ typedef struct  s_parse_buffer
     void            *data;
 }t_parse_buffer;
 
-typedef enum e_parse_ast_type
-{
-	ASTNODE_NONE,
-	ASTNODE_STRING,
-	ASTNODE_REDIRECTION,
-	ASTNODE_ARGUMENTS,
-	ASTNODE_COMMAND,
-	ASTNODE_PIPED_COMMANDS,
-	ASTNODE_DELIMITER,
-	ASTNODE_SEQ_COMMANDS,
-	ASTNODE_COMMAND_LINE,
-	ASTNODE_INVALID,
-}	t_parse_ast_type;
+// typedef enum e_parse_ast_type
+// {
+// 	ASTNODE_NONE,
+// 	ASTNODE_STRING,
+// 	ASTNODE_REDIRECTION,
+// 	ASTNODE_ARGUMENTS,
+// 	ASTNODE_COMMAND,
+// 	ASTNODE_PIPED_COMMANDS,
+// 	ASTNODE_DELIMITER,
+// 	ASTNODE_SEQ_COMMANDS,
+// 	ASTNODE_COMMAND_LINE,
+// 	ASTNODE_INVALID,
+// }	t_parse_ast_type;
 
 typedef struct s_parse_node_string
 {

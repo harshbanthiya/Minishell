@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 20:51:21 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/12 14:29:23 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/14 15:17:17 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,27 @@
 
 static int	handle_input(char *str)
 {
-	t_cmd	cmd;
-
+	char	**split;
+	
 	str = parse_cmdline(str);
-	cmd.argv = ft_split(str, ' ');
-	if (cmd.argv != NULL)
+	split = ft_split(str, ' ');
+	if (split != NULL)
 	{
-		if (is_builtin(cmd.argv[0]))
-			run_builtin(cmd.argv, get_env(), 0);
+		if (!ft_strcmp(split[0], "0"))
+		{
+			sh_change_mode(get_shell(), 0);
+		}
+		else if (!ft_strcmp(split[0], "1"))
+		{
+			sh_change_mode(get_shell(), 1);
+		}
+		else if (is_builtin(split[0]))
+		{
+			set_status(run_builtin(split, get_env(), 0));
+		}
 	}
 	ft_free(str);
-	free_split(cmd.argv);
+	free_split(split);
 	return (0);
 }
 
@@ -35,8 +45,7 @@ int	main(int argn, char **argv, char **envp)
 	// envp[0] = NULL;
 	argn = 0;
 	argv = NULL;
-	init_shell(envp);
-	init_signals();
+	sh_init(envp);
 	print_welcome();
 	user_in = ft_readline();
 	while (user_in != NULL && *user_in)
