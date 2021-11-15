@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+         #
+#    By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/09 15:31:26 by sfournie          #+#    #+#              #
-#    Updated: 2021/11/15 08:37:49 by hbanthiy         ###   ########.fr        #
+#    Updated: 2021/11/15 13:36:36 by sfournie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,11 +57,7 @@ MK_LFT		= make -C $(DIR_LFT)
 
 # Mains
 MAIN		= $(DIR_MAINS)/minishell.c
-MAIN_ENV	= $(DIR_MAINS)/main_env.c
-MAIN_PARSE	= $(DIR_MAINS)/main_parse.c
-MAIN_TERM	= $(DIR_MAINS)/main_term.c
-MAIN_SIG	= $(DIR_MAINS)/main_signal.c
-MAIN_TREE	= $(DIR_MAINS)/main_tree.c
+MAIN_GEN	= $(DIR_MAINS)/main_general.c
 MAIN_WILD	= $(DIR_MAINS)/main_wild.c
 
 # Headers
@@ -82,7 +78,7 @@ SRC	= 	environment.c variable.c variable_print.c variable_utils.c\
 		dlist.c node.c \
 		cd.c echo.c env.c exit.c export.c pwd.c unset.c \
 		expand.c parse.c c_types.c cleanup.c\
-		builtin_utils.c \
+		builtin_utils.c cmd_status.c\
 		interpret_utils.c interpret_tree.c \
 		parse_tree.c parse_utils.c scan_utils.c token_list.c \
 		cmd_execute.c cmd.c handle_quotes.c cmd_utils.c \
@@ -128,22 +124,9 @@ wild	: $(MAIN_WILD) _wild $(NAME)
 _wild	: 
 		$(eval MAIN=$(MAIN_WILD))
 
-parse	: $(MAIN_PARSE) _parse $(NAME)
-_parse	: 
-		$(eval MAIN=$(MAIN_PARSE))
-		
-term	: $(MAIN_TERM) _term $(NAME)
-_term	:
-		$(eval MAIN=$(MAIN_TERM))
-
-signal	: $(MAIN_SIG) _sig $(NAME)
-_sig	: 
-		$(eval MAIN=$(MAIN_SIG))
-
-tree	: $(MAIN_TREE) _tree $(NAME)
-_tree	: 
-		$(eval MAIN=$(MAIN_TREE))
-
+gen	: $(MAIN_GEN) _gen $(NAME)
+_gen	: 
+		$(eval MAIN=$(MAIN_GEN))
 
 $(LIB_LFT)	:
 		@ $(MK_LFT) all
@@ -165,4 +148,4 @@ bonus	: $(DIR_I) $(LFT) $(SRC) $(DIR_O) $(OBJ) $(MAIN_B)
 		# $(shell echo "Compiling minishell with bonus done!")
 		# $(shell echo "Executable is : $(NAME)")
 
-.PHONY	: all re clean fclean bonus parse term tree signal wild
+.PHONY	: all re clean fclean bonus gen wild

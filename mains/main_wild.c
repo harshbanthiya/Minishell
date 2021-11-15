@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_wild.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
+/*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 20:51:21 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/15 08:35:15 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/15 13:17:21 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int	main(int argn, char **argv, char **envp)
 	// envp[0] = NULL;
 	argn = 0;
 	argv = NULL;
-	init_shell(envp);
+	sh_init(envp);
 	print_welcome();
 	user_in = ft_readline();
 	while (user_in != NULL && *user_in)
