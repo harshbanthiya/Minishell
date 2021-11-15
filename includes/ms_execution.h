@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 09:19:53 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/15 09:09:46 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/15 11:44:14 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,12 @@ int						cmd_add_outredirect(t_command *command,
 void					cmd_free_cmd(t_command *cmds);
 void					fd_list_close(t_fd_list **lst);
 t_fd_list				*fd_list_add_fd(t_fd_list **lst, int fd);
-
+t_cmd_redirection		*cmd_copy_redirection(t_cmd_redirection *original);
+t_cmd_redirection		*cmd_redirection_add_back(t_cmd_redirection **reds,
+							t_cmd_redirection *new_red);
+void					cmd_free_redirection(t_cmd_redirection *redirection);
+void					cmd_free_redirections(t_cmd_redirection *redirections);
+t_fd_reds_list			*cmd_reds2fd_reds_list(t_cmd_redirection *reds);
+void					cmd_free_fd_reds_list(t_fd_reds_list *fd_red_list);
 
 #endif
