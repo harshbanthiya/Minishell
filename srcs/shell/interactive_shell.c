@@ -6,13 +6,13 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 22:22:08 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/15 09:45:32 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/15 10:11:44 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static void	execute_seqcmd(t_parse_ast *cmdline)
+void	execute_seqcmd(t_parse_ast *cmdline)
 {
 	t_parse_ast			*seqcmd;
 
@@ -49,7 +49,7 @@ void	show_parse_err(char *input_str)
 	}
 }
 
-static t_parse_ast	*get_cmdline_from_input_str(char *input_str)
+t_parse_ast	*get_cmdline_from_input_str(char *input_str)
 {
 	t_token				tok;
 	t_parse_buffer		buf;
