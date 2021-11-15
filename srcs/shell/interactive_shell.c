@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 22:22:08 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/15 15:47:29 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/15 17:27:46 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,24 +73,27 @@ int	interactive_shell(void)
 	char		*user_in;
 	t_parse_ast	*root;
 
-	init_signals();
-	//set_shell_sighandlers();
+	//sh_change_mode(get_shell(), 1);
 	print_welcome();
 	user_in = ft_readline();
 	while (user_in)
 	{
+		
 		if (*user_in)	
 			add_history(user_in);
+	
 		root = get_cmdline_from_input_str(user_in);
 		if (!root)	
 			show_parse_err(user_in);
 		else
 		{
+			sh_change_mode(get_shell(), 0);
 			execute_seqcmd(root);
 			parse_free_all_ast();
+			sh_change_mode(get_shell(), 1);
 		}
 		free(user_in);
-		user_in = ft_readline();
+		user_in = ft_readline();	
 	}
 	write(1, "exit\n", 5);
 	free_shell();

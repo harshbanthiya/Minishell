@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 16:15:44 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/15 15:48:23 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/15 16:56:13 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	is_builtin(char *name)
 {
-	if (name)
+	if (!name)
 		return (0);
 	if (!ft_strcmp(name, "export"))
 		return (1);
