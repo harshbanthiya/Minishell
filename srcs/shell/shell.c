@@ -6,11 +6,24 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 10:02:42 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/15 09:46:52 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/15 10:28:47 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"../../includes/minishell.h"
+
+static void put_shlvl_warnmsg(int lvl)
+{
+	char 	*lvl_str;
+	
+	lvl_str = ft_itoa(lvl);
+	if (!lvl_str)
+		put_minish_err_msg_and_exit(1, "initialization", "malloc failed");
+	ft_putstr_fd("minishell: warning: shell level (", STDERR_FILENO);
+	ft_putstr_fd(lvl_str, STDERR_FILENO);
+	ft_putstr_fd(") too high, resetting to 1\n", STDERR_FILENO);
+	free(lvl_str);
+}
 
 static void	sh_lvl_increment(t_shell *sh)
 {
@@ -25,10 +38,19 @@ static void	sh_lvl_increment(t_shell *sh)
 	if (var)
 	{
 		lvl = ft_atoi(var->value);
-		lvl++;
+		if (lvl < 0)
+			lvl = 0;
+		else 
+			lvl++;
+		if (lvl >= 1000)
+		{
+			put_shlvl_warnmsg(lvl);
+			lvl = 1;
+		}
 	}
 	lvl_str = ft_itoa(lvl);
-	ft_export_var("SHLVL", lvl_str, &env);
+	if (lvl_str)
+		ft_export_var("SHLVL", lvl_str, &env);
 	ft_free(lvl_str);
 }
 
