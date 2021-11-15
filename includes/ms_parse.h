@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_parse.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
+/*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 00:08:09 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/15 09:10:05 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/15 13:17:05 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 struct          s_parse_buffer;
 typedef int     t_scan_getc(struct s_parse_buffer *buff);
 typedef void    t_scan_ungetc(struct s_parse_buffer *buff);
+
+typedef struct  s_parse_ast	t_parse_ast;
 
 typedef struct  s_parse_buffer
 {

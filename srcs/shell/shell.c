@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
+/*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 10:02:42 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/15 10:28:47 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/15 13:17:43 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,13 @@ t_shell	*get_shell(void)
 	return (&g_shell);
 }
 
-void	init_shell(char **envp)
+void	sh_init(char **envp)
 {
 	t_shell	sh;
 	char	*pwd;
 
 	if (envp != NULL)
-		sh.env = ish_nit_env(envp);
+		sh.env = sh_init_env(envp);
 	sh_lvl_increment(&sh);
 	sh.builtins = init_builtins();
 	init_signals();
@@ -75,7 +75,7 @@ void	init_shell(char **envp)
 		sh.pwd = ft_strdup(pwd);
 		ft_free(pwd);
 	}
-	sh.sh_mode = 1;
+	sh_change_mode(&sh, 1);
 	sh.status = 0;
 	g_shell = sh;
 }
