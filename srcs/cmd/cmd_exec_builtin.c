@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 11:56:38 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/15 09:31:10 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/15 13:02:16 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ static int	builtin_set_out_red(t_command *command,
 /*
  * Execute built in command in the same process as the minishell main process.
  */
-int	cmd_exec_builtin(t_command*command)
+int	cmd_exec_builtin(t_command *command)
 {
 	int				stdoutfd;
 	int				stdinfd;
