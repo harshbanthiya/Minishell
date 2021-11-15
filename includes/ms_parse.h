@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 00:08:09 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/09 00:37:17 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/15 09:10:05 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct  s_parse_buffer
 
 typedef enum e_parse_ast_type
 {
-	ASTNODE_NONE,
+	ASTNODE_NONE =  0xc201,
 	ASTNODE_STRING,
 	ASTNODE_REDIRECTION,
 	ASTNODE_ARGUMENTS,
@@ -43,6 +43,8 @@ typedef enum e_parse_ast_type
 	ASTNODE_COMMAND_LINE,
 	ASTNODE_INVALID,
 }	t_parse_ast_type;
+
+typedef struct s_parse_ast	t_parse_ast;
 
 typedef struct s_parse_node_string
 {
@@ -117,5 +119,31 @@ typedef struct s_parse_ast
 		t_parse_node_cmdline		*command_line;
 	}					content;
 }	t_parse_ast;
+
+typedef struct s_parse_ast_list
+{
+	t_parse_ast				ast;
+	struct s_parse_ast_list	*next;
+}	t_parse_ast_list;
+
+
+t_parse_ast			*parse_new_ast_node(t_parse_ast_type type, void *content);
+t_parse_ast			*parse_redirection(t_parse_buffer *buf, t_token *tok);
+t_parse_ast			*parse_string(t_parse_buffer *buf, t_token *tok);
+t_parse_ast			*parse_arguments(t_parse_buffer *buf, t_token *tok);
+t_parse_ast			*parse_command(t_parse_buffer *buf, t_token *tok);
+t_parse_ast			*parse_piped_commands(t_parse_buffer *buf, t_token *tok);
+t_parse_ast			*parse_delimiter(t_parse_buffer *buf, t_token *tok);
+t_parse_ast			*parse_sequential_commands(
+						t_parse_buffer *buf, t_token *tok);
+t_parse_ast			*parse_command_line(t_parse_buffer *buf, t_token *tok);
+void				parse_die(void);
+void				parse_fatal_error(void);
+void				parse_skip_spaces(t_parse_buffer *buf, t_token *tok);
+t_parse_hdoc_list	*parse_concat_heredocs(
+						t_parse_ast *head, t_parse_ast *tail);
+t_parse_hdoc_list	*parse_new_heredocs(t_parse_node_redirection *redirection);
+void				parse_free_heredocs(t_parse_hdoc_list *list);
+void				parse_free_all_ast(void);
 
 #endif 

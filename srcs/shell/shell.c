@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   shell.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
+/*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 10:02:42 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/14 14:03:37 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/15 09:46:52 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"minishell.h"
+#include	"../../includes/minishell.h"
 
 static void	sh_lvl_increment(t_shell *sh)
 {

@@ -1,4 +1,17 @@
-#include "minishell.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_utils.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/11/10 00:15:20 by hbanthiy          #+#    #+#             */
+/*   Updated: 2021/11/15 09:40:33 by hbanthiy         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../../includes/ms_parse.h"
+#include <stdlib.h>
 
 void    parse_die(void)
 {
@@ -8,68 +21,18 @@ void    parse_die(void)
     nullpoint[0] = 0xD1E; //will produce error: invalid memory address
 }
 
-void    node_attach_branch(t_node *root, t_node *left, t_node *right)
+void	parse_skip_spaces(t_parse_buffer *buff, t_token *tok)
 {
-    if (root == NULL)
-        return ;
-    root->left_child = left;
-    root->right_child = right;
-}
-
-void    node_append_right(t_node **root, t_node *right)
-{
-    t_node   *seek;
-
-    seek = *root;
-    if (!seek)
-    {
-        *root = right;
-        return ;
-    }
-    while (1)
-    {
-        if (seek->right_child)
-            seek = seek->right_child;
-        else
-        {
-            seek->right_child = right;
-            return ;
-        }
-    }
-}
-
-void    node_set_type(t_node *node, int type)
-{
-    if (node == NULL)
-        return ;
-    node->type = type;
-}
-
-void    node_set_data(t_node *node, char *token)
-{
-    if (node == NULL)
-        return ;
-    if (token != NULL)
-        node->data = token;
-}
-
-void	node_delete(t_node *node)
-{
-	if (!node)
-		return ;
-	node_delete(node->left_child);
-	node_delete(node->right_child);
-	free(node);
-}
-
-
-void	pre_order(t_node *search)
-{
-	if (search)
+	while (1)
 	{
-		//printf("pre_order: %s \t", (char *)search->data);
-		//printf("node_type: %d \n", search->type);
-		pre_order(search->left_child);
-		pre_order(search->right_child);
+		if (tok->type != TOKTYPE_SPACE)
+			break ;
+		scan_get_token(buff, tok);
 	}
+}
+
+/* Fail Early, Fail Loudly */
+void	parse_fatal_error(void)
+{
+	exit(1);
 }

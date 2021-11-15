@@ -1,35 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cmd_status.c                                       :+:      :+:    :+:   */
+/*   cmd_redir_prep.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/08 22:47:53 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/15 09:45:26 by hbanthiy         ###   ########.fr       */
+/*   Created: 2021/11/11 09:58:28 by hbanthiy          #+#    #+#             */
+/*   Updated: 2021/11/15 09:34:41 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../../includes/ms_execution.h"
 
-/*
- * Get command exit status.
- */
-int	get_status(void)
+t_cmd_redirection *cmd_redirection_add_back(t_cmd_redirection **reds,
+    t_cmd_redirection *new_red)
 {
-	return (g_shell.status);
+    t_cmd_redirection   *red;
+    
+    new_red->next = NULL;
+    red = *reds;
+    if (!red)
+        *reds = new_red;
+    else 
+    {
+        while (red->next)
+            red = red->next;
+        red->next = new_red;
+    }
+    return (new_red);
 }
 
-/*
- * Set command exit status.
- */
-void	set_status(int status_value)
-{
-	g_shell.status = status_value;
-}
-
-int	set_status_and_ret(int status_value, int ret_value)
-{
-	g_shell.status = status_value;
-	return (ret_value);
-}

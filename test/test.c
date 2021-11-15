@@ -1,37 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ms_tree.h                                          :+:      :+:    :+:   */
+/*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/08 21:05:32 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/08 22:15:12 by hbanthiy         ###   ########.fr       */
+/*   Created: 2021/11/09 10:24:24 by hbanthiy          #+#    #+#             */
+/*   Updated: 2021/11/15 09:49:34 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MS_TREE_H
-# define MS_TREE_H
+#include <stdio.h>
+#include <stdbool.h>
+#include <stdint.h>
 
-typedef struct s_node
+int	success_count = 0;
+int	fail_count = 0;
+
+bool	test_check(int64_t val, const char *msg)
 {
-	int				type;
-	char			*data;
-	struct s_node	*left_child;
-	struct s_node	*right_child;
-}t_node;
+	if (val)
+	{
+		success_count++;
+		printf("  ✔ %s\n", msg);
+		return (true);
+	}
+	else
+	{
+		fail_count++;
+		printf("  ✖ %s\n", msg);
+		return (false);
+	}
+}
 
-typedef enum e_parse_ast_type
+int	print_result()
 {
-	NODE_PIPE = 100,
-	NODE_REDIRECT_IN,
-	NODE_REDIRECT_OUT,
-	NODE_CMDPATH,
-	NODE_ARGUMENT,
-	NODE_REDIRECT_DOUBLEOUT,
-	NODE_REDIRECT_DOUBLEIN,
-	NODE_DATA,
-	NODE_SEQ,
-}t_parse_ast_type;
-
-#endif
+	printf("✔: %d ✖: %d\n", success_count, fail_count);
+	return (fail_count);
+}

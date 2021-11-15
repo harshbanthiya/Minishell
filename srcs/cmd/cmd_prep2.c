@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 10:07:35 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/15 08:51:27 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/15 09:34:19 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "../../includes/readline/history.h"
 #include "../../includes/ms_execution.h"
 #include "../../includes/minishell.h"
-//#include "../../includes/ms_utils.h"
+#include "../../includes/ms_utils.h"
 
 void    cmd_free_redirection(t_cmd_redirection *redirection)
 {
@@ -47,8 +47,8 @@ void    cmd_free_cmd(t_command *cmds)
         current_cmd = cmds;
         while (current_cmd)
         {
-            cmd_free_redirections(current_cmd->input_redirection);
-            cmd_free_redirections(current_cmd->output_redirection);
+            cmd_free_redirections(current_cmd->input_redirections);
+            cmd_free_redirections(current_cmd->output_redirections);
             free_ptrarr((void **)current_cmd->exec_and_args);
             prev_cmd = current_cmd;
             current_cmd = current_cmd->piped_command;
