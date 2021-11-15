@@ -6,36 +6,71 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/11 09:16:41 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/05/15 16:13:51 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/15 12:43:34 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
+
+int	num_len(const char *str)
+{
+	int	i;
+
+	i = 0;
+	while (ft_isdigit(*str++))
+		i++;
+	return (i);
+}
+
+bool	is_long_overflow(const char *nptr, int sign)
+{
+	if (num_len(nptr) > 19)
+		return (true);
+	if (num_len(nptr) == 19)
+	{
+		if (sign == -1 && ft_strncmp(nptr, "9223372036854775808", 19) > 0)
+			return (true);
+		if (sign == 1 && ft_strncmp(nptr, "9223372036854775807", 19) > 0)
+			return (true);
+	}
+	return (false);
+}
+
+bool	is_int_overflow(const char *nptr, int sign)
+{
+	if (num_len(nptr) > 10)
+		return (true);
+	if (num_len(nptr) == 10)
+	{
+		if (sign == -1 && ft_strncmp(nptr, "2147483648", 10) > 0)
+			return (true);
+		if (sign == 1 && ft_strncmp(nptr, "2147483647", 10) > 0)
+			return (true);
+	}
+	return (false);
+}
 
 int	ft_atoi(const char *nptr)
 {
-	size_t		sign;
-	int			result;
+	unsigned int	num;
+	int				np;
 
-	sign = 1;
-	result = 0;
-	while ((9 <= *nptr && *nptr <= 13) || (*nptr == 32))
-	{
+	np = 1;
+	num = 0;
+	while (*nptr == ' ' || *nptr == '\t' || *nptr == '\f'
+		|| *nptr == '\r' || *nptr == '\n' || *nptr == '\v')
 		nptr++;
-	}
-	while (*nptr == '-' || *nptr == '+')
+	if (*nptr == '+' || *nptr == '-')
+		if (*nptr++ == '-')
+			np = -1;
+	if (is_long_overflow(nptr, np))
 	{
-		if (result >= 1)
+		if (np == 1)
+			return (-1);
+		else
 			return (0);
-		if (*nptr == '-')
-			sign = -1;
-		result++;
-		nptr++;
 	}
-	result = 0;
-	while ('0' <= *nptr && *nptr <= '9')
-	{
-		result = result * 10 + (*nptr - '0');
-		nptr++;
-	}
-	return (sign * result);
+	while (ft_isdigit(*nptr))
+		num = num * 10 + (*nptr++ - '0');
+	return ((int)(np * num));
 }

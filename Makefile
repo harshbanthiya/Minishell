@@ -6,7 +6,7 @@
 #    By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/09 15:31:26 by sfournie          #+#    #+#              #
-#    Updated: 2021/11/14 15:16:45 by sfournie         ###   ########.fr        #
+#    Updated: 2021/11/15 13:36:36 by sfournie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,10 +79,10 @@ SRC	= 	environment.c variable.c variable_print.c variable_utils.c\
 		cd.c echo.c env.c exit.c export.c pwd.c unset.c \
 		expand.c parse.c c_types.c cleanup.c\
 		builtin_utils.c cmd_status.c\
-		# interpret_utils.c interpret_tree.c \
-		# parse_tree.c parse_utils.c scan_utils.c token_list.c \
-		# cmd_execute.c cmd.c handle_quotes.c cmd_utils.c \
-		# replace_env.c replace_env_utils.c cmd_status.c interactive_shell.c
+		interpret_utils.c interpret_tree.c \
+		parse_tree.c parse_utils.c scan_utils.c token_list.c \
+		cmd_execute.c cmd.c handle_quotes.c cmd_utils.c \
+		replace_env.c replace_env_utils.c cmd_status.c interactive_shell.c
 
 _OBJ	= $(SRC:.c=.o)
 OBJ		= $(patsubst %,$(DIR_OBJS)/%,$(_OBJ))

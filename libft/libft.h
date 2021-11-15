@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
+/*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 18:04:51 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/02 15:35:09 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/15 12:43:16 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,13 @@ void	ft_strclr(char *s);
 char	*ft_strnew(size_t size);
 char	*ft_strsub(char const *s, unsigned int start, size_t len);
 char	*ft_strcat(char *restrict str1, const char *restrict str2);
+bool	is_int_overflow(const char *nptr, int sign);
+size_t	ptrarr_len(void **ptrarr);
+void	free_ptrarr(void **ptrarr);
+void	*free_ptrarr_and_rtn_null(void **ptrarr);
+void	free_ptrarr_and_assign_null(void ***ptrarr);
+void	**ptrarr_add_ptr(void **ptrarr, void *ptr);
+void	**ptrarr_add_ptr_and_free(void **ptrarr, void *ptr);
+void	**ptrarr_merge(void **ptrarr_first, void **ptrarr_last);
 
 #endif

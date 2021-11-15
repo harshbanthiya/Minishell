@@ -6,36 +6,43 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 20:44:34 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/14 15:00:38 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/15 13:17:32 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+#include "../includes/ms_parse.h"
+#include "../libft/libft.h"
 
+t_shell		g_shell;
 
-static void	parse(t_dlist *token_list, t_node **node)
+void	die(void)
 {
-	global_current_token_node = token_list;
-	*node = cmd_line();
-	//if (global_current_token_node != NULL)
-		//printf("syntax error near unexpected token: \'%s\'\n", \
-		((t_token *)global_current_token_node->content)->data);
+	int	*nullpo;
+
+	nullpo = NULL;
+	nullpo[0xdead] = 1;
 }
 
-static t_node	*get_tree(char *line)
+int 	invoke_sequential_commands(t_parse_ast *seqcmd)
 {
-	t_dlist		*token_list;
-	t_node		*output;
+	t_command		*new;
+	int 			status;
 
-	token_list = NULL;
-	if (make_token_list(&token_list, line) < 0)
+	while (seqcmd && seqcmd->content.sequential_commands->pipcmd_node)
 	{
-		printf("Error: wrong token\n");
-		return (NULL);
+		if (seqcmd->type != ASTNODE_SEQ_COMMANDS)
+			die();
+		new = pipcmd2cmd(
+			seqcmd->content.sequential_commands->pipcmd_node->content.piped_commands);
+		if (new)
+		{
+			status = cmd_exec_commands(new);
+			cmd_free_cmd(new);
+		}
+		seqcmd = seqcmd->content.sequential_commands->rest_node;
 	}
-	else
-		parse(token_list, &output);
-	return (output);
+	return (status);
 }
 
 void	init_buffer_with_string(t_parse_buffer *buff, char *str)
@@ -57,7 +64,6 @@ int	do_command(char *cmdstr)
 	t_parse_ast		*cmdline;
 	t_token			tok;
 	t_parse_ast		*seqcmd;
-	t_node			*root;
 	size_t			len;
 	
 	len = ft_strlen(cmdstr);
@@ -66,11 +72,12 @@ int	do_command(char *cmdstr)
 	buff.buffer[len] = '\n';
 	scan_init_token(&tok);
 	scan_get_token(&buff, &tok);
-	root = get_tree(cmdstr);
-	if (root)
+	cmdline = parse_command_line(&buff, &tok);
+	free(tok.text);
+	if (cmdline)
 	{
-		execute_tree(root, get_env());
-		return (0);
+		seqcmd = cmdline->content.command_line->seqcmd_node;
+		return (invoke_sequential_commands(seqcmd));
 	}
 	else
 	{
@@ -79,33 +86,6 @@ int	do_command(char *cmdstr)
 	}
 }
 
-int	interactive_shell(void)
-{
-	char	*user_in;
-	t_node	*root;
-
-	init_signals();
-	print_welcome();
-	user_in = ft_readline();
-	while (user_in)
-	{
-		if (*user_in)	
-			add_history(user_in);
-		root = get_tree(user_in);
-		if (!root)	
-			show_parse_err(user_in);
-		else
-		{
-			execute_tree(root, get_env());
-			//parse_free_all_ast();
-		}
-		free(user_in);
-		user_in = ft_readline();
-	}
-	free(user_in);
-	free_shell();
-	return (0);
-}
 
 int	main(int argc, char **argv, char **envp)
 {

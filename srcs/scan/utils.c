@@ -1,35 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cmd_status.c                                       :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/08 22:47:53 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/15 09:45:26 by hbanthiy         ###   ########.fr       */
+/*   Created: 2021/11/12 10:01:47 by hbanthiy          #+#    #+#             */
+/*   Updated: 2021/11/15 09:44:26 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
 
-/*
- * Get command exit status.
- */
-int	get_status(void)
+#include "minishell.h"
+
+
+void	put_err_msg(char *str)
 {
-	return (g_shell.status);
+	ft_putstr_fd("Error: ", STDERR_FILENO);
+	ft_putendl_fd(str, STDERR_FILENO);
 }
 
-/*
- * Set command exit status.
- */
-void	set_status(int status_value)
-{
-	g_shell.status = status_value;
-}
-
-int	set_status_and_ret(int status_value, int ret_value)
-{
-	g_shell.status = status_value;
-	return (ret_value);
-}

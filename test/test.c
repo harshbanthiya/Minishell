@@ -1,35 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cmd_status.c                                       :+:      :+:    :+:   */
+/*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/08 22:47:53 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/15 09:45:26 by hbanthiy         ###   ########.fr       */
+/*   Created: 2021/11/09 10:24:24 by hbanthiy          #+#    #+#             */
+/*   Updated: 2021/11/15 09:49:34 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include <stdio.h>
+#include <stdbool.h>
+#include <stdint.h>
 
-/*
- * Get command exit status.
- */
-int	get_status(void)
+int	success_count = 0;
+int	fail_count = 0;
+
+bool	test_check(int64_t val, const char *msg)
 {
-	return (g_shell.status);
+	if (val)
+	{
+		success_count++;
+		printf("  ✔ %s\n", msg);
+		return (true);
+	}
+	else
+	{
+		fail_count++;
+		printf("  ✖ %s\n", msg);
+		return (false);
+	}
 }
 
-/*
- * Set command exit status.
- */
-void	set_status(int status_value)
+int	print_result()
 {
-	g_shell.status = status_value;
-}
-
-int	set_status_and_ret(int status_value, int ret_value)
-{
-	g_shell.status = status_value;
-	return (ret_value);
+	printf("✔: %d ✖: %d\n", success_count, fail_count);
+	return (fail_count);
 }

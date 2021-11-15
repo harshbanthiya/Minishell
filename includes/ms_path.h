@@ -1,35 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cmd_status.c                                       :+:      :+:    :+:   */
+/*   ms_path.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/08 22:47:53 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/15 09:45:26 by hbanthiy         ###   ########.fr       */
+/*   Created: 2021/11/12 11:42:31 by hbanthiy          #+#    #+#             */
+/*   Updated: 2021/11/15 09:25:51 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#ifndef MS_PATH_H
+# define MS_PATH_H
 
-/*
- * Get command exit status.
- */
-int	get_status(void)
-{
-	return (g_shell.status);
-}
+# include "libft/libft.h"
+bool	is_directory(char *path);
+char	*path_join(char *dirpath, char *filename);
+char	*get_parent_dir(char *path);
+bool	is_executable(char *path);
 
-/*
- * Set command exit status.
- */
-void	set_status(int status_value)
-{
-	g_shell.status = status_value;
-}
-
-int	set_status_and_ret(int status_value, int ret_value)
-{
-	g_shell.status = status_value;
-	return (ret_value);
-}
+#endif
