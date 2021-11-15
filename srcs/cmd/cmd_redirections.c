@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 12:06:01 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/15 09:35:11 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/15 15:03:17 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,12 @@ int	cmd_set_output_file(t_command *command)
 	red = command->output_redirections;
 	while (red)
 	{
-		/* Needs work with file mode and permissions and what to open */
+		flag_open = O_TRUNC * !red->is_append + O_APPEND * red->is_append;
+		fd = open_file_for_redirect(red, O_WRONLY | O_CREAT | flag_open,
+				S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH);
+		if (fd == ERROR || dup2(fd, red->fd) == -1)
+			return (ERROR);
+		red = red->next;
 	}
 	return (0);
 }

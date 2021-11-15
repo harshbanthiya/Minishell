@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
+/*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 19:27:43 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/15 13:54:34 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/15 15:49:54 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"minishell.h"
+#include	"../../includes/minishell.h"
 
 static void	dir_parser(char **split)
 {

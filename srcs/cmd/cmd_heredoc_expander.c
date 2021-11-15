@@ -19,7 +19,7 @@
 #include "../../includes/readline/readline.h"
 #include "../../includes/readline/history.h"
 
-int	cmd_check_readline_has_finished(void)
+int	   cmd_check_readline_has_finished(void)
 {
 	if (g_shell.heredoc_interruption)
 		rl_done = 1;

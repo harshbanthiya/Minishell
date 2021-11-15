@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
+/*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 10:02:42 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/15 13:17:43 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/15 15:39:03 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ void	sh_init(char **envp)
 	if (envp != NULL)
 		sh.env = sh_init_env(envp);
 	sh_lvl_increment(&sh);
-	sh.builtins = init_builtins();
 	init_signals();
 	pwd = getcwd(NULL, 0);
 	if (pwd != NULL)
@@ -92,6 +91,4 @@ void	free_shell(void)
 	sh = get_shell();
 	if (sh != NULL)
 		sh->env = free_env(sh->env);
-	if (sh->builtins != NULL)
-		sh->builtins = free_split(sh->builtins);
 }

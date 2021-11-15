@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 18:43:33 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/15 12:30:27 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/15 15:55:31 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,9 @@ char	*exp_result_join_normal_str(char *result,
 char	*exp_expand_env_and_join(char *result,
 			char *str, int env_len);
 char	*expand_env_var(char *str);
+char	**env_list_to_envp(t_dlist *env_head);
+char	**get_colon_units(const char *str, const char *default_str);
+int		var_is_valid_key(char *env_key);
 /* for export with no options */
 void	print_var_extra(int fd, t_var *var);
 

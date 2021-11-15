@@ -26,17 +26,11 @@
 extern "C" {
 #endif
 
-#if defined (READLINE_LIBRARY)
 #  include "rlstdc.h"
 #  include "rltypedefs.h"
 #  include "keymaps.h"
 #  include "tilde.h"
-#else
-#  include "readline/rlstdc.h"
-#  include "readline/rltypedefs.h"
-#  include "readline/keymaps.h"
-#  include "tilde.h"
-#endif
+
 
 /* Hex-encoded Readline version number. */
 #define RL_READLINE_VERSION	0x0801		/* Readline 8.0 */

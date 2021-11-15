@@ -1,22 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   free_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/12 10:01:47 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/15 09:44:26 by hbanthiy         ###   ########.fr       */
+/*   Created: 2021/11/15 15:23:46 by hbanthiy          #+#    #+#             */
+/*   Updated: 2021/11/15 15:24:53 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 
-#include "minishell.h"
-
-
-void	put_err_msg(char *str)
+void	free_and_assign_null(void **p)
 {
-	ft_putstr_fd("Error: ", STDERR_FILENO);
-	ft_putendl_fd(str, STDERR_FILENO);
+	free(*p);
+	*p = NULL;
 }
 
+void	*free_and_rtn_ptr(void *p, void *val)
+{
+	free(p);
+	return (val);
+}

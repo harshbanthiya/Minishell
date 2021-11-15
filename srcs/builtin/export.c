@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
+/*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 19:27:47 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/15 13:58:29 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/15 16:04:20 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"minishell.h"
+#include	"../../includes/minishell.h"
 
 char	*strip_extra_spaces(char *token)
 {
@@ -26,7 +26,7 @@ char	*strip_extra_spaces(char *token)
 	temp = ft_strdup(token);
 	while (temp[i])
 	{
-		if (!(temp[i] == SPACE && temp[i + 1] == SPACE))
+		if (!(temp[i] == 32 && temp[i + 1] == 32))
 		{
 			temp[j++] = temp[i];
 		}
@@ -120,6 +120,7 @@ int	ft_export(char **argv)
 	t_dlist	**env;
 
 	exit_code = 0;
+	env = get_env();
 	if (argv[0] == NULL)
 		return (ft_env_export(1));
 	i = 0;

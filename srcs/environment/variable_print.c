@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   variable_print.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
+/*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 16:01:18 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/12 16:43:09 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/15 15:41:27 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"minishell.h"
+#include	"../../includes/minishell.h"
 
 void	print_var(int fd, t_var *var)
 {

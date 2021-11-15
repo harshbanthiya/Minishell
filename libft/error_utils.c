@@ -1,38 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_utils.c                                      :+:      :+:    :+:   */
+/*   error_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/10 00:15:20 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/15 16:27:17 by hbanthiy         ###   ########.fr       */
+/*   Created: 2021/11/15 14:56:13 by hbanthiy          #+#    #+#             */
+/*   Updated: 2021/11/15 14:56:34 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/ms_parse.h"
-#include <stdlib.h>
+#include "libft.h"
 
-void    parse_die(void)
+void	put_err_msg(char *str)
 {
-    int     *nullpoint;
-
-    nullpoint = NULL;
-    nullpoint[0] = 0xD1E; //will produce error: invalid memory address
+	ft_putstr_fd("Error: ", STDERR_FILENO);
+	ft_putendl_fd(str, STDERR_FILENO);
 }
 
-void	parse_skip_spaces(t_parse_buffer *buff, t_token *tok)
+int	put_err_msg_and_ret(char *str)
 {
-	while (1)
-	{
-		if (tok->type != TOKTYPE_SPACE)
-			break ;
-		scan_get_token(buff, tok);
-	}
+	put_err_msg(str);
+	return (ERROR);
 }
 
-/* Fail Early, Fail Loudly */
-void	parse_fatal_error(void)
+void	put_err_msg_and_exit(char *str)
 {
-	exit(1);
+	put_err_msg(str);
+	exit(EXIT_FAILURE);
 }

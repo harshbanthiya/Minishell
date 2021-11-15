@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   variable_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
+/*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 15:42:48 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/12 16:43:22 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/15 15:42:25 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"minishell.h"
+#include	"../../includes/minishell.h"
 
 int	var_is_valid_key(char *env_key)
 {
@@ -23,13 +23,13 @@ int	var_is_valid_key(char *env_key)
 		while (env_key[idx] != '\0')
 		{
 			if (!ft_isalnum(env_key[idx]) && env_key[idx] != '_')
-				return (FALSE);
+				return (false);
 			idx++;
 		}
 	}
 	else
-		return (FALSE);
-	return (TRUE);
+		return (false);
+	return (true);
 }
 
 void	*free_var(void *ptr)

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cleanup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
+/*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 14:07:38 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/05 18:12:50 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/15 15:43:54 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"minishell.h"
+#include	"../../includes/minishell.h"
 
 /* clean the line into parsed_line, but over-malloced */
 static void	parse_clean_it(char **parsed_line, char *line)

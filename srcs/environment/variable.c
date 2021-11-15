@@ -6,11 +6,11 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 16:01:18 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/15 14:22:51 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/15 15:43:29 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"minishell.h"
+#include	"../../includes/minishell.h"
 
 t_var	*new_var(char *key, char *value)
 {
@@ -64,7 +64,7 @@ char	*get_var_value(char *key, t_dlist *list)
 		return (var->value);
 	return (NULL);
 }
-
+/*
 void	var_set_value(char *key, char *value, t_dlist *list)
 {
 	t_var	*var;
@@ -77,3 +77,4 @@ void	var_set_value(char *key, char *value, t_dlist *list)
 	ft_free(var->value);
 	var->value = ft_strdup(var->value);
 }
+*/

@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 11:51:49 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/15 09:32:31 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/15 15:00:51 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	addback_new_fd_red2fd_red_list(
 	t_fd_reds_list	*new_fd_red;
 
 	new_fd_red = malloc(sizeof(t_fd_reds_list));
-	check_malloc_has_success("fd_red_list", new_fd_red);
+	check_malloc_success("fd_red_list", new_fd_red);
 	new_fd_red->fd = red->fd;
 	cmd_init_pipe_fd(new_fd_red->heredoc_pipe, -1, -1);
 	red->next = NULL;

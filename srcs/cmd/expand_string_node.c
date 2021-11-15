@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 15:21:27 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/15 12:44:55 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/15 15:10:13 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ static char *expandable_node2strarr(void ***result,
 static char **cmd_str2str_arr(t_cmd_str_node **str_node, bool is_export_cmd)
 {
     void    **result;
-    char    **next_str;
+    char    *next_str;
     int     i;
 
     i = 0;

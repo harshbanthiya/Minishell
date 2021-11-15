@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 10:53:03 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/15 11:30:39 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/15 15:30:50 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int     cmd_process_string_node(
         splitted_env_val = expand_string_node(string_node, true);
     else 
         splitted_env_val = expand_string_node(string_node, false);
-    strarr = ptrarr_merge((void **)command->exec_and_args, (void **)splitted_env_val);
+    strarr = (char **)ptrarr_merge((void **)command->exec_and_args, (void **)splitted_env_val);
     free(splitted_env_val);
     if (!strarr)
         return (-1);
@@ -63,7 +63,7 @@ int cmd_process_redirection_node(t_parse_node_redirection *redirection_node,
         return (-1);
     if (redirection_type == TOKTYPE_INPUT_REDIRECTION)
         status = cmd_add_inredirect(command, text, fd);
-    else if (redirection_type = TOKTYPE_OUTPUT_REDIRECTION)
+    else if (redirection_type == TOKTYPE_OUTPUT_REDIRECTION)
         status = cmd_add_outredirect(command, text, fd, false);
     else if (redirection_type == TOKTYPE_OUTPUT_APPENDING)
         status = cmd_add_outredirect(command, text, fd, true);

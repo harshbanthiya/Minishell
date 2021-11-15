@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 11:21:41 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/15 13:08:44 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/15 15:34:37 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ static char	*search_and_exec_file_from_dirs(char *filename,
 
 	i = 0;
 	last_executable_path = NULL;
-	envs = env_list_to_envp(get_env());
+	envs = env_list_to_envp(*get_env());
 	while (dirs[i])
 	{
 		if (dirs[i])
@@ -97,7 +97,7 @@ char	*search_and_exec_file_from_path_env(char *filename, char **argv)
 	char		**dirs;
 	char		*last_executable_path;
 
-	path_env_var = get_var_value("PATH", get_env());
+	path_env_var = get_var("PATH", *get_env());
 	if (!path_env_var || !path_env_var->value)
 		return (NULL);
 	dirs = get_colon_units(path_env_var->value, "./");
@@ -122,7 +122,7 @@ int	cmd_execvp(char *filename, char **argv)
 	errno = 0;
 	executable_path = filename;
 	if (ft_strchr(filename, '/'))
-		execve(filename, argv,env_list_to_envp(get_env()));
+		execve(filename, argv, env_list_to_envp(*get_env()));
 	else
 		executable_path = search_and_exec_file_from_path_env(filename, argv);
 	if (executable_path && is_directory(executable_path))

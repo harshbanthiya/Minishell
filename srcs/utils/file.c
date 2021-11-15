@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   file.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
+/*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 21:43:04 by sfournie          #+#    #+#             */
-/*   Updated: 2021/10/29 18:24:40 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/15 15:39:18 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"minishell.h"
+#include	"../../includes/minishell.h"
 
 char	*join_path_file(char *path, char *file)
 {

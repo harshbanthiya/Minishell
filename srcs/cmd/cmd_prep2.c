@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 10:07:35 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/15 12:12:44 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/15 15:07:20 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static void readline4heredoc(t_cmd_redirection *red, char *limit_str)
 {
     char    *input_str;
     
-    rl_event_hook = cmd_check_readline_has_finished();
+    rl_event_hook = cmd_check_readline_has_finished;
     while (!g_shell.heredoc_interruption)
     {
         input_str = readline("> ");

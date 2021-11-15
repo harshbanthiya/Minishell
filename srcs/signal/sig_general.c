@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   sig_general.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
+/*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 12:06:14 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/14 14:50:06 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/15 16:00:21 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"minishell.h"
+#include	"../../includes/minishell.h"
+
 
 void	set_signal(void (*act)(int), int code)
 {
@@ -32,6 +33,7 @@ void	init_signals(void)
 /* interactive mode : print new prompt on newline */
 void	sigintr_handler(int signum)
 {
+	signum = 0;
 	ft_putchar_fd('\n', 1);
 	rl_replace_line("", 1);
 	rl_on_new_line();
@@ -43,6 +45,7 @@ void	sigintr_handler(int signum)
 /* interactive mode : nothing*/
 void	sigquit_handler(int signum)
 {
+	signum = 0;
 	// rl_replace_line("", 1);
 	// rl_on_new_line();
 	// rl_redisplay();
@@ -53,4 +56,5 @@ void	sigquit_handler(int signum)
 
 void	sigchld_handler(int signum)
 {
+	signum = 0;
 }

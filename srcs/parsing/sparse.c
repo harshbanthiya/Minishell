@@ -6,11 +6,11 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 14:07:38 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/15 09:42:24 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/15 15:44:15 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"minishell.h"
+#include	"../../includes/minishell.h"
 
 /* return the amount of characters before next delimiter */
 int	parse_next_delim(char *str)

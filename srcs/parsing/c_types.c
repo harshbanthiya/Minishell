@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   c_types.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
+/*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 16:58:21 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/05 15:30:58 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/15 15:43:48 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"minishell.h"
+#include	"../../includes/minishell.h"
 
 /* return 1 if (c) is a delimiter related to parsing */
 int	parse_is_delimiter(char c)

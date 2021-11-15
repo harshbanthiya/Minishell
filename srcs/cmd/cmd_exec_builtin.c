@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 11:56:38 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/15 13:02:16 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/15 15:00:20 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ int	cmd_exec_builtin(t_command *command)
 	int				stdoutfd;
 	int				stdinfd;
 	int				status;
-	//t_builtin_cmd	*builtin_func;
+	t_builtin_cmd	*builtin_func;
 	t_fd_list		*fd_lst;
 
 	fd_lst = NULL;
@@ -123,7 +123,7 @@ int	cmd_exec_builtin(t_command *command)
 		|| builtin_set_in_red(command, &fd_lst, &stdinfd, &stdoutfd) == ERROR
 		|| builtin_set_out_red(command, &fd_lst, &stdinfd, &stdoutfd) == ERROR)
 		return (set_status_and_ret(1, 1));
-	//builtin_func = get_builtin_func((char *)command->exec_and_args[0]);
+	builtin_func = get_builtin_func((char *)command->exec_and_args[0]);
 	status = builtin_func((char **)command->exec_and_args);
 	set_status(status);
 	fd_list_close(&fd_lst);
@@ -133,3 +133,4 @@ int	cmd_exec_builtin(t_command *command)
 	close(stdoutfd);
 	close(stdinfd);
 	return (status);
+}

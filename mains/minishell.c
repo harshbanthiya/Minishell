@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 20:44:34 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/15 13:48:35 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/15 16:04:49 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	do_command(char *cmdstr)
 	size_t			len;
 	
 	len = ft_strlen(cmdstr);
-	init_buffer_with_cmdstr(&buff, cmdstr);
+	init_buffer_with_string(&buff, cmdstr);
 	buff.size++;
 	buff.buffer[len] = '\n';
 	scan_init_token(&tok);

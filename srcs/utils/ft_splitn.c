@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_splitn.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
+/*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/15 13:38:52 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/02 17:22:41 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/15 15:39:37 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../libft/libft.h"
 
 static size_t	get_word_count(char const *s, char c, int n)
 {

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
+/*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 19:27:51 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/15 13:59:40 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/15 15:56:48 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"minishell.h"
+#include	"../../includes/minishell.h"
 
 // // Sebas, t'es rendu ici
 // static int	var_key_is_valid(char *key)
@@ -65,7 +65,7 @@ int	ft_unset(char **argv)
 {
 	int		i;
 	int		exit_code;
-	t_dlist	*env;
+	t_dlist	**env;
 
 	exit_code = 0;
 	env = get_env();

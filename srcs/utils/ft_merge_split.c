@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_merge_split.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
+/*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 17:22:26 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/02 17:22:30 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/15 15:39:25 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"minishell.h"
+#include	"../../includes/minishell.h"
 
 char	*ft_merge_split(char **split, char *delim)
 {

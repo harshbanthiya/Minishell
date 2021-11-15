@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   expand.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
+/*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 16:11:40 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/14 15:37:16 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/15 15:44:01 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"minishell.h"
+#include	"../../includes/minishell.h"
 
 /* receive a string starting with $ and return the following var key *
 *  Example : $HELLO"hey" will return a malloced "HELLO" */

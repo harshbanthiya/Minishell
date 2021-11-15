@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 18:43:33 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/15 12:45:28 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/15 16:03:05 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 # include	<signal.h>
 # include	<sys/wait.h>
 # include	<errno.h>
-# include	<readline/readline.h>
-# include	<readline/history.h>
+# include	"readline/readline.h"
+# include	"readline/history.h"
 # include	<stdbool.h>
 # include	<fcntl.h>
 # include	"../libft/libft.h"
@@ -35,7 +35,6 @@
 # include   "ms_parse.h"
 # include   "ms_execution.h"
 
-#define ERROR -1
 
 /* Global shell structure declaration */
 struct s_shell	g_shell;
@@ -68,6 +67,7 @@ void			put_minish_err_msg_and_exit(int status,
 void			check_malloc_success(char *cmd_name, void *ptr);
 int				invoke_sequential_commands(t_parse_ast *seqcmd);
 int				interactive_shell(void);
+void			init_buffer_with_string(t_parse_buffer *buff, char *str);
 
 // Shell initialization
 void					init_g_shell(void);

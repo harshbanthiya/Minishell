@@ -6,10 +6,13 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 22:22:08 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/15 10:18:44 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/15 15:47:29 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
+#include "../../includes/readline/readline.h"
+#include "../../includes/readline/history.h"
 #include "../../includes/minishell.h"
 
 void	execute_seqcmd(t_parse_ast *cmdline)

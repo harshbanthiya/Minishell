@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 18:04:51 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/15 12:43:16 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/15 15:24:25 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdbool.h>
+# define ERROR -1 
 
 typedef struct s_arr
 {
@@ -75,5 +76,10 @@ void	free_ptrarr_and_assign_null(void ***ptrarr);
 void	**ptrarr_add_ptr(void **ptrarr, void *ptr);
 void	**ptrarr_add_ptr_and_free(void **ptrarr, void *ptr);
 void	**ptrarr_merge(void **ptrarr_first, void **ptrarr_last);
+void	put_err_msg(char *str);
+int		put_err_msg_and_ret(char *str);
+void	put_err_msg_and_exit(char *str);
+void	free_and_assign_null(void **p);
+void	*free_and_rtn_ptr(void *p, void *val);
 
 #endif
