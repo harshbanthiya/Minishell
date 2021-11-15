@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 19:27:41 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/12 13:38:49 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/15 13:57:49 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,14 +77,16 @@ int	ft_env_export(int fd)
 }
 
 /* Print the env list */
-int	ft_env(char **argv, t_dlist **lst)
+int	ft_env(char **argv)
 {
-	int	exit_code;
+	int		exit_code;
+	t_dlist	**env;
 
 	exit_code = 1;
-	if (lst != NULL && !argv[0])
+	env = get_env();
+	if (env != NULL && !argv[0])
 	{
-		print_env(1, *lst, 0);
+		print_env(1, *env, 0);
 		exit_code = 0;
 	}
 	else

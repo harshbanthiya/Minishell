@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 19:27:47 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/14 14:02:21 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/15 13:58:29 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,10 +113,11 @@ int	ft_single_export(char *argv, t_dlist **lst)
 	return (exit_code);
 }
 
-int	ft_export(char **argv, t_dlist **lst)
+int	ft_export(char **argv)
 {	
 	int		i;
 	int		exit_code;
+	t_dlist	**env;
 
 	exit_code = 0;
 	if (argv[0] == NULL)
@@ -124,7 +125,7 @@ int	ft_export(char **argv, t_dlist **lst)
 	i = 0;
 	while (argv[i] != NULL)
 	{
-		if (ft_single_export(argv[i], lst) != 0)
+		if (ft_single_export(argv[i], env) != 0)
 			exit_code = 1;
 		i++;
 	}

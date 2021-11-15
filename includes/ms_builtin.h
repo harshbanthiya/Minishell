@@ -3,46 +3,43 @@
 /*                                                        :::      ::::::::   */
 /*   ms_builtin.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
+/*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 18:43:33 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/15 09:12:56 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/15 13:48:35 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MS_BUILTIN_H	
 # define MS_BUILTIN_H
 # include "minishell.h"
-
-/* Return a double array of all builtins' names */
-char	**init_builtins(void);
+typedef 	int 	func_builtin(char **argv);
 
 /* Return the global array of our builtin fcts */
-char	**get_builtins(void);
+int		get_builtins(void);
 
 int		is_builtin(char *name);
 
-int		run_builtin(char **argv, t_dlist **lst, int is_pipe);
-int		ft_echo(char **argv, t_dlist **lst);
+int		ft_echo(char **argv);
 
 /* Change working directory (PWD, OLDPWD, pwd and chdir()) */
-int		ft_cd(char **argv, t_dlist **lst);
+int		ft_cd(char **argv);
 
 /* Print a list of all shell variables */
-int		ft_env(char **argv, t_dlist **lst);
+int		ft_env(char **argv);
 
 /* Parse and add/modify specified variable. */
-int		ft_export(char **argv, t_dlist **lst);
+int		ft_export(char **argv);
 void	ft_export_var(char *key, char *value, t_dlist **lst);
 
 /* Parse and remove specified variable, if it exists */
-int		ft_unset(char **argv, t_dlist **lst);
-int		ft_unset_var(char *key, t_dlist **lst);
+int		ft_unset(char **argv);
+int		ft_unset_var(char *key);
 
 /* Print current working directory */
-int		ft_pwd(char **argv, t_dlist **lst);	
+int		ft_pwd(char **argv);	
 
-int		ft_exit(char **argv, t_dlist **lst);
+int		ft_exit(char **argv);
 
 /* printf minishell: builtname: str: msg  in fd 2 */
 void	error_builtin(char *builtname, char *str, char *msg);

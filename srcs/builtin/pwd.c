@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 19:27:49 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/14 14:04:41 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/15 13:59:02 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,10 @@ char	*get_pwd(void)
 	return (g_shell.pwd);
 }
 
-int	ft_pwd(char **argv, t_dlist **lst)
+int	ft_pwd(char **argv)
 {
 	char	*pwd;
 
-	lst = NULL;
 	if (argv[0])
 	{
 		error_builtin("pwd", NULL, "too many arguments");
