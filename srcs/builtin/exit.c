@@ -6,13 +6,17 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 19:27:36 by sfournie          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2021/11/15 13:49:03 by hbanthiy         ###   ########.fr       */
+=======
+/*   Updated: 2021/11/15 13:58:02 by sfournie         ###   ########.fr       */
+>>>>>>> b989a1e3d66853e445a35926e61acde717994af0
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"minishell.h"
 
-int	ft_exit(char **argv, t_dlist **lst)
+int	ft_exit(char **argv)
 {
 	int	exit_status;
 

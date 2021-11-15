@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 18:43:33 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/15 13:17:14 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/15 13:42:17 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ typedef struct s_shell
 {
 	t_dlist	*env;
 	int		sh_mode;
-	char	**builtins;
 	char	*pwd;
 	int 	signal_child_received;
 	int 	heredoc_interruption;
