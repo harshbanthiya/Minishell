@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 09:19:53 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/15 11:44:14 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/15 12:26:10 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int						cmd_add_inredirect(t_command *command,
 int						cmd_add_heredoc(t_command *command,
 							char *limit_str, int fd, bool is_expandable);
 int						cmd_check_readline_has_finished(void);
-void					cmd_set_heredoc_sighandlers(void);
+//void					cmd_set_heredoc_sighandlers(void);
 int						cmd_add_outredirect(t_command *command,
 							char *filepath, int fd, bool is_append);
 void					cmd_free_cmd(t_command *cmds);

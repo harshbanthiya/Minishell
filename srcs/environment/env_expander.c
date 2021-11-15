@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 11:56:31 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/15 09:38:54 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/15 12:38:56 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char    *exp_expand_env_and_join(char *result,
     keyname = ft_substr(str, 0, env_len);
     if (!keyname)
         return (NULL);
-    env_val = get_var_value(keyname, get_env());
+    env_val = get_var(keyname, get_env());
     if (env_val)
     {
         if (result)
@@ -132,7 +132,7 @@ bool    exp_join_str_or_env(char **result,
 */
 
 
-char    *expand_env_val(char *str)
+char    *expand_env_var(char *str)
 {       
     int     len;
     char    *result;

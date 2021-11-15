@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 18:43:33 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/15 10:20:12 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/15 12:45:28 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # include	<readline/history.h>
 # include	<stdbool.h>
 # include	<fcntl.h>
-# include	"libft.h"
+# include	"../libft/libft.h"
 # include	"dlist.h"
 # include	"ms_builtin.h"
 # include	"ms_environment.h"
@@ -60,11 +60,11 @@ t_command   	*ast_cmd2cmd(t_parse_node_command *cmd_node);
 char			*string_node2string(t_parse_node_string *string_node, bool add_quotes);
 char			**expand_string_node(t_parse_node_string *string_node, bool is_export_cmd);
 char			**split_expanded_str(char *str);
-void			put_minish_err_msg(const char *cmd_name, const char *msg);
+void			put_minish_err_msg(char *cmd_name,char *msg);
 int				put_minish_err_msg_and_ret(int ret_val,
-							const char *cmd_name, const char *msg);
+						 char *cmd_name,  char *msg);
 void			put_minish_err_msg_and_exit(int status,
-							const char *cmd_name, const char *msg);
+							char *cmd_name,char *msg);
 void			check_malloc_success(char *cmd_name, void *ptr);
 int				invoke_sequential_commands(t_parse_ast *seqcmd);
 int				interactive_shell(void);

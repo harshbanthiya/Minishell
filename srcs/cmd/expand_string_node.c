@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 15:21:27 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/15 09:36:25 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/15 12:44:55 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static bool cmd_str_node_add_back(t_cmd_str_node ***str_node_arr,
 /* 
     Convert AST str_node to cmd_str_node with variabe expansion
 */
-static t_cmd_str_node   **ast_str2cmd_cmd_str(t_parse_node_string *str_node)
+static t_cmd_str_node   **ast_str2cmd_str(t_parse_node_string *str_node)
 {
     t_cmd_str_node  **result;
     char            *expanded_str;

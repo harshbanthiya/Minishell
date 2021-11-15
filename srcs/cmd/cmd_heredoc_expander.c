@@ -1,20 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cmd_heredoc_exapander.c                            :+:      :+:    :+:   */
+/*   cmd_heredoc_expander.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 10:52:06 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/15 09:32:55 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/15 12:12:16 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include "../../libft/libft.h"
 #include "../../includes/minishell.h"
 #include "../../includes/ms_environment.h"
 #include "../../includes/ms_execution.h"
 #include "../../includes/ms_utils.h"
+#include "../../includes/readline/readline.h"
+#include "../../includes/readline/history.h"
+
+int	cmd_check_readline_has_finished(void)
+{
+	if (g_shell.heredoc_interruption)
+		rl_done = 1;
+	return (0);
+}
 
 static void     process_escape(char **result, char **str, int *len)
 {
