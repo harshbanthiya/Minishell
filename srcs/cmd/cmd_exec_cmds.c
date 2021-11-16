@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 09:06:29 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/15 12:54:50 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/16 13:59:39 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,10 @@ static int	write_heredoc(t_fd_reds_list *in_fd_red_list)
 	return (0);
 }
 
-static int  cmd_exec_one_command(t_command *current_cmd,
-            int pipe_fd[2], int pipe_prev_fd[2])
+static int	cmd_exec_one_command(t_command *current_cmd,
+			int pipe_fd[2], int pipe_prev_fd[2])
 {
-   pid_t			pid;
+	pid_t			pid;
 	t_fd_reds_list	*in_fd_red_list;
 
 	in_fd_red_list = cmd_reds2fd_reds_list(current_cmd->input_redirections);
@@ -99,22 +99,22 @@ static int  cmd_exec_one_command(t_command *current_cmd,
  * return: status of last command
  */
 
-int     cmd_exec_commands(t_command *command)
+int	cmd_exec_commands(t_command *command)
 {
-    int     pipe_fd[2];
-    int     pipe_prev_fd[2];
-    t_command *current_cmd;
+	int			pipe_fd[2];
+	int			pipe_prev_fd[2];
+	t_command	*current_cmd;
 
-    current_cmd = command;
-    if (!command->piped_command && command->exec_and_args
-        && is_builtin((char *)command->exec_and_args[0]))
-        return (cmd_exec_builtin(current_cmd));
-    cmd_init_pipe_fd(pipe_prev_fd, STDIN_FILENO, -1);
-    while (current_cmd)
-    {
-        if (cmd_exec_one_command(current_cmd, pipe_fd, pipe_prev_fd))
-            break ;
-        current_cmd = current_cmd->piped_command;
-    }
-    return (cmd_wait_commands(command));
+	current_cmd = command;
+	if (!command->piped_command && command->exec_and_args
+		&& is_builtin((char *)command->exec_and_args[0]))
+		return (cmd_exec_builtin(current_cmd));
+	cmd_init_pipe_fd(pipe_prev_fd, STDIN_FILENO, -1);
+	while (current_cmd)
+	{
+		if (cmd_exec_one_command(current_cmd, pipe_fd, pipe_prev_fd))
+			break ;
+		current_cmd = current_cmd->piped_command;
+	}
+	return (cmd_wait_commands(command));
 }

@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 01:02:51 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/15 09:43:15 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/16 15:04:54 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,60 +34,60 @@ void	scan_ungetc(t_parse_buffer *buf)
 	buf->cur_pos--;
 }
 
-int     scan_get_symbols(t_parse_buffer *buff, t_token *result, int ch)
+int	scan_get_symbols(t_parse_buffer *buff, t_token *result, int ch)
 {
-    if (ch == ';')
-        result->type = TOKTYPE_SEMICOLON;
-    else if (ch == '|')
-        result->type = TOKTYPE_PIPE;
-    else if (ch == '<' || ch == '>')
-        scan_get_lt_gt(buff, result, ch);
-    else 
-        return (0);
-    return (1);
+	if (ch == ';')
+		result->type = TOKTYPE_SEMICOLON;
+	else if (ch == '|')
+		result->type = TOKTYPE_PIPE;
+	else if (ch == '<' || ch == '>')
+		scan_get_lt_gt(buff, result, ch);
+	else
+		return (0);
+	return (1);
 }
 
-int     scan_get_quotes(t_parse_buffer *buff, t_token *result, int ch)
+int	scan_get_quotes(t_parse_buffer *buff, t_token *result, int ch)
 {
-    if (buff->scan_state != SCANSTATE_NORMAL)
-       parse_die();
-    if (ch == '"')
-    {
-        buff->scan_state = SCANSTATE_DOUBLE_QUOTED;
-        result->type = TOKTYPE_EXPANDABLE_QUOTED;
-        return(scan_read_double_quotes(buff, result));
-    }
-    else if (ch == '\'')
-    {
-        buff->scan_state = SCANSTATE_SINGLE_QUOTED;
-        result->type = TOKTYPE_NON_EXPANDABLE;
-        return (scan_read_single_quotes(buff, result));
-    }
-    return (0);
+	if (buff->scan_state != SCANSTATE_NORMAL)
+		parse_die();
+	if (ch == '"')
+	{
+		buff->scan_state = SCANSTATE_DOUBLE_QUOTED;
+		result->type = TOKTYPE_EXPANDABLE_QUOTED;
+		return (scan_read_double_quotes(buff, result));
+	}
+	else if (ch == '\'')
+	{
+		buff->scan_state = SCANSTATE_SINGLE_QUOTED;
+		result->type = TOKTYPE_NON_EXPANDABLE;
+		return (scan_read_single_quotes(buff, result));
+	}
+	return (0);
 }
 
-int     scan_get_token(t_parse_buffer *buff, t_token *result)
+int	scan_get_token(t_parse_buffer *buff, t_token *result)
 {
-    int     ch;
+	int		ch;
 
-    if (buff->scan_state == SCANSTATE_NORMAL)
-    {
-        ch = scan_getc(buff);
-        if (scan_get_spaces(buff, result, ch)
-            || scan_get_symbols(buff, result, ch)
-            || scan_get_quotes(buff, result, ch)
-            || scan_get_eof(result, ch))
-            return (1);
-        result->type = TOKTYPE_EXPANDABLE;
-        scan_ungetc(buff);
-        return (scan_read_word(buff, result) 
-                && (scan_check_redirection_with_fd(buff, result) || 1));
-    }
-    if (buff->scan_state == SCANSTATE_DOUBLE_QUOTED)
-    {
-        result->type = TOKTYPE_EXPANDABLE_QUOTED;
-        return (scan_read_double_quotes(buff, result));
-    }
-    result->type = TOKTYPE_NON_EXPANDABLE;
-    return (scan_read_single_quotes(buff, result));
+	if (buff->scan_state == SCANSTATE_NORMAL)
+	{
+		ch = scan_getc(buff);
+		if (scan_get_spaces(buff, result, ch)
+			|| scan_get_symbols(buff, result, ch)
+			|| scan_get_quotes(buff, result, ch)
+			|| scan_get_eof(result, ch))
+			return (1);
+		result->type = TOKTYPE_EXPANDABLE;
+		scan_ungetc(buff);
+		return (scan_read_word(buff, result)
+			&& (scan_check_redirection_with_fd(buff, result) || 1));
+	}
+	if (buff->scan_state == SCANSTATE_DOUBLE_QUOTED)
+	{
+		result->type = TOKTYPE_EXPANDABLE_QUOTED;
+		return (scan_read_double_quotes(buff, result));
+	}
+	result->type = TOKTYPE_NON_EXPANDABLE;
+	return (scan_read_single_quotes(buff, result));
 }

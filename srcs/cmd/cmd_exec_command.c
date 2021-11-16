@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 09:21:56 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/15 09:31:55 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/16 13:57:28 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static void	replace_stdio_with_pipe(t_command *command,
 void	cmd_exec_command(t_command *command,
 	int pipe_prev_fd[2], int pipe_fd[2], t_fd_reds_list *in_fd_reds_list)
 {
-	//t_builtin_cmd	*builtin_func; /* typedef int	t_builtin_cmd(char**);*/
+	t_builtin_cmd	*builtin_func;
 
 	//set_sighandlers(SIG_DFL);
 	replace_stdio_with_pipe(command, pipe_prev_fd, pipe_fd);
@@ -59,9 +59,9 @@ void	cmd_exec_command(t_command *command,
 		exit(EXIT_FAILURE);
 	if (!command->exec_and_args)
 		exit(0);
-	//builtin_func = get_builtin_func((char *)command->exec_and_args[0]); /* Check builtin utils */
-	//if (builtin_func)
-	//	exit(builtin_func((char **)command->exec_and_args));
+	builtin_func = get_builtin_func((char *)command->exec_and_args[0]);
+	if (builtin_func)
+		exit(builtin_func((char **)command->exec_and_args));
 	cmd_execvp((char *)command->exec_and_args[0],
 		(char **) command->exec_and_args);
 }

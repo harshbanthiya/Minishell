@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 20:14:21 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/15 15:37:40 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/16 14:00:30 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ char	**env_list_to_envp(t_dlist *env_head)
 	return (output);
 }
 
-
 /* Split string by colon(':').
  *
  * str: Colon delimited string.
@@ -92,6 +91,7 @@ char	**env_list_to_envp(t_dlist *env_head)
  *     - default_str: "default"
  *   - return: ["default", "default", "/"]
  */
+
 char	**get_colon_units(const char *str, const char *default_str)
 {
 	void	**result;

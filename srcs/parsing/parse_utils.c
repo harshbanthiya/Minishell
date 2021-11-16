@@ -6,19 +6,19 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 00:15:20 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/15 16:27:17 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/16 14:55:46 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/ms_parse.h"
 #include <stdlib.h>
 
-void    parse_die(void)
+void	parse_die(void)
 {
-    int     *nullpoint;
+	int	*nullpoint;
 
-    nullpoint = NULL;
-    nullpoint[0] = 0xD1E; //will produce error: invalid memory address
+	nullpoint = NULL;
+	nullpoint[0] = 0xD1E;
 }
 
 void	parse_skip_spaces(t_parse_buffer *buff, t_token *tok)
