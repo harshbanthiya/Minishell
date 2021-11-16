@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+         #
+#    By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/09 15:31:26 by sfournie          #+#    #+#              #
-#    Updated: 2021/11/15 16:51:26 by hbanthiy         ###   ########.fr        #
+#    Updated: 2021/11/16 14:39:16 by sfournie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,7 +70,7 @@ SRC	= 	environment.c variable.c variable_print.c variable_utils.c \
 		memory.c \
 		shell.c \
 		terminal.c modes.c \
-		sig_general.c \
+		signal.c \
 		file.c \
 		ft_merge_split.c ft_splitn.c ft_strfuse.c\
 		dlist.c node.c \
