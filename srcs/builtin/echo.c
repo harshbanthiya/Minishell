@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 19:27:42 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/15 16:59:51 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/16 11:29:42 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,10 @@ static int	is_nl(char *opt)
 
 int	ft_echo(char **argv)
 {
-	//char	**args;
 	int		nl;
 	int		i;
 	int		j;
 
-	//lst = NULL;
 	nl = 1;
 	i = 0;
 	while (is_nl(argv[i]))

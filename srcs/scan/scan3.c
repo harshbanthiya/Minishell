@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 00:47:33 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/15 11:29:13 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/16 14:56:38 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 
 int	scan_check_redirection_with_fd(t_parse_buffer *buff, t_token *result)
 {
-	int 	i;
-	int 	ch;
-	int 	fd;
+	int		i;
+	int		ch;
+	int		fd;
 
 	i = 0;
 	while (i < result->length)
@@ -35,7 +35,7 @@ int	scan_check_redirection_with_fd(t_parse_buffer *buff, t_token *result)
 		scan_get_symbols(buff, result, ch);
 		result->length = fd;
 	}
-	else 
+	else
 		scan_ungetc(buff);
 	return (1);
 }
@@ -68,7 +68,7 @@ int	scan_escaped(t_parse_buffer *buf, t_token *result)
 	return (0);
 }
 
-int		scan_get_eof(t_token *result, int ch)
+int	scan_get_eof(t_token *result, int ch)
 {
 	if (ch == EOF)
 	{
@@ -78,29 +78,29 @@ int		scan_get_eof(t_token *result, int ch)
 	return (0);
 }
 
-int     scan_init_token(t_token *result)
+int	scan_init_token(t_token *result)
 {
-    result->max_length = 1024;
-    result->text = malloc(result->max_length);
-    if (!result->text)
-    {
-        printf("malloc token buffer failed");
-        exit(1);
-    }
-    result->length = 0;
-    result->type = TOKTYPE_PARSE_ERROR;
-    return (0);
+	result->max_length = 1024;
+	result->text = malloc(result->max_length);
+	if (!result->text)
+	{
+		printf("malloc token buffer failed");
+		exit(1);
+	}
+	result->length = 0;
+	result->type = TOKTYPE_PARSE_ERROR;
+	return (0);
 }
 
-int 	scan_expand_text_buffer(t_token *result)
+int	scan_expand_text_buffer(t_token *result)
 {
-	char 	*old_text;
+	char	*old_text;
 
 	old_text = result->text;
 	result->text = malloc(result->max_length * 2);
 	if (!result->text)
 	{
-		printf("exapnd token buffer failed\n");
+		printf("expand token buffer failed\n");
 		exit(1);
 	}
 	ft_memcpy(result->text, old_text, result->max_length);
