@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_string_node.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
+/*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 15:21:27 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/15 15:10:13 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/16 15:44:19 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static t_cmd_str_node   **ast_str2cmd_str(t_parse_node_string *str_node)
     {
         if (str_node->type == TOKTYPE_NON_EXPANDABLE)
             expanded_str = ft_strdup(str_node->text);
-        else 
+        else
             expanded_str = expand_env_var(str_node->text);
         if (!expanded_str
             || !cmd_str_node_add_back(&result, expanded_str, str_node->type))

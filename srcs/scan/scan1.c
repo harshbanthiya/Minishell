@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scan1.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
+/*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 01:02:51 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/15 09:43:15 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/16 15:50:43 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,8 @@ int     scan_get_token(t_parse_buffer *buff, t_token *result)
             || scan_get_quotes(buff, result, ch)
             || scan_get_eof(result, ch))
             return (1);
-        result->type = TOKTYPE_EXPANDABLE;
+		else
+        	result->type = TOKTYPE_EXPANDABLE;
         scan_ungetc(buff);
         return (scan_read_word(buff, result) 
                 && (scan_check_redirection_with_fd(buff, result) || 1));
