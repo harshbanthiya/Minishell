@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "ms_execution.h": "c",
+        "history.h": "c",
+        "readline.h": "c"
+    }
+}
