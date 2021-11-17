@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 19:27:43 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/17 17:41:08 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/17 17:55:38 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	ft_cd(char **argv)
 	int		chdir_ret;
 
 	old_pwd = getcwd(NULL, 0);
-	if (chdir(argv[1]) == 0)
+	if (argv[1] == 0)
 	{
 		home = get_var_value("HOME", *get_env());
 		if (home)
@@ -49,12 +49,12 @@ int	ft_cd(char **argv)
 		}
 	}
 	else
-		chdir_ret = chdir(argv[0]);
+		chdir_ret = chdir(argv[1]);
 	if (chdir_ret == 0)
 		return (cd_update(old_pwd));
 	else
 	{
 		ft_free(old_pwd);
-		return (error_builtin("cd", argv[0], "no such file or directory", 1));
+		return (error_builtin("cd", argv[1], "no such file or directory", 1));
 	}
 }
