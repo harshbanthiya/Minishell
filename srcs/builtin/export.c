@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 19:27:47 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/17 15:39:46 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/17 17:41:11 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,9 +120,9 @@ int	ft_export(char **argv)
 
 	exit_code = 0;
 	env = get_env();
-	if (argv[0] == NULL)
+	if (argv[1] == NULL)
 		return (ft_env_export(1));
-	i = 0;
+	i = 1;
 	while (argv[i] != NULL)
 	{
 		if (ft_single_export(argv[i], env) != 0)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
+/*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 19:27:49 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/15 15:49:27 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/17 16:23:19 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	ft_pwd(char **argv)
 {
 	char	*pwd;
 
-	if (argv[0])
+	if (argv[1])
 	{
 		error_builtin("pwd", NULL, "too many arguments");
 		return (1);

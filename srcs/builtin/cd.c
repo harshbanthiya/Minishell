@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 19:27:43 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/17 13:45:15 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/17 17:41:08 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	ft_cd(char **argv)
 	int		chdir_ret;
 
 	old_pwd = getcwd(NULL, 0);
-	if (!argv[0])
+	if (chdir(argv[1]) == 0)
 	{
 		home = get_var_value("HOME", *get_env());
 		if (home)

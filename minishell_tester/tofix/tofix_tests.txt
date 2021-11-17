@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+cd
+>>>>>>> develop
 eCho
 eChO
 eCHO
@@ -35,24 +39,13 @@ exit cd ..
 exit something somethingv2
 exit echo something
 env | grep "_="
-export | grep "SHLVL"
 export | grep "OLDPWD"
 export | grep "PWD"
 export --TEST=123
 export -TEST=100
-export | grep "SHLVL"
 export -TEST=123
 export TEST+=100
 env | grep "_="
-env | grep "SHLVL"
-echo oui | cat -e
-echo oui | echo non | echo something | grep something
-cd .. | echo "something"
-cd .. | echo "something"
-cd / | echo "something"
-cd .. | pwd
-echo test | cat -e | cat -e | cat -e
-echo test | cat -e | cat -e | cat -e | cat -e | cat -e | cat -e | cat -e | cat -e | cat -e | cat -e | cat -e | cat -e | cat -e | cat -e | cat -e | cat -e | cat -e | cat -e | cat -e | cat -e
 unset
 unset PWD
 unset PWD

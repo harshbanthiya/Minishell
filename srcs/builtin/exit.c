@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
+/*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 19:27:36 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/17 12:53:43 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/17 16:22:48 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,10 @@ int	ft_exit(char **argv)
 	int	argv_len;
 
 	argv_len = ptrarr_len((void **)argv);
-	if (argv_len > 1)
+	if (argv_len > 2)
 		return (put_minish_err_msg_and_ret(1, "exit", "too many arguments"));
-	else if (argv_len == 1)
-		exit_atol(argv[0]);
+	else if (argv_len == 2)
+		exit_atol(argv[1]);
 	else
 		exit(g_shell.status);
 	return (0);
