@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
+/*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 19:27:41 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/15 16:56:02 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/17 15:39:26 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,7 @@ int	ft_env(char **argv)
 	}
 	else
 	{
-		error_builtin("env", NULL, "too many arguments");
-		exit_code = 2;
+		exit_code = error_builtin("env", NULL, "too many arguments", 2);
 	}
 	return (exit_code);
 }

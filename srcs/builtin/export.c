@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
+/*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 19:27:47 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/15 16:04:20 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/17 15:39:46 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,8 +105,7 @@ int	ft_single_export(char *argv, t_dlist **lst)
 		}
 		else
 		{
-			error_builtin("export", split[0], "not a valid identifier");
-			exit_code = 1;
+			exit_code = error_builtin("export", split[0], "not a valid identifier", 1);
 		}
 		free_split(split);
 	}
