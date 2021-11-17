@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_execution.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
+/*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 09:19:53 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/15 12:26:10 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/16 19:03:18 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,5 +105,6 @@ void					cmd_free_redirection(t_cmd_redirection *redirection);
 void					cmd_free_redirections(t_cmd_redirection *redirections);
 t_fd_reds_list			*cmd_reds2fd_reds_list(t_cmd_redirection *reds);
 void					cmd_free_fd_reds_list(t_fd_reds_list *fd_red_list);
+char					**exec_wild_args(char **argv);
 
 #endif

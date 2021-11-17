@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_exec_cmds.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
+/*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 09:06:29 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/16 13:59:39 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/16 19:49:35 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,11 @@ static int	cmd_exec_one_command(t_command *current_cmd,
 	if (pid < 0)
 		return (put_err_msg_and_ret("error fork()"));
 	else if (pid == 0)
+	{
+		sig_set_all_default();
 		cmd_exec_command(current_cmd, pipe_prev_fd, pipe_fd,
 			in_fd_red_list);
+	}
 	write_heredoc(in_fd_red_list);
 	cmd_free_fd_reds_list(in_fd_red_list);
 	current_cmd->pid = pid;

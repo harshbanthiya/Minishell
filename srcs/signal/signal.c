@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sig_general.c                                      :+:      :+:    :+:   */
+/*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
+/*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 12:06:14 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/15 16:00:21 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/16 14:47:02 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,28 @@ void	init_signals(void)
 	set_signal(&sigquit_handler, SIGQUIT);
 }
 
+void	sig_set_all_default()
+{
+	set_signal(SIG_DFL, SIGINT);
+	set_signal(SIG_DFL, SIGQUIT);
+}
+
 /* ctrl-c */
 /* interactive mode : print new prompt on newline */
 void	sigintr_handler(int signum)
 {
 	signum = 0;
-	ft_putchar_fd('\n', 1);
-	rl_replace_line("", 1);
-	rl_on_new_line();
-	rl_redisplay();
+	int	mode;
+
+	mode = sh_get_mode();
+	if (mode == 1)
+	{
+		ft_putchar_fd('\n', 1);
+		rl_replace_line("", 1);
+		rl_on_new_line();
+		rl_redisplay();
+	}
+	
 	// set_status(128 + signum);
 }
 
@@ -46,6 +59,13 @@ void	sigintr_handler(int signum)
 void	sigquit_handler(int signum)
 {
 	signum = 0;
+	int	mode;
+
+	mode = sh_get_mode();
+	if (mode == 1)
+	{
+		rl_redisplay();
+	}
 	// rl_replace_line("", 1);
 	// rl_on_new_line();
 	// rl_redisplay();
@@ -57,4 +77,5 @@ void	sigquit_handler(int signum)
 void	sigchld_handler(int signum)
 {
 	signum = 0;
+
 }
