@@ -1,5 +1,70 @@
-unset TES\\T
-unset TES;T
+-n
+cd
+eCho
+eChO
+eCHO
+ECHO
+echo ~
+echo ~/123
+echo ~/123/456
+echo $USER$12USER$USER=4$USER12
+echo $USER $123456789USER $USER123456789
+echo $USER $9999USER $8888USER $7777USER
+echo "$9USER" "'$USER=12$SOMETHING'"
+| test
+echo > <
+echo | |
+<
+|
+| | |
+||||||||
+
+>
+>>>>>>>>
+<<<<<<<<<
+> > > >
+>> >> >> >>
+~
+<<
+
+.
+>echo>
+<echo<
+>>echo>>
+|echo|
+| echo -n oui
+exit 0 0
+exit 42 42
+exit -42 -24
+exit 42 53 68
+exit 0 0
+exit 42 42 42 42 42
+env | grep "_="
+export | grep "SHLVL"
+export | grep "OLDPWD"
+export | grep "PWD"
+export --TEST=123
+export -TEST=100
+export | grep "SHLVL"
+export -TEST=123
+export TEST+=100
+env | grep "_="
+env | grep "SHLVL"
+echo oui | cat -e
+echo oui | echo non | echo something | grep something
+cd .. | echo "something"
+cd .. | echo "something"
+cd / | echo "something"
+cd .. | pwd
+echo test | cat -e | cat -e | cat -e
+echo test | cat -e | cat -e | cat -e | cat -e | cat -e | cat -e | cat -e | cat -e | cat -e | cat -e | cat -e | cat -e | cat -e | cat -e | cat -e | cat -e | cat -e | cat -e | cat -e | cat -e
+unset
+unset PWD
+unset PWD
+unset PATH
+unset PATH
+unset PATH
+unset TES\T
 unset TES.T
 unset TES+T
 unset TES=T

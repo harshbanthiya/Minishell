@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_prep.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
+/*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 09:35:30 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/16 19:49:33 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/17 11:24:09 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	cmd_add_inredirect(t_command *command,
 	if (!cmd_redirection_add_back(&command->input_redirections, red))
 	{
 		free(red);
-		return (-1);
+		return (ERROR);
 	}
 	return (0);
 }

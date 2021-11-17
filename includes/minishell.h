@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
+/*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 18:43:33 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/16 20:19:42 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/17 09:58:50 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ typedef struct s_cmd_str_node {
 /* Return a formated prompt */
 char	*ft_readline(void);
 void	*ft_history(char *line);
-
+/* For the sig handler */
+typedef void	(*t_sighandler)(int);
 /* Search for and return full path of specified "name" */
 char	*get_path(char *name);
 t_dlist  *global_current_token_node;
@@ -66,6 +67,9 @@ void			check_malloc_success(char *cmd_name, void *ptr);
 int				invoke_sequential_commands(t_parse_ast *seqcmd);
 int				interactive_shell(void);
 void			init_buffer_with_string(t_parse_buffer *buff, char *str);
+void			set_shell_sighandlers(void);
+void			set_sighandlers_during_execution(void);
+void			set_sighandlers(t_sighandler sighandler);
 
 // Shell initialization
 void					init_g_shell(void);

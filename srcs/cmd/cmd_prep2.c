@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 10:07:35 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/16 13:46:42 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/17 11:54:47 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ int	cmd_add_heredoc(t_command *command,
 	check_malloc_success("heredoc", (void *)red);
 	red->fd = fd;
 	red->is_heredoc = true;
-   // cmd_set_heredoc_sighandlers();
+   	cmd_set_heredoc_sighandlers();
 	readline4heredoc(red, limit_str);
 	if (g_shell.heredoc_interruption)
 	{
@@ -105,6 +105,6 @@ int	cmd_add_heredoc(t_command *command,
 	}
 	if (!cmd_redirection_add_back(&command->input_redirections, red))
 		put_minish_err_msg_and_exit(1, "heredoc", "lstaddback failed");
-	//set_sighandlers_during_execution();
+	set_sighandlers_during_execution();
 	return (0);
 }

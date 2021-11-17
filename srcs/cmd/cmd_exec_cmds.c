@@ -3,19 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_exec_cmds.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
+/*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 09:06:29 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/16 19:49:35 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/17 10:34:21 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <unistd.h>
 #include <sys/wait.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
 #include "../../includes/ms_environment.h"
 #include "../../includes/ms_execution.h"
+#include "../../includes/ms_builtin.h"
 
 static int	cmd_connect_pipe(
 	int pipe_prev_fd[2], int pipe_fd[2])
@@ -81,11 +83,9 @@ static int	cmd_exec_one_command(t_command *current_cmd,
 	if (pid < 0)
 		return (put_err_msg_and_ret("error fork()"));
 	else if (pid == 0)
-	{
-		sig_set_all_default();
+		//sig_set_all_default();
 		cmd_exec_command(current_cmd, pipe_prev_fd, pipe_fd,
 			in_fd_red_list);
-	}
 	write_heredoc(in_fd_red_list);
 	cmd_free_fd_reds_list(in_fd_red_list);
 	current_cmd->pid = pid;

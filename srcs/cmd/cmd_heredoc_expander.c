@@ -19,12 +19,6 @@
 #include "../../includes/readline/readline.h"
 #include "../../includes/readline/history.h"
 
-int	cmd_check_readline_has_finished(void)
-{
-	if (g_shell.heredoc_interruption)
-		rl_done = 1;
-	return (0);
-}
 
 static void	process_escape(char **result, char **str, int *len)
 {
@@ -78,23 +72,4 @@ char	*expand_heredoc_document(char *str)
 			len++;
 	}
 	return (result);
-}
-
-bool	cmd_is_heredoc_expandable(t_parse_node_redirection *redirection_node)
-{
-	bool				is_expandable_heredoc;
-	t_parse_node_string	*str_node;
-
-	str_node = redirection_node->string_node->content.string;
-	is_expandable_heredoc = 1;
-	while (str_node)
-	{
-		if (str_node->type == TOKTYPE_NON_EXPANDABLE)
-			is_expandable_heredoc = 0;
-		if (str_node->next)
-			str_node = str_node->next->content.string;
-		else
-			str_node = NULL;
-	}
-	return (is_expandable_heredoc);
 }

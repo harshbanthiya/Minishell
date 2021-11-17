@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   variable.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
+/*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 16:01:18 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/16 16:52:49 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/17 10:22:58 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,12 @@ char	*get_var_value(char *key, t_dlist *list)
 {
 	t_var	*var;
 
+	if (!ft_strcmp(key, "?"))
+		return (ft_itoa(get_status()));
 	var = get_var(key, list);
-	if (var != NULL)
-		return (var->value);
-	return (NULL);
+	if (!var || !var->value)
+		return (NULL);
+	return (ft_strdup(var->value));
 }
 /*
 void	var_set_value(char *key, char *value, t_dlist *list)

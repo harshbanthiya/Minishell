@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 18:04:51 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/15 15:24:25 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/17 08:10:49 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,5 +81,6 @@ int		put_err_msg_and_ret(char *str);
 void	put_err_msg_and_exit(char *str);
 void	free_and_assign_null(void **p);
 void	*free_and_rtn_ptr(void *p, void *val);
+bool	is_long_overflow(const char *nptr, int sign);
 
 #endif

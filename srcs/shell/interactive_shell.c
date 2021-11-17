@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 22:22:08 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/17 07:59:04 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/17 12:04:52 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	execute_seqcmd(t_parse_ast *cmdline)
 	t_parse_ast			*seqcmd;
 
 	seqcmd = cmdline->content.command_line->seqcmd_node;
-	//set_sighandlers_during_execution();
+	set_sighandlers_during_execution();
 	invoke_sequential_commands(seqcmd);
 	if (g_shell.signal_child_received)
 	{
@@ -29,7 +29,7 @@ void	execute_seqcmd(t_parse_ast *cmdline)
 		write(STDOUT_FILENO, "\n", 1);
 		set_status(128 + g_shell.signal_child_received);
 	}
-	//set_shell_sighandlers();
+	set_shell_sighandlers();
 }
 
 bool	is_invalid_input_str(char *input_str)
@@ -73,7 +73,7 @@ int	interactive_shell(void)
 	char		*user_in;
 	t_parse_ast	*root;
 
-	//sh_change_mode(get_shell(), 1);
+	set_shell_sighandlers();
 	print_welcome();
 	user_in = ft_readline();
 	while (user_in)
@@ -92,6 +92,6 @@ int	interactive_shell(void)
 		user_in = ft_readline();
 	}
 	write(1, "exit\n", 5);
-	//free_shell();
+	free_shell();
 	return (0);
 }

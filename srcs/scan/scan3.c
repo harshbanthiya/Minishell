@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 00:47:33 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/16 14:56:38 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/17 12:09:03 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int	scan_init_token(t_token *result)
 	result->text = malloc(result->max_length);
 	if (!result->text)
 	{
-		printf("malloc token buffer failed");
+		printf("malloc token buffer failed\n");
 		exit(1);
 	}
 	result->length = 0;

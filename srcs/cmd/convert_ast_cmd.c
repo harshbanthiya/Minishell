@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 10:53:03 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/16 12:01:10 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/17 10:27:08 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	cmd_process_redirection_node(t_parse_node_redirection *redirection_node,
 	fd = redirection_node->fd;
 	status = 0;
 	if (!text)
-		return (-1);
+		return (ERROR);
 	if (redirection_type == TOKTYPE_INPUT_REDIRECTION)
 		status = cmd_add_inredirect(command, text, fd);
 	else if (redirection_type == TOKTYPE_OUTPUT_REDIRECTION)

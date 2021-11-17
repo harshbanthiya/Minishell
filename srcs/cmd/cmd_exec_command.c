@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_exec_command.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
+/*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 09:21:56 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/16 19:49:34 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/17 10:35:25 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,10 @@ void	cmd_exec_command(t_command *command,
 {
 	t_builtin_cmd	*builtin_func;
 
-	//set_sighandlers(SIG_DFL);
+	set_sighandlers(SIG_DFL);
 	replace_stdio_with_pipe(command, pipe_prev_fd, pipe_fd);
-	if (cmd_set_input_file(in_fd_reds_list) == -1
-		|| cmd_set_output_file(command) == -1)
+	if (cmd_set_input_file(in_fd_reds_list) == ERROR
+		|| cmd_set_output_file(command) == ERROR)
 		exit(EXIT_FAILURE);
 	if (!command->exec_and_args)
 		exit(0);
