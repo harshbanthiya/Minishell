@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 22:22:08 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/16 15:08:02 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/16 16:34:32 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,6 @@ int	interactive_shell(void)
 		user_in = ft_readline();
 	}
 	write(1, "exit\n", 5);
-	free_shell();
+	//free_shell();
 	return (0);
 }
