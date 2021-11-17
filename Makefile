@@ -6,7 +6,7 @@
 #    By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/09 15:31:26 by sfournie          #+#    #+#              #
-#    Updated: 2021/11/16 14:39:16 by sfournie         ###   ########.fr        #
+#    Updated: 2021/11/16 20:15:15 by sfournie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,8 +61,8 @@ MAIN_WILD	= $(DIR_MAINS)/main_wild.c
 # Headers
 HEADERS	=	ms_builtin.h dlist.h ms_environment.h \
 				minishell.h ms_execution.h ms_shell.h \
-				ms_parse.h ms_parsing.h ms_path.h ms_scan.h \
-				ms_utils.h ms_utility.h ms_signal.h
+				ms_parse.h ms_path.h ms_scan.h \
+				ms_utils.h ms_signal.h
 #
 
 # Sources and Objects
@@ -71,12 +71,10 @@ SRC	= 	environment.c variable.c variable_print.c variable_utils.c \
 		shell.c \
 		terminal.c modes.c \
 		signal.c \
-		file.c \
 		ft_merge_split.c ft_splitn.c ft_strfuse.c\
 		dlist.c node.c \
 		cd.c echo.c env.c exit.c export.c pwd.c unset.c \
-		parse1.c parse2.c parse3.c parse_utils.c parse_utils2.c sparse.c \
-		expand.c c_types.c cleanup.c \
+		parse1.c parse2.c parse3.c parse_utils.c parse_utils2.c \
 		scan1.c scan2.c scan3.c scan4.c \
 		builtin_utils.c builtin_fd_list.c \
 		minishell_error_msg.c \
@@ -84,7 +82,8 @@ SRC	= 	environment.c variable.c variable_print.c variable_utils.c \
 		cmd_pipe.c cmd_prep.c cmd_prep2.c cmd_redirections.c cmd_heredoc_expander.c \
 		convert_ast_cmd.c expand_string_node.c path.c string_node2string.c t_cmd_redirection.c \
 		exec.c env_expander.c \
-		cmd_status.c interactive_shell.c split_expanded_str.c string_utils.c 
+		cmd_status.c interactive_shell.c split_expanded_str.c string_utils.c \
+		wild_expander.c
 
 _OBJ	= $(SRC:.c=.o)
 OBJ		= $(patsubst %,$(DIR_OBJS)/%,$(_OBJ))

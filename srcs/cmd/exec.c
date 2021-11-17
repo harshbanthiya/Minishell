@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
+/*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 11:21:41 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/16 11:50:05 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/16 19:49:38 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ static char	*search_and_exec_file_from_dirs(char *filename,
 		{
 			free(last_executable_path);
 			last_executable_path = ft_strdup(executable_path);
+			argv = exec_wild_args(argv);
 			execve(executable_path, argv, envs);
 		}
 		free(executable_path);
@@ -122,7 +123,10 @@ int	cmd_execvp(char *filename, char **argv)
 	errno = 0;
 	executable_path = filename;
 	if (ft_strchr(filename, '/'))
+	{
+		argv = exec_wild_args(argv);
 		execve(filename, argv, env_list_to_envp(*get_env()));
+	}
 	else
 		executable_path = search_and_exec_file_from_path_env(filename, argv);
 	if (executable_path && is_directory(executable_path))
