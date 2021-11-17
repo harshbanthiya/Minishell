@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 11:54:18 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/15 15:40:39 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/17 14:15:01 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ char	*strjoin_nullable_and_free_both(char *str_nullable, char *second)
 		result = ft_strjoin(str_nullable, second);
 	else
 		result = ft_strdup(second);
-	free(str_nullable);
-	free(second);
+	ft_free(str_nullable);
+	ft_free(second);
 	return (result);
 }

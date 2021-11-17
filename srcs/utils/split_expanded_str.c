@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 12:09:08 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/17 08:20:48 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/17 13:45:08 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static char	*substr_and_join(char *dst, char *from, int len)
  * quote_char: Variable in get_str_from_expanded_str()
  *               this variable has quotation character '\'', '\"' or '\0'.
  * text: String that is delimited by space.
- *         It will be concatenate with sub string of str.
+ *         It will concatenate with sub string of str.
  * str: Variable expanded string.
  *        Advance the str pointer by len+1.
  * len: It's used for strdup().
