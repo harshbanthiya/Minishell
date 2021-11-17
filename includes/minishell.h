@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 18:43:33 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/16 15:03:23 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/16 20:14:28 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,8 @@
 # include	"dlist.h"
 # include	"ms_builtin.h"
 # include	"ms_environment.h"
-# include	"ms_parsing.h"
 # include	"ms_shell.h"
 # include	"ms_signal.h"
-# include	"ms_utility.h"
 # include   "ms_parse.h"
 # include   "ms_execution.h"
 
@@ -47,8 +45,6 @@ typedef struct s_cmd_str_node {
 char	*ft_readline(void);
 void	*ft_history(char *line);
 
-/* Append (file) to (path), with a '/' in between */
-char	*join_path_file(char *path, char *file);
 /* Search for and return full path of specified "name" */
 char	*get_path(char *name);
 t_dlist  *global_current_token_node;
