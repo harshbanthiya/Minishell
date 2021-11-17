@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 18:43:33 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/16 20:14:28 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/16 20:19:42 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@
 # include	"ms_shell.h"
 # include	"ms_signal.h"
 # include   "ms_parse.h"
+# include   "ms_execution.h"
+# include   "ms_utils.h"
 # include   "ms_execution.h"
 
 
