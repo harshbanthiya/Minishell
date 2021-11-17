@@ -6,75 +6,55 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 19:27:43 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/17 16:21:53 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/17 17:55:38 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"../../includes/minishell.h"
 
-static void	dir_parser(char **split)
+static int	cd_update(char *old_pwd)
 {
-	int		i;
-	int		j;
+	char	*new_pwd;
 
-	i = 0;
-	j = 0;
-	while (split[i])
-	{
-		if (!ft_strcmp(split[i], ".") || !ft_strcmp(split[i], ".."))
-		{
-			if (j > 0 && !ft_strcmp(split[i], ".."))
-			{
-				ft_free(split[--j]);
-				split[j] = NULL;
-			}
-			ft_free(split[i]);
-			split[i] = NULL;
-		}	
-		else
-			split[j++] = split[i];
-		i++;
-	}
-}
-
-/*	Expands . and .. and return the resulting string. 
-	the received path is NOT freed.	*/
-char	*parse_directory(char *path)
-{
-	char	**split;
-	char	*new_path;
-
-	split = ft_split(path, '/');
-	if (split == NULL)
-		return (NULL);
-	dir_parser(split);
-	new_path = ft_merge_split(split, "/");
-	free_split(split);
-	return (new_path);
+	new_pwd = getcwd(NULL, 0);
+	if (get_var("OLDPWD", *get_env()))
+		ft_export_var("OLDPWD", old_pwd, get_env());
+	if (get_var("PWD", *get_env()))
+		ft_export_var("PWD", new_pwd, get_env());
+	set_pwd(new_pwd);
+	return (0);
 }
 
 int	ft_cd(char **argv)
 {
 	char	*old_pwd;
-	char	*new_pwd;
-	int		exit_code;
+	char	*home;
+	int		chdir_ret;
 
 	old_pwd = getcwd(NULL, 0);
-	if (chdir(argv[1]) == 0)
+	if (argv[1] == 0)
 	{
-		new_pwd = getcwd(NULL, 0);
-		if (get_var("OLDPWD", *get_env()))
-			ft_export_var("OLDPWD", old_pwd, get_env());
-		if (get_var("PWD", *get_env()))
-			ft_export_var("PWD", new_pwd, get_env());
-		set_pwd(new_pwd);
-		exit_code = 0;
+		home = get_var_value("HOME", *get_env());
+		if (home)
+		{
+			if (*home)
+				chdir_ret = chdir(home);
+			else
+				chdir_ret = chdir(old_pwd);
+		}
+		else
+		{
+			ft_free(old_pwd);
+			return (error_builtin("cd", NULL, "HOME not set", 1));
+		}
 	}
 	else
+		chdir_ret = chdir(argv[1]);
+	if (chdir_ret == 0)
+		return (cd_update(old_pwd));
+	else
 	{
-		error_builtin("cd", argv[0], "no such file or directory");
-		exit_code = 1;
+		ft_free(old_pwd);
+		return (error_builtin("cd", argv[1], "no such file or directory", 1));
 	}
-	ft_free(old_pwd);
-	return (exit_code);
 }

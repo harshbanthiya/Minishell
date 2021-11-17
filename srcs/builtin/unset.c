@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 19:27:51 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/17 16:23:32 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/17 17:50:18 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,15 +72,15 @@ int	ft_unset(char **argv)
 	if (env == NULL)
 		return (1);
 	if (argv[1] == NULL)
-	{
-		error_builtin("unset", NULL, "not enough arguments");
-		exit_code = 1;
-		return (exit_code);
-	}
+		return(error_builtin("unset", NULL, "not enough arguments", 1));
 	i = 1;
 	while (argv[i])
 	{
-		exit_code = ft_unset_var(argv[i++], env);
+		if (var_is_valid_key(argv[i]))
+			ft_unset_var(argv[i++], env);
+		else
+			exit_code = error_builtin("unset", argv[i++], "not a valid identifier", 1);
+		
 	}
 	return (exit_code);
 }
