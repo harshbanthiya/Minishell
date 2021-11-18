@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 11:56:38 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/17 11:49:27 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/18 10:19:38 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,7 @@ int	cmd_exec_builtin(t_command *command)
 		return (set_status_and_ret(1, 1));
 	builtin_func = get_builtin_func((char *)command->exec_and_args[0]);
 	//command->exec_and_args = exec_wild_args(command->exec_and_args);
-	status = builtin_func(&((char **)command->exec_and_args)[1]);
+	status = builtin_func((char **)command->exec_and_args);
 	set_status(status);
 	fd_list_close(&fd_lst);
 	if (dup2(stdoutfd, STDOUT_FILENO) == -1

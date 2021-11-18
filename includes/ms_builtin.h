@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_builtin.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
+/*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 18:43:33 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/15 16:53:28 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/17 13:37:49 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,6 @@ int		ft_pwd(char **argv);
 int		ft_exit(char **argv);
 
 /* printf minishell: builtname: str: msg  in fd 2 */
-void	error_builtin(char *builtname, char *str, char *msg);
+int		error_builtin(char *builtname, char *str, char *msg, int code);
 
 #endif

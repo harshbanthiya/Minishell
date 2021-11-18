@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 16:01:18 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/15 15:41:27 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/18 12:57:17 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	print_var_extra(int fd, t_var *var)
 {
 	if (var->key != NULL)
 	{
+		// ft_putstr_fd("declare -x ", fd);
 		ft_putstr_fd(var->key, fd);
 		if (var->value != NULL)
 		{
