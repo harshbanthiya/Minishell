@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
+/*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 19:27:43 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/15 15:49:54 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/17 16:21:53 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	ft_cd(char **argv)
 	int		exit_code;
 
 	old_pwd = getcwd(NULL, 0);
-	if (chdir(argv[0]) == 0)
+	if (chdir(argv[1]) == 0)
 	{
 		new_pwd = getcwd(NULL, 0);
 		if (get_var("OLDPWD", *get_env()))

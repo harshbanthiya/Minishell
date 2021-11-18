@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
+/*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 19:27:42 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/16 11:29:42 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/17 16:22:04 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	ft_echo(char **argv)
 	int		j;
 
 	nl = 1;
-	i = 0;
+	i = 1;
 	while (is_nl(argv[i]))
 	{
 		nl = 0;
