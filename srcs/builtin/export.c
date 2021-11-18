@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 19:27:47 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/17 16:23:14 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/17 17:41:11 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,8 +105,7 @@ int	ft_single_export(char *argv, t_dlist **lst)
 		}
 		else
 		{
-			error_builtin("export", split[0], "not a valid identifier");
-			exit_code = 1;
+			exit_code = error_builtin("export", split[0], "not a valid identifier", 1);
 		}
 		free_split(split);
 	}

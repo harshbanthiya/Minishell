@@ -1,9 +1,4 @@
 -n
-cd
-eCho
-eChO
-eCHO
-ECHO
 echo ~
 echo ~/123
 echo ~/123/456
@@ -37,13 +32,16 @@ exit cd ..
 exit something somethingv2
 exit echo something
 env | grep "_="
+export | grep "SHLVL"
 export | grep "OLDPWD"
 export | grep "PWD"
 export --TEST=123
 export -TEST=100
+export | grep "SHLVL"
 export -TEST=123
 export TEST+=100
 env | grep "_="
+<<<<<<< HEAD
 unset
 unset PWD
 unset PWD
@@ -57,13 +55,6 @@ unset TES=T
 unset TES}T
 unset TES{T
 unset TES-T
+=======
+>>>>>>> feature/test_built
 unset -TEST
-unset TE*ST
-unset TES#T
-unset TES@T
-unset TES!T
-unset ============
-unset +++++++
-unset TES^T
-unset TES!T
-unset TES~T
