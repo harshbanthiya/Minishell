@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 20:44:34 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/17 09:02:04 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/18 14:34:35 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int	do_command(char *cmdstr)
 	else
 	{
 		put_err_msg("Parse error.");
-		return (1);
+		return (2);
 	}
 }
 
