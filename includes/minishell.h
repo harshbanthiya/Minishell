@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 18:43:33 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/17 13:39:37 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/18 14:57:37 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
 # include   "ms_utils.h"
 # include   "ms_execution.h"
 
-# define MINISHELL_PROMPT "minish > "
+#define PROMPT "\033[1;91mMinishell \033[0m\033[1;96m> \033[0m"
 /* Global shell structure declaration */
 struct s_shell	g_shell;
 typedef struct s_cmd_str_node {
