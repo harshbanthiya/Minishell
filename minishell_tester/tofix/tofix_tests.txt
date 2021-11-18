@@ -1,3 +1,4 @@
+-n
 echo ~
 echo ~/123
 echo ~/123/456
@@ -40,5 +41,4 @@ export | grep "SHLVL"
 export -TEST=123
 export TEST+=100
 env | grep "_="
-unset
 unset -TEST
