@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 20:44:34 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/18 14:34:35 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/18 15:44:58 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,18 @@ void	die(void)
 	nullpo[0xdead] = 1;
 }
 
-int 	invoke_sequential_commands(t_parse_ast *seqcmd)
+int	invoke_sequential_commands(t_parse_ast *seqcmd)
 {
 	t_command		*new;
-	int 			status;
+	int				status;
 
 	while (seqcmd && seqcmd->content.sequential_commands->pipcmd_node)
 	{
 		if (seqcmd->type != ASTNODE_SEQ_COMMANDS)
 			die();
 		new = pipcmd2cmd(
-			seqcmd->content.sequential_commands->pipcmd_node->content.piped_commands);
+				seqcmd->content.sequential_commands->pipcmd_node
+				->content.piped_commands);
 		if (new)
 		{
 			status = cmd_exec_commands(new);
@@ -65,7 +66,7 @@ int	do_command(char *cmdstr)
 	t_token			tok;
 	t_parse_ast		*seqcmd;
 	size_t			len;
-	
+
 	len = ft_strlen(cmdstr);
 	init_buffer_with_string(&buff, cmdstr);
 	buff.size++;

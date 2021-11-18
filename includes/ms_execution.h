@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 09:19:53 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/17 12:01:37 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/18 16:31:53 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,46 +19,47 @@
 
 typedef struct s_cmd_redirection
 {
-    char                        *filepath;
-    bool                        is_append;
-    bool                        is_heredoc;
-    int                         fd;
-    struct s_cmd_redirection    *next;
+	char						*filepath;
+	bool						is_append;
+	bool						is_heredoc;
+	int							fd;
+	struct s_cmd_redirection	*next;
 }t_cmd_redirection;
 
-/*
-    A struct to remember all open fds to close them after finishing running commands 
+/* 
+	A struct to remember all 
+	open fds to close them after finishing running commands 
 */
 
 typedef struct s_fd_list
 {
-    int                 fd;
-    struct s_fd_list    *next; 
+	int					fd;
+	struct s_fd_list	*next;
 }t_fd_list;
 
 /*
-    Keep input redirections or heredocs for each fd.
-    "Heredoc_pipe" would be set to "pipe(heredoc_pipe)"
-    if last element of 'reds' is heredoc
-    You should get this struct through reds2in_fd_reds_list()
+	Keep input redirections or heredocs for each fd.
+	"Heredoc_pipe" would be set to "pipe(heredoc_pipe)"
+	if last element of 'reds' is heredoc
+	You should get this struct through reds2in_fd_reds_list()
 */
 
-typedef struct  s_fd_reds_list
+typedef struct s_fd_reds_list
 {
-    int                     fd;
-    t_cmd_redirection       *reds;
-    int                     heredoc_pipe[2];
-    struct s_fd_reds_list   *next;
-} t_fd_reds_list;
+	int						fd;
+	t_cmd_redirection		*reds;
+	int						heredoc_pipe[2];
+	struct s_fd_reds_list	*next;
+}t_fd_reds_list;
 
-typedef struct  s_command
+typedef struct s_command
 {
-    t_cmd_redirection       *output_redirections;
-    struct s_command        *piped_command;
-    t_cmd_redirection       *input_redirections;
-    char                    **exec_and_args;
-    pid_t                   pid;
-} t_command;
+	t_cmd_redirection		*output_redirections;
+	struct s_command		*piped_command;
+	t_cmd_redirection		*input_redirections;
+	char					**exec_and_args;
+	pid_t					pid;
+}t_command;
 
 char					*find_executable_file_in_dir(
 							char *filename, char *dirpath);
@@ -85,8 +86,8 @@ int						cmd_set_heredoc_pipe_fd(
 bool					cmd_is_heredoc_expandable(
 							t_parse_node_redirection *redirection_node);
 char					*expand_heredoc_document(char *str);
-t_command               *cmd_init_cmd(char **exec_and_args);
-t_command               *cmd_add_pipcmd(t_command **cmds, t_command *pipcmd);
+t_command				*cmd_init_cmd(char **exec_and_args);
+t_command				*cmd_add_pipcmd(t_command **cmds, t_command *pipcmd);
 int						cmd_add_inredirect(t_command *command,
 							char *filepath, int fd);
 int						cmd_add_heredoc(t_command *command,

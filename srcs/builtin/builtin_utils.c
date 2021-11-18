@@ -6,13 +6,13 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 16:15:44 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/18 12:57:30 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/18 16:09:57 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"../../includes/minishell.h"
 
-static char *ft_str_tolower(char *str)
+static char	*ft_str_tolower(char *str)
 {
 	char	*str_lower;
 	int		i;
@@ -56,7 +56,7 @@ int	is_builtin(char *name)
 
 t_builtin_cmd	*get_builtin_func(char *cmd_name)
 {
-	char	*str_lower;
+	char			*str_lower;
 	t_builtin_cmd	*f;
 
 	if (!cmd_name)

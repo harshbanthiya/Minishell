@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   main_wild.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
+/*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 20:51:21 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/15 13:17:21 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/18 15:42:38 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"minishell.h"
 #include	<dirent.h>
 
-typedef struct	dirent	t_dirent;
+typedef struct dirent	t_dirent;
 
 static int	ft_wildcmp(char *str, char *wild, int i, int j)
 {
@@ -70,7 +70,7 @@ char	*parse_expand_wild(char *str)
 
 static int	handle_input(char *str)
 {
-	char *wildstr;
+	char	*wildstr;
 
 	wildstr = parse_expand_wild(str);
 	ft_putendl_fd(wildstr, 1);
@@ -82,7 +82,6 @@ int	main(int argn, char **argv, char **envp)
 {
 	char	*user_in;
 
-	// envp[0] = NULL;
 	argn = 0;
 	argv = NULL;
 	sh_init(envp);

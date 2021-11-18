@@ -6,3 +6,21 @@ echo $USER$12USER$USER=4$USER12
 echo $USER $123456789USER $USER123456789
 echo $USER $9999USER $8888USER $7777USER
 echo "$9USER" "'$USER=12$SOMETHING'"
+
+~
+
+.
+exit cd ..
+exit something somethingv2
+exit echo something
+env | grep "_="
+export | grep "SHLVL"
+export | grep "OLDPWD"
+export | grep "PWD"
+export --TEST=123
+export -TEST=100
+export | grep "SHLVL"
+export -TEST=123
+export TEST+=100
+env | grep "_="
+unset -TEST

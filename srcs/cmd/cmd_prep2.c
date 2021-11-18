@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 10:07:35 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/18 12:57:10 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/18 16:09:22 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ int	cmd_add_heredoc(t_command *command,
 	check_malloc_success("heredoc", (void *)red);
 	red->fd = fd;
 	red->is_heredoc = true;
-   	cmd_set_heredoc_sighandlers();
+	cmd_set_heredoc_sighandlers();
 	readline4heredoc(red, limit_str);
 	if (g_shell.heredoc_interruption)
 	{

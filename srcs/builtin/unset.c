@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 19:27:51 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/18 10:48:56 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/18 16:12:58 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,11 @@ int	ft_unset_var(char *key, t_dlist **lst)
 	}
 	return (0);
 }
-static void put_unset_errmsg(char *cmd_name, char *keyname)
+static void	put_unset_errmsg(char *cmd_name, char *keyname)
 {
-	char 	*tmp;
-	char 	*errmsg;
-	
+	char	*tmp;
+	char	*errmsg;
+
 	tmp = ft_strjoin("`", keyname);
 	if (!tmp)
 		put_minish_err_msg_and_exit(1, cmd_name, "ft_strjoin() failed");
