@@ -41,20 +41,4 @@ export | grep "SHLVL"
 export -TEST=123
 export TEST+=100
 env | grep "_="
-<<<<<<< HEAD
-unset
-unset PWD
-unset PWD
-unset PATH
-unset PATH
-unset PATH
-unset TES\T
-unset TES.T
-unset TES+T
-unset TES=T
-unset TES}T
-unset TES{T
-unset TES-T
-=======
->>>>>>> feature/test_built
 unset -TEST
