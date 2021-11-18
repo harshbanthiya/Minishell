@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 18:43:33 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/18 16:19:51 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/18 16:41:20 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ int				invoke_sequential_commands(t_parse_ast *seqcmd);
 int				interactive_shell(void);
 void			init_buffer_with_string(t_parse_buffer *buff, char *str);
 void			set_shell_sighandlers(void);
-static void		sigint_sighandler(int signum);
 void			set_sighandlers_during_execution(void);
 void			set_sighandlers(t_sighandler sighandler);
 
