@@ -3,6 +3,7 @@
         "ms_execution.h": "c",
         "history.h": "c",
         "readline.h": "c",
-        "minishell.h": "c"
+        "minishell.h": "c",
+        "dirent.h": "c"
     }
 }

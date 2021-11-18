@@ -19,7 +19,6 @@
 #include "../../includes/readline/readline.h"
 #include "../../includes/readline/history.h"
 
-
 static void	process_escape(char **result, char **str, int *len)
 {
 	char	*tmpstr;
