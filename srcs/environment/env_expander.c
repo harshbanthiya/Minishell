@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 11:56:31 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/19 14:37:35 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/19 17:03:42 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ char	*exp_expand_env_and_join(char *result,
 	if (!keyname)
 		return (NULL);
 	env_val = get_var_value(keyname, *get_env());
+	if (!env_val && ft_isdigit(keyname[0]))
+		result = ft_substr(str, 1, env_len - 1);
 	if (env_val)
 	{
 		if (result)
@@ -94,7 +96,8 @@ bool	exp_will_toggle_env(bool is_in_env,
 	will_end_env = (is_in_env
 			&& (!(ft_isalnum(str[len]) || str[len] == '_'
 					|| (len == 0 && str[len] == '?'))
-				|| (len == 1 && str[len - 1] == '?')));
+				|| (len == 1 && str[len - 1] == '?')
+				|| (len == 1 && ft_isdigit(str[len]) && str[len - 1] == '$')));
 	return (will_start_env || will_end_env || !str[len]);
 }
 
@@ -109,15 +112,9 @@ bool	exp_join_str_or_env(char **result,
 		char **str, int *len, bool *is_in_env)
 {
 	if (*is_in_env)
-	{
 		*result = exp_expand_env_and_join(*result, *str, *len);
-		printf("if is in env: %s\n", *result);
-	}
 	else
-	{
 		*result = exp_result_join_normal_str(*result, *str, *len);
-		printf("if is not env: %s\n", *result);
-	}
 	if (!(*str)[*len] || !result)
 		return (false);
 	*str += *len + !*is_in_env;

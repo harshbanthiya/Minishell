@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 19:27:47 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/19 13:50:12 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/19 17:04:03 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	ft_export_var(char *key, char *value, t_dlist **lst)
 {	
 	t_var	*var;
 	char	*strip;
-	
+
 	strip = strip_extra_spaces(value);
 	var = get_var(key, *lst);
 	if (var != NULL)
