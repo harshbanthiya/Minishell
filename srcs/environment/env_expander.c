@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 11:56:31 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/18 16:06:43 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/19 14:37:35 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,9 +109,15 @@ bool	exp_join_str_or_env(char **result,
 		char **str, int *len, bool *is_in_env)
 {
 	if (*is_in_env)
+	{
 		*result = exp_expand_env_and_join(*result, *str, *len);
+		printf("if is in env: %s\n", *result);
+	}
 	else
+	{
 		*result = exp_result_join_normal_str(*result, *str, *len);
+		printf("if is not env: %s\n", *result);
+	}
 	if (!(*str)[*len] || !result)
 		return (false);
 	*str += *len + !*is_in_env;
