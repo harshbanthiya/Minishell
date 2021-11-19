@@ -6,7 +6,7 @@
 #    By: thallard <thallard@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/13 20:16:23 by thallard          #+#    #+#              #
-#    Updated: 2021/06/23 14:47:54 by thallard         ###   ########lyon.fr    #
+#    Updated: 2021/11/19 12:11:22 by hbanthiy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -103,7 +103,7 @@ if [ "$RUN" == "1" ]; then
 			elif [ "$var" == "--fast" ] || [ "$var" == "-f" ]; then
 				SPEED=0.001
 			elif [ "$var" == "--valgrind" ] || [ "$var" == "-v" ]; then
-				VALGRIND="valgrind -q --leak-check=full"
+				VALGRIND="valgrind --tool=memcheck --leak-check=yes --num-callers=50 --track-fds=yes"
 			else
 				if [ "$var" == "all" ]; then
 					FILE_TO_READ="$(find file_tests -type f -name "*.txt" -print)"

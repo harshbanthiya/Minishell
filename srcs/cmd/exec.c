@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 11:21:41 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/18 16:08:44 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/19 13:24:54 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,10 @@ char	*find_executable_file_in_dir(char *filename, char *dirpath)
 			if (!fullpath)
 				return (free_and_rtn_ptr(dir, NULL));
 			if (stat(fullpath, &buf) == 0 && S_ISREG(buf.st_mode))
+			{	
+				ft_export_var("_", fullpath, get_env());
 				return (free_and_rtn_ptr(dir, fullpath));
+			}
 			free(fullpath);
 		}
 		dirp = readdir(dir);
