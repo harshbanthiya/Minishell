@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_utils.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
+/*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 11:54:57 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/18 16:39:20 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/19 12:56:17 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,8 @@ char	*ft_strfuse(char *str1, char *str2);
 /* Generic free that will free() and return NULL */
 void	*ft_free(void *ptr);	
 void	*free_split(char **s);
+
+/* Count the amount of strings in a split */
+int		ft_countsplit(char **split);
 
 #endif

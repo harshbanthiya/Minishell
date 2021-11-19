@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
+/*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 18:43:33 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/18 16:41:20 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/19 12:51:16 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
 # include   "ms_utils.h"
 # include   "ms_execution.h"
 
-# define PROMPT "\033[1;91mMinishell \033[0m\033[1;96m> \033[0m"
+# define PROMPT "\033[1;91mMinishell \033[0m"
 
 /* Global shell structure declaration */
 struct s_shell	g_shell;

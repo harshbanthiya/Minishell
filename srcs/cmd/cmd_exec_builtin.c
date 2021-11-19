@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_exec_builtin.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
+/*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 11:56:38 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/18 16:07:39 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/19 12:58:19 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,6 @@ int	cmd_exec_builtin(t_command *command)
 		|| builtin_set_out_red(command, &fd_lst, &stdinfd, &stdoutfd) == ERROR)
 		return (set_status_and_ret(1, 1));
 	builtin_func = get_builtin_func((char *)command->exec_and_args[0]);
-	//command->exec_and_args = exec_wild_args(command->exec_and_args);
 	status = builtin_func((char **)command->exec_and_args);
 	set_status(status);
 	fd_list_close(&fd_lst);

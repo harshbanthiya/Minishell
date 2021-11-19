@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 19:27:43 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/19 12:33:48 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/19 12:59:57 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int	cd_update(char *old_pwd)
 static int	cd_error(char *old_pwd, char *arg, char *msg, int exit)
 {
 	ft_free(old_pwd);
-		return (error_builtin("cd", arg, msg, exit));
+	return (error_builtin("cd", arg, msg, exit));
 }
 
 static int	cd_home(char *old_pwd)
@@ -68,8 +68,8 @@ int	ft_cd(char **argv)
 		return (cd_update(old_pwd));
 	else
 	{
-		return (cd_error(old_pwd, NULL, "no such file or directory", 1));
+		return (cd_error(old_pwd, NULL, "no such directory", 1));
 		ft_free(old_pwd);
-		return (error_builtin(old_pwd, argv[1], "no such file or directory", 1));
+		return (error_builtin(old_pwd, argv[1], "no such directory", 1));
 	}
 }

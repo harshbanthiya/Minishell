@@ -6,37 +6,11 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 19:27:51 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/19 11:49:00 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/19 12:58:57 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"../../includes/minishell.h"
-
-// // Sebas, t'es rendu ici
-// static int	var_key_is_valid(char *key)
-// {
-// 	char	quote;
-// 	int		i;
-
-// 	if (key == NULL)
-// 		return (0);
-// 	i = 0;
-// 	quote = '\0';
-// 	while (key[i])
-// 	{
-// 		if (parse_is_quotes(key, i) && (quote == '\0' || quote == key[i]))
-// 		{
-// 			if (quote == key[i])
-// 				quote = '\0';
-// 			else
-// 				quote = key[i];
-// 		}
-// 		else
-// 			return (0);
-// 		if (key[i] == '\\' && parse_is_escaped(key, i))
-// 			return (0);
-// 	}
-// }
 
 int	ft_unset_var(char *key, t_dlist **lst)
 {
@@ -60,6 +34,7 @@ int	ft_unset_var(char *key, t_dlist **lst)
 	}
 	return (0);
 }
+
 static void	put_unset_errmsg(char *cmd_name, char *keyname)
 {
 	char	*tmp;
@@ -87,6 +62,8 @@ int	ft_unset(char **argv)
 	env = get_env();
 	is_key_ok = true;
 	i = 1;
+	if (env && argv && argv[1] && argv[1][0] == '-')
+		return (error_builtin("unset", argv[1], "invalid option", 2));
 	while (env && argv[i])
 	{
 		if (var_is_valid_key(argv[i]))
@@ -96,7 +73,7 @@ int	ft_unset(char **argv)
 			is_key_ok = false;
 			put_unset_errmsg(argv[0], argv[i]);
 		}
-		i++;		
+		i++;
 	}
 	if (!env || !is_key_ok)
 		return (1);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
+/*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 19:27:47 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/18 16:10:47 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/19 13:00:59 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,8 @@ int	ft_export(char **argv)
 	if (argv[1] == NULL)
 		return (ft_env_export(1));
 	i = 1;
+	if (env && argv && argv[1] && argv[1][0] == '-')
+		return (error_builtin("export", argv[1], "invalid option", 2));
 	while (argv[i] != NULL)
 	{
 		if (ft_single_export(argv[i], env) != 0)
