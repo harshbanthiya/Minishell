@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   terminal.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
+/*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 12:32:05 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/18 15:57:07 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/19 12:54:04 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,10 @@ char	*get_prompt(void)
 	if (!sh)
 		return (NULL);
 	prompt = sh->prompt;
-	ft_bzero(prompt, 100);
-	ft_strlcat(prompt, "\033[1;91m", 6);
+	ft_strcpy(prompt, PROMPT);
+	ft_strlcat(prompt, "\033[1;96m", 100);
 	ft_strlcat(prompt, ft_strrchr(get_pwd(), '/'), 90);
-	ft_strlcat(prompt, "\033[0m", 3);
-	ft_strlcat(prompt, "\033[1;106m", 7);
-	ft_strlcat(prompt, " > ", 5);
-	ft_strlcat(prompt, "\033[0m", 100);
+	ft_strlcat(prompt, " > \033[0m", 100);
 	return (prompt);
 }
 

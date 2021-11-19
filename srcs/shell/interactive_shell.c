@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   interactive_shell.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
+/*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 22:22:08 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/18 14:53:59 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/19 12:49:18 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	interactive_shell(void)
 
 	set_shell_sighandlers();
 	print_welcome();
-	user_in = readline(PROMPT);
+	user_in = ft_readline();
 	while (user_in)
 	{
 		if (*user_in)
@@ -89,7 +89,7 @@ int	interactive_shell(void)
 			parse_free_all_ast();
 		}
 		free(user_in);
-		user_in = readline(PROMPT);
+		user_in = ft_readline();
 	}
 	write(1, "exit\n", 5);
 	free_shell();

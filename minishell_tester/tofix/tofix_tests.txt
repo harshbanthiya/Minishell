@@ -1,4 +1,25 @@
+<<<<<<< HEAD
+=======
+echo ~
+echo ~/123
+echo ~/123/456
+echo $USER$12USER$USER=4$USER12
+echo $USER $123456789USER $USER123456789
+echo $USER $9999USER $8888USER $7777USER
+echo "$9USER" "'$USER=12$SOMETHING'"
+>>>>>>> 03e78cb2056b3f46f66c365b9c29b0896b31bb9e
 
 ~
 
 .
+<<<<<<< HEAD
+=======
+exit cd ..
+exit something somethingv2
+exit echo something
+env | grep "_="
+export | grep "OLDPWD"
+export | grep "PWD"
+export TEST+=100
+env | grep "_="
+>>>>>>> 03e78cb2056b3f46f66c365b9c29b0896b31bb9e
