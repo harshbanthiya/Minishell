@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
+/*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 19:27:51 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/18 16:12:58 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/19 11:49:00 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,12 +86,8 @@ int	ft_unset(char **argv)
 	exit_code = 0;
 	env = get_env();
 	is_key_ok = true;
-	if (env == NULL)
-		return (1);
-	//if (argv[1] == NULL)
-		//return(error_builtin("unset", NULL, "not enough arguments", 1));
 	i = 1;
-	while (argv[i])
+	while (env && argv[i])
 	{
 		if (var_is_valid_key(argv[i]))
 			ft_unset_var(argv[i], env);
@@ -102,7 +98,7 @@ int	ft_unset(char **argv)
 		}
 		i++;		
 	}
-	if (!is_key_ok)
+	if (!env || !is_key_ok)
 		return (1);
 	return (0);
 }
