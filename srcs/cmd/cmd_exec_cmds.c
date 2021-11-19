@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 09:06:29 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/17 10:34:21 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/18 13:54:31 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,6 @@ static int	cmd_exec_one_command(t_command *current_cmd,
 	if (pid < 0)
 		return (put_err_msg_and_ret("error fork()"));
 	else if (pid == 0)
-		//sig_set_all_default();
 		cmd_exec_command(current_cmd, pipe_prev_fd, pipe_fd,
 			in_fd_red_list);
 	write_heredoc(in_fd_red_list);

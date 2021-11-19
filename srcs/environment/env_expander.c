@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_expander.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
+/*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 11:56:31 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/17 15:54:39 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/18 16:06:43 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,14 +87,14 @@ bool	exp_will_toggle_env(bool is_in_env,
 	bool	will_start_env;
 	bool	will_end_env;
 
-	will_start_env = !is_in_noexpand && str[len] == '$'
-		&& (len < (int)ft_strlen(str)
-			&& (ft_isalnum(str[len + 1])
-				|| str[len + 1] == '_' || str[len + 1] == '?'));
-	will_end_env = is_in_env
-		&& (!(ft_isalnum(str[len]) || str[len] == '_'
-				|| (len == 0 && str[len] == '?'))
-			|| (len == 1 && str[len - 1] == '?'));
+	will_start_env = (!is_in_noexpand && str[len] == '$'
+			&& (len < (int)ft_strlen(str)
+				&& (ft_isalnum(str[len + 1])
+					|| str[len + 1] == '_' || str[len + 1] == '?')));
+	will_end_env = (is_in_env
+			&& (!(ft_isalnum(str[len]) || str[len] == '_'
+					|| (len == 0 && str[len] == '?'))
+				|| (len == 1 && str[len - 1] == '?')));
 	return (will_start_env || will_end_env || !str[len]);
 }
 

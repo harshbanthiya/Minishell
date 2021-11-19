@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_parse.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
+/*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 00:08:09 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/16 17:33:20 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/18 16:35:33 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,27 @@
 # define MS_PARSE_H
 # include "ms_scan.h"
 
-#define PARSE_BUFF_SIZE 1024
-struct          s_parse_buffer;
-typedef int     t_scan_getc(struct s_parse_buffer *buff);
-typedef void    t_scan_ungetc(struct s_parse_buffer *buff);
+# define PARSE_BUFF_SIZE 1024
 
-typedef struct  s_parse_ast	t_parse_ast;
+struct						s_parse_buffer;
+typedef int					t_scan_getc(struct s_parse_buffer *buff);
+typedef void				t_scan_ungetc(struct s_parse_buffer *buff);
+typedef struct s_parse_ast	t_parse_ast;
 
-typedef struct  s_parse_buffer
+typedef struct s_parse_buffer
 {
-    char            buffer[PARSE_BUFF_SIZE * 100];
-    int             size;
-    int             cur_pos;
-    t_scan_state    scan_state;
-    t_scan_getc     *getc;
-    t_scan_ungetc   *ungetc;
-    void            *data;
+	char			buffer[PARSE_BUFF_SIZE * 100];
+	int				size;
+	int				cur_pos;
+	t_scan_state	scan_state;
+	t_scan_getc		*getc;
+	t_scan_ungetc	*ungetc;
+	void			*data;
 }t_parse_buffer;
 
 typedef enum e_parse_ast_type
 {
-	ASTNODE_NONE =  0xc201,
+	ASTNODE_NONE = 0xc201,
 	ASTNODE_STRING,
 	ASTNODE_REDIRECTION,
 	ASTNODE_ARGUMENTS,
@@ -127,7 +127,6 @@ typedef struct s_parse_ast_list
 	t_parse_ast				ast;
 	struct s_parse_ast_list	*next;
 }	t_parse_ast_list;
-
 
 t_parse_ast			*parse_new_ast_node(t_parse_ast_type type, void *content);
 t_parse_ast			*parse_redirection(t_parse_buffer *buf, t_token *tok);

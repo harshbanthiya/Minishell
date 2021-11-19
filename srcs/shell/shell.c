@@ -6,16 +6,16 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 10:02:42 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/17 08:49:35 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/18 15:55:39 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"../../includes/minishell.h"
 
-static void put_shlvl_warnmsg(int lvl)
+static void	put_shlvl_warnmsg(int lvl)
 {
-	char 	*lvl_str;
-	
+	char	*lvl_str;
+
 	lvl_str = ft_itoa(lvl);
 	if (!lvl_str)
 		put_minish_err_msg_and_exit(1, "initialization", "malloc failed");
@@ -40,7 +40,7 @@ static void	sh_lvl_increment(t_shell *sh)
 		lvl = ft_atoi(var->value);
 		if (lvl < 0)
 			lvl = 0;
-		else 
+		else
 			lvl++;
 		if (lvl >= 1000)
 		{
@@ -77,11 +77,6 @@ void	sh_init(char **envp)
 	sh_change_mode(&sh, 1);
 	sh.status = 0;
 	g_shell = sh;
-}
-
-void	exit_shell(void)
-{
-	free_shell();
 }
 
 void	free_shell(void)

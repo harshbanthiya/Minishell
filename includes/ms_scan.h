@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_scan.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
+/*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 21:34:47 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/16 15:44:24 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/18 16:36:19 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ typedef enum e_token_type
 {
 	TOKTYPE_EOF = -1,
 	TOKTYPE_PARSE_ERROR = 0,
-	TOKTYPE_NON_EXPANDABLE = 0xc101, /* added for the scan test */
+	TOKTYPE_NON_EXPANDABLE = 0xc101,
 	TOKTYPE_EXPANDABLE,
 	TOKTYPE_EXPANDABLE_QUOTED,
 	TOKTYPE_PIPE,
@@ -47,8 +47,8 @@ typedef struct s_token
 	t_token_type	type;
 }t_token;
 
-int 	scan_init_token(t_token *result);
-int 	scan_expand_text_buffer(t_token *result);
+int		scan_init_token(t_token *result);
+int		scan_expand_text_buffer(t_token *result);
 int		scan_getc(t_parse_buffer *buf);
 void	scan_ungetc(t_parse_buffer *buff);
 int		scan_is_special_char(char ch);

@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 10:07:35 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/17 11:54:47 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/18 16:09:22 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static void	readline4heredoc(t_cmd_redirection *red, char *limit_str)
 		if (!input_str || !ft_strcmp(input_str, limit_str))
 			break ;
 		red->filepath = strjoin_nullable_and_free_both(
-				(char *)red->filepath, "\n");
+				(char *)red->filepath, input_str);
 		input_str = NULL;
 		check_malloc_success("heredoc", (void *)red->filepath);
 		red->filepath = strjoin_and_free_first(
@@ -90,7 +90,7 @@ int	cmd_add_heredoc(t_command *command,
 	check_malloc_success("heredoc", (void *)red);
 	red->fd = fd;
 	red->is_heredoc = true;
-   	cmd_set_heredoc_sighandlers();
+	cmd_set_heredoc_sighandlers();
 	readline4heredoc(red, limit_str);
 	if (g_shell.heredoc_interruption)
 	{
