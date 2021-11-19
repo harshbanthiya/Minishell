@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 11:54:57 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/19 12:56:17 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/19 18:14:57 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ char	**ft_splitn(char const *s, char c, int n);
 /* Create a new string with the content of str1 and str2. *
 *  Free both strings. */
 char	*ft_strfuse(char *str1, char *str2);
+char	**ft_splitfirst(char *str, char c);
 
 /* Generic free that will free() and return NULL */
 void	*ft_free(void *ptr);	
