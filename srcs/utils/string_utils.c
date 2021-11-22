@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 11:54:18 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/22 13:52:00 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/22 16:52:13 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ char	**ft_splitfirst(char *str, char c)
 	i = 0;
 	while (str[i] && str[i] != c)
 		i++;
-	split[0] = ft_strsub(str, 0, i);
-	if (str[i] == c && str[i])
+	split[0] = ft_substr(str, 0, i);
+	if (str[i] == c && str[i] && size == 3)
 		split[1] = ft_strsub(str, i + 1, ft_strlen(&str[i + 1]));
 	split[size - 1] = NULL;
 	return (split);

@@ -1,12 +1,1 @@
-echo ~
-echo ~/123
-echo ~/123/456
-~
-.
-env | grep "_="
-export | grep "SHLVL"
-export | grep "OLDPWD"
-export | grep "PWD"
-export | grep "SHLVL"
-export TEST+=100
 env | grep "_="
