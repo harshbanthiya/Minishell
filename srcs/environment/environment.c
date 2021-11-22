@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 20:14:21 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/19 16:55:36 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/22 12:30:01 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ char	**env_list_to_envp(t_dlist *env_head)
 		temp = temp->next;
 		i++;
 	}
+	free(temp);
 	output[i] = NULL;
 	return (output);
 }
