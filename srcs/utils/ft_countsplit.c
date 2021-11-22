@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_countsplit.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
+/*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/15 13:39:23 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/22 13:16:39 by hbanthiy         ###   ########.fr       */
+/*   Created: 2021/11/19 12:55:35 by sfournie          #+#    #+#             */
+/*   Updated: 2021/11/19 12:56:29 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include	"minishell.h"
 
-char	*ft_strdup(const char *s)
+int	ft_countsplit(char **split)
 {
-	size_t			s_len;
-	char			*new_str;
+	int	count;
 
-	s_len = ft_strlen(s);
-	new_str = (char *)malloc(s_len + 1);
-	if (!new_str)
-		return (NULL);
-	ft_strlcpy(new_str, s, s_len + 1);
-	return (new_str);
+	count = 0;
+	while (split && *split)
+	{
+		split++;
+		count++;
+	}
+	return (count);
 }

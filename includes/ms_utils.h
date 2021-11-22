@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 11:54:57 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/18 16:39:20 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/22 13:12:05 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,13 @@ char	**ft_splitn(char const *s, char c, int n);
 /* Create a new string with the content of str1 and str2. *
 *  Free both strings. */
 char	*ft_strfuse(char *str1, char *str2);
+char	**ft_splitfirst(char *str, char c);
 
 /* Generic free that will free() and return NULL */
 void	*ft_free(void *ptr);	
 void	*free_split(char **s);
+
+/* Count the amount of strings in a split */
+int		ft_countsplit(char **split);
 
 #endif

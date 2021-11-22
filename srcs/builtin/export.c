@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 19:27:47 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/18 16:10:47 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/22 16:47:51 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,9 @@ int	ft_single_export(char *argv, t_dlist **lst)
 	int		exit_code;
 
 	exit_code = 0;
-	split = ft_splitn(argv, '=', 2);
+	if (argv && argv[0] == '=')
+		return (error_builtin("export", argv, "not a valid identifier", 1));
+	split = ft_splitfirst(argv, '=');
 	if (split != NULL)
 	{
 		if (var_is_valid_key(split[0]))
@@ -124,6 +126,8 @@ int	ft_export(char **argv)
 	if (argv[1] == NULL)
 		return (ft_env_export(1));
 	i = 1;
+	if (env && argv && argv[1] && argv[1][0] == '-')
+		return (error_builtin("export", argv[1], "invalid option", 2));
 	while (argv[i] != NULL)
 	{
 		if (ft_single_export(argv[i], env) != 0)

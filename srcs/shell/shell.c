@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
+/*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 10:02:42 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/18 15:55:39 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/19 13:19:07 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void	sh_init(char **envp)
 
 	if (envp != NULL)
 		sh.env = sh_init_env(envp);
+	ft_export_var("_", "./minishell", &sh.env);
 	sh_lvl_increment(&sh);
 	init_signals();
 	pwd = getcwd(NULL, 0);

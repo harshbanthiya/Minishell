@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 22:22:08 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/18 14:53:59 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/22 15:44:54 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	show_parse_err(char *input_str)
 	if (is_invalid_input_str(input_str))
 	{
 		put_err_msg("Parse error.");
-		set_status(1);
+		set_status(258);
 	}
 }
 
@@ -75,7 +75,7 @@ int	interactive_shell(void)
 
 	set_shell_sighandlers();
 	print_welcome();
-	user_in = readline(PROMPT);
+	user_in = ft_readline();
 	while (user_in)
 	{
 		if (*user_in)
@@ -89,7 +89,7 @@ int	interactive_shell(void)
 			parse_free_all_ast();
 		}
 		free(user_in);
-		user_in = readline(PROMPT);
+		user_in = ft_readline();
 	}
 	write(1, "exit\n", 5);
 	free_shell();

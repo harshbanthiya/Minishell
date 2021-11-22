@@ -3,30 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   wild_expander.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
+/*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 15:01:07 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/17 07:59:41 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/19 12:56:55 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"minishell.h"
-# include	<dirent.h>
+#include	<dirent.h>
 
-typedef struct	dirent	t_dirent;
-
-static int	ft_countsplit(char **split)
-{
-	int	count;
-
-	count = 0;
-	while (split && *split)
-	{
-		split++;
-		count++;
-	}
-	return (count);
-}
+typedef struct dirent	t_dirent;
 
 static int	ft_wildcmp(char *str, char *wild, int i, int j)
 {
@@ -126,7 +113,6 @@ static char	**expand_wild(char *str)
 char	**exec_wild_args(char **argv)
 {
 	int		i;
-	int		j;
 	char	**wild_split;
 	char	**wild_argv;
 
@@ -134,7 +120,6 @@ char	**exec_wild_args(char **argv)
 	if (wild_argv == NULL)
 		return (NULL);
 	i = 0;
-	j = 0;
 	while (argv && argv[i])
 	{
 		if (ft_strchr(argv[i], '*'))
