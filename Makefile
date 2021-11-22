@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+         #
+#    By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/09 15:31:26 by sfournie          #+#    #+#              #
-#    Updated: 2021/11/22 13:53:09 by hbanthiy         ###   ########.fr        #
+#    Updated: 2021/11/22 16:16:42 by sfournie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,8 +55,6 @@ MK_LFT		= make -C $(DIR_LFT)
 
 # Mains
 MAIN		= $(DIR_MAINS)/minishell.c
-MAIN_GEN	= $(DIR_MAINS)/main_general.c
-MAIN_WILD	= $(DIR_MAINS)/main_wild.c
 
 # Headers
 HEADERS	=	ms_builtin.h dlist.h ms_environment.h \
@@ -119,14 +117,6 @@ $(NAME)	: $(DIR_INCS) $(LIB_LFT) $(SRCS) $(MAIN) $(DIR_OBJS) $(OBJS)
 $(DIR_OBJS)	: 
 		@ mkdir objs
 
-wild	: $(MAIN_WILD) _wild $(NAME)
-_wild	: 
-		$(eval MAIN=$(MAIN_WILD))
-
-gen	: $(MAIN_GEN) _gen $(NAME)
-_gen	: 
-		$(eval MAIN=$(MAIN_GEN))
-
 $(LIB_LFT)	:
 		@ $(MK_LFT) all
 
@@ -142,9 +132,6 @@ fclean	: clean
 
 re		: fclean all
 
-bonus	: $(DIR_I) $(LFT) $(SRC) $(DIR_O) $(OBJ) $(MAIN_B)
-		@ $(CC) $(CFLAGS) -I$(DIR_I)/ -I$(LFT_D)/ $(LFT) $(MAIN_B) $(OBJ) -o $(NAME)
-		# $(shell echo "Compiling minishell with bonus done!")
-		# $(shell echo "Executable is : $(NAME)")
+bonus	: $(NAME)
 
-.PHONY	: all re clean fclean bonus gen wild
+.PHONY	: all re clean fclean bonus
