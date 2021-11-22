@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
+/*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 19:27:47 by sfournie          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2021/11/22 09:35:37 by hbanthiy         ###   ########.fr       */
+=======
+/*   Updated: 2021/11/19 18:20:11 by sfournie         ###   ########.fr       */
+>>>>>>> c7611ca9d70845590b78354e31f22fd9f2da30ee
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +97,7 @@ int	ft_single_export(char *argv, t_dlist **lst)
 	int		exit_code;
 
 	exit_code = 0;
-	split = ft_splitn(argv, '=', 2);
+	split = ft_splitfirst(argv, '=');
 	if (split != NULL)
 	{
 		if (var_is_valid_key(split[0]))

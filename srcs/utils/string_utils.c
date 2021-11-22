@@ -6,12 +6,34 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 11:54:18 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/17 14:15:01 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/22 13:12:36 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/ms_utils.h"
 #include "../../libft/libft.h"
+
+char	**ft_splitfirst(char *str, char c)
+{
+	char	**split;
+	char	*equal;
+	int		size;
+	int		i;
+
+	size = 2;
+	equal = ft_strchr(str, c);
+	if (equal && equal[0] && equal[1])
+		size = 3;
+	split = (char **)ft_calloc(size, sizeof(char *));
+	i = 0;
+	while (str[i] && str[i] != c)
+		i++;
+	split[0] = ft_strsub(str, 0, i);
+	if (str[i] == c && str[i])
+		split[1] = ft_strsub(str, i + 1, ft_strlen(&str[i + 1]));
+	split[size - 1] = NULL;
+	return (split);
+}
 
 /*
  * Join first and second string and free first string.
