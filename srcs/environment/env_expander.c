@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 11:56:31 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/22 13:09:04 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/22 15:16:54 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ char	*exp_expand_env_and_join(char *result,
 		return (NULL);
 	env_val = get_var_value(keyname, *get_env());
 	if (!env_val && ft_isdigit(keyname[0]))
-		result = ft_substr(str, 1, env_len - 1);
+		result = strjoin_nullable_and_free_both(ft_free(result),
+				ft_substr(str, 1, env_len - 1));
 	if (env_val)
 	{
 		if (result)

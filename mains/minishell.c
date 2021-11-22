@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 20:44:34 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/18 15:44:58 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/22 16:11:38 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,10 @@ int	main(int argc, char **argv, char **envp)
 {
 	sh_init(envp);
 	if (argc == 3 && ft_strncmp(argv[1], "-c", 3) == 0)
+	{
+		if (!argv[2][0])
+			return (0);
 		return (do_command(argv[2]));
+	}
 	interactive_shell();
 }

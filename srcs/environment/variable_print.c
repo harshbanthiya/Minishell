@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   variable_print.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
+/*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 16:01:18 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/19 13:01:15 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/22 14:04:57 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void	print_var_extra(int fd, t_var *var)
 {
 	if (var->key != NULL)
 	{
-		ft_putstr_fd("declare -x ", fd);
 		ft_putstr_fd(var->key, fd);
 		if (var->value != NULL)
 		{

@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 22:41:09 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/17 08:52:41 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/22 15:29:41 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ t_parse_ast	*parse_piped_commands(
 	}
 	content_node->next = rest_node;
 	pip_node->error = (pip_node->error || cmd_node->error);
+	pip_node->error = pip_node->error || (rest_node && rest_node->error);
 	pip_node->heredocs = parse_concat_heredocs(cmd_node, rest_node);
 	return (pip_node);
 }

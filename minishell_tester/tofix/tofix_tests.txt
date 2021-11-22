@@ -1,16 +1,12 @@
--n
 echo ~
 echo ~/123
 echo ~/123/456
-
 ~
-
 .
-exit cd ..
-exit something somethingv2
-exit echo something
 env | grep "_="
+export | grep "SHLVL"
 export | grep "OLDPWD"
 export | grep "PWD"
+export | grep "SHLVL"
 export TEST+=100
 env | grep "_="

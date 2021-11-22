@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/15 13:39:23 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/22 11:59:54 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/22 13:16:39 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,3 @@ char	*ft_strdup(const char *s)
 	ft_strlcpy(new_str, s, s_len + 1);
 	return (new_str);
 }
-

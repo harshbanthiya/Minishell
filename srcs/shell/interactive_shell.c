@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   interactive_shell.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
+/*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 22:22:08 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/19 12:49:18 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/22 15:44:54 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	show_parse_err(char *input_str)
 	if (is_invalid_input_str(input_str))
 	{
 		put_err_msg("Parse error.");
-		set_status(1);
+		set_status(258);
 	}
 }
 
