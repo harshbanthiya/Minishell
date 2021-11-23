@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 11:56:31 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/23 14:36:22 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/23 14:56:32 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ bool	exp_will_toggle_env(bool is_in_env,
 
 	if (!str)
 		return (false);
-	will_start_env = (!is_in_noexpand && (str && str[len] == '$')
+	will_start_env = (!is_in_noexpand && str[len] == '$'
 			&& (len < (int)ft_strlen(str)
 				&& (ft_isalnum(str[len + 1])
 					|| str[len + 1] == '_' || str[len + 1] == '?')));
