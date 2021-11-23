@@ -6,15 +6,13 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 20:44:34 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/23 10:36:49 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/23 14:43:01 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 #include "../includes/ms_parse.h"
 #include "../libft/libft.h"
-
-t_shell		g_shell;
 
 void	die(void)
 {

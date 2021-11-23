@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 18:43:33 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/23 10:57:47 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/23 14:43:10 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@
 
 # define PROMPT "\033[1;91mMinishell \033[0m"
 
-/* Global shell structure declaration */
 struct s_shell	g_shell;
+
 typedef struct s_cmd_str_node {
 	char					*text;
 	t_token_type			type;
@@ -57,7 +57,7 @@ char			*string_node2string(t_parse_node_string *string_node,
 char			**expand_string_node(t_parse_node_string *string_node,
 					bool is_export_cmd);
 char			**split_expanded_str(char *str);
-void			put_minish_err_msg(const char *cmd_name,const char *msg);
+void			put_minish_err_msg(const char *cmd_name, const char *msg);
 int				put_minish_err_msg_and_ret(int ret_val,
 					const char *cmd_name, const char *msg);
 void			put_minish_err_msg_and_exit(int status,
