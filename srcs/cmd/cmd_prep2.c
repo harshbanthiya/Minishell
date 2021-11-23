@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 10:07:35 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/22 15:14:04 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/23 10:52:22 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	cmd_free_cmd(t_command *cmds)
 	}
 }
 
-static void	readline4heredoc(t_cmd_redirection *red, char *limit_str)
+static void	readline4heredoc(t_cmd_redirection *red, const char *limit_str)
 {
 	char	*input_str;
 
@@ -81,10 +81,10 @@ static void	readline4heredoc(t_cmd_redirection *red, char *limit_str)
 }
 
 int	cmd_add_heredoc(t_command *command,
-	char *limit_str, int fd, bool is_expandable)
+	const char *limit_str, int fd, bool is_expandable)
 {
 	t_cmd_redirection	*red;
-	char				*old_filepath;
+	const char			*old_filepath;
 
 	red = ft_calloc(1, sizeof(t_cmd_redirection));
 	check_malloc_success("heredoc", (void *)red);

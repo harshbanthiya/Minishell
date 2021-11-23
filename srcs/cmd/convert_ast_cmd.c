@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 10:53:03 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/22 15:52:16 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/23 10:52:53 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,15 @@
 int	cmd_process_string_node(
 	t_parse_node_string *string_node, t_command *command)
 {
-	char	**splitted_env_val;
-	char	**strarr;
+	char		**splitted_env_val;
+	const char	**strarr;
 
 	if (command->exec_and_args && command->exec_and_args[0]
 		&& !ft_strcmp(command->exec_and_args[0], "export"))
 		splitted_env_val = expand_string_node(string_node, true);
 	else
 		splitted_env_val = expand_string_node(string_node, false);
-	strarr = (char **)ptrarr_merge((void **)command->exec_and_args,
+	strarr = (const char **)ptrarr_merge((void **)command->exec_and_args,
 			(void **)splitted_env_val);
 	free(splitted_env_val);
 	if (!strarr)

@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 09:19:53 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/18 16:31:53 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/23 10:55:37 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 typedef struct s_cmd_redirection
 {
-	char						*filepath;
+	const char					*filepath;
 	bool						is_append;
 	bool						is_heredoc;
 	int							fd;
@@ -57,7 +57,7 @@ typedef struct s_command
 	t_cmd_redirection		*output_redirections;
 	struct s_command		*piped_command;
 	t_cmd_redirection		*input_redirections;
-	char					**exec_and_args;
+	const char				**exec_and_args;
 	pid_t					pid;
 }t_command;
 
@@ -86,16 +86,16 @@ int						cmd_set_heredoc_pipe_fd(
 bool					cmd_is_heredoc_expandable(
 							t_parse_node_redirection *redirection_node);
 char					*expand_heredoc_document(char *str);
-t_command				*cmd_init_cmd(char **exec_and_args);
+t_command				*cmd_init_cmd(const char **exec_and_args);
 t_command				*cmd_add_pipcmd(t_command **cmds, t_command *pipcmd);
 int						cmd_add_inredirect(t_command *command,
-							char *filepath, int fd);
+							const char *filepath, int fd);
 int						cmd_add_heredoc(t_command *command,
-							char *limit_str, int fd, bool is_expandable);
+							const char *limit_str, int fd, bool is_expandable);
 int						cmd_check_readline_has_finished(void);
 void					cmd_set_heredoc_sighandlers(void);
 int						cmd_add_outredirect(t_command *command,
-							char *filepath, int fd, bool is_append);
+							const char *filepath, int fd, bool is_append);
 void					cmd_free_cmd(t_command *cmds);
 void					fd_list_close(t_fd_list **lst);
 t_fd_list				*fd_list_add_fd(t_fd_list **lst, int fd);

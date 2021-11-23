@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 09:35:30 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/18 12:57:12 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/23 10:50:58 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include "../../includes/minishell.h"
 #include "../../includes/ms_utils.h"
 
-t_command	*cmd_init_cmd(char **exec_and_args)
+t_command	*cmd_init_cmd(const char **exec_and_args)
 {
 	t_command	*cmd;
 
@@ -33,7 +33,7 @@ t_command	*cmd_init_cmd(char **exec_and_args)
 }
 
 int	cmd_add_inredirect(t_command *command,
-		char *filepath, int fd)
+	const char *filepath, int fd)
 {
 	t_cmd_redirection	*red;
 
@@ -51,7 +51,7 @@ int	cmd_add_inredirect(t_command *command,
 }
 
 int	cmd_add_outredirect(t_command *command,
-	char *filepath, int fd, bool is_append)
+	const char *filepath, int fd, bool is_append)
 {
 	t_cmd_redirection	*red;
 

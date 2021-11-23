@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 18:43:33 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/22 13:54:46 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/23 10:57:47 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,11 @@ char			*string_node2string(t_parse_node_string *string_node,
 char			**expand_string_node(t_parse_node_string *string_node,
 					bool is_export_cmd);
 char			**split_expanded_str(char *str);
-void			put_minish_err_msg(char *cmd_name, char *msg);
+void			put_minish_err_msg(const char *cmd_name,const char *msg);
 int				put_minish_err_msg_and_ret(int ret_val,
-					char *cmd_name, char *msg);
+					const char *cmd_name, const char *msg);
 void			put_minish_err_msg_and_exit(int status,
-					char *cmd_name, char *msg);
+					const char *cmd_name, const char *msg);
 void			check_malloc_success(char *cmd_name, void *ptr);
 int				invoke_sequential_commands(t_parse_ast *seqcmd);
 int				interactive_shell(void);

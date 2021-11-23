@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 13:39:16 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/22 15:01:43 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/23 10:56:37 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 	Output error messages of the following format to stderr
 	"minishell: {cmd_name}; {msg}\n"
 */
-void	put_minish_err_msg(char *cmd_name, char *msg)
+void	put_minish_err_msg(const char *cmd_name,const char *msg)
 {
 	write(STDERR_FILENO, "minishell: ", 11);
 	if (cmd_name)
@@ -27,7 +27,7 @@ void	put_minish_err_msg(char *cmd_name, char *msg)
 }
 
 int	put_minish_err_msg_and_ret(int ret_val,
-		char *cmd_name, char *msg)
+		const char *cmd_name, const char *msg)
 {
 	put_minish_err_msg(cmd_name, msg);
 	return (ret_val);
@@ -39,7 +39,7 @@ int	put_minish_err_msg_and_ret(int ret_val,
 */
 
 void	put_minish_err_msg_and_exit(int status,
-		char *cmd_name, char *msg)
+		const char *cmd_name, const char *msg)
 {
 	put_minish_err_msg(cmd_name, msg);
 	exit(status);

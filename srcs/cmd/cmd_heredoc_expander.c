@@ -58,14 +58,14 @@ char	*expand_heredoc_document(char *str)
 	is_in_env = false;
 	while (is_continue)
 	{
-		if (str[len] == '\\')
+		if(str && str[len] == '\\')
 		{
 			if (is_in_env)
 				is_continue = exp_join_str_or_env(&result, &str, &len,
 						&is_in_env);
 			process_escape(&result, &str, &len);
 		}
-		else if (exp_will_toggle_env(is_in_env, false, str, len))
+		else if ((exp_will_toggle_env(is_in_env, false, str, len)) || !str[len])
 			is_continue = exp_join_str_or_env(&result, &str, &len, &is_in_env);
 		else
 			len++;

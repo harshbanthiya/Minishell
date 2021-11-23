@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 09:06:29 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/22 16:03:41 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/23 11:01:00 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ static int	cmd_exec_one_command(t_command *current_cmd,
 	if (pipe(pipe_fd) || cmd_set_heredoc_pipe_fd(in_fd_red_list))
 		return (put_err_msg_and_ret("error pipe()"));
 	if (current_cmd->exec_and_args)
-		ft_export_var("_", current_cmd->exec_and_args[0], get_env());
+		ft_export_var("_", (char *)current_cmd->exec_and_args[0], get_env());
 	pid = fork();
 	if (pid < 0)
 		return (put_err_msg_and_ret("error fork()"));
