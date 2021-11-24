@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_shell.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
+/*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 18:43:33 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/23 14:42:27 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/23 20:10:38 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ typedef struct s_shell
 	int		signal_child_received;
 	int		heredoc_interruption;
 	int		status;
-	char	prompt[100];
+	char	prompt[150];
 }				t_shell;
 
 /* Master init function. Makes all the init calls needed. */
@@ -37,6 +37,7 @@ void	free_shell(void);
 char	*ft_readline(void);
 /* Prompt needs to be freed */
 char	*get_prompt(void);
+void	append_git(char *prompt);
 void	print_welcome(void);
 /* End terminal */
 

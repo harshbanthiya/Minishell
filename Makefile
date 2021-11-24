@@ -6,7 +6,7 @@
 #    By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/09 15:31:26 by sfournie          #+#    #+#              #
-#    Updated: 2021/11/22 16:22:10 by sfournie         ###   ########.fr        #
+#    Updated: 2021/11/23 19:32:27 by sfournie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -81,7 +81,8 @@ SRC	= 	environment.c variable.c variable_print.c variable_utils.c \
 		convert_ast_cmd.c expand_string_node.c path.c string_node2string.c t_cmd_redirection.c \
 		exec.c env_expander.c \
 		cmd_status.c interactive_shell.c split_expanded_str.c string_utils.c \
-		wild_expander.c cmd_heredoc_funcs.c ft_countsplit.c signal2.c
+		wild_expander.c cmd_heredoc_funcs.c ft_countsplit.c signal2.c \
+		git.c
 
 _OBJ	= $(SRC:.c=.o)
 OBJ		= $(patsubst %,$(DIR_OBJS)/%,$(_OBJ))
