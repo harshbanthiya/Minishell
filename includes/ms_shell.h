@@ -6,13 +6,18 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 18:43:33 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/23 20:10:38 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/23 20:56:43 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MS_SHELL_H
 # define MS_SHELL_H
 # include "minishell.h"
+
+# define C_NO	"\001\e[0m\002"
+# define C_BLUE	"\001\e[1;34m\002"
+# define C_RED	"\001\e[1;91m\002"
+# define C_CYAN	"\001\e[1;36m\002"
 
 /* Contain every pertinent informations worth being accessible globally */
 /* sd_mode : 1 = interactive, 0 = non-interactive */

@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 12:32:05 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/23 20:10:56 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/23 20:59:13 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,12 @@ char	*get_prompt(void)
 		return (NULL);
 	prompt = sh->prompt;
 	ft_strcpy(prompt, PROMPT);
-	ft_strlcat(prompt, "\033[1;96m", 150);
+	ft_strlcat(prompt, C_CYAN, 150);
 	ft_strlcat(prompt, ft_strrchr(get_pwd(), '/'), 150);
 	append_git(prompt);
-	ft_strlcat(prompt, "\033[1;96m > \033[0m", 150);
+	ft_strlcat(prompt, C_CYAN, 150);
+	ft_strlcat(prompt, " > ", 150);
+	ft_strlcat(prompt, C_NO, 150);
 	return (prompt);
 }
 
