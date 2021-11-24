@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 12:32:05 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/23 20:59:13 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/23 21:06:44 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,12 @@
 
 void	print_welcome(void)
 {
-	ft_putstr_fd("\033[1;96mMinishell: \033[0m", 1);
-	ft_putstr_fd("\033[1;34m", 1);
+	ft_putstr_fd(C_CYAN, 1);
+	ft_putstr_fd("Minishell: ", 1);
+	ft_putstr_fd(C_BLUE, 1);
 	ft_putstr_fd("Powered by the brain cells of ", 1);
-	ft_putstr_fd("\033[1;34m@sfournie and \033[0m", 1);
-	ft_putstr_fd("\033[1;34m@hbanthiy\033[0m.\n", 1);
+	ft_putstr_fd("@sfournie and @hbanthiy.\n", 1);
+	ft_putstr_fd(C_NO, 1);
 	return ;
 }
 
