@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 10:02:42 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/19 13:19:07 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/27 16:47:47 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ void	sh_init(char **envp)
 	ft_export_var("_", "./minishell", &sh.env);
 	sh_lvl_increment(&sh);
 	init_signals();
+	ft_memset(sh.prompt, '\0', PROMPT_SIZE);
 	pwd = getcwd(NULL, 0);
 	if (pwd != NULL)
 	{
@@ -86,5 +87,8 @@ void	free_shell(void)
 
 	sh = get_shell();
 	if (sh != NULL)
+	{
+		sh->pwd = ft_free(sh->pwd);
 		sh->env = free_env(sh->env);
+	}
 }

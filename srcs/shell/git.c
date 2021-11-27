@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 19:32:01 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/25 17:24:39 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/27 11:40:56 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,13 +63,13 @@ void	append_git(char *prompt)
 	ft_free(dir);
 	if (git)
 	{
-		ft_strlcat(prompt, C_BLUE, 150);
-		ft_strlcat(prompt, " git:(", 150);
-		ft_strlcat(prompt, C_RED, 150);
-		ft_strlcat(prompt, git, 100);
-		ft_strlcat(prompt, C_BLUE, 150);
-		ft_strlcat(prompt, ")", 150);
-		ft_strlcat(prompt, C_NO, 150);
+		ft_strlcat(prompt, C_BLUE, PROMPT_SIZE);
+		ft_strlcat(prompt, " git:(", PROMPT_SIZE);
+		ft_strlcat(prompt, C_RED, PROMPT_SIZE);
+		ft_strlcat(prompt, git, PROMPT_SIZE);
+		ft_strlcat(prompt, C_BLUE, PROMPT_SIZE);
+		ft_strlcat(prompt, ")", PROMPT_SIZE);
+		ft_strlcat(prompt, C_NO, PROMPT_SIZE);
 		ft_free(git);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 19:27:36 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/27 17:04:52 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/27 17:05:42 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,5 @@ int	ft_exit(char **argv)
 		free_shell();
 		exit(g_shell.status);
 	}
-		
 	return (0);
 }
