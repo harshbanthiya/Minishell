@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
+/*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 19:27:36 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/23 18:15:14 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/27 17:04:52 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,17 @@ int	ft_exit(char **argv)
 	if (argv_len > 2)
 		return (put_minish_err_msg_and_ret(1, "exit", "too many arguments"));
 	else if (argv_len == 2)
+	{
+		parse_free_all_ast();
+		free_shell();
 		exit_atol(argv[1]);
+	}	
 	else
+	{
+		parse_free_all_ast();
+		free_shell();
 		exit(g_shell.status);
+	}
+		
 	return (0);
 }
