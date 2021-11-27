@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
+/*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 19:27:36 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/22 14:27:03 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/23 18:15:14 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	ft_exit(char **argv)
 	int	argv_len;
 
 	argv_len = ptrarr_len((void **)argv);
-	if (argv_len >= 1 && !ft_isnum(argv[1]))
+	if (argv_len >= 2 && !ft_isnum(argv[1]))
 	{
 		put_exit_errmsg_and_exit(argv[1]);
 		return (255);

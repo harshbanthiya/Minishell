@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
+/*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/15 13:39:43 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/22 13:46:42 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/11/23 19:52:46 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	if (str == NULL)
 		return (NULL);
 	ans = str;
-	while (*s1)
+	while (s1 && *s1)
 		*str++ = *s1++;
-	while (*s2)
+	while (s2 && *s2)
 		*str++ = *s2++;
 	*str = '\0';
 	return (ans);
