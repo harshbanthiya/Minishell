@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 19:32:01 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/23 20:58:47 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/25 17:24:39 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ static char	*read_git(char *dir)
 	}
 	if (ft_strrchr(dir, '/'))
 	{
+		close(fd);
 		*ft_strrchr(dir, '/') = '\0';
 		return (read_git(dir));
 	}
@@ -57,8 +58,9 @@ void	append_git(char *prompt)
 	char	*git;
 	char	*dir;
 
-	dir = get_pwd();
+	dir = ft_strdup(get_pwd());
 	git = read_git(dir);
+	ft_free(dir);
 	if (git)
 	{
 		ft_strlcat(prompt, C_BLUE, 150);
