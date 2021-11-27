@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 10:02:42 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/27 11:44:51 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/11/27 16:47:47 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,5 +87,8 @@ void	free_shell(void)
 
 	sh = get_shell();
 	if (sh != NULL)
+	{
+		sh->pwd = ft_free(sh->pwd);
 		sh->env = free_env(sh->env);
+	}
 }
