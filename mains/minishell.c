@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 20:44:34 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/23 14:43:01 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/12/01 18:49:52 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ int	invoke_sequential_commands(t_parse_ast *seqcmd)
 		{
 			status = cmd_exec_commands(new);
 			cmd_free_cmd(new);
+			if (g_shell.exit_flag >= 0)
+				exit_shell();
 		}
 		seqcmd = seqcmd->content.sequential_commands->rest_node;
 	}
@@ -87,12 +89,17 @@ int	do_command(char *cmdstr)
 
 int	main(int argc, char **argv, char **envp)
 {
+	int 	ret;
+	
+	ret = 0;
 	sh_init(envp);
 	if (argc == 3 && ft_strncmp(argv[1], "-c", 3) == 0)
 	{
-		if (!argv[2][0])
-			return (0);
-		return (do_command(argv[2]));
+		if (argv[2][0])
+			ret = do_command(argv[2]);
+		free_shell();
+		parse_free_all_ast();
+		return (ret);
 	}
 	interactive_shell();
 }

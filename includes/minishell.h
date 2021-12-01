@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
+/*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 18:43:33 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/23 20:53:30 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/12/01 18:51:57 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,5 +84,5 @@ int				get_status(void);
 void			set_status(int status_value);
 int				set_status_and_ret(int status_value, int ret_value);
 void			show_parse_err(char *input_str);
-
+void 			exit_shell(void);
 #endif

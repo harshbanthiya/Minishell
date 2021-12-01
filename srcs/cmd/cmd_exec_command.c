@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 09:21:56 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/19 13:50:18 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/12/01 18:54:14 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,12 @@ void	cmd_exec_command(t_command *command,
 	replace_stdio_with_pipe(command, pipe_prev_fd, pipe_fd);
 	if (cmd_set_input_file(in_fd_reds_list) == ERROR
 		|| cmd_set_output_file(command) == ERROR)
-		exit(EXIT_FAILURE);
+		g_shell.exit_flag = EXIT_FAILURE;
 	if (!command->exec_and_args)
-		exit(0);
+		g_shell.exit_flag = 0;
 	builtin_func = get_builtin_func((char *)command->exec_and_args[0]);
 	if (builtin_func)
-		exit(builtin_func((char **)command->exec_and_args));
+		g_shell.exit_flag = builtin_func((char **)command->exec_and_args);
 	cmd_execvp((char *)command->exec_and_args[0],
 		(char **) command->exec_and_args);
 }

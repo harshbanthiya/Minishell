@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 11:21:41 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/23 13:49:55 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/12/01 18:45:28 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,29 +32,18 @@
  */
 char	*find_executable_file_in_dir(char *filename, char *dirpath)
 {
-	DIR				*dir;
-	struct dirent	*dirp;
 	struct stat		buf;
 	char			*fullpath;
 
-	dir = opendir(dirpath);
-	if (!dir)
+	if (!dirpath)
 		return (NULL);
-	dirp = readdir(dir);
-	while (dirp)
-	{
-		if (ft_strcmp(dirp->d_name, filename) == 0)
-		{
-			fullpath = path_join(dirpath, dirp->d_name);
-			if (!fullpath)
-				return (free_and_rtn_ptr(dir, NULL));
-			if (stat(fullpath, &buf) == 0 && S_ISREG(buf.st_mode))
-				return (free_and_rtn_ptr(dir, fullpath));
-			free(fullpath);
-		}
-		dirp = readdir(dir);
-	}
-	return (free_and_rtn_ptr(dir, NULL));
+	fullpath = path_join(dirpath, filename);
+	if (!fullpath)
+		return (NULL);
+	if (stat(fullpath, &buf) == 0 && S_ISREG(buf.st_mode))
+		return (fullpath);
+	free(fullpath);
+	return (NULL);
 }
 
 /*

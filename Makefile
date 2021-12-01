@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+         #
+#    By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/09 15:31:26 by sfournie          #+#    #+#              #
-#    Updated: 2021/11/27 10:08:15 by hbanthiy         ###   ########.fr        #
+#    Updated: 2021/12/01 18:50:33 by hbanthiy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Compilation
 CC		= gcc
-CFLAGS	= -Wall -Wextra -Werror
+CFLAGS	= -Wall -Wextra -Werror -g
 C_OBJS	= $(CC) $(CFLAGS) $(MINISHELL_TEST_FLAGS) $(INCS_FLAGS) -c $< -o $@
 C_MAIN	= $(CC) $(CFLAGS) $(MINISHELL_TEST_FLAGS) $(INCS_FLAGS) -lcurses $(LIB_ALL)
 #

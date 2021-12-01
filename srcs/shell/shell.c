@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
+/*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 10:02:42 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/27 16:47:47 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/12/01 18:18:52 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ void	sh_init(char **envp)
 	}
 	sh_change_mode(&sh, 1);
 	sh.status = 0;
+	sh.exit_flag = -1;
 	g_shell = sh;
 }
 
@@ -91,4 +92,11 @@ void	free_shell(void)
 		sh->pwd = ft_free(sh->pwd);
 		sh->env = free_env(sh->env);
 	}
+}
+
+void 	exit_shell(void)
+{
+	parse_free_all_ast();
+	free_shell();
+	exit(g_shell.exit_flag);
 }
