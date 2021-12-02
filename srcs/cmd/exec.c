@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 11:21:41 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/12/01 18:45:28 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/12/02 11:31:44 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ int	cmd_execvp(char *filename, char **argv)
 	if (executable_path && is_directory(executable_path))
 		put_minish_err_msg_and_exit(126, executable_path, "Is a directory");
 	if (errno == ENOEXEC && is_executable(executable_path))
-		exit(0);
+		g_shell.exit_flag = 0;
 	else if (errno == ENOEXEC && !is_executable(executable_path))
 		errno = EACCES;
 	if (errno && executable_path)
@@ -125,6 +125,7 @@ int	cmd_execvp(char *filename, char **argv)
 	else
 		put_minish_err_msg(filename, "command not found");
 	if (errno && errno != ENOENT)
-		exit(126);
-	exit(127);
+		g_shell.exit_flag = 126;
+	g_shell.exit_flag = 127;
+	return (g_shell.exit_flag);
 }

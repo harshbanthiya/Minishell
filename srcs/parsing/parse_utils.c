@@ -6,11 +6,12 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 00:15:20 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/22 15:29:37 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/12/02 12:11:37 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/ms_parse.h"
+#include "../../includes/minishell.h"
 #include <stdlib.h>
 
 void	parse_die(void)
@@ -34,5 +35,6 @@ void	parse_skip_spaces(t_parse_buffer *buff, t_token *tok)
 /* Fail Early, Fail Loudly */
 void	parse_fatal_error(void)
 {
-	exit(1);
+	g_shell.exit_flag = 1;
+	exit_shell();
 }

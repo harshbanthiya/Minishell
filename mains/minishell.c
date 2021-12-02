@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 20:44:34 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/12/01 18:49:52 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/12/02 13:00:53 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ int	invoke_sequential_commands(t_parse_ast *seqcmd)
 			cmd_free_cmd(new);
 			if (g_shell.exit_flag >= 0)
 				exit_shell();
+			else 
+				free_shell();
 		}
 		seqcmd = seqcmd->content.sequential_commands->rest_node;
 	}

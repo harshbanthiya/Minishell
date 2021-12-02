@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 09:06:29 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/12/01 18:52:52 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/12/02 12:04:15 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,11 @@ static int	cmd_exec_one_command(t_command *current_cmd,
 	{
 		cmd_exec_command(current_cmd, pipe_prev_fd, pipe_fd,
 			in_fd_red_list);
-		if (g_shell.exit_flag)
-		exit_shell();
+		cmd_free_cmd(current_cmd);
+		if (g_shell.exit_flag < 0)
+			free_shell();
+		else 
+			exit_shell();
 	}
 	write_heredoc(in_fd_red_list);
 	cmd_free_fd_reds_list(in_fd_red_list);

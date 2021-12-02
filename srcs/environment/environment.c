@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 20:14:21 by sfournie          #+#    #+#             */
-/*   Updated: 2021/11/23 10:53:50 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/12/02 11:51:20 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,12 @@ char	**env_list_to_envp(t_dlist *env_head)
 	t_dlist	*temp;
 	int		i;
 	char	**output;
+	char 	*save;
 
 	temp = env_head;
 	i = lst_size(temp);
 	temp = env_head;
+	save = NULL;
 	output = malloc(sizeof(char *) * (i + 1));
 	if (output == NULL)
 		return (NULL);
@@ -70,11 +72,13 @@ char	**env_list_to_envp(t_dlist *env_head)
 	while (temp)
 	{
 		output[i] = ft_strjoin(((t_var *)(temp->content))->key, "=");
+		save = output[i];
 		output[i] = ft_strjoin(output[i], ((t_var *)(temp->content))->value);
+		ft_free(save);
 		temp = temp->next;
 		i++;
 	}
-	free(temp);
+	ft_free(temp);
 	output[i] = NULL;
 	return (output);
 }
