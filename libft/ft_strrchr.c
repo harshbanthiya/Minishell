@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/11 07:52:18 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/10/11 17:57:41 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/12/02 14:21:27 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*ft_strrchr(const char *s, int c)
 	char	*ptr;
 
 	ptr = 0;
-	while (1)
+	while (s && 1)
 	{
 		if (*s == (unsigned char)c)
 			ptr = (char *)s;
