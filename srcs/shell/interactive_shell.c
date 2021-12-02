@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   interactive_shell.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
+/*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 22:22:08 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/22 15:44:54 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/12/02 14:18:29 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,26 +70,25 @@ t_parse_ast	*get_cmdline_from_input_str(char *input_str)
 
 int	interactive_shell(void)
 {
-	char		*user_in;
 	t_parse_ast	*root;
 
 	set_shell_sighandlers();
 	print_welcome();
-	user_in = ft_readline();
-	while (user_in)
+	g_shell.user_in = ft_readline();
+	while (g_shell.user_in)
 	{
-		if (*user_in)
-			add_history(user_in);
-		root = get_cmdline_from_input_str(user_in);
+		if (*g_shell.user_in)
+			add_history(g_shell.user_in);
+		root = get_cmdline_from_input_str(g_shell.user_in);
 		if (!root)
-			show_parse_err(user_in);
+			show_parse_err(g_shell.user_in);
 		else
 		{
 			execute_seqcmd(root);
 			parse_free_all_ast();
 		}
-		free(user_in);
-		user_in = ft_readline();
+		free(g_shell.user_in);
+		g_shell.user_in = ft_readline();
 	}
 	write(1, "exit\n", 5);
 	free_shell();
