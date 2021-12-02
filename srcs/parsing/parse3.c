@@ -6,12 +6,13 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 23:30:06 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/23 11:02:37 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/12/02 13:48:21 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "../../includes/ms_parse.h"
+#include "../../includes/minishell.h"
 
 t_parse_hdoc_list	*parse_concat_heredocs(
 	t_parse_ast *head, t_parse_ast *tail)

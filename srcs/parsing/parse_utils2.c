@@ -6,12 +6,13 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 22:07:47 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/12/01 18:38:13 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/12/02 13:49:23 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "../../includes/ms_parse.h"
+#include "../../includes/minishell.h"
 
 static t_parse_ast_list	**get_ast_list(void)
 {

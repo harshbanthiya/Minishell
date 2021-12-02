@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
+/*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 22:41:09 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/11/22 16:23:43 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/12/02 13:49:06 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ t_parse_ast	*parse_piped_commands(
 	content_node->next = rest_node;
 	pip_node->error = (pip_node->error || cmd_node->error);
 	pip_node->error = (pip_node->error || (rest_node && rest_node->error));
+	if (pip_node->error)
+		return (NULL);
 	pip_node->heredocs = parse_concat_heredocs(cmd_node, rest_node);
 	return (pip_node);
 }
@@ -66,6 +68,8 @@ t_parse_ast	*parse_command(
 	cmd_node = parse_new_ast_node(ASTNODE_COMMAND, content_node);
 	content_node->arguments_node = args_node;
 	cmd_node->error = (cmd_node->error || args_node->error);
+	if (cmd_node->error)
+		return (NULL);
 	cmd_node->heredocs = args_node->heredocs;
 	return (cmd_node);
 }
@@ -97,6 +101,8 @@ t_parse_ast	*parse_arguments(t_parse_buffer *buff, t_token *tok)
 	args_node->error = (args_node->error || (redir_node && redir_node->error));
 	args_node->error = (args_node->error || (str_node && str_node->error));
 	args_node->error = (args_node->error || (rest_node && rest_node->error));
+	if (args_node->error)
+		return (NULL);
 	args_node->heredocs = parse_concat_heredocs(redir_node, rest_node);
 	return (args_node);
 }
@@ -164,6 +170,8 @@ t_parse_ast	*parse_redirection(
 	redirection->string_node = str_node;
 	new_node = parse_new_ast_node(ASTNODE_REDIRECTION, redirection);
 	new_node->error = (!str_node || str_node->error);
+	if (new_node->error)
+		return (NULL);
 	if (type == TOKTYPE_HEREDOCUMENT)
 		new_node->heredocs = parse_new_heredocs(redirection);
 	return (new_node);
