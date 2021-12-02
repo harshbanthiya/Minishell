@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 09:06:29 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/12/02 12:04:15 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/12/02 16:37:21 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ static int	cmd_connect_pipe(
  */
 int	cmd_wait_commands(t_command *command)
 {
-	int	status;
-
+	int			status;
+	
 	while (command)
 	{
 		if (command->pid > 0)
@@ -70,7 +70,7 @@ static int	write_heredoc(t_fd_reds_list *in_fd_red_list)
 	return (0);
 }
 
-static int	cmd_exec_one_command(t_command *current_cmd,
+static int	cmd_exec_one_command(t_command *master, t_command *current_cmd,
 			int pipe_fd[2], int pipe_prev_fd[2])
 {
 	pid_t			pid;
@@ -88,10 +88,8 @@ static int	cmd_exec_one_command(t_command *current_cmd,
 	{
 		cmd_exec_command(current_cmd, pipe_prev_fd, pipe_fd,
 			in_fd_red_list);
-		cmd_free_cmd(current_cmd);
-		if (g_shell.exit_flag < 0)
-			free_shell();
-		else 
+		cmd_free_cmd(master);
+		if (g_shell.exit_flag >= 0)
 			exit_shell();
 	}
 	write_heredoc(in_fd_red_list);
@@ -115,17 +113,22 @@ int	cmd_exec_commands(t_command *command)
 	int			pipe_fd[2];
 	int			pipe_prev_fd[2];
 	t_command	*current_cmd;
+	int 		status;
 
 	current_cmd = command;
 	if (!command->piped_command && command->exec_and_args
 		&& is_builtin((char *)command->exec_and_args[0]))
-		return (cmd_exec_builtin(current_cmd));
+	{
+		status = cmd_exec_builtin(current_cmd);
+		return (status);
+	}
 	cmd_init_pipe_fd(pipe_prev_fd, STDIN_FILENO, -1);
 	while (current_cmd)
 	{
-		if (cmd_exec_one_command(current_cmd, pipe_fd, pipe_prev_fd))
+		if (cmd_exec_one_command(command, current_cmd, pipe_fd, pipe_prev_fd))
 			break ;
 		current_cmd = current_cmd->piped_command;
+
 	}
 	return (cmd_wait_commands(command));
 }

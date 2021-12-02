@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 00:15:20 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/12/02 12:11:37 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/12/02 14:45:10 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,5 @@ void	parse_skip_spaces(t_parse_buffer *buff, t_token *tok)
 /* Fail Early, Fail Loudly */
 void	parse_fatal_error(void)
 {
-	g_shell.exit_flag = 1;
-	exit_shell();
+	exit(1);
 }

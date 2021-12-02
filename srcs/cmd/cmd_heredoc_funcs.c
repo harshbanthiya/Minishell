@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 10:03:33 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/12/02 12:10:39 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/12/02 14:45:34 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,7 @@ void	cmd_set_heredoc_sighandlers(void)
 		|| signal(SIGINT, heredoc_sigint_sighandler) == SIG_ERR)
 	{
 		printf("signal() failed\n");
-		g_shell.exit_flag = 1;
-		exit_shell();
+		exit(1);
 	}
 }
 

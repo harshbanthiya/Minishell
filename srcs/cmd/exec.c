@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 11:21:41 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/12/02 11:31:44 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/12/02 15:50:46 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,5 +127,5 @@ int	cmd_execvp(char *filename, char **argv)
 	if (errno && errno != ENOENT)
 		g_shell.exit_flag = 126;
 	g_shell.exit_flag = 127;
-	return (g_shell.exit_flag);
+	return (0);
 }

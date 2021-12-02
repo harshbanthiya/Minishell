@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 09:21:56 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/12/02 11:46:58 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/12/02 16:01:25 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void	replace_stdio_with_pipe(t_command *command,
  * pipe_prev_fd[2]: A pipe that connects the previous and current process.
  * pipe_fd[2]: A pipe that connects the current and next process.
  */
-void	cmd_exec_command(t_command *command,
+void 	cmd_exec_command(t_command *command,
 	int pipe_prev_fd[2], int pipe_fd[2], t_fd_reds_list *in_fd_reds_list)
 {
 	t_builtin_cmd	*builtin_func;
@@ -61,7 +61,10 @@ void	cmd_exec_command(t_command *command,
 		g_shell.exit_flag = 0;
 	builtin_func = get_builtin_func((char *)command->exec_and_args[0]);
 	if (builtin_func)
-		g_shell.exit_flag = (builtin_func((char **)command->exec_and_args));
-	g_shell.exit_flag = cmd_execvp((char *)command->exec_and_args[0],
-		(char **) command->exec_and_args);
+	{
+		g_shell.exit_flag = builtin_func((char **)command->exec_and_args);
+		return ;
+	}
+	cmd_execvp((char *)command->exec_and_args[0],
+			(char **) command->exec_and_args);
 }
