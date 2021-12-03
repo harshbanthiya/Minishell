@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 22:07:47 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/12/02 14:43:28 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/12/02 19:43:35 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,12 @@ void	parse_free_all_ast(void)
 
 	list = *get_ast_list();
 	if (list)
-		parse_free_heredocs(list->ast.heredocs);
+	{	
+		if (!list->ast.heredocs && list->next->ast.heredocs)
+			parse_free_heredocs(list->next->ast.heredocs);
+		else 
+			parse_free_heredocs(list->ast.heredocs);
+	}
 	while (list)
 	{
 		next = list->next;

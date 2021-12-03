@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 09:06:29 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/12/02 16:45:19 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/12/02 17:55:34 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include "../../includes/ms_execution.h"
 #include "../../includes/ms_builtin.h"
 
+/*
 static int    is_valid_command(char *name)
 {
     char    **dirs;
@@ -53,6 +54,7 @@ static int    is_valid_command(char *name)
     printf("invalid command");
     return (0);
 }
+*/
 
 static int	cmd_connect_pipe(
 	int pipe_prev_fd[2], int pipe_fd[2])
@@ -116,8 +118,8 @@ static int	cmd_exec_one_command(t_command *master, t_command *current_cmd,
 		return (put_err_msg_and_ret("error pipe()"));
 	if (current_cmd->exec_and_args)
 		ft_export_var("_", (char *)current_cmd->exec_and_args[0], get_env());
-	if (!is_valid_command((char *)current_cmd->exec_and_args[0]))
-		return (0);
+	//if (!is_valid_command((char *)current_cmd->exec_and_args[0]))
+	//	return (0);
 	pid = fork();
 	if (pid < 0)
 		return (put_err_msg_and_ret("error fork()"));
@@ -165,7 +167,6 @@ int	cmd_exec_commands(t_command *command)
 		if (cmd_exec_one_command(command, current_cmd, pipe_fd, pipe_prev_fd))
 			break ;
 		current_cmd = current_cmd->piped_command;
-
 	}
 	return (cmd_wait_commands(command));
 }

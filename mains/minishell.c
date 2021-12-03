@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 20:44:34 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/12/02 16:45:26 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/12/02 19:23:47 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int	invoke_sequential_commands(t_parse_ast *seqcmd)
 		if (new)
 		{
 			status = cmd_exec_commands(new);
-			//g_shell.exit_flag = status;
 			cmd_free_cmd(new);
 			if (g_shell.exit_flag >= 0)
 				exit_shell();

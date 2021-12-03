@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 11:21:41 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/12/02 15:50:46 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/12/02 18:11:49 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,17 +107,30 @@ char	*search_and_exec_file_from_path_env(char *filename, char **argv)
 int	cmd_execvp(char *filename, char **argv)
 {
 	char		*executable_path;
+	char		**envp;
 
 	errno = 0;
 	executable_path = filename;
+	
 	if (ft_strchr(filename, '/'))
-		execve(filename, argv, env_list_to_envp(*get_env()));
+	{
+		envp = env_list_to_envp(*get_env());
+		execve(filename, argv, envp);
+		free_ptrarr_and_assign_null((void ***)(&envp));
+	}
 	else
 		executable_path = search_and_exec_file_from_path_env(filename, argv);
 	if (executable_path && is_directory(executable_path))
-		put_minish_err_msg_and_exit(126, executable_path, "Is a directory");
+	{	
+		g_shell.exit_flag = 126;
+		put_minish_err_msg(executable_path, "Is a directory");
+		return (126);
+	}
 	if (errno == ENOEXEC && is_executable(executable_path))
+	{	
 		g_shell.exit_flag = 0;
+		return (0);
+	}
 	else if (errno == ENOEXEC && !is_executable(executable_path))
 		errno = EACCES;
 	if (errno && executable_path)
@@ -125,7 +138,10 @@ int	cmd_execvp(char *filename, char **argv)
 	else
 		put_minish_err_msg(filename, "command not found");
 	if (errno && errno != ENOENT)
+	{	
 		g_shell.exit_flag = 126;
+		return (126);
+	}
 	g_shell.exit_flag = 127;
-	return (0);
+	return (127);	
 }
