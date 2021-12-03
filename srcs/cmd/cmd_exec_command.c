@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 09:21:56 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/12/03 09:56:18 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/12/03 10:09:05 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "../../includes/minishell.h"
 #include "../../libft/libft.h"
 
-static int	exec_exit_err_ret(int err_code)
+int	exec_exit_err_ret(int err_code)
 {
 	g_shell.exit_flag = err_code;
 	return (err_code);

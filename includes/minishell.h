@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 18:43:33 by sfournie          #+#    #+#             */
-/*   Updated: 2021/12/03 09:42:10 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/12/03 10:08:56 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,4 +85,5 @@ void			set_status(int status_value);
 int				set_status_and_ret(int status_value, int ret_value);
 void			show_parse_err(char *input_str);
 void			exit_shell(void);
+int				exec_exit_err_ret(int err_code);
 #endif
