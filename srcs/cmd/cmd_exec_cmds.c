@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_exec_cmds.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
+/*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 09:06:29 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/12/03 09:39:26 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/12/03 12:51:38 by sfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,44 +18,6 @@
 #include "../../includes/ms_environment.h"
 #include "../../includes/ms_execution.h"
 #include "../../includes/ms_builtin.h"
-
-/*
-static int    is_valid_command(char *name)
-{
-    char    **dirs;
-    char    *value;
-    char    *full_path;
-    int        i;
-
-    value = get_var_value("PATH", *get_env());
-	if (is_builtin(name))
-		return (1);
-    if (value)
-        dirs = ft_split(value, ':');
-    else
-        dirs = NULL;
-    if (!access("name", X_OK))
-        return (1);
-    i = 0;
-    while (dirs[i])
-    {
-        full_path = (char *)ft_calloc(ft_strlen(dirs[i]) + 
-					ft_strlen(name) + 2, sizeof(char));
-        full_path = ft_strcat(full_path, dirs[i]); 
-        full_path = ft_strcat(full_path, "/");
-        full_path = ft_strcat(full_path, name); 
-        if (!access(full_path, X_OK))
-        {
-            ft_free(full_path);
-            return (1);
-        }
-        ft_free(full_path);
-        i++;
-    }
-    printf("invalid command");
-    return (0);
-}
-*/
 
 static int	cmd_connect_pipe(
 	int pipe_prev_fd[2], int pipe_fd[2])
