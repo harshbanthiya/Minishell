@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 09:21:56 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/12/02 17:43:24 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/12/03 09:56:18 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,12 @@
 #include "../../includes/ms_execution.h"
 #include "../../includes/minishell.h"
 #include "../../libft/libft.h"
+
+static int	exec_exit_err_ret(int err_code)
+{
+	g_shell.exit_flag = err_code;
+	return (err_code);
+}
 
 /*
  * Connect pipe to STDIN_FILENO and STDOUT_FILE_NO.
@@ -47,7 +53,7 @@ static void	replace_stdio_with_pipe(t_command *command,
  * pipe_prev_fd[2]: A pipe that connects the previous and current process.
  * pipe_fd[2]: A pipe that connects the current and next process.
  */
-void 	cmd_exec_command(t_command *command,
+void	cmd_exec_command(t_command *command,
 	int pipe_prev_fd[2], int pipe_fd[2], t_fd_reds_list *in_fd_reds_list)
 {
 	t_builtin_cmd	*builtin_func;
@@ -66,5 +72,5 @@ void 	cmd_exec_command(t_command *command,
 		return ;
 	}
 	cmd_execvp((char *)command->exec_and_args[0],
-			(char **) command->exec_and_args);
+		(char **) command->exec_and_args);
 }

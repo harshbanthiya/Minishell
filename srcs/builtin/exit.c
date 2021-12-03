@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 19:27:36 by sfournie          #+#    #+#             */
-/*   Updated: 2021/12/02 13:00:48 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/12/03 09:48:34 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,14 @@
 #include "../../includes/ms_builtin.h"
 #include "../../includes/ms_environment.h"
 #include "../../libft/libft.h"
-/*
-static void	put_exit_errmsg_and_ret(char *exit_status)
-{
-	char	*tmp;
 
-	tmp = ft_strjoin(exit_status, ": numeric argument required");
-	check_malloc_success("exit", tmp);
-	put_minish_err_msg_and_exit(255, "exit", tmp);
+static int	put_exit_errmsg_and_ret(int err_code)
+{
+	g_shell.exit_flag = err_code;
+	return (put_minish_err_msg_and_ret(err_code, "exit",
+			"numeric argument required"));
 }
-*/
+
 void	skip_whitespace(char **nptr)
 {
 	while (**nptr == ' ' || **nptr == '\t' || **nptr == '\f'
@@ -47,20 +45,12 @@ static int	exit_atol(char *str)
 	if (*nptr == '-' || *nptr == '+')
 		nptr++;
 	if (!ft_isdigit(*nptr) || is_long_overflow(nptr, sign))
-	{
-		g_shell.exit_flag = 255;
-		return (put_minish_err_msg_and_ret(255, "exit",
-						"numeric argument required"));
-	}
+		return (put_exit_errmsg_and_ret(255));
 	while (ft_isdigit(*nptr))
 		num = num * 10 + (*nptr++ - '0');
 	skip_whitespace(&nptr);
 	if (*nptr)
-	{
-		g_shell.exit_flag = 255;
-		return (put_minish_err_msg_and_ret(255, "exit",
-								"numeric argument required"));
-	}
+		return (put_exit_errmsg_and_ret(255));
 	g_shell.exit_flag = ((sign * num) & 255);
 	return (g_shell.exit_flag);
 }
@@ -71,11 +61,7 @@ int	ft_exit(char **argv)
 
 	argv_len = ptrarr_len((void **)argv);
 	if (argv_len >= 2 && !ft_isnum(argv[1]))
-	{
-		g_shell.exit_flag = 255;
-		return (put_minish_err_msg_and_ret(255, "exit", 
-							"numeric argument required"));
-	}
+		return (put_exit_errmsg_and_ret(255));
 	if (argv_len > 2)
 	{
 		g_shell.exit_flag = 1;

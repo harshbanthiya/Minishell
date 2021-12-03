@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   terminal.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
+/*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 12:32:05 by sfournie          #+#    #+#             */
-/*   Updated: 2021/12/02 14:23:10 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/12/03 09:43:44 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,11 @@ char	*ft_readline(void)
 
 	user_in = readline(get_prompt());
 	return (user_in);
+}
+
+void	exit_shell(void)
+{
+	parse_free_all_ast();
+	free_shell();
+	exit(g_shell.exit_flag);
 }

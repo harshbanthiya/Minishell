@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 23:30:06 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/12/02 19:25:41 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/12/03 09:35:18 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ t_parse_hdoc_list	*parse_new_heredocs(
 	list->next = NULL;
 	return (list);
 }
-
 
 void	parse_free_heredocs(t_parse_hdoc_list *list)
 {

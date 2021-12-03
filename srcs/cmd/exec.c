@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 11:21:41 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/12/02 18:11:49 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/12/03 10:00:40 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,16 @@ char	*search_and_exec_file_from_path_env(char *filename, char **argv)
 	return (last_executable_path);
 }
 
+void	exec_with_path(char *filename, char **argv)
+{
+	char	**envp;
+
+	envp = env_list_to_envp(*get_env());
+	if (envp)
+		execve(filename, argv, envp);
+	free_ptrarr((void **)envp);
+}
+
 /*
  * This function works just like execvp.
  *
@@ -107,30 +117,20 @@ char	*search_and_exec_file_from_path_env(char *filename, char **argv)
 int	cmd_execvp(char *filename, char **argv)
 {
 	char		*executable_path;
-	char		**envp;
 
 	errno = 0;
 	executable_path = filename;
-	
 	if (ft_strchr(filename, '/'))
-	{
-		envp = env_list_to_envp(*get_env());
-		execve(filename, argv, envp);
-		free_ptrarr_and_assign_null((void ***)(&envp));
-	}
+		exec_with_path(filename, argv);
 	else
 		executable_path = search_and_exec_file_from_path_env(filename, argv);
 	if (executable_path && is_directory(executable_path))
 	{	
-		g_shell.exit_flag = 126;
 		put_minish_err_msg(executable_path, "Is a directory");
-		return (126);
+		return (exec_exit_err_ret(126));
 	}
 	if (errno == ENOEXEC && is_executable(executable_path))
-	{	
-		g_shell.exit_flag = 0;
-		return (0);
-	}
+		return (exec_exit_err_ret(0));
 	else if (errno == ENOEXEC && !is_executable(executable_path))
 		errno = EACCES;
 	if (errno && executable_path)
@@ -138,10 +138,6 @@ int	cmd_execvp(char *filename, char **argv)
 	else
 		put_minish_err_msg(filename, "command not found");
 	if (errno && errno != ENOENT)
-	{	
-		g_shell.exit_flag = 126;
-		return (126);
-	}
-	g_shell.exit_flag = 127;
-	return (127);	
+		return (exec_exit_err_ret(126));
+	return (exec_exit_err_ret(127));
 }

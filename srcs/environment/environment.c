@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 20:14:21 by sfournie          #+#    #+#             */
-/*   Updated: 2021/12/02 17:57:14 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/12/03 09:35:34 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ char	**env_list_to_envp(t_dlist *env_head)
 	t_dlist	*temp;
 	int		i;
 	char	**output;
-	char 	*save;
+	char	*save;
 
 	temp = env_head;
 	i = lst_size(temp);

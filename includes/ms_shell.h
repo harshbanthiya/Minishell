@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_shell.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
+/*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 18:43:33 by sfournie          #+#    #+#             */
-/*   Updated: 2021/12/02 14:20:24 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/12/03 09:41:22 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct s_shell
 	int		signal_child_received;
 	int		heredoc_interruption;
 	int		status;
-	int 	exit_flag;
+	int		exit_flag;
 	char	*user_in;
 	char	prompt[PROMPT_SIZE];
 }				t_shell;

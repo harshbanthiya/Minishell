@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 09:19:53 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/12/02 15:54:08 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/12/03 10:00:55 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,5 +107,5 @@ void					cmd_free_redirections(t_cmd_redirection *redirections);
 t_fd_reds_list			*cmd_reds2fd_reds_list(t_cmd_redirection *reds);
 void					cmd_free_fd_reds_list(t_fd_reds_list *fd_red_list);
 char					**exec_wild_args(char **argv);
-
+static int				exec_exit_err_ret(int err_code);
 #endif

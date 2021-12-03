@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 20:44:34 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/12/02 19:23:47 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/12/03 09:41:06 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,8 @@ int	do_command(char *cmdstr)
 
 int	main(int argc, char **argv, char **envp)
 {
-	int 	ret;
-	
+	int	ret;
+
 	ret = 0;
 	sh_init(envp);
 	if (argc == 3 && ft_strncmp(argv[1], "-c", 3) == 0)
