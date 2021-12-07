@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 10:02:42 by sfournie          #+#    #+#             */
-/*   Updated: 2021/12/03 09:43:35 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/12/03 16:06:01 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,4 +96,5 @@ void	free_shell(void)
 		sh->env = free_env(sh->env);
 		sh->user_in = ft_free(sh->user_in);
 	}
+	clear_history();
 }

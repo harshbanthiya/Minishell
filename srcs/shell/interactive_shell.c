@@ -6,7 +6,7 @@
 /*   By: sfournie <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 22:22:08 by hbanthiy          #+#    #+#             */
-/*   Updated: 2021/12/02 14:18:29 by sfournie         ###   ########.fr       */
+/*   Updated: 2021/12/03 14:09:21 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,11 +83,9 @@ int	interactive_shell(void)
 		if (!root)
 			show_parse_err(g_shell.user_in);
 		else
-		{
 			execute_seqcmd(root);
-			parse_free_all_ast();
-		}
 		free(g_shell.user_in);
+		parse_free_all_ast();
 		g_shell.user_in = ft_readline();
 	}
 	write(1, "exit\n", 5);

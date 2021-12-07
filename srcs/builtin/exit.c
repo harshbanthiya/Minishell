@@ -6,7 +6,7 @@
 /*   By: hbanthiy <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 19:27:36 by sfournie          #+#    #+#             */
-/*   Updated: 2021/12/03 09:48:34 by hbanthiy         ###   ########.fr       */
+/*   Updated: 2021/12/03 16:24:21 by hbanthiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	ft_exit(char **argv)
 		return (put_exit_errmsg_and_ret(255));
 	if (argv_len > 2)
 	{
-		g_shell.exit_flag = 1;
+		g_shell.status = 1;
 		return (put_minish_err_msg_and_ret(1, "exit", "too many arguments"));
 	}
 	else if (argv_len == 2)
