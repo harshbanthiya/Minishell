@@ -10,7 +10,7 @@
  </p>
   
    ``Executable Name`` | ./minishell 
-   --------------- | ---------------
+   :--------------- | :---------------
    ``Program Purpose`` | Making a small reimplementation of BASH with certain Limitations
    ``Program Language`` | C |
    ``Allowed External Library`` | readline 
