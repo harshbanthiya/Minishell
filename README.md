@@ -11,7 +11,7 @@
   
    ``Executable Name`` | ./minishell 
    :--------------- | :---------------
-   ``Program Purpose`` | Making a small reimplementation of BASH with certain Limitations
+   ``Program Purpose`` | Making a small reimplementation of BASH with certain limitations
    ``Program Language`` | C |
    ``Allowed External Library`` | readline 
    ``Allowed Functions & System Calls`` | printf, malloc, free, write, access, open, read, close, fork, wait, waitpid, wait3, wait4, signal, sigaction, sigemptyset, sigaddset, kill, exit,getcwd, chdir, stat, lstat, fstat, unlink, execve,dup, dup2, pipe, opendir, readdir, closedir, strerror, perror, isatty, ttyname, ttyslot, ioctl, getenv, tcsetattr, tcgetattr, tgetent, tgetflag, tgetnum, tgetstr, tgoto, tputs
@@ -234,6 +234,63 @@ cd /Users/
 ./minishell 
 exit 42
 ```
+<details><summary> Test Cases </summary>
+```sh
+1: exit 0 0
+2: exit 42 42
+3: exit -42 -24
+4: exit 42
+5: exit 42 53 68
+6: exit 259
+7: exit -12030
+8: exit --1239312
+9: exit ++++1203020103
+10: exit +0
+11: exit ++++++0
+12: exit -----0
+13: exit azerty
+14: exit kewkwqke
+15: exit a
+16: exit z
+17: exit "1"
+18: exit "2"
+19: exit "+102"
+20: exit "1230"
+21: exit "+++1230"
+22: exit "1"23
+23: exit "2"32"32"
+24: exit "'42'"
+25: exit '42'"42"42
+26: exit +'42'"42"42
+27: exit -'42'"42"42
+28: exit 9223372036854775807
+29: exit 9223372036854775808
+30: exit -4
+31: exit wrong
+32: exit wrong_command
+33: exit something
+34: exit 1
+35: exit -1
+36: exit 42
+37: exit 0
+38: exit --000
+39: exit +++++++000
+40: exit ++++3193912939
+41: exit ---31232103012
+42: exit "something"
+43: exit q
+44: exit help
+45: exit export
+46: exit echo
+47: exit cd ..
+48: exit 0 0
+49: exit something somethingv2
+50: exit 42 42 42 42 42
+51: exit echo something
+52: exit exit
+```
+  
+<\details>
 
 **Export command**
 ```sh
