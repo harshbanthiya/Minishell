@@ -108,10 +108,12 @@ Editor preferences are available in the [editor config](https://reponame/blob/ma
 
 Usually single quotes, double quotes and dollar sign are special characters that can cause expansion of variables.
 Hence we needed to be thorough that our parsing is capable to handling a random mix of these special characters.
-Following are the test cases of all the built-in functions we wrote.  
+Following are the test cases of all the built-in functions we wrote. 
 
 **Echo command**
-<details>
+<details><summary> Test Cases </summary>
+<p>
+  
 ```sh
 ./minishell
 1: echo
@@ -178,7 +180,9 @@ Following are the test cases of all the built-in functions we wrote.
 62: echo "text" "text$USER" ... "$USER"
 63: echo $PWD
 ```
-<\details>
+<\p>
+</details>
+
 **Cd command**
 
 ```sh
