@@ -22,7 +22,7 @@
 ## Table of contents
 
 - [Usage](#Usage)
-- [Built-in Functions by us](#Built-ins)
+- [Built-in Functions by us](#Built-ins-and-their-Test-Cases)
 - [What's included](#whats-included)
 - [Bugs and feature requests](#bugs-and-feature-requests)
 - [Contributing](#contributing)
@@ -53,7 +53,7 @@ ctrl + D
 ```
 
 
-## Built-ins
+## Built ins and their Test Cases 
 
 
 Usually single quotes, double quotes and dollar sign are special characters that can cause expansion of variables.
