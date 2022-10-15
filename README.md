@@ -235,6 +235,7 @@ cd /Users/
 exit 42
 ```
 <details><summary> Test Cases </summary>
+
 ```sh
 1: exit 0 0
 2: exit 42 42
@@ -289,8 +290,9 @@ exit 42
 51: exit echo something
 52: exit exit
 ```
-  
+
 <\details>
+
 
 **Export command**
 ```sh
