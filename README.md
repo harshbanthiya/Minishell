@@ -56,7 +56,7 @@ ctrl + D
 ## Built-ins
 
 
-Usually single quotes, double quotes and Dollar Sign are special characters that can cause expansion of variables.
+Usually single quotes, double quotes and dollar sign are special characters that can cause expansion of variables.
 Hence we needed to be thorough that our parsing is capable to handling a random mix of these special characters.
 Following are the test cases of all the built-in functions we wrote.  
 
