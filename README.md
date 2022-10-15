@@ -33,11 +33,17 @@
 
 ## Usage
 
-** To Mimic Bash Usage for a single command **
+**To Mimic Bash Usage for a single command**
+```sh
+bash -c "Command"
+```
 ```sh
 ./minishell -c "Command"
 ```
-** Or to use it just like bash simple run the executable **
+**Or simply run the executable like bash**
+```sh
+bash
+```
 ```sh
 ./minishell 
 ```
