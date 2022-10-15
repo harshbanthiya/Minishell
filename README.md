@@ -24,8 +24,7 @@
 - [Usage](#Usage)
 - [What's included](#whats-included)
 - [Our Implementation of Built-in Functions](#Built-ins-and-their-Test-Cases)
-- [Bugs and feature requests](#bugs-and-feature-requests)
-- [Contributing](#contributing)
+- [Bug Issues](#bug-issues)
 - [Creators](#creators)
 - [Thanks](#thanks)
 - [Copyright and license](#copyright-and-license)
@@ -398,25 +397,15 @@ unset TEST
 </details>
 
 
-## Bugs and feature requests
+## Bug Issues 
 
-Have a bug or a feature request? Please first read the [issue guidelines](https://reponame/blob/master/CONTRIBUTING.md) and search for existing and closed issues. If your problem or idea is not addressed yet, [please open a new issue](https://reponame/issues/new).
+Have a bug? If you found a problem or idea that is not addressed yet, [please open a new issue](https://github.com/harshbanthiya/Minishell/issues/new).
 
-## Contributing
-
-Please read through our [contributing guidelines](https://reponame/blob/master/CONTRIBUTING.md). Included are directions for opening issues, coding standards, and notes on development.
-
-Moreover, all HTML and CSS should conform to the [Code Guide](https://github.com/mdo/code-guide), maintained by [Main author](https://github.com/usernamemainauthor).
-
-Editor preferences are available in the [editor config](https://reponame/blob/master/.editorconfig) for easy use in common text editors. Read more and download plugins at <https://editorconfig.org/>.
 
 ## Creators
 
-**Creator 1**
-
-- <https://github.com/usernamecreator1>
-
-
+[Harsh Banthiya](https://github.com/harshbanthiya)
+[Sebastien Fournier](https://github.com/Fousse24)
 
 ## Thanks
 
