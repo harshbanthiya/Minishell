@@ -4,9 +4,9 @@
     Short description
   </p>
   
-    Executable Name | ./minishell
-    --------------- | ----------- 
-    Program Purpose | Making a small reimplementation of BASH with certain Limitations
+   Executable Name | ./minishell
+   --------------- | ---------------
+   Program Purpose | Making a small reimplementation of BASH with certain Limitations
     
     
     Progam written in | C |
