@@ -228,6 +228,27 @@ cd /Users/
 ```
 </details>
 
+**Exit command**
+```sh
+./minishell -c "exit"
+./minishell 
+exit 42
+```
+
+**Export command**
+```sh
+./minishell -c "export TEST=123"
+./minishell 
+export TEST-=100
+```
+
+**Unset command**
+```sh
+./minishell
+unset TEST
+```
+
+
 
 ## Thanks
 
