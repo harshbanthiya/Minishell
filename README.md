@@ -4,10 +4,12 @@
     Short description
   </p>
   
-    | Executable Name | ./minishell |
-    | --- | --- |
-    | Program Purpose | Making a small reimplementation of BASH with certain Limitations |
-    | Progam written in | C |
+    Executable Name | ./minishell
+    --------------- | ----------- 
+    Program Purpose | Making a small reimplementation of BASH with certain Limitations
+    
+    
+    Progam written in | C |
     | Limitations |   |
     | Allowed External Library | Readline |
     | Allowed Functions & System Calls |  printf, malloc, free, write, access, open, read, |
