@@ -21,7 +21,7 @@
 
 ## Table of contents
 
-- [Quick start](#quick-start)
+- [Usage](#Usage)
 - [Status](#status)
 - [What's included](#whats-included)
 - [Bugs and feature requests](#bugs-and-feature-requests)
@@ -31,9 +31,11 @@
 - [Copyright and license](#copyright-and-license)
 
 
-## Quick start
+## Usage
 
-Some text
+```sh
+./minishell -C "Command"
+```
 
 - Instruction 1
 - Instruction 2
