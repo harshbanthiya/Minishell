@@ -1,9 +1,6 @@
   <h3 align="left">Minishell</h3>
 
   <p align="left">
-    Short description
-  </p>
-  <p align="left">
     <a href="https://github.com/harshbanthiya/Minishell">
     <img src="https://badge42.vercel.app/api/v2/cl2xrmmu4000609mlo05k9qg8/project/2371023" alt="Minishell">
     </a>
@@ -88,7 +85,8 @@ abcdabcd
 
 Usually single quotes, double quotes and dollar sign are special characters that can cause expansion of variables.
 Hence we needed to be thorough that our parsing is capable to handling a random mix of these special characters.
-Following are the test cases of all the built-in functions we wrote. 
+Following are the test cases of all the built-in functions we wrote.
+**To test yourself, use TEST CASES, simultaneously with bash and minishell in two terminal windows**
 
 **Echo command**
 ```sh
