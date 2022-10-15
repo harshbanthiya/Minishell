@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://github.com/harshbanthiya/Minishell">
-    <img src="https://via.placeholder.com/72" alt="Minishell" width=72 height=72>
+    <img src="https://badge42.vercel.app/api/v2/cl2xrmmu4000609mlo05k9qg8/project/2371023" alt="Minishell" width=72 height=72>
   </a>
 
   <h3 align="center">Minishell</h3>
