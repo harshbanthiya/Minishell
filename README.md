@@ -111,6 +111,11 @@ Hence we needed to be thorough that our parsing is capable to handling a random 
 Following are the test cases of all the built-in functions we wrote. 
 
 **Echo command**
+```sh
+./minishell -c "echo hello world"
+./minishell 
+echo abcd > a.txt
+```
 <details><summary> Test Cases </summary>
 
   
@@ -184,6 +189,11 @@ Following are the test cases of all the built-in functions we wrote.
 </details>
 
 **Cd command**
+```sh
+./minishell -c "cd .."
+./minishell 
+cd /Users/
+```
 <details><summary> Test Cases </summary>
 
 ```sh
@@ -217,6 +227,8 @@ Following are the test cases of all the built-in functions we wrote.
 27: cd $OLDPWD/something
 ```
 </details>
+
+
 ## Thanks
 
 Some Text
