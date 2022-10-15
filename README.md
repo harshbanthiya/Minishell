@@ -22,7 +22,7 @@
 ## Table of contents
 
 - [Usage](#Usage)
-- [Status](#status)
+- [Built-in Functions by us](#Built-ins)
 - [What's included](#whats-included)
 - [Bugs and feature requests](#bugs-and-feature-requests)
 - [Contributing](#contributing)
@@ -53,9 +53,76 @@ ctrl + D
 ```
 
 
-## Status
+## Built-ins
 
-Here goes all the budgets
+**ECHO COMMAND tested for**
+
+```sh
+./minishell
+1: echo
+2: echo echo
+3: eCho
+4: eChO
+5: eCHO
+6: ECHO
+7: echo rhobebou
+8: echo stop barking
+9: echo "bonjour"
+10: echo bonjour
+11: echo 'bonjour'
+12: echo -n bonjour
+13: echo -nn bonjour
+14: echo -n -n -n bonjour
+15: echo -n -n -n bonjour
+16: echo "-n" bonjour
+17: echo -n"-n" bonjour
+18: echo "-nnnn" bonjour
+19: echo "-n -n -n"-n bonjour
+20: echo "-n '-n'" bonjour
+21: echo $USER
+22: echo "$USER"
+23: echo "'$USER'"
+24: echo " '$USER' "
+25: echo text"$USER"
+26: echo text"'$USER'" ' $USER '
+27: echo "text"   "$USER"    "$USER"
+28: echo '              $USER          '
+29: echo               text "$USER"            "$USER"text
+30: echo ''''''''''$USER''''''''''
+31: echo """"""""$USER""""""""
+32: echo $USER'$USER'text oui oui     oui  oui $USER oui      $USER ''
+33: echo $USER '' $USER $USER '' $USER '' $USER -n $USER
+34: echo ' ' ' '
+35: echo '" ' " """
+36: echo " " " """ '''
+37: echo "$USER""$USER""$USER"
+38: echo text"$USER"test
+39: echo '$USER' "$USER" "text ' text"
+40: echo '$USER'
+41: echo $USER " "
+42: echo "$USER""Users/$USER/file""'$USER'"'$USER'
+43: echo "$USER$USER$USER"
+44: echo '$USER'"$USER"'$USER'
+45: echo '"$USER"''$USER'"""$USER"
+46: echo " $USER  "'$PWD'
+47: echo " $USER  $ "'$PWD'
+48: echo $USER=4
+49: echo $USER=thallard
+50: echo $USER
+51: echo $?
+52: echo $USER213
+53: echo $USER$12USER$USER=4$USER12
+54: echo $USER $123456789USER $USER123456789
+55: echo $USER $9999USER $8888USER $7777USER
+56: echo $USER $USER9999 $USER8888 $USER7777
+57: echo $USER $USER9999 $USER8888 $USER7777 "$USER"
+58: echo "$USER=12$USER"
+59: echo "$9USER" "'$USER=12$SOMETHING'"
+60: echo $PWD/file
+61: echo "$PWD/file"
+62: echo "text" "text$USER" ... "$USER"
+63: echo $PWD
+```
 
 ## What's included
 
