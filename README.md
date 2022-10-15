@@ -22,11 +22,11 @@
 ## Table of contents
 
 - [Usage](#Usage)
-- [Built-in Functions by us](#Built-ins-and-their-Test-Cases)
 - [What's included](#whats-included)
 - [Bugs and feature requests](#bugs-and-feature-requests)
 - [Contributing](#contributing)
 - [Creators](#creators)
+- [Our Implementation of Built-in Functions](#Built-ins-and-their-Test-Cases)
 - [Thanks](#thanks)
 - [Copyright and license](#copyright-and-license)
 
@@ -52,6 +52,56 @@ bash
 ctrl + D
 ```
 
+
+## What's included
+
+**Pipes** 
+
+```sh
+./minishell -c "echo oui | cat -e"
+./minishell -c "echo test | cat -e | cat -e | cat -e"
+./minishell -c "cat Makefile | grep "FLAGS" | grep "FLAGS" | cat -e"
+```
+
+**Redirections : > < >> <<** 
+
+```sh
+./minishell -c "whereis ls | cat -e | cat -e > test"
+./minishell -c "whereis grep >> tmp/file"
+./minishell
+grep abcd << hello
+> que
+> abcdabcd 
+> ab
+> hello
+abcdabcd
+```
+
+**Semicolons** 
+
+```sh
+./minishell -c "echo oui | cat -e"
+./minishell -c "echo test | cat -e | cat -e | cat -e"
+./minishell -c "cat Makefile | grep "FLAGS" | grep "FLAGS" | cat -e"
+```
+
+## Bugs and feature requests
+
+Have a bug or a feature request? Please first read the [issue guidelines](https://reponame/blob/master/CONTRIBUTING.md) and search for existing and closed issues. If your problem or idea is not addressed yet, [please open a new issue](https://reponame/issues/new).
+
+## Contributing
+
+Please read through our [contributing guidelines](https://reponame/blob/master/CONTRIBUTING.md). Included are directions for opening issues, coding standards, and notes on development.
+
+Moreover, all HTML and CSS should conform to the [Code Guide](https://github.com/mdo/code-guide), maintained by [Main author](https://github.com/usernamemainauthor).
+
+Editor preferences are available in the [editor config](https://reponame/blob/master/.editorconfig) for easy use in common text editors. Read more and download plugins at <https://editorconfig.org/>.
+
+## Creators
+
+**Creator 1**
+
+- <https://github.com/usernamecreator1>
 
 ## Built ins and their Test Cases 
 
@@ -160,39 +210,6 @@ Following are the test cases of all the built-in functions we wrote.
 26: cd $PWD/file_tests
 27: cd $OLDPWD/something
 ```
-## What's included
-
-Some text
-
-```text
-folder1/
-└── folder2/
-    ├── folder3/
-    │   ├── file1
-    │   └── file2
-    └── folder4/
-        ├── file3
-        └── file4
-```
-
-## Bugs and feature requests
-
-Have a bug or a feature request? Please first read the [issue guidelines](https://reponame/blob/master/CONTRIBUTING.md) and search for existing and closed issues. If your problem or idea is not addressed yet, [please open a new issue](https://reponame/issues/new).
-
-## Contributing
-
-Please read through our [contributing guidelines](https://reponame/blob/master/CONTRIBUTING.md). Included are directions for opening issues, coding standards, and notes on development.
-
-Moreover, all HTML and CSS should conform to the [Code Guide](https://github.com/mdo/code-guide), maintained by [Main author](https://github.com/usernamemainauthor).
-
-Editor preferences are available in the [editor config](https://reponame/blob/master/.editorconfig) for easy use in common text editors. Read more and download plugins at <https://editorconfig.org/>.
-
-## Creators
-
-**Creator 1**
-
-- <https://github.com/usernamecreator1>
-
 ## Thanks
 
 Some Text
