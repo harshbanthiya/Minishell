@@ -1,7 +1,7 @@
-  <h3 align="center">Minishell</h3>
+  <h3 align="left">Minishell</h3>
 
   <p align="left">
-    Short description
+    **Short description**
   </p>
   <p align="left">
     <a href="https://github.com/harshbanthiya/Minishell">
