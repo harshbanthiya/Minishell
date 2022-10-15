@@ -230,67 +230,43 @@ cd /Users/
 
 **Exit command**
 ```sh
-./minishell -c "exit"
+./minishell -c "exit 42"
 ./minishell 
-exit 42
+exit
 ```
 <details><summary> Test Cases </summary>
 
 ```sh
-1: exit 0 0
-2: exit 42 42
-3: exit -42 -24
-4: exit 42
-5: exit 42 53 68
-6: exit 259
-7: exit -12030
-8: exit --1239312
-9: exit ++++1203020103
-10: exit +0
-11: exit ++++++0
-12: exit -----0
-13: exit azerty
-14: exit kewkwqke
-15: exit a
-16: exit z
-17: exit "1"
-18: exit "2"
-19: exit "+102"
-20: exit "1230"
-21: exit "+++1230"
-22: exit "1"23
-23: exit "2"32"32"
-24: exit "'42'"
-25: exit '42'"42"42
-26: exit +'42'"42"42
-27: exit -'42'"42"42
-28: exit 9223372036854775807
-29: exit 9223372036854775808
-30: exit -4
-31: exit wrong
-32: exit wrong_command
-33: exit something
-34: exit 1
-35: exit -1
-36: exit 42
-37: exit 0
-38: exit --000
-39: exit +++++++000
-40: exit ++++3193912939
-41: exit ---31232103012
-42: exit "something"
-43: exit q
-44: exit help
-45: exit export
-46: exit echo
-47: exit cd ..
-48: exit 0 0
-49: exit something somethingv2
-50: exit 42 42 42 42 42
-51: exit echo something
-52: exit exit
+./minishell
+1: cd
+2: cd ..
+3: cd .
+4: cd /Users
+5: cd //
+6: cd '//'
+7: cd //////
+8: cd ./././
+9: cd /
+10: cd '/////' 2>/dev/null
+11: cd '/etc'
+12: cd '/var'
+13: cd "$PWD/file_tests"
+14: cd "doesntexist"
+15: cd "doesntexist" 2>/dev/null
+16: cd ../../..
+17: cd "wtf" 2>/dev/null
+18: cd ..
+19: cd ..
+20: cd ?
+21: cd +
+22: cd _
+23: cd woof
+24: cd bark bark
+25: cd '/'
+26: cd $PWD/file_tests
+27: cd $OLDPWD/something
 ```
-<\details>
+</details>
   
 **Export command**
 ```sh
