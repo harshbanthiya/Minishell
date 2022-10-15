@@ -46,6 +46,11 @@ bash
 ```sh
 ctrl + D
 ```
+**Or**
+```sh
+./minishell
+exit
+```
 
 
 ## What's included
