@@ -4,7 +4,7 @@
     Short description
   </p>
   
-   Executable Name | ```sh./minishell``` 
+   Executable Name | ```bash ./minishell``` 
    --------------- | ---------------
    ``Program Purpose`` | Making a small reimplementation of BASH with certain Limitations
    ``Progam written in`` | C |
