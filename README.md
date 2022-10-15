@@ -374,33 +374,44 @@ unset TEST
 
 ```sh
 ./minishell
-1: cd
-2: cd ..
-3: cd .
-4: cd /Users
-5: cd //
-6: cd '//'
-7: cd //////
-8: cd ./././
-9: cd /
-10: cd '/////' 2>/dev/null
-11: cd '/etc'
-12: cd '/var'
-13: cd "$PWD/file_tests"
-14: cd "doesntexist"
-15: cd "doesntexist" 2>/dev/null
-16: cd ../../..
-17: cd "wtf" 2>/dev/null
-18: cd ..
-19: cd ..
-20: cd ?
-21: cd +
-22: cd _
-23: cd woof
-24: cd bark bark
-25: cd '/'
-26: cd $PWD/file_tests
-27: cd $OLDPWD/something
+1: unset
+2: export TEST=100
+3: unset doesntexist
+4: unset PWD
+5: unset PWD
+6: unset OLDPWD
+7: unset PATH
+8: unset PATH
+9: unset PATH
+10: unset TES\T
+11: unset TES;T
+12: unset TES.T
+13: unset TES+T
+14: unset TES=T
+15: unset TES}T
+16: unset TES{T
+17: unset TES-T
+18: unset -TEST
+19: unset _TEST
+20: unset TES_T
+21: unset TEST_
+22: unset TE*ST
+23: unset TES#T
+24: unset TES@T
+25: unset TES!T
+26: unset TES$?T
+27: unset ============
+28: unset +++++++
+29: unset ________
+30: unset export
+31: unset echo
+32: unset pwd
+33: unset cd
+34: unset unset
+35: unset sudo
+36: unset TES^T
+37: unset TES!T
+38: unset TES~T
 ```
 </details>
 
