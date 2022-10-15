@@ -290,7 +290,6 @@ exit 42
 51: exit echo something
 52: exit exit
 ```
-
 <\details>
 
 
