@@ -291,8 +291,7 @@ exit 42
 52: exit exit
 ```
 <\details>
-
-
+  
 **Export command**
 ```sh
 ./minishell -c "export TEST=123"
