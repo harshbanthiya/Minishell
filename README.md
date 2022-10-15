@@ -94,7 +94,7 @@ ctrl + D
 33: echo $USER '' $USER $USER '' $USER '' $USER -n $USER
 34: echo ' ' ' '
 35: echo '" ' " """
-36: echo " " " """ '''
+36: echo " " " """ ''/'
 37: echo "$USER""$USER""$USER"
 38: echo text"$USER"test
 39: echo '$USER' "$USER" "text ' text"
