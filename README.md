@@ -112,7 +112,7 @@ Following are the test cases of all the built-in functions we wrote.
 
 **Echo command**
 <details><summary> Test Cases </summary>
-<p>
+
   
 ```sh
 ./minishell
@@ -180,10 +180,11 @@ Following are the test cases of all the built-in functions we wrote.
 62: echo "text" "text$USER" ... "$USER"
 63: echo $PWD
 ```
-<\p>
+
 </details>
 
 **Cd command**
+<details><summary> Test Cases </summary>
 
 ```sh
 ./minishell
@@ -215,6 +216,7 @@ Following are the test cases of all the built-in functions we wrote.
 26: cd $PWD/file_tests
 27: cd $OLDPWD/something
 ```
+</details>
 ## Thanks
 
 Some Text
