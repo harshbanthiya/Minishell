@@ -3,9 +3,9 @@
   <p align="left">
     Short description
   </p>
-  <p align="right">
+  <p align="left">
     <a href="https://github.com/harshbanthiya/Minishell">
-    <img src="https://badge42.vercel.app/api/v2/cl2xrmmu4000609mlo05k9qg8/project/2371023" alt="Minishell" width=152 height=152>
+    <img src="https://badge42.vercel.app/api/v2/cl2xrmmu4000609mlo05k9qg8/project/2371023" alt="Minishell">
     </a>
  </p>
   
