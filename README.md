@@ -80,9 +80,9 @@ abcdabcd
 **Semicolons** 
 
 ```sh
-./minishell -c "echo oui | cat -e"
-./minishell -c "echo test | cat -e | cat -e | cat -e"
-./minishell -c "cat Makefile | grep "FLAGS" | grep "FLAGS" | cat -e"
+./minishell -c "echo hello world ; echo this is cool"
+./minishell -c "echo test | cat -e | cat -e | cat -e ; echo Abstract Sytax tree"
+./minishell -c "echo this is written inside file > abc.txt; cat abc.txt"
 ```
 
 ## Bugs and feature requests
