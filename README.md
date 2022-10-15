@@ -303,33 +303,65 @@ export TEST-=100
 
 ```sh
 ./minishell
-1: cd
-2: cd ..
-3: cd .
-4: cd /Users
-5: cd //
-6: cd '//'
-7: cd //////
-8: cd ./././
-9: cd /
-10: cd '/////' 2>/dev/null
-11: cd '/etc'
-12: cd '/var'
-13: cd "$PWD/file_tests"
-14: cd "doesntexist"
-15: cd "doesntexist" 2>/dev/null
-16: cd ../../..
-17: cd "wtf" 2>/dev/null
-18: cd ..
-19: cd ..
-20: cd ?
-21: cd +
-22: cd _
-23: cd woof
-24: cd bark bark
-25: cd '/'
-26: cd $PWD/file_tests
-27: cd $OLDPWD/something
+1: export | grep "SHLVL"
+2: export | grep "OLDPWD"
+3: export | grep "PWD"
+4: export $?
+6: export TEST
+7: export TEST=
+8: export TEST=123
+9: export ___TEST=123
+10: export --TEST=123
+11: export ""=""
+12: export ''=''
+13: export "="="="
+14: export '='='='
+15: export TE\ST=100
+16: export TE-ST=100
+17: export -TEST=100
+18: export TEST-=100
+19: export _TEST=100
+20: export | grep "SHLVL"
+21: export TEST
+22: export ==========
+23: export 1TEST=
+24: export TEST
+25: export ""=""
+26: export TES=T=""
+27: export TE+S=T=""
+28: export TES\T=123
+29: export TES.T=123  
+30: export TES\$T=123
+31: export TES\T
+32: export TES.T=123
+33: export TES+T=123
+34: export TES=T=123
+35: export TES}T=123
+36: export TES{T=123
+37: export TES-T=123
+38: export -TEST=123
+39: export _TEST=123
+40: export TES_T=123
+41: export TEST_=123
+42: export TE*ST=123
+43: export TES#T=123
+44: export TES@T=123
+45: export TES!T=123
+46: export TES$?T=123
+47: export =============123
+48: export +++++++=123
+49: export ________=123
+50: export export
+51: export echo
+52: export pwd
+53: export cd
+54: export export
+55: export unset
+56: export sudo
+57: export TES^T=123
+58: export TES!T=123
+59: export TES~T+=123
+60: export TEST+=100
 ```
 </details>
 
