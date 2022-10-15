@@ -1,7 +1,11 @@
   <h3 align="center">Minishell</h3>
 
-  <p align="center">
+  <p align="left">
     Short description
+    <p align="right">
+    <a href="https://github.com/harshbanthiya/Minishell">
+    <img src="https://badge42.vercel.app/api/v2/cl2xrmmu4000609mlo05k9qg8/project/2371023" alt="Minishell" width=152 height=152>
+    </a>
   </p>
   
    ``Executable Name`` | ./minishell 
@@ -11,10 +15,7 @@
    ``Allowed External Library`` | readline 
    ``Allowed Functions & System Calls`` | printf, malloc, free, write, access, open, read, close, fork, wait, waitpid, wait3, wait4, signal, sigaction, sigemptyset, sigaddset, kill, exit,getcwd, chdir, stat, lstat, fstat, unlink, execve,dup, dup2, pipe, opendir, readdir, closedir, strerror, perror, isatty, ttyname, ttyslot, ioctl, getenv, tcsetattr, tcgetattr, tgetent, tgetflag, tgetnum, tgetstr, tgoto, tputs
   
-<p align="center">
-  <a href="https://github.com/harshbanthiya/Minishell">
-    <img src="https://badge42.vercel.app/api/v2/cl2xrmmu4000609mlo05k9qg8/project/2371023" alt="Minishell" width=152 height=152>
-  </a>
+
 
 
 ## Table of contents
