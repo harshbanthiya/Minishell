@@ -55,7 +55,12 @@ ctrl + D
 
 ## Built-ins
 
-**ECHO COMMAND tested for**
+
+Usually single quotes, double quotes and Dollar Sign are special characters that can cause expansion of variables.
+Hence we needed to be thorough that our parsing is capable to handling a random mix of these special characters.
+Following are the test cases of all the built-in functions we wrote.  
+
+**Echo command**
 
 ```sh
 ./minishell
