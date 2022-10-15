@@ -33,7 +33,7 @@
 
 ## Usage
 
-**To Mimic Bash Usage for a single command**
+**To mimic Bash and it's usage for a single command**
 ```sh
 bash -c "Command"
 ```
@@ -47,10 +47,11 @@ bash
 ```sh
 ./minishell 
 ```
+**To Exit**
+```sh
+ctrl + D
+```
 
-- Instruction 1
-- Instruction 2
-- Instruction 3
 
 ## Status
 
