@@ -4,13 +4,12 @@
     Short description
   </p>
   
-   Executable Name | ./minishell
+   Executable Name | ```sh./minishell``` 
    --------------- | ---------------
-   Program Purpose | Making a small reimplementation of BASH with certain Limitations
-   Progam written in | C |
-   Limitations |   |
-   Allowed External Library | Readline 
-   Allowed Functions & System Calls | printf, malloc, free, write, access, open, read, close, fork, wait, waitpid, wait3, wait4, signal, sigaction, sigemptyset, sigaddset, kill, exit,getcwd, chdir, stat, lstat, fstat, unlink, execve,dup, dup2, pipe, opendir, readdir, closedir, strerror, perror, isatty, ttyname, ttyslot, ioctl, getenv, tcsetattr, tcgetattr, tgetent, tgetflag, tgetnum, tgetstr, tgoto, tputs
+   ``Program Purpose`` | Making a small reimplementation of BASH with certain Limitations
+   ``Progam written in`` | C |
+   ``Allowed External Library`` | Readline 
+   ``Allowed Functions & System Calls`` | printf, malloc, free, write, access, open, read, close, fork, wait, waitpid, wait3, wait4, signal, sigaction, sigemptyset, sigaddset, kill, exit,getcwd, chdir, stat, lstat, fstat, unlink, execve,dup, dup2, pipe, opendir, readdir, closedir, strerror, perror, isatty, ttyname, ttyslot, ioctl, getenv, tcsetattr, tcgetattr, tgetent, tgetflag, tgetnum, tgetstr, tgoto, tputs
   
 <p align="center">
   <a href="https://github.com/harshbanthiya/Minishell">
