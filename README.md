@@ -111,7 +111,7 @@ Hence we needed to be thorough that our parsing is capable to handling a random 
 Following are the test cases of all the built-in functions we wrote.  
 
 **Echo command**
-
+<details>
 ```sh
 ./minishell
 1: echo
@@ -178,6 +178,7 @@ Following are the test cases of all the built-in functions we wrote.
 62: echo "text" "text$USER" ... "$USER"
 63: echo $PWD
 ```
+<\details>
 **Cd command**
 
 ```sh
