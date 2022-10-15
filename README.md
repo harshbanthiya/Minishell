@@ -33,8 +33,13 @@
 
 ## Usage
 
+** To Mimic Bash Usage for a single command **
 ```sh
-./minishell -C "Command"
+./minishell -c "Command"
+```
+** Or to use it just like bash simple run the executable **
+```sh
+./minishell 
 ```
 
 - Instruction 1
