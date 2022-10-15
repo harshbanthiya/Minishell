@@ -26,8 +26,7 @@
 - [Our Implementation of Built-in Functions](#Built-ins-and-their-Test-Cases)
 - [Bug Issues](#bug-issues)
 - [Creators](#creators)
-- [Thanks](#thanks)
-- [Copyright and license](#copyright-and-license)
+- [Request Codebase or explanations](#request-codebase)
 
 
 ## Usage
@@ -407,12 +406,9 @@ Have a bug? If you found a problem or idea that is not addressed yet, [please op
 [Harsh Banthiya](https://github.com/harshbanthiya)
 [Sebastien Fournier](https://github.com/Fousse24)
 
-## Thanks
+## Request Codebase 
 
-Some Text
+This is an ongoing project for a lot of students attending 42. Therefore we have only kept the executable and not the entire codebase, if you have questions regarding implementation and want to request the entire codebase. [Please write to me.](mailto:banthiyaharsh01@gmail.com?subject=[GitHub]%20Request%20Codebase%20Minishell%20Or%20Implementation)
 
-## Copyright and license
 
-Code and documentation copyright 2011-2018 the authors. Code released under the [MIT License](https://reponame/blob/master/LICENSE).
-
-Enjoy :metal:
+:metal:
